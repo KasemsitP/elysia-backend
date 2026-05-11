@@ -1,4 +1,4 @@
-import { prisma } from "../../cores/prisma";
+import { prisma, type Tx } from "../../cores/prisma";
 import { serializeBigInt } from "../../cores/bigint";
 
 export const authRepo = {
@@ -31,8 +31,9 @@ export const authRepo = {
         manager_order: number | null;
         title: string;
         campaign_id: number | null;
-    }) {
-        const account = await prisma.accounts.create({
+    }, tx?: Tx) {
+        const client = tx ?? prisma;
+        const account = await client.accounts.create({
             data: {
                 username: data.username,
                 password_hash: data.password_hash,

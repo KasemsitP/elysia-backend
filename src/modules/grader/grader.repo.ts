@@ -1,4 +1,4 @@
-import { prisma } from "../../cores/prisma";
+import { prisma, type Tx } from "../../cores/prisma";
 import { serializeBigInt } from "../../cores/bigint";
 
 
@@ -18,6 +18,17 @@ export const graderRepo = {
             }
         });
         return grader ? serializeBigInt(grader) : null;
+    },
+
+    async createGrader(account_id: string, campaign_id: number | null, tx?: Tx) {
+        const client = tx ?? prisma;
+        const grader = await client.graders.create({
+            data: {
+                account_id: BigInt(account_id),
+                campaign_id: campaign_id !== null ? BigInt(campaign_id) : null,
+            },
+        });
+        return serializeBigInt(grader);
     }
 
 

@@ -1,5 +1,6 @@
 import { authRepo } from "./auth.repo";
 import { AppError } from "../../cores/errors";
+import { prisma } from "../../cores/prisma";
 import type {
     LoginBodySchema,
     RegisterBodySchema,
@@ -8,6 +9,7 @@ import type {
     UnRevokeQuerySchema,
     MeQuerySchema,
     AuthAccountGraderResponse
+
 } from "./auth.type";
 import { graderRepo } from "../grader/grader.repo";
 
@@ -94,11 +96,6 @@ export const authService = {
         }
 
 
-
-
-
-
-
         // session or jwt here
 
 
@@ -121,15 +118,29 @@ export const authService = {
             throw new AppError("รหัสผ่านไม่ตรงกัน", 409);
         }
         const hashedPassword = Bun.password.hashSync(input.password);
-        const accountCreated = await authRepo.createAccount({
-            username: input.username,
-            password_hash: hashedPassword,
-            full_name: input.full_name,
-            email: input.email,
-            role_id: input.role_id,
-            manager_order: input.manager_order ?? null,
-            title: input.title,
-            campaign_id: input.campaign_id ?? null,
+
+
+        const isGrader = input.role_id === 4;
+
+
+
+        const accountCreated = await prisma.$transaction(async (tx) => {
+            const account = await authRepo.createAccount({
+                username: input.username,
+                password_hash: hashedPassword,
+                full_name: input.full_name,
+                email: input.email,
+                role_id: input.role_id,
+                manager_order: input.manager_order ?? null,
+                title: input.title,
+                campaign_id: input.campaign_id ?? null,
+            }, tx);
+
+            if (isGrader) {
+                await graderRepo.createGrader(account.id, input.campaign_id ?? null, tx);
+            }
+
+            return account;
         });
 
         return {
