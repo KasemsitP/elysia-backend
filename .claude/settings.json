@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(ls \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\elysia\\\\node_modules\\\\\" | Where-Object { $_.Name -match \"dotenv|mariadb\" })"
+    ]
+  }
+}
