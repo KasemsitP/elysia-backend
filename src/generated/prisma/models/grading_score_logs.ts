@@ -41,46 +41,46 @@ export type Grading_score_logsAvgAggregateOutputType = {
 }
 
 export type Grading_score_logsSumAggregateOutputType = {
-  id: bigint | null
-  booklet_id: bigint | null
-  subject_id: bigint | null
+  id: number | null
+  booklet_id: number | null
+  subject_id: number | null
   question_no: number | null
-  slot_id1: bigint | null
-  slot_id2: bigint | null
-  grader1_id: bigint | null
-  grader2_id: bigint | null
+  slot_id1: number | null
+  slot_id2: number | null
+  grader1_id: number | null
+  grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
-  changed_by: bigint | null
+  changed_by: number | null
 }
 
 export type Grading_score_logsMinAggregateOutputType = {
-  id: bigint | null
-  booklet_id: bigint | null
-  subject_id: bigint | null
+  id: number | null
+  booklet_id: number | null
+  subject_id: number | null
   question_no: number | null
-  slot_id1: bigint | null
-  slot_id2: bigint | null
-  grader1_id: bigint | null
-  grader2_id: bigint | null
+  slot_id1: number | null
+  slot_id2: number | null
+  grader1_id: number | null
+  grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
-  changed_by: bigint | null
+  changed_by: number | null
   changed_at: Date | null
 }
 
 export type Grading_score_logsMaxAggregateOutputType = {
-  id: bigint | null
-  booklet_id: bigint | null
-  subject_id: bigint | null
+  id: number | null
+  booklet_id: number | null
+  subject_id: number | null
   question_no: number | null
-  slot_id1: bigint | null
-  slot_id2: bigint | null
-  grader1_id: bigint | null
-  grader2_id: bigint | null
+  slot_id1: number | null
+  slot_id2: number | null
+  grader1_id: number | null
+  grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
-  changed_by: bigint | null
+  changed_by: number | null
   changed_at: Date | null
 }
 
@@ -262,17 +262,17 @@ export type grading_score_logsGroupByArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 export type Grading_score_logsGroupByOutputType = {
-  id: bigint
-  booklet_id: bigint
-  subject_id: bigint
+  id: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1: bigint | null
-  slot_id2: bigint | null
-  grader1_id: bigint | null
-  grader2_id: bigint | null
+  slot_id1: number | null
+  slot_id2: number | null
+  grader1_id: number | null
+  grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
-  changed_by: bigint
+  changed_by: number
   changed_at: Date
   _count: Grading_score_logsCountAggregateOutputType | null
   _avg: Grading_score_logsAvgAggregateOutputType | null
@@ -300,17 +300,17 @@ export type grading_score_logsWhereInput = {
   AND?: Prisma.grading_score_logsWhereInput | Prisma.grading_score_logsWhereInput[]
   OR?: Prisma.grading_score_logsWhereInput[]
   NOT?: Prisma.grading_score_logsWhereInput | Prisma.grading_score_logsWhereInput[]
-  id?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
-  booklet_id?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
-  subject_id?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
+  id?: Prisma.IntFilter<"grading_score_logs"> | number
+  booklet_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
   question_no?: Prisma.IntFilter<"grading_score_logs"> | number
-  slot_id1?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  slot_id2?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  grader1_id?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  grader2_id?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
+  slot_id1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  slot_id2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  grader1_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  grader2_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
-  changed_by?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
+  changed_by?: Prisma.IntFilter<"grading_score_logs"> | number
   changed_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
   booklets?: Prisma.XOR<Prisma.BookletsScalarRelationFilter, Prisma.bookletsWhereInput>
   accounts?: Prisma.XOR<Prisma.AccountsScalarRelationFilter, Prisma.accountsWhereInput>
@@ -344,20 +344,20 @@ export type grading_score_logsOrderByWithRelationInput = {
 }
 
 export type grading_score_logsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   AND?: Prisma.grading_score_logsWhereInput | Prisma.grading_score_logsWhereInput[]
   OR?: Prisma.grading_score_logsWhereInput[]
   NOT?: Prisma.grading_score_logsWhereInput | Prisma.grading_score_logsWhereInput[]
-  booklet_id?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
-  subject_id?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
+  booklet_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
   question_no?: Prisma.IntFilter<"grading_score_logs"> | number
-  slot_id1?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  slot_id2?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  grader1_id?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  grader2_id?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
+  slot_id1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  slot_id2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  grader1_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  grader2_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
-  changed_by?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
+  changed_by?: Prisma.IntFilter<"grading_score_logs"> | number
   changed_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
   booklets?: Prisma.XOR<Prisma.BookletsScalarRelationFilter, Prisma.bookletsWhereInput>
   accounts?: Prisma.XOR<Prisma.AccountsScalarRelationFilter, Prisma.accountsWhereInput>
@@ -392,22 +392,21 @@ export type grading_score_logsScalarWhereWithAggregatesInput = {
   AND?: Prisma.grading_score_logsScalarWhereWithAggregatesInput | Prisma.grading_score_logsScalarWhereWithAggregatesInput[]
   OR?: Prisma.grading_score_logsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.grading_score_logsScalarWhereWithAggregatesInput | Prisma.grading_score_logsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"grading_score_logs"> | bigint | number
-  booklet_id?: Prisma.BigIntWithAggregatesFilter<"grading_score_logs"> | bigint | number
-  subject_id?: Prisma.BigIntWithAggregatesFilter<"grading_score_logs"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
+  booklet_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
+  subject_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
   question_no?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
-  slot_id1?: Prisma.BigIntNullableWithAggregatesFilter<"grading_score_logs"> | bigint | number | null
-  slot_id2?: Prisma.BigIntNullableWithAggregatesFilter<"grading_score_logs"> | bigint | number | null
-  grader1_id?: Prisma.BigIntNullableWithAggregatesFilter<"grading_score_logs"> | bigint | number | null
-  grader2_id?: Prisma.BigIntNullableWithAggregatesFilter<"grading_score_logs"> | bigint | number | null
+  slot_id1?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
+  slot_id2?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
+  grader1_id?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
+  grader2_id?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
   old_score1?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
   old_score2?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
-  changed_by?: Prisma.BigIntWithAggregatesFilter<"grading_score_logs"> | bigint | number
+  changed_by?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
   changed_at?: Prisma.DateTimeWithAggregatesFilter<"grading_score_logs"> | Date | string
 }
 
 export type grading_score_logsCreateInput = {
-  id?: bigint | number
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
@@ -422,22 +421,21 @@ export type grading_score_logsCreateInput = {
 }
 
 export type grading_score_logsUncheckedCreateInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
 export type grading_score_logsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -452,37 +450,36 @@ export type grading_score_logsUpdateInput = {
 }
 
 export type grading_score_logsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManyInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
 export type grading_score_logsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -490,17 +487,17 @@ export type grading_score_logsUpdateManyMutationInput = {
 }
 
 export type grading_score_logsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -882,7 +879,6 @@ export type grading_score_logsUncheckedUpdateManyWithoutSubjectsNestedInput = {
 }
 
 export type grading_score_logsCreateWithoutAccountsInput = {
-  id?: bigint | number
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
@@ -896,14 +892,14 @@ export type grading_score_logsCreateWithoutAccountsInput = {
 }
 
 export type grading_score_logsUncheckedCreateWithoutAccountsInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
   changed_at?: Date | string
@@ -939,22 +935,21 @@ export type grading_score_logsScalarWhereInput = {
   AND?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
   OR?: Prisma.grading_score_logsScalarWhereInput[]
   NOT?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
-  booklet_id?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
-  subject_id?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
+  id?: Prisma.IntFilter<"grading_score_logs"> | number
+  booklet_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
   question_no?: Prisma.IntFilter<"grading_score_logs"> | number
-  slot_id1?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  slot_id2?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  grader1_id?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
-  grader2_id?: Prisma.BigIntNullableFilter<"grading_score_logs"> | bigint | number | null
+  slot_id1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  slot_id2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  grader1_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  grader2_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
-  changed_by?: Prisma.BigIntFilter<"grading_score_logs"> | bigint | number
+  changed_by?: Prisma.IntFilter<"grading_score_logs"> | number
   changed_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
 }
 
 export type grading_score_logsCreateWithoutBookletsInput = {
-  id?: bigint | number
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
@@ -968,16 +963,16 @@ export type grading_score_logsCreateWithoutBookletsInput = {
 }
 
 export type grading_score_logsUncheckedCreateWithoutBookletsInput = {
-  id?: bigint | number
-  subject_id: bigint | number
+  id?: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
@@ -1008,7 +1003,6 @@ export type grading_score_logsUpdateManyWithWhereWithoutBookletsInput = {
 }
 
 export type grading_score_logsCreateWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
-  id?: bigint | number
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
@@ -1022,16 +1016,16 @@ export type grading_score_logsCreateWithoutGraders_grading_score_logs_grader1_id
 }
 
 export type grading_score_logsUncheckedCreateWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
@@ -1046,7 +1040,6 @@ export type grading_score_logsCreateManyGraders_grading_score_logs_grader1_idTog
 }
 
 export type grading_score_logsCreateWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
-  id?: bigint | number
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
@@ -1060,16 +1053,16 @@ export type grading_score_logsCreateWithoutGraders_grading_score_logs_grader2_id
 }
 
 export type grading_score_logsUncheckedCreateWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
@@ -1116,7 +1109,6 @@ export type grading_score_logsUpdateManyWithWhereWithoutGraders_grading_score_lo
 }
 
 export type grading_score_logsCreateWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: bigint | number
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
@@ -1130,16 +1122,16 @@ export type grading_score_logsCreateWithoutGrading_slots_grading_score_logs_slot
 }
 
 export type grading_score_logsUncheckedCreateWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
@@ -1154,7 +1146,6 @@ export type grading_score_logsCreateManyGrading_slots_grading_score_logs_slot_id
 }
 
 export type grading_score_logsCreateWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: bigint | number
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
@@ -1168,16 +1159,16 @@ export type grading_score_logsCreateWithoutGrading_slots_grading_score_logs_slot
 }
 
 export type grading_score_logsUncheckedCreateWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
@@ -1224,7 +1215,6 @@ export type grading_score_logsUpdateManyWithWhereWithoutGrading_slots_grading_sc
 }
 
 export type grading_score_logsCreateWithoutSubjectsInput = {
-  id?: bigint | number
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
@@ -1238,16 +1228,16 @@ export type grading_score_logsCreateWithoutSubjectsInput = {
 }
 
 export type grading_score_logsUncheckedCreateWithoutSubjectsInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
+  id?: number
+  booklet_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
@@ -1278,21 +1268,20 @@ export type grading_score_logsUpdateManyWithWhereWithoutSubjectsInput = {
 }
 
 export type grading_score_logsCreateManyAccountsInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
   changed_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1306,49 +1295,48 @@ export type grading_score_logsUpdateWithoutAccountsInput = {
 }
 
 export type grading_score_logsUncheckedUpdateWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManyBookletsInput = {
-  id?: bigint | number
-  subject_id: bigint | number
+  id?: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutBookletsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1362,63 +1350,62 @@ export type grading_score_logsUpdateWithoutBookletsInput = {
 }
 
 export type grading_score_logsUncheckedUpdateWithoutBookletsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutBookletsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManyGraders_grading_score_logs_grader1_idTogradersInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
 export type grading_score_logsCreateManyGraders_grading_score_logs_grader2_idTogradersInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1432,35 +1419,34 @@ export type grading_score_logsUpdateWithoutGraders_grading_score_logs_grader1_id
 }
 
 export type grading_score_logsUncheckedUpdateWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUpdateWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1474,63 +1460,62 @@ export type grading_score_logsUpdateWithoutGraders_grading_score_logs_grader2_id
 }
 
 export type grading_score_logsUncheckedUpdateWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManyGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
 export type grading_score_logsCreateManyGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  id?: number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1544,35 +1529,34 @@ export type grading_score_logsUpdateWithoutGrading_slots_grading_score_logs_slot
 }
 
 export type grading_score_logsUncheckedUpdateWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUpdateWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1586,49 +1570,48 @@ export type grading_score_logsUpdateWithoutGrading_slots_grading_score_logs_slot
 }
 
 export type grading_score_logsUncheckedUpdateWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManySubjectsInput = {
-  id?: bigint | number
-  booklet_id: bigint | number
+  id?: number
+  booklet_id: number
   question_no: number
-  slot_id1?: bigint | number | null
-  slot_id2?: bigint | number | null
-  grader1_id?: bigint | number | null
-  grader2_id?: bigint | number | null
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
-  changed_by: bigint | number
+  changed_by: number
   changed_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1642,30 +1625,30 @@ export type grading_score_logsUpdateWithoutSubjectsInput = {
 }
 
 export type grading_score_logsUncheckedUpdateWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  slot_id1?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  slot_id2?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader1_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader2_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  changed_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -1733,17 +1716,17 @@ export type $grading_score_logsPayload<ExtArgs extends runtime.Types.Extensions.
     subjects: Prisma.$subjectsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    booklet_id: bigint
-    subject_id: bigint
+    id: number
+    booklet_id: number
+    subject_id: number
     question_no: number
-    slot_id1: bigint | null
-    slot_id2: bigint | null
-    grader1_id: bigint | null
-    grader2_id: bigint | null
+    slot_id1: number | null
+    slot_id2: number | null
+    grader1_id: number | null
+    grader2_id: number | null
     old_score1: number | null
     old_score2: number | null
-    changed_by: bigint
+    changed_by: number
     changed_at: Date
   }, ExtArgs["result"]["grading_score_logs"]>
   composites: {}
@@ -2121,17 +2104,17 @@ export interface Prisma__grading_score_logsClient<T, Null = never, ExtArgs exten
  * Fields of the grading_score_logs model
  */
 export interface grading_score_logsFieldRefs {
-  readonly id: Prisma.FieldRef<"grading_score_logs", 'BigInt'>
-  readonly booklet_id: Prisma.FieldRef<"grading_score_logs", 'BigInt'>
-  readonly subject_id: Prisma.FieldRef<"grading_score_logs", 'BigInt'>
+  readonly id: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly booklet_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly subject_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly question_no: Prisma.FieldRef<"grading_score_logs", 'Int'>
-  readonly slot_id1: Prisma.FieldRef<"grading_score_logs", 'BigInt'>
-  readonly slot_id2: Prisma.FieldRef<"grading_score_logs", 'BigInt'>
-  readonly grader1_id: Prisma.FieldRef<"grading_score_logs", 'BigInt'>
-  readonly grader2_id: Prisma.FieldRef<"grading_score_logs", 'BigInt'>
+  readonly slot_id1: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly slot_id2: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly grader1_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly grader2_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly old_score1: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly old_score2: Prisma.FieldRef<"grading_score_logs", 'Int'>
-  readonly changed_by: Prisma.FieldRef<"grading_score_logs", 'BigInt'>
+  readonly changed_by: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly changed_at: Prisma.FieldRef<"grading_score_logs", 'DateTime'>
 }
     

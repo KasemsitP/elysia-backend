@@ -36,32 +36,32 @@ export type Grading_slotsAvgAggregateOutputType = {
 }
 
 export type Grading_slotsSumAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   question_no: number | null
   grader_order: number | null
-  grader_id: bigint | null
-  booklet_id: bigint | null
-  subject_id: bigint | null
+  grader_id: number | null
+  booklet_id: number | null
+  subject_id: number | null
 }
 
 export type Grading_slotsMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   question_no: number | null
   grader_order: number | null
   status: string | null
-  grader_id: bigint | null
-  booklet_id: bigint | null
-  subject_id: bigint | null
+  grader_id: number | null
+  booklet_id: number | null
+  subject_id: number | null
 }
 
 export type Grading_slotsMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   question_no: number | null
   grader_order: number | null
   status: string | null
-  grader_id: bigint | null
-  booklet_id: bigint | null
-  subject_id: bigint | null
+  grader_id: number | null
+  booklet_id: number | null
+  subject_id: number | null
 }
 
 export type Grading_slotsCountAggregateOutputType = {
@@ -212,13 +212,13 @@ export type grading_slotsGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type Grading_slotsGroupByOutputType = {
-  id: bigint
+  id: number
   question_no: number
   grader_order: number
   status: string
-  grader_id: bigint | null
-  booklet_id: bigint
-  subject_id: bigint
+  grader_id: number | null
+  booklet_id: number
+  subject_id: number
   _count: Grading_slotsCountAggregateOutputType | null
   _avg: Grading_slotsAvgAggregateOutputType | null
   _sum: Grading_slotsSumAggregateOutputType | null
@@ -245,13 +245,13 @@ export type grading_slotsWhereInput = {
   AND?: Prisma.grading_slotsWhereInput | Prisma.grading_slotsWhereInput[]
   OR?: Prisma.grading_slotsWhereInput[]
   NOT?: Prisma.grading_slotsWhereInput | Prisma.grading_slotsWhereInput[]
-  id?: Prisma.BigIntFilter<"grading_slots"> | bigint | number
+  id?: Prisma.IntFilter<"grading_slots"> | number
   question_no?: Prisma.IntFilter<"grading_slots"> | number
   grader_order?: Prisma.IntFilter<"grading_slots"> | number
   status?: Prisma.StringFilter<"grading_slots"> | string
-  grader_id?: Prisma.BigIntNullableFilter<"grading_slots"> | bigint | number | null
-  booklet_id?: Prisma.BigIntFilter<"grading_slots"> | bigint | number
-  subject_id?: Prisma.BigIntFilter<"grading_slots"> | bigint | number
+  grader_id?: Prisma.IntNullableFilter<"grading_slots"> | number | null
+  booklet_id?: Prisma.IntFilter<"grading_slots"> | number
+  subject_id?: Prisma.IntFilter<"grading_slots"> | number
   grading_score_drafts?: Prisma.XOR<Prisma.Grading_score_draftsNullableScalarRelationFilter, Prisma.grading_score_draftsWhereInput> | null
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.Grading_score_logsListRelationFilter
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.Grading_score_logsListRelationFilter
@@ -280,7 +280,7 @@ export type grading_slotsOrderByWithRelationInput = {
 }
 
 export type grading_slotsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   booklet_id_subject_id_question_no_grader_order?: Prisma.grading_slotsBooklet_idSubject_idQuestion_noGrader_orderCompoundUniqueInput
   booklet_id_subject_id_question_no_grader_id?: Prisma.grading_slotsBooklet_idSubject_idQuestion_noGrader_idCompoundUniqueInput
   AND?: Prisma.grading_slotsWhereInput | Prisma.grading_slotsWhereInput[]
@@ -289,9 +289,9 @@ export type grading_slotsWhereUniqueInput = Prisma.AtLeast<{
   question_no?: Prisma.IntFilter<"grading_slots"> | number
   grader_order?: Prisma.IntFilter<"grading_slots"> | number
   status?: Prisma.StringFilter<"grading_slots"> | string
-  grader_id?: Prisma.BigIntNullableFilter<"grading_slots"> | bigint | number | null
-  booklet_id?: Prisma.BigIntFilter<"grading_slots"> | bigint | number
-  subject_id?: Prisma.BigIntFilter<"grading_slots"> | bigint | number
+  grader_id?: Prisma.IntNullableFilter<"grading_slots"> | number | null
+  booklet_id?: Prisma.IntFilter<"grading_slots"> | number
+  subject_id?: Prisma.IntFilter<"grading_slots"> | number
   grading_score_drafts?: Prisma.XOR<Prisma.Grading_score_draftsNullableScalarRelationFilter, Prisma.grading_score_draftsWhereInput> | null
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.Grading_score_logsListRelationFilter
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.Grading_score_logsListRelationFilter
@@ -320,17 +320,16 @@ export type grading_slotsScalarWhereWithAggregatesInput = {
   AND?: Prisma.grading_slotsScalarWhereWithAggregatesInput | Prisma.grading_slotsScalarWhereWithAggregatesInput[]
   OR?: Prisma.grading_slotsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.grading_slotsScalarWhereWithAggregatesInput | Prisma.grading_slotsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"grading_slots"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"grading_slots"> | number
   question_no?: Prisma.IntWithAggregatesFilter<"grading_slots"> | number
   grader_order?: Prisma.IntWithAggregatesFilter<"grading_slots"> | number
   status?: Prisma.StringWithAggregatesFilter<"grading_slots"> | string
-  grader_id?: Prisma.BigIntNullableWithAggregatesFilter<"grading_slots"> | bigint | number | null
-  booklet_id?: Prisma.BigIntWithAggregatesFilter<"grading_slots"> | bigint | number
-  subject_id?: Prisma.BigIntWithAggregatesFilter<"grading_slots"> | bigint | number
+  grader_id?: Prisma.IntNullableWithAggregatesFilter<"grading_slots"> | number | null
+  booklet_id?: Prisma.IntWithAggregatesFilter<"grading_slots"> | number
+  subject_id?: Prisma.IntWithAggregatesFilter<"grading_slots"> | number
 }
 
 export type grading_slotsCreateInput = {
-  id?: bigint | number
   question_no: number
   grader_order: number
   status?: string
@@ -344,13 +343,13 @@ export type grading_slotsCreateInput = {
 }
 
 export type grading_slotsUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  grader_id?: number | null
+  booklet_id: number
+  subject_id: number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedOneWithoutGrading_slotsInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput
@@ -358,7 +357,6 @@ export type grading_slotsUncheckedCreateInput = {
 }
 
 export type grading_slotsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -372,13 +370,13 @@ export type grading_slotsUpdateInput = {
 }
 
 export type grading_slotsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateOneWithoutGrading_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsNestedInput
@@ -386,30 +384,29 @@ export type grading_slotsUncheckedUpdateInput = {
 }
 
 export type grading_slotsCreateManyInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  grader_id?: number | null
+  booklet_id: number
+  subject_id: number
 }
 
 export type grading_slotsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type grading_slotsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type Grading_slotsListRelationFilter = {
@@ -439,17 +436,17 @@ export type grading_slotsOrderByRelevanceInput = {
 }
 
 export type grading_slotsBooklet_idSubject_idQuestion_noGrader_orderCompoundUniqueInput = {
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  booklet_id: number
+  subject_id: number
   question_no: number
   grader_order: number
 }
 
 export type grading_slotsBooklet_idSubject_idQuestion_noGrader_idCompoundUniqueInput = {
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  booklet_id: number
+  subject_id: number
   question_no: number
-  grader_id: bigint | number
+  grader_id: number
 }
 
 export type grading_slotsCountOrderByAggregateInput = {
@@ -687,7 +684,6 @@ export type grading_slotsUncheckedUpdateManyWithoutSubjectsNestedInput = {
 }
 
 export type grading_slotsCreateWithoutBookletsInput = {
-  id?: bigint | number
   question_no: number
   grader_order: number
   status?: string
@@ -700,12 +696,12 @@ export type grading_slotsCreateWithoutBookletsInput = {
 }
 
 export type grading_slotsUncheckedCreateWithoutBookletsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  subject_id: bigint | number
+  grader_id?: number | null
+  subject_id: number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedOneWithoutGrading_slotsInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput
@@ -742,17 +738,16 @@ export type grading_slotsScalarWhereInput = {
   AND?: Prisma.grading_slotsScalarWhereInput | Prisma.grading_slotsScalarWhereInput[]
   OR?: Prisma.grading_slotsScalarWhereInput[]
   NOT?: Prisma.grading_slotsScalarWhereInput | Prisma.grading_slotsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"grading_slots"> | bigint | number
+  id?: Prisma.IntFilter<"grading_slots"> | number
   question_no?: Prisma.IntFilter<"grading_slots"> | number
   grader_order?: Prisma.IntFilter<"grading_slots"> | number
   status?: Prisma.StringFilter<"grading_slots"> | string
-  grader_id?: Prisma.BigIntNullableFilter<"grading_slots"> | bigint | number | null
-  booklet_id?: Prisma.BigIntFilter<"grading_slots"> | bigint | number
-  subject_id?: Prisma.BigIntFilter<"grading_slots"> | bigint | number
+  grader_id?: Prisma.IntNullableFilter<"grading_slots"> | number | null
+  booklet_id?: Prisma.IntFilter<"grading_slots"> | number
+  subject_id?: Prisma.IntFilter<"grading_slots"> | number
 }
 
 export type grading_slotsCreateWithoutGradersInput = {
-  id?: bigint | number
   question_no: number
   grader_order: number
   status?: string
@@ -765,12 +760,12 @@ export type grading_slotsCreateWithoutGradersInput = {
 }
 
 export type grading_slotsUncheckedCreateWithoutGradersInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  booklet_id: number
+  subject_id: number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedOneWithoutGrading_slotsInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput
@@ -804,7 +799,6 @@ export type grading_slotsUpdateManyWithWhereWithoutGradersInput = {
 }
 
 export type grading_slotsCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
   question_no: number
   grader_order: number
   status?: string
@@ -817,13 +811,13 @@ export type grading_slotsCreateWithoutGrading_score_draftsInput = {
 }
 
 export type grading_slotsUncheckedCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  grader_id?: number | null
+  booklet_id: number
+  subject_id: number
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput
   grading_scores?: Prisma.grading_scoresUncheckedCreateNestedManyWithoutGrading_slotsInput
@@ -846,7 +840,6 @@ export type grading_slotsUpdateToOneWithWhereWithoutGrading_score_draftsInput = 
 }
 
 export type grading_slotsUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -859,20 +852,19 @@ export type grading_slotsUpdateWithoutGrading_score_draftsInput = {
 }
 
 export type grading_slotsUncheckedUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsNestedInput
   grading_scores?: Prisma.grading_scoresUncheckedUpdateManyWithoutGrading_slotsNestedInput
 }
 
 export type grading_slotsCreateWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: bigint | number
   question_no: number
   grader_order: number
   status?: string
@@ -885,13 +877,13 @@ export type grading_slotsCreateWithoutGrading_score_logs_grading_score_logs_slot
 }
 
 export type grading_slotsUncheckedCreateWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  grader_id?: number | null
+  booklet_id: number
+  subject_id: number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedOneWithoutGrading_slotsInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput
   grading_scores?: Prisma.grading_scoresUncheckedCreateNestedManyWithoutGrading_slotsInput
@@ -903,7 +895,6 @@ export type grading_slotsCreateOrConnectWithoutGrading_score_logs_grading_score_
 }
 
 export type grading_slotsCreateWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: bigint | number
   question_no: number
   grader_order: number
   status?: string
@@ -916,13 +907,13 @@ export type grading_slotsCreateWithoutGrading_score_logs_grading_score_logs_slot
 }
 
 export type grading_slotsUncheckedCreateWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  grader_id?: number | null
+  booklet_id: number
+  subject_id: number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedOneWithoutGrading_slotsInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput
   grading_scores?: Prisma.grading_scoresUncheckedCreateNestedManyWithoutGrading_slotsInput
@@ -945,7 +936,6 @@ export type grading_slotsUpdateToOneWithWhereWithoutGrading_score_logs_grading_s
 }
 
 export type grading_slotsUpdateWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -958,13 +948,13 @@ export type grading_slotsUpdateWithoutGrading_score_logs_grading_score_logs_slot
 }
 
 export type grading_slotsUncheckedUpdateWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateOneWithoutGrading_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsNestedInput
   grading_scores?: Prisma.grading_scoresUncheckedUpdateManyWithoutGrading_slotsNestedInput
@@ -982,7 +972,6 @@ export type grading_slotsUpdateToOneWithWhereWithoutGrading_score_logs_grading_s
 }
 
 export type grading_slotsUpdateWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -995,20 +984,19 @@ export type grading_slotsUpdateWithoutGrading_score_logs_grading_score_logs_slot
 }
 
 export type grading_slotsUncheckedUpdateWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateOneWithoutGrading_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_scores?: Prisma.grading_scoresUncheckedUpdateManyWithoutGrading_slotsNestedInput
 }
 
 export type grading_slotsCreateWithoutGrading_scoresInput = {
-  id?: bigint | number
   question_no: number
   grader_order: number
   status?: string
@@ -1021,13 +1009,13 @@ export type grading_slotsCreateWithoutGrading_scoresInput = {
 }
 
 export type grading_slotsUncheckedCreateWithoutGrading_scoresInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  grader_id?: number | null
+  booklet_id: number
+  subject_id: number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedOneWithoutGrading_slotsInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput
@@ -1050,7 +1038,6 @@ export type grading_slotsUpdateToOneWithWhereWithoutGrading_scoresInput = {
 }
 
 export type grading_slotsUpdateWithoutGrading_scoresInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1063,20 +1050,19 @@ export type grading_slotsUpdateWithoutGrading_scoresInput = {
 }
 
 export type grading_slotsUncheckedUpdateWithoutGrading_scoresInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateOneWithoutGrading_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsNestedInput
 }
 
 export type grading_slotsCreateWithoutSubjectsInput = {
-  id?: bigint | number
   question_no: number
   grader_order: number
   status?: string
@@ -1089,12 +1075,12 @@ export type grading_slotsCreateWithoutSubjectsInput = {
 }
 
 export type grading_slotsUncheckedCreateWithoutSubjectsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  booklet_id: bigint | number
+  grader_id?: number | null
+  booklet_id: number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedOneWithoutGrading_slotsInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput
@@ -1128,16 +1114,15 @@ export type grading_slotsUpdateManyWithWhereWithoutSubjectsInput = {
 }
 
 export type grading_slotsCreateManyBookletsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  subject_id: bigint | number
+  grader_id?: number | null
+  subject_id: number
 }
 
 export type grading_slotsUpdateWithoutBookletsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1150,12 +1135,12 @@ export type grading_slotsUpdateWithoutBookletsInput = {
 }
 
 export type grading_slotsUncheckedUpdateWithoutBookletsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateOneWithoutGrading_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsNestedInput
@@ -1163,25 +1148,24 @@ export type grading_slotsUncheckedUpdateWithoutBookletsInput = {
 }
 
 export type grading_slotsUncheckedUpdateManyWithoutBookletsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grading_slotsCreateManyGradersInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  booklet_id: bigint | number
-  subject_id: bigint | number
+  booklet_id: number
+  subject_id: number
 }
 
 export type grading_slotsUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1194,12 +1178,12 @@ export type grading_slotsUpdateWithoutGradersInput = {
 }
 
 export type grading_slotsUncheckedUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateOneWithoutGrading_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsNestedInput
@@ -1207,25 +1191,24 @@ export type grading_slotsUncheckedUpdateWithoutGradersInput = {
 }
 
 export type grading_slotsUncheckedUpdateManyWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grading_slotsCreateManySubjectsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   grader_order: number
   status?: string
-  grader_id?: bigint | number | null
-  booklet_id: bigint | number
+  grader_id?: number | null
+  booklet_id: number
 }
 
 export type grading_slotsUpdateWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1238,12 +1221,12 @@ export type grading_slotsUpdateWithoutSubjectsInput = {
 }
 
 export type grading_slotsUncheckedUpdateWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateOneWithoutGrading_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsNestedInput
@@ -1251,12 +1234,12 @@ export type grading_slotsUncheckedUpdateWithoutSubjectsInput = {
 }
 
 export type grading_slotsUncheckedUpdateManyWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_order?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  booklet_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -1362,13 +1345,13 @@ export type $grading_slotsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     graders: Prisma.$gradersPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     question_no: number
     grader_order: number
     status: string
-    grader_id: bigint | null
-    booklet_id: bigint
-    subject_id: bigint
+    grader_id: number | null
+    booklet_id: number
+    subject_id: number
   }, ExtArgs["result"]["grading_slots"]>
   composites: {}
 }
@@ -1745,13 +1728,13 @@ export interface Prisma__grading_slotsClient<T, Null = never, ExtArgs extends ru
  * Fields of the grading_slots model
  */
 export interface grading_slotsFieldRefs {
-  readonly id: Prisma.FieldRef<"grading_slots", 'BigInt'>
+  readonly id: Prisma.FieldRef<"grading_slots", 'Int'>
   readonly question_no: Prisma.FieldRef<"grading_slots", 'Int'>
   readonly grader_order: Prisma.FieldRef<"grading_slots", 'Int'>
   readonly status: Prisma.FieldRef<"grading_slots", 'String'>
-  readonly grader_id: Prisma.FieldRef<"grading_slots", 'BigInt'>
-  readonly booklet_id: Prisma.FieldRef<"grading_slots", 'BigInt'>
-  readonly subject_id: Prisma.FieldRef<"grading_slots", 'BigInt'>
+  readonly grader_id: Prisma.FieldRef<"grading_slots", 'Int'>
+  readonly booklet_id: Prisma.FieldRef<"grading_slots", 'Int'>
+  readonly subject_id: Prisma.FieldRef<"grading_slots", 'Int'>
 }
     
 

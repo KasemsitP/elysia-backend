@@ -35,28 +35,26 @@ export type Session_subjectsAvgAggregateOutputType = {
 
 export type Session_subjectsSumAggregateOutputType = {
   session_id: number | null
-  subject_id: bigint | null
+  subject_id: number | null
   question_count: number | null
   order_no: number | null
 }
 
 export type Session_subjectsMinAggregateOutputType = {
   session_id: number | null
-  subject_id: bigint | null
+  subject_id: number | null
   start_at: Date | null
   end_at: Date | null
   question_count: number | null
-  question_range: string | null
   order_no: number | null
 }
 
 export type Session_subjectsMaxAggregateOutputType = {
   session_id: number | null
-  subject_id: bigint | null
+  subject_id: number | null
   start_at: Date | null
   end_at: Date | null
   question_count: number | null
-  question_range: string | null
   order_no: number | null
 }
 
@@ -66,7 +64,6 @@ export type Session_subjectsCountAggregateOutputType = {
   start_at: number
   end_at: number
   question_count: number
-  question_range: number
   order_no: number
   _all: number
 }
@@ -92,7 +89,6 @@ export type Session_subjectsMinAggregateInputType = {
   start_at?: true
   end_at?: true
   question_count?: true
-  question_range?: true
   order_no?: true
 }
 
@@ -102,7 +98,6 @@ export type Session_subjectsMaxAggregateInputType = {
   start_at?: true
   end_at?: true
   question_count?: true
-  question_range?: true
   order_no?: true
 }
 
@@ -112,7 +107,6 @@ export type Session_subjectsCountAggregateInputType = {
   start_at?: true
   end_at?: true
   question_count?: true
-  question_range?: true
   order_no?: true
   _all?: true
 }
@@ -205,11 +199,10 @@ export type session_subjectsGroupByArgs<ExtArgs extends runtime.Types.Extensions
 
 export type Session_subjectsGroupByOutputType = {
   session_id: number
-  subject_id: bigint
+  subject_id: number
   start_at: Date
   end_at: Date
   question_count: number
-  question_range: string | null
   order_no: number
   _count: Session_subjectsCountAggregateOutputType | null
   _avg: Session_subjectsAvgAggregateOutputType | null
@@ -238,11 +231,10 @@ export type session_subjectsWhereInput = {
   OR?: Prisma.session_subjectsWhereInput[]
   NOT?: Prisma.session_subjectsWhereInput | Prisma.session_subjectsWhereInput[]
   session_id?: Prisma.IntFilter<"session_subjects"> | number
-  subject_id?: Prisma.BigIntFilter<"session_subjects"> | bigint | number
+  subject_id?: Prisma.IntFilter<"session_subjects"> | number
   start_at?: Prisma.DateTimeFilter<"session_subjects"> | Date | string
   end_at?: Prisma.DateTimeFilter<"session_subjects"> | Date | string
   question_count?: Prisma.IntFilter<"session_subjects"> | number
-  question_range?: Prisma.StringNullableFilter<"session_subjects"> | string | null
   order_no?: Prisma.IntFilter<"session_subjects"> | number
   grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
   sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
@@ -255,12 +247,10 @@ export type session_subjectsOrderByWithRelationInput = {
   start_at?: Prisma.SortOrder
   end_at?: Prisma.SortOrder
   question_count?: Prisma.SortOrder
-  question_range?: Prisma.SortOrderInput | Prisma.SortOrder
   order_no?: Prisma.SortOrder
   grader_assignments?: Prisma.grader_assignmentsOrderByRelationAggregateInput
   sessions?: Prisma.sessionsOrderByWithRelationInput
   subjects?: Prisma.subjectsOrderByWithRelationInput
-  _relevance?: Prisma.session_subjectsOrderByRelevanceInput
 }
 
 export type session_subjectsWhereUniqueInput = Prisma.AtLeast<{
@@ -270,11 +260,10 @@ export type session_subjectsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.session_subjectsWhereInput[]
   NOT?: Prisma.session_subjectsWhereInput | Prisma.session_subjectsWhereInput[]
   session_id?: Prisma.IntFilter<"session_subjects"> | number
-  subject_id?: Prisma.BigIntFilter<"session_subjects"> | bigint | number
+  subject_id?: Prisma.IntFilter<"session_subjects"> | number
   start_at?: Prisma.DateTimeFilter<"session_subjects"> | Date | string
   end_at?: Prisma.DateTimeFilter<"session_subjects"> | Date | string
   question_count?: Prisma.IntFilter<"session_subjects"> | number
-  question_range?: Prisma.StringNullableFilter<"session_subjects"> | string | null
   order_no?: Prisma.IntFilter<"session_subjects"> | number
   grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
   sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
@@ -287,7 +276,6 @@ export type session_subjectsOrderByWithAggregationInput = {
   start_at?: Prisma.SortOrder
   end_at?: Prisma.SortOrder
   question_count?: Prisma.SortOrder
-  question_range?: Prisma.SortOrderInput | Prisma.SortOrder
   order_no?: Prisma.SortOrder
   _count?: Prisma.session_subjectsCountOrderByAggregateInput
   _avg?: Prisma.session_subjectsAvgOrderByAggregateInput
@@ -301,11 +289,10 @@ export type session_subjectsScalarWhereWithAggregatesInput = {
   OR?: Prisma.session_subjectsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.session_subjectsScalarWhereWithAggregatesInput | Prisma.session_subjectsScalarWhereWithAggregatesInput[]
   session_id?: Prisma.IntWithAggregatesFilter<"session_subjects"> | number
-  subject_id?: Prisma.BigIntWithAggregatesFilter<"session_subjects"> | bigint | number
+  subject_id?: Prisma.IntWithAggregatesFilter<"session_subjects"> | number
   start_at?: Prisma.DateTimeWithAggregatesFilter<"session_subjects"> | Date | string
   end_at?: Prisma.DateTimeWithAggregatesFilter<"session_subjects"> | Date | string
   question_count?: Prisma.IntWithAggregatesFilter<"session_subjects"> | number
-  question_range?: Prisma.StringNullableWithAggregatesFilter<"session_subjects"> | string | null
   order_no?: Prisma.IntWithAggregatesFilter<"session_subjects"> | number
 }
 
@@ -313,7 +300,6 @@ export type session_subjectsCreateInput = {
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subjectsInput
   sessions: Prisma.sessionsCreateNestedOneWithoutSession_subjectsInput
@@ -322,11 +308,10 @@ export type session_subjectsCreateInput = {
 
 export type session_subjectsUncheckedCreateInput = {
   session_id: number
-  subject_id: bigint | number
+  subject_id: number
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subjectsInput
 }
@@ -335,7 +320,6 @@ export type session_subjectsUpdateInput = {
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subjectsNestedInput
   sessions?: Prisma.sessionsUpdateOneRequiredWithoutSession_subjectsNestedInput
@@ -344,22 +328,20 @@ export type session_subjectsUpdateInput = {
 
 export type session_subjectsUncheckedUpdateInput = {
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subjectsNestedInput
 }
 
 export type session_subjectsCreateManyInput = {
   session_id: number
-  subject_id: bigint | number
+  subject_id: number
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
 }
 
@@ -367,29 +349,21 @@ export type session_subjectsUpdateManyMutationInput = {
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type session_subjectsUncheckedUpdateManyInput = {
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type Session_subjectsScalarRelationFilter = {
   is?: Prisma.session_subjectsWhereInput
   isNot?: Prisma.session_subjectsWhereInput
-}
-
-export type session_subjectsOrderByRelevanceInput = {
-  fields: Prisma.session_subjectsOrderByRelevanceFieldEnum | Prisma.session_subjectsOrderByRelevanceFieldEnum[]
-  sort: Prisma.SortOrder
-  search: string
 }
 
 export type session_subjectsSession_idOrder_noCompoundUniqueInput = {
@@ -399,7 +373,7 @@ export type session_subjectsSession_idOrder_noCompoundUniqueInput = {
 
 export type session_subjectsSession_idSubject_idCompoundUniqueInput = {
   session_id: number
-  subject_id: bigint | number
+  subject_id: number
 }
 
 export type session_subjectsCountOrderByAggregateInput = {
@@ -408,7 +382,6 @@ export type session_subjectsCountOrderByAggregateInput = {
   start_at?: Prisma.SortOrder
   end_at?: Prisma.SortOrder
   question_count?: Prisma.SortOrder
-  question_range?: Prisma.SortOrder
   order_no?: Prisma.SortOrder
 }
 
@@ -425,7 +398,6 @@ export type session_subjectsMaxOrderByAggregateInput = {
   start_at?: Prisma.SortOrder
   end_at?: Prisma.SortOrder
   question_count?: Prisma.SortOrder
-  question_range?: Prisma.SortOrder
   order_no?: Prisma.SortOrder
 }
 
@@ -435,7 +407,6 @@ export type session_subjectsMinOrderByAggregateInput = {
   start_at?: Prisma.SortOrder
   end_at?: Prisma.SortOrder
   question_count?: Prisma.SortOrder
-  question_range?: Prisma.SortOrder
   order_no?: Prisma.SortOrder
 }
 
@@ -558,7 +529,6 @@ export type session_subjectsCreateWithoutGrader_assignmentsInput = {
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
   sessions: Prisma.sessionsCreateNestedOneWithoutSession_subjectsInput
   subjects: Prisma.subjectsCreateNestedOneWithoutSession_subjectsInput
@@ -566,11 +536,10 @@ export type session_subjectsCreateWithoutGrader_assignmentsInput = {
 
 export type session_subjectsUncheckedCreateWithoutGrader_assignmentsInput = {
   session_id: number
-  subject_id: bigint | number
+  subject_id: number
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
 }
 
@@ -594,7 +563,6 @@ export type session_subjectsUpdateWithoutGrader_assignmentsInput = {
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
   sessions?: Prisma.sessionsUpdateOneRequiredWithoutSession_subjectsNestedInput
   subjects?: Prisma.subjectsUpdateOneRequiredWithoutSession_subjectsNestedInput
@@ -602,11 +570,10 @@ export type session_subjectsUpdateWithoutGrader_assignmentsInput = {
 
 export type session_subjectsUncheckedUpdateWithoutGrader_assignmentsInput = {
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -614,18 +581,16 @@ export type session_subjectsCreateWithoutSessionsInput = {
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subjectsInput
   subjects: Prisma.subjectsCreateNestedOneWithoutSession_subjectsInput
 }
 
 export type session_subjectsUncheckedCreateWithoutSessionsInput = {
-  subject_id: bigint | number
+  subject_id: number
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subjectsInput
 }
@@ -661,11 +626,10 @@ export type session_subjectsScalarWhereInput = {
   OR?: Prisma.session_subjectsScalarWhereInput[]
   NOT?: Prisma.session_subjectsScalarWhereInput | Prisma.session_subjectsScalarWhereInput[]
   session_id?: Prisma.IntFilter<"session_subjects"> | number
-  subject_id?: Prisma.BigIntFilter<"session_subjects"> | bigint | number
+  subject_id?: Prisma.IntFilter<"session_subjects"> | number
   start_at?: Prisma.DateTimeFilter<"session_subjects"> | Date | string
   end_at?: Prisma.DateTimeFilter<"session_subjects"> | Date | string
   question_count?: Prisma.IntFilter<"session_subjects"> | number
-  question_range?: Prisma.StringNullableFilter<"session_subjects"> | string | null
   order_no?: Prisma.IntFilter<"session_subjects"> | number
 }
 
@@ -673,7 +637,6 @@ export type session_subjectsCreateWithoutSubjectsInput = {
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subjectsInput
   sessions: Prisma.sessionsCreateNestedOneWithoutSession_subjectsInput
@@ -684,7 +647,6 @@ export type session_subjectsUncheckedCreateWithoutSubjectsInput = {
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subjectsInput
 }
@@ -716,11 +678,10 @@ export type session_subjectsUpdateManyWithWhereWithoutSubjectsInput = {
 }
 
 export type session_subjectsCreateManySessionsInput = {
-  subject_id: bigint | number
+  subject_id: number
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
 }
 
@@ -728,28 +689,25 @@ export type session_subjectsUpdateWithoutSessionsInput = {
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subjectsNestedInput
   subjects?: Prisma.subjectsUpdateOneRequiredWithoutSession_subjectsNestedInput
 }
 
 export type session_subjectsUncheckedUpdateWithoutSessionsInput = {
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subjectsNestedInput
 }
 
 export type session_subjectsUncheckedUpdateManyWithoutSessionsInput = {
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -758,7 +716,6 @@ export type session_subjectsCreateManySubjectsInput = {
   start_at: Date | string
   end_at: Date | string
   question_count: number
-  question_range?: string | null
   order_no: number
 }
 
@@ -766,7 +723,6 @@ export type session_subjectsUpdateWithoutSubjectsInput = {
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subjectsNestedInput
   sessions?: Prisma.sessionsUpdateOneRequiredWithoutSession_subjectsNestedInput
@@ -777,7 +733,6 @@ export type session_subjectsUncheckedUpdateWithoutSubjectsInput = {
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subjectsNestedInput
 }
@@ -787,7 +742,6 @@ export type session_subjectsUncheckedUpdateManyWithoutSubjectsInput = {
   start_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   end_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   question_count?: Prisma.IntFieldUpdateOperationsInput | number
-  question_range?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_no?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -828,7 +782,6 @@ export type session_subjectsSelect<ExtArgs extends runtime.Types.Extensions.Inte
   start_at?: boolean
   end_at?: boolean
   question_count?: boolean
-  question_range?: boolean
   order_no?: boolean
   grader_assignments?: boolean | Prisma.session_subjects$grader_assignmentsArgs<ExtArgs>
   sessions?: boolean | Prisma.sessionsDefaultArgs<ExtArgs>
@@ -844,11 +797,10 @@ export type session_subjectsSelectScalar = {
   start_at?: boolean
   end_at?: boolean
   question_count?: boolean
-  question_range?: boolean
   order_no?: boolean
 }
 
-export type session_subjectsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"session_id" | "subject_id" | "start_at" | "end_at" | "question_count" | "question_range" | "order_no", ExtArgs["result"]["session_subjects"]>
+export type session_subjectsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"session_id" | "subject_id" | "start_at" | "end_at" | "question_count" | "order_no", ExtArgs["result"]["session_subjects"]>
 export type session_subjectsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   grader_assignments?: boolean | Prisma.session_subjects$grader_assignmentsArgs<ExtArgs>
   sessions?: boolean | Prisma.sessionsDefaultArgs<ExtArgs>
@@ -865,11 +817,10 @@ export type $session_subjectsPayload<ExtArgs extends runtime.Types.Extensions.In
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     session_id: number
-    subject_id: bigint
+    subject_id: number
     start_at: Date
     end_at: Date
     question_count: number
-    question_range: string | null
     order_no: number
   }, ExtArgs["result"]["session_subjects"]>
   composites: {}
@@ -1244,11 +1195,10 @@ export interface Prisma__session_subjectsClient<T, Null = never, ExtArgs extends
  */
 export interface session_subjectsFieldRefs {
   readonly session_id: Prisma.FieldRef<"session_subjects", 'Int'>
-  readonly subject_id: Prisma.FieldRef<"session_subjects", 'BigInt'>
+  readonly subject_id: Prisma.FieldRef<"session_subjects", 'Int'>
   readonly start_at: Prisma.FieldRef<"session_subjects", 'DateTime'>
   readonly end_at: Prisma.FieldRef<"session_subjects", 'DateTime'>
   readonly question_count: Prisma.FieldRef<"session_subjects", 'Int'>
-  readonly question_range: Prisma.FieldRef<"session_subjects", 'String'>
   readonly order_no: Prisma.FieldRef<"session_subjects", 'Int'>
 }
     

@@ -11,7 +11,7 @@ export type MeQuerySchema = Static<typeof meQuerySchema>;
 
 
 export type AuthAccountResponse = {
-    id: string,
+    id: number,
     username: string,
     role: "ADMIN" | "MANAGER" | "GRADER" | "STAFF",
     full_name: string;
@@ -19,13 +19,13 @@ export type AuthAccountResponse = {
 }
 
 type GraderResponse = {
-    id: string,
-    account_id: string | null,
-    campaign_id: string | null,
+    id: number,
+    account_id: number | null,
+    campaign_id: number | null,
 }
 
 export type AuthAccountGraderResponse = {
-    id: string,
+    id: number,
     username: string,
     role: "ADMIN" | "MANAGER" | "GRADER" | "STAFF",
     full_name: string;

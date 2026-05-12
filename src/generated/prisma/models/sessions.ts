@@ -34,7 +34,7 @@ export type SessionsAvgAggregateOutputType = {
 
 export type SessionsSumAggregateOutputType = {
   id: number | null
-  campaign_id: bigint | null
+  campaign_id: number | null
   day_no: number | null
 }
 
@@ -42,7 +42,7 @@ export type SessionsMinAggregateOutputType = {
   id: number | null
   session_code: string | null
   exam_date: Date | null
-  campaign_id: bigint | null
+  campaign_id: number | null
   day_no: number | null
   title: string | null
 }
@@ -51,7 +51,7 @@ export type SessionsMaxAggregateOutputType = {
   id: number | null
   session_code: string | null
   exam_date: Date | null
-  campaign_id: bigint | null
+  campaign_id: number | null
   day_no: number | null
   title: string | null
 }
@@ -197,7 +197,7 @@ export type SessionsGroupByOutputType = {
   id: number
   session_code: string
   exam_date: Date
-  campaign_id: bigint
+  campaign_id: number
   day_no: number
   title: string | null
   _count: SessionsCountAggregateOutputType | null
@@ -229,7 +229,7 @@ export type sessionsWhereInput = {
   id?: Prisma.IntFilter<"sessions"> | number
   session_code?: Prisma.StringFilter<"sessions"> | string
   exam_date?: Prisma.DateTimeFilter<"sessions"> | Date | string
-  campaign_id?: Prisma.BigIntFilter<"sessions"> | bigint | number
+  campaign_id?: Prisma.IntFilter<"sessions"> | number
   day_no?: Prisma.IntFilter<"sessions"> | number
   title?: Prisma.StringNullableFilter<"sessions"> | string | null
   bags?: Prisma.BagsListRelationFilter
@@ -268,7 +268,7 @@ export type sessionsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.sessionsWhereInput | Prisma.sessionsWhereInput[]
   session_code?: Prisma.StringFilter<"sessions"> | string
   exam_date?: Prisma.DateTimeFilter<"sessions"> | Date | string
-  campaign_id?: Prisma.BigIntFilter<"sessions"> | bigint | number
+  campaign_id?: Prisma.IntFilter<"sessions"> | number
   day_no?: Prisma.IntFilter<"sessions"> | number
   title?: Prisma.StringNullableFilter<"sessions"> | string | null
   bags?: Prisma.BagsListRelationFilter
@@ -301,7 +301,7 @@ export type sessionsScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"sessions"> | number
   session_code?: Prisma.StringWithAggregatesFilter<"sessions"> | string
   exam_date?: Prisma.DateTimeWithAggregatesFilter<"sessions"> | Date | string
-  campaign_id?: Prisma.BigIntWithAggregatesFilter<"sessions"> | bigint | number
+  campaign_id?: Prisma.IntWithAggregatesFilter<"sessions"> | number
   day_no?: Prisma.IntWithAggregatesFilter<"sessions"> | number
   title?: Prisma.StringNullableWithAggregatesFilter<"sessions"> | string | null
 }
@@ -324,7 +324,7 @@ export type sessionsUncheckedCreateInput = {
   id?: number
   session_code: string
   exam_date: Date | string
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
   title?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
@@ -353,7 +353,7 @@ export type sessionsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   session_code?: Prisma.StringFieldUpdateOperationsInput | string
   exam_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   day_no?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -368,7 +368,7 @@ export type sessionsCreateManyInput = {
   id?: number
   session_code: string
   exam_date: Date | string
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
   title?: string | null
 }
@@ -384,7 +384,7 @@ export type sessionsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   session_code?: Prisma.StringFieldUpdateOperationsInput | string
   exam_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   day_no?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
@@ -412,17 +412,17 @@ export type sessionsOrderByRelevanceInput = {
 
 export type sessionsSession_codeCampaign_idCompoundUniqueInput = {
   session_code: string
-  campaign_id: bigint | number
+  campaign_id: number
 }
 
 export type sessionsCampaign_idDay_noCompoundUniqueInput = {
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
 }
 
 export type sessionsIdCampaign_idCompoundUniqueInput = {
   id: number
-  campaign_id: bigint | number
+  campaign_id: number
 }
 
 export type sessionsCountOrderByAggregateInput = {
@@ -607,7 +607,7 @@ export type sessionsUncheckedCreateWithoutBagsInput = {
   id?: number
   session_code: string
   exam_date: Date | string
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
   title?: string | null
   booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutSessionsInput
@@ -650,7 +650,7 @@ export type sessionsUncheckedUpdateWithoutBagsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   session_code?: Prisma.StringFieldUpdateOperationsInput | string
   exam_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   day_no?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   booklets?: Prisma.bookletsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -677,7 +677,7 @@ export type sessionsUncheckedCreateWithoutBookletsInput = {
   id?: number
   session_code: string
   exam_date: Date | string
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
   title?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
@@ -720,7 +720,7 @@ export type sessionsUncheckedUpdateWithoutBookletsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   session_code?: Prisma.StringFieldUpdateOperationsInput | string
   exam_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   day_no?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -790,7 +790,7 @@ export type sessionsScalarWhereInput = {
   id?: Prisma.IntFilter<"sessions"> | number
   session_code?: Prisma.StringFilter<"sessions"> | string
   exam_date?: Prisma.DateTimeFilter<"sessions"> | Date | string
-  campaign_id?: Prisma.BigIntFilter<"sessions"> | bigint | number
+  campaign_id?: Prisma.IntFilter<"sessions"> | number
   day_no?: Prisma.IntFilter<"sessions"> | number
   title?: Prisma.StringNullableFilter<"sessions"> | string | null
 }
@@ -812,7 +812,7 @@ export type sessionsUncheckedCreateWithoutGrader_assignmentsInput = {
   id?: number
   session_code: string
   exam_date: Date | string
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
   title?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
@@ -855,7 +855,7 @@ export type sessionsUncheckedUpdateWithoutGrader_assignmentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   session_code?: Prisma.StringFieldUpdateOperationsInput | string
   exam_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   day_no?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -882,7 +882,7 @@ export type sessionsUncheckedCreateWithoutSession_subjectsInput = {
   id?: number
   session_code: string
   exam_date: Date | string
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
   title?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
@@ -925,7 +925,7 @@ export type sessionsUncheckedUpdateWithoutSession_subjectsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   session_code?: Prisma.StringFieldUpdateOperationsInput | string
   exam_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   day_no?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -952,7 +952,7 @@ export type sessionsUncheckedCreateWithoutUser_sessions_user_sessions_session_id
   id?: number
   session_code: string
   exam_date: Date | string
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
   title?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
@@ -984,7 +984,7 @@ export type sessionsUncheckedCreateWithoutUser_sessions_user_sessions_session_id
   id?: number
   session_code: string
   exam_date: Date | string
-  campaign_id: bigint | number
+  campaign_id: number
   day_no: number
   title?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
@@ -1027,7 +1027,7 @@ export type sessionsUncheckedUpdateWithoutUser_sessions_user_sessions_session_id
   id?: Prisma.IntFieldUpdateOperationsInput | number
   session_code?: Prisma.StringFieldUpdateOperationsInput | string
   exam_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   day_no?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1065,7 +1065,7 @@ export type sessionsUncheckedUpdateWithoutUser_sessions_user_sessions_session_id
   id?: Prisma.IntFieldUpdateOperationsInput | number
   session_code?: Prisma.StringFieldUpdateOperationsInput | string
   exam_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   day_no?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1249,7 +1249,7 @@ export type $sessionsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: number
     session_code: string
     exam_date: Date
-    campaign_id: bigint
+    campaign_id: number
     day_no: number
     title: string | null
   }, ExtArgs["result"]["sessions"]>
@@ -1631,7 +1631,7 @@ export interface sessionsFieldRefs {
   readonly id: Prisma.FieldRef<"sessions", 'Int'>
   readonly session_code: Prisma.FieldRef<"sessions", 'String'>
   readonly exam_date: Prisma.FieldRef<"sessions", 'DateTime'>
-  readonly campaign_id: Prisma.FieldRef<"sessions", 'BigInt'>
+  readonly campaign_id: Prisma.FieldRef<"sessions", 'Int'>
   readonly day_no: Prisma.FieldRef<"sessions", 'Int'>
   readonly title: Prisma.FieldRef<"sessions", 'String'>
 }

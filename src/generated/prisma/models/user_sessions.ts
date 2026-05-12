@@ -34,23 +34,23 @@ export type User_sessionsAvgAggregateOutputType = {
 }
 
 export type User_sessionsSumAggregateOutputType = {
-  id: bigint | null
-  user_campaign_id: bigint | null
-  campaign_id: bigint | null
+  id: number | null
+  user_campaign_id: number | null
+  campaign_id: number | null
   session_id: number | null
 }
 
 export type User_sessionsMinAggregateOutputType = {
-  id: bigint | null
-  user_campaign_id: bigint | null
-  campaign_id: bigint | null
+  id: number | null
+  user_campaign_id: number | null
+  campaign_id: number | null
   session_id: number | null
 }
 
 export type User_sessionsMaxAggregateOutputType = {
-  id: bigint | null
-  user_campaign_id: bigint | null
-  campaign_id: bigint | null
+  id: number | null
+  user_campaign_id: number | null
+  campaign_id: number | null
   session_id: number | null
 }
 
@@ -186,9 +186,9 @@ export type user_sessionsGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type User_sessionsGroupByOutputType = {
-  id: bigint
-  user_campaign_id: bigint
-  campaign_id: bigint
+  id: number
+  user_campaign_id: number
+  campaign_id: number
   session_id: number
   _count: User_sessionsCountAggregateOutputType | null
   _avg: User_sessionsAvgAggregateOutputType | null
@@ -216,9 +216,9 @@ export type user_sessionsWhereInput = {
   AND?: Prisma.user_sessionsWhereInput | Prisma.user_sessionsWhereInput[]
   OR?: Prisma.user_sessionsWhereInput[]
   NOT?: Prisma.user_sessionsWhereInput | Prisma.user_sessionsWhereInput[]
-  id?: Prisma.BigIntFilter<"user_sessions"> | bigint | number
-  user_campaign_id?: Prisma.BigIntFilter<"user_sessions"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"user_sessions"> | bigint | number
+  id?: Prisma.IntFilter<"user_sessions"> | number
+  user_campaign_id?: Prisma.IntFilter<"user_sessions"> | number
+  campaign_id?: Prisma.IntFilter<"user_sessions"> | number
   session_id?: Prisma.IntFilter<"user_sessions"> | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.XOR<Prisma.User_campaignsScalarRelationFilter, Prisma.user_campaignsWhereInput>
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns?: Prisma.XOR<Prisma.User_campaignsScalarRelationFilter, Prisma.user_campaignsWhereInput>
@@ -238,13 +238,13 @@ export type user_sessionsOrderByWithRelationInput = {
 }
 
 export type user_sessionsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   user_campaign_id_session_id?: Prisma.user_sessionsUser_campaign_idSession_idCompoundUniqueInput
   AND?: Prisma.user_sessionsWhereInput | Prisma.user_sessionsWhereInput[]
   OR?: Prisma.user_sessionsWhereInput[]
   NOT?: Prisma.user_sessionsWhereInput | Prisma.user_sessionsWhereInput[]
-  user_campaign_id?: Prisma.BigIntFilter<"user_sessions"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"user_sessions"> | bigint | number
+  user_campaign_id?: Prisma.IntFilter<"user_sessions"> | number
+  campaign_id?: Prisma.IntFilter<"user_sessions"> | number
   session_id?: Prisma.IntFilter<"user_sessions"> | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.XOR<Prisma.User_campaignsScalarRelationFilter, Prisma.user_campaignsWhereInput>
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns?: Prisma.XOR<Prisma.User_campaignsScalarRelationFilter, Prisma.user_campaignsWhereInput>
@@ -268,14 +268,13 @@ export type user_sessionsScalarWhereWithAggregatesInput = {
   AND?: Prisma.user_sessionsScalarWhereWithAggregatesInput | Prisma.user_sessionsScalarWhereWithAggregatesInput[]
   OR?: Prisma.user_sessionsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.user_sessionsScalarWhereWithAggregatesInput | Prisma.user_sessionsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"user_sessions"> | bigint | number
-  user_campaign_id?: Prisma.BigIntWithAggregatesFilter<"user_sessions"> | bigint | number
-  campaign_id?: Prisma.BigIntWithAggregatesFilter<"user_sessions"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"user_sessions"> | number
+  user_campaign_id?: Prisma.IntWithAggregatesFilter<"user_sessions"> | number
+  campaign_id?: Prisma.IntWithAggregatesFilter<"user_sessions"> | number
   session_id?: Prisma.IntWithAggregatesFilter<"user_sessions"> | number
 }
 
 export type user_sessionsCreateInput = {
-  id?: bigint | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns: Prisma.user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns: Prisma.user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput
   sessions_user_sessions_session_idTosessions: Prisma.sessionsCreateNestedOneWithoutUser_sessions_user_sessions_session_idTosessionsInput
@@ -283,14 +282,13 @@ export type user_sessionsCreateInput = {
 }
 
 export type user_sessionsUncheckedCreateInput = {
-  id?: bigint | number
-  user_campaign_id: bigint | number
-  campaign_id: bigint | number
+  id?: number
+  user_campaign_id: number
+  campaign_id: number
   session_id: number
 }
 
 export type user_sessionsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsNestedInput
   sessions_user_sessions_session_idTosessions?: Prisma.sessionsUpdateOneRequiredWithoutUser_sessions_user_sessions_session_idTosessionsNestedInput
@@ -298,27 +296,27 @@ export type user_sessionsUpdateInput = {
 }
 
 export type user_sessionsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type user_sessionsCreateManyInput = {
-  id?: bigint | number
-  user_campaign_id: bigint | number
-  campaign_id: bigint | number
+  id?: number
+  user_campaign_id: number
+  campaign_id: number
   session_id: number
 }
 
 export type user_sessionsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+
 }
 
 export type user_sessionsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -333,7 +331,7 @@ export type user_sessionsOrderByRelationAggregateInput = {
 }
 
 export type user_sessionsUser_campaign_idSession_idCompoundUniqueInput = {
-  user_campaign_id: bigint | number
+  user_campaign_id: number
   session_id: number
 }
 
@@ -541,16 +539,15 @@ export type user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_
 }
 
 export type user_sessionsCreateWithoutSessions_user_sessions_session_idTosessionsInput = {
-  id?: bigint | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns: Prisma.user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns: Prisma.user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput
   sessions_user_sessions_session_id_campaign_idTosessions: Prisma.sessionsCreateNestedOneWithoutUser_sessions_user_sessions_session_id_campaign_idTosessionsInput
 }
 
 export type user_sessionsUncheckedCreateWithoutSessions_user_sessions_session_idTosessionsInput = {
-  id?: bigint | number
-  user_campaign_id: bigint | number
-  campaign_id: bigint | number
+  id?: number
+  user_campaign_id: number
+  campaign_id: number
 }
 
 export type user_sessionsCreateOrConnectWithoutSessions_user_sessions_session_idTosessionsInput = {
@@ -564,15 +561,14 @@ export type user_sessionsCreateManySessions_user_sessions_session_idTosessionsIn
 }
 
 export type user_sessionsCreateWithoutSessions_user_sessions_session_id_campaign_idTosessionsInput = {
-  id?: bigint | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns: Prisma.user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns: Prisma.user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput
   sessions_user_sessions_session_idTosessions: Prisma.sessionsCreateNestedOneWithoutUser_sessions_user_sessions_session_idTosessionsInput
 }
 
 export type user_sessionsUncheckedCreateWithoutSessions_user_sessions_session_id_campaign_idTosessionsInput = {
-  id?: bigint | number
-  user_campaign_id: bigint | number
+  id?: number
+  user_campaign_id: number
 }
 
 export type user_sessionsCreateOrConnectWithoutSessions_user_sessions_session_id_campaign_idTosessionsInput = {
@@ -605,9 +601,9 @@ export type user_sessionsScalarWhereInput = {
   AND?: Prisma.user_sessionsScalarWhereInput | Prisma.user_sessionsScalarWhereInput[]
   OR?: Prisma.user_sessionsScalarWhereInput[]
   NOT?: Prisma.user_sessionsScalarWhereInput | Prisma.user_sessionsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"user_sessions"> | bigint | number
-  user_campaign_id?: Prisma.BigIntFilter<"user_sessions"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"user_sessions"> | bigint | number
+  id?: Prisma.IntFilter<"user_sessions"> | number
+  user_campaign_id?: Prisma.IntFilter<"user_sessions"> | number
+  campaign_id?: Prisma.IntFilter<"user_sessions"> | number
   session_id?: Prisma.IntFilter<"user_sessions"> | number
 }
 
@@ -628,14 +624,13 @@ export type user_sessionsUpdateManyWithWhereWithoutSessions_user_sessions_sessio
 }
 
 export type user_sessionsCreateWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns: Prisma.user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput
   sessions_user_sessions_session_idTosessions: Prisma.sessionsCreateNestedOneWithoutUser_sessions_user_sessions_session_idTosessionsInput
   sessions_user_sessions_session_id_campaign_idTosessions: Prisma.sessionsCreateNestedOneWithoutUser_sessions_user_sessions_session_id_campaign_idTosessionsInput
 }
 
 export type user_sessionsUncheckedCreateWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
 }
 
@@ -650,15 +645,14 @@ export type user_sessionsCreateManyUser_campaigns_user_sessions_user_campaign_id
 }
 
 export type user_sessionsCreateWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns: Prisma.user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
   sessions_user_sessions_session_idTosessions: Prisma.sessionsCreateNestedOneWithoutUser_sessions_user_sessions_session_idTosessionsInput
   sessions_user_sessions_session_id_campaign_idTosessions: Prisma.sessionsCreateNestedOneWithoutUser_sessions_user_sessions_session_id_campaign_idTosessionsInput
 }
 
 export type user_sessionsUncheckedCreateWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
-  campaign_id: bigint | number
+  id?: number
+  campaign_id: number
   session_id: number
 }
 
@@ -705,96 +699,92 @@ export type user_sessionsUpdateManyWithWhereWithoutUser_campaigns_user_sessions_
 }
 
 export type user_sessionsCreateManySessions_user_sessions_session_idTosessionsInput = {
-  id?: bigint | number
-  user_campaign_id: bigint | number
-  campaign_id: bigint | number
+  id?: number
+  user_campaign_id: number
+  campaign_id: number
 }
 
 export type user_sessionsCreateManySessions_user_sessions_session_id_campaign_idTosessionsInput = {
-  id?: bigint | number
-  user_campaign_id: bigint | number
+  id?: number
+  user_campaign_id: number
 }
 
 export type user_sessionsUpdateWithoutSessions_user_sessions_session_idTosessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsNestedInput
   sessions_user_sessions_session_id_campaign_idTosessions?: Prisma.sessionsUpdateOneRequiredWithoutUser_sessions_user_sessions_session_id_campaign_idTosessionsNestedInput
 }
 
 export type user_sessionsUncheckedUpdateWithoutSessions_user_sessions_session_idTosessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type user_sessionsUncheckedUpdateManyWithoutSessions_user_sessions_session_idTosessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type user_sessionsUpdateWithoutSessions_user_sessions_session_id_campaign_idTosessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsNestedInput
   sessions_user_sessions_session_idTosessions?: Prisma.sessionsUpdateOneRequiredWithoutUser_sessions_user_sessions_session_idTosessionsNestedInput
 }
 
 export type user_sessionsUncheckedUpdateWithoutSessions_user_sessions_session_id_campaign_idTosessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type user_sessionsUncheckedUpdateManyWithoutSessions_user_sessions_session_id_campaign_idTosessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type user_sessionsCreateManyUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
 }
 
 export type user_sessionsCreateManyUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
-  campaign_id: bigint | number
+  id?: number
+  campaign_id: number
   session_id: number
 }
 
 export type user_sessionsUpdateWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsNestedInput
   sessions_user_sessions_session_idTosessions?: Prisma.sessionsUpdateOneRequiredWithoutUser_sessions_user_sessions_session_idTosessionsNestedInput
   sessions_user_sessions_session_id_campaign_idTosessions?: Prisma.sessionsUpdateOneRequiredWithoutUser_sessions_user_sessions_session_id_campaign_idTosessionsNestedInput
 }
 
 export type user_sessionsUncheckedUpdateWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type user_sessionsUpdateWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
   sessions_user_sessions_session_idTosessions?: Prisma.sessionsUpdateOneRequiredWithoutUser_sessions_user_sessions_session_idTosessionsNestedInput
   sessions_user_sessions_session_id_campaign_idTosessions?: Prisma.sessionsUpdateOneRequiredWithoutUser_sessions_user_sessions_session_id_campaign_idTosessionsNestedInput
 }
 
 export type user_sessionsUncheckedUpdateWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -837,9 +827,9 @@ export type $user_sessionsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     sessions_user_sessions_session_id_campaign_idTosessions: Prisma.$sessionsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    user_campaign_id: bigint
-    campaign_id: bigint
+    id: number
+    user_campaign_id: number
+    campaign_id: number
     session_id: number
   }, ExtArgs["result"]["user_sessions"]>
   composites: {}
@@ -1214,9 +1204,9 @@ export interface Prisma__user_sessionsClient<T, Null = never, ExtArgs extends ru
  * Fields of the user_sessions model
  */
 export interface user_sessionsFieldRefs {
-  readonly id: Prisma.FieldRef<"user_sessions", 'BigInt'>
-  readonly user_campaign_id: Prisma.FieldRef<"user_sessions", 'BigInt'>
-  readonly campaign_id: Prisma.FieldRef<"user_sessions", 'BigInt'>
+  readonly id: Prisma.FieldRef<"user_sessions", 'Int'>
+  readonly user_campaign_id: Prisma.FieldRef<"user_sessions", 'Int'>
+  readonly campaign_id: Prisma.FieldRef<"user_sessions", 'Int'>
   readonly session_id: Prisma.FieldRef<"user_sessions", 'Int'>
 }
     

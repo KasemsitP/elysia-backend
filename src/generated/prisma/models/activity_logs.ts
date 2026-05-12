@@ -34,34 +34,34 @@ export type Activity_logsAvgAggregateOutputType = {
 }
 
 export type Activity_logsSumAggregateOutputType = {
-  id: bigint | null
-  account_id: bigint | null
-  grader_id: bigint | null
-  object_id: bigint | null
+  id: number | null
+  account_id: number | null
+  grader_id: number | null
+  object_id: number | null
 }
 
 export type Activity_logsMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   event_time: Date | null
   actor_type: string | null
-  account_id: bigint | null
-  grader_id: bigint | null
+  account_id: number | null
+  grader_id: number | null
   action: string | null
   object_type: string | null
-  object_id: bigint | null
+  object_id: number | null
   ip_address: string | null
   user_agent: string | null
 }
 
 export type Activity_logsMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   event_time: Date | null
   actor_type: string | null
-  account_id: bigint | null
-  grader_id: bigint | null
+  account_id: number | null
+  grader_id: number | null
   action: string | null
   object_type: string | null
-  object_id: bigint | null
+  object_id: number | null
   ip_address: string | null
   user_agent: string | null
 }
@@ -224,14 +224,14 @@ export type activity_logsGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 }
 
 export type Activity_logsGroupByOutputType = {
-  id: bigint
+  id: number
   event_time: Date
   actor_type: string
-  account_id: bigint | null
-  grader_id: bigint | null
+  account_id: number | null
+  grader_id: number | null
   action: string
   object_type: string | null
-  object_id: bigint | null
+  object_id: number | null
   details: runtime.JsonValue | null
   ip_address: string | null
   user_agent: string | null
@@ -261,14 +261,14 @@ export type activity_logsWhereInput = {
   AND?: Prisma.activity_logsWhereInput | Prisma.activity_logsWhereInput[]
   OR?: Prisma.activity_logsWhereInput[]
   NOT?: Prisma.activity_logsWhereInput | Prisma.activity_logsWhereInput[]
-  id?: Prisma.BigIntFilter<"activity_logs"> | bigint | number
+  id?: Prisma.IntFilter<"activity_logs"> | number
   event_time?: Prisma.DateTimeFilter<"activity_logs"> | Date | string
   actor_type?: Prisma.StringFilter<"activity_logs"> | string
-  account_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
-  grader_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
+  account_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
+  grader_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
   action?: Prisma.StringFilter<"activity_logs"> | string
   object_type?: Prisma.StringNullableFilter<"activity_logs"> | string | null
-  object_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
+  object_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
   details?: Prisma.JsonNullableFilter<"activity_logs">
   ip_address?: Prisma.StringNullableFilter<"activity_logs"> | string | null
   user_agent?: Prisma.StringNullableFilter<"activity_logs"> | string | null
@@ -294,17 +294,17 @@ export type activity_logsOrderByWithRelationInput = {
 }
 
 export type activity_logsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   AND?: Prisma.activity_logsWhereInput | Prisma.activity_logsWhereInput[]
   OR?: Prisma.activity_logsWhereInput[]
   NOT?: Prisma.activity_logsWhereInput | Prisma.activity_logsWhereInput[]
   event_time?: Prisma.DateTimeFilter<"activity_logs"> | Date | string
   actor_type?: Prisma.StringFilter<"activity_logs"> | string
-  account_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
-  grader_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
+  account_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
+  grader_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
   action?: Prisma.StringFilter<"activity_logs"> | string
   object_type?: Prisma.StringNullableFilter<"activity_logs"> | string | null
-  object_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
+  object_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
   details?: Prisma.JsonNullableFilter<"activity_logs">
   ip_address?: Prisma.StringNullableFilter<"activity_logs"> | string | null
   user_agent?: Prisma.StringNullableFilter<"activity_logs"> | string | null
@@ -335,26 +335,25 @@ export type activity_logsScalarWhereWithAggregatesInput = {
   AND?: Prisma.activity_logsScalarWhereWithAggregatesInput | Prisma.activity_logsScalarWhereWithAggregatesInput[]
   OR?: Prisma.activity_logsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.activity_logsScalarWhereWithAggregatesInput | Prisma.activity_logsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"activity_logs"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"activity_logs"> | number
   event_time?: Prisma.DateTimeWithAggregatesFilter<"activity_logs"> | Date | string
   actor_type?: Prisma.StringWithAggregatesFilter<"activity_logs"> | string
-  account_id?: Prisma.BigIntNullableWithAggregatesFilter<"activity_logs"> | bigint | number | null
-  grader_id?: Prisma.BigIntNullableWithAggregatesFilter<"activity_logs"> | bigint | number | null
+  account_id?: Prisma.IntNullableWithAggregatesFilter<"activity_logs"> | number | null
+  grader_id?: Prisma.IntNullableWithAggregatesFilter<"activity_logs"> | number | null
   action?: Prisma.StringWithAggregatesFilter<"activity_logs"> | string
   object_type?: Prisma.StringNullableWithAggregatesFilter<"activity_logs"> | string | null
-  object_id?: Prisma.BigIntNullableWithAggregatesFilter<"activity_logs"> | bigint | number | null
+  object_id?: Prisma.IntNullableWithAggregatesFilter<"activity_logs"> | number | null
   details?: Prisma.JsonNullableWithAggregatesFilter<"activity_logs">
   ip_address?: Prisma.StringNullableWithAggregatesFilter<"activity_logs"> | string | null
   user_agent?: Prisma.StringNullableWithAggregatesFilter<"activity_logs"> | string | null
 }
 
 export type activity_logsCreateInput = {
-  id?: bigint | number
   event_time?: Date | string
   actor_type: string
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
@@ -363,26 +362,25 @@ export type activity_logsCreateInput = {
 }
 
 export type activity_logsUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   event_time?: Date | string
   actor_type: string
-  account_id?: bigint | number | null
-  grader_id?: bigint | number | null
+  account_id?: number | null
+  grader_id?: number | null
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
 }
 
 export type activity_logsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -391,54 +389,53 @@ export type activity_logsUpdateInput = {
 }
 
 export type activity_logsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type activity_logsCreateManyInput = {
-  id?: bigint | number
+  id?: number
   event_time?: Date | string
   actor_type: string
-  account_id?: bigint | number | null
-  grader_id?: bigint | number | null
+  account_id?: number | null
+  grader_id?: number | null
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
 }
 
 export type activity_logsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type activity_logsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -560,14 +557,6 @@ export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type NullableBigIntFieldUpdateOperationsInput = {
-  set?: bigint | number | null
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
-}
-
 export type activity_logsCreateNestedManyWithoutGradersInput = {
   create?: Prisma.XOR<Prisma.activity_logsCreateWithoutGradersInput, Prisma.activity_logsUncheckedCreateWithoutGradersInput> | Prisma.activity_logsCreateWithoutGradersInput[] | Prisma.activity_logsUncheckedCreateWithoutGradersInput[]
   connectOrCreate?: Prisma.activity_logsCreateOrConnectWithoutGradersInput | Prisma.activity_logsCreateOrConnectWithoutGradersInput[]
@@ -611,12 +600,11 @@ export type activity_logsUncheckedUpdateManyWithoutGradersNestedInput = {
 }
 
 export type activity_logsCreateWithoutAccountsInput = {
-  id?: bigint | number
   event_time?: Date | string
   actor_type: string
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
@@ -624,13 +612,13 @@ export type activity_logsCreateWithoutAccountsInput = {
 }
 
 export type activity_logsUncheckedCreateWithoutAccountsInput = {
-  id?: bigint | number
+  id?: number
   event_time?: Date | string
   actor_type: string
-  grader_id?: bigint | number | null
+  grader_id?: number | null
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
@@ -666,26 +654,25 @@ export type activity_logsScalarWhereInput = {
   AND?: Prisma.activity_logsScalarWhereInput | Prisma.activity_logsScalarWhereInput[]
   OR?: Prisma.activity_logsScalarWhereInput[]
   NOT?: Prisma.activity_logsScalarWhereInput | Prisma.activity_logsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"activity_logs"> | bigint | number
+  id?: Prisma.IntFilter<"activity_logs"> | number
   event_time?: Prisma.DateTimeFilter<"activity_logs"> | Date | string
   actor_type?: Prisma.StringFilter<"activity_logs"> | string
-  account_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
-  grader_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
+  account_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
+  grader_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
   action?: Prisma.StringFilter<"activity_logs"> | string
   object_type?: Prisma.StringNullableFilter<"activity_logs"> | string | null
-  object_id?: Prisma.BigIntNullableFilter<"activity_logs"> | bigint | number | null
+  object_id?: Prisma.IntNullableFilter<"activity_logs"> | number | null
   details?: Prisma.JsonNullableFilter<"activity_logs">
   ip_address?: Prisma.StringNullableFilter<"activity_logs"> | string | null
   user_agent?: Prisma.StringNullableFilter<"activity_logs"> | string | null
 }
 
 export type activity_logsCreateWithoutGradersInput = {
-  id?: bigint | number
   event_time?: Date | string
   actor_type: string
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
@@ -693,13 +680,13 @@ export type activity_logsCreateWithoutGradersInput = {
 }
 
 export type activity_logsUncheckedCreateWithoutGradersInput = {
-  id?: bigint | number
+  id?: number
   event_time?: Date | string
   actor_type: string
-  account_id?: bigint | number | null
+  account_id?: number | null
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
@@ -732,25 +719,24 @@ export type activity_logsUpdateManyWithWhereWithoutGradersInput = {
 }
 
 export type activity_logsCreateManyAccountsInput = {
-  id?: bigint | number
+  id?: number
   event_time?: Date | string
   actor_type: string
-  grader_id?: bigint | number | null
+  grader_id?: number | null
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
 }
 
 export type activity_logsUpdateWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -758,51 +744,50 @@ export type activity_logsUpdateWithoutAccountsInput = {
 }
 
 export type activity_logsUncheckedUpdateWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type activity_logsUncheckedUpdateManyWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
-  grader_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  grader_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type activity_logsCreateManyGradersInput = {
-  id?: bigint | number
+  id?: number
   event_time?: Date | string
   actor_type: string
-  account_id?: bigint | number | null
+  account_id?: number | null
   action: string
   object_type?: string | null
-  object_id?: bigint | number | null
+  object_id?: number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: string | null
   user_agent?: string | null
 }
 
 export type activity_logsUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -810,26 +795,26 @@ export type activity_logsUpdateWithoutGradersInput = {
 }
 
 export type activity_logsUncheckedUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type activity_logsUncheckedUpdateManyWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   event_time?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actor_type?: Prisma.StringFieldUpdateOperationsInput | string
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   action?: Prisma.StringFieldUpdateOperationsInput | string
   object_type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  object_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  object_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   details?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   ip_address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_agent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -882,14 +867,14 @@ export type $activity_logsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     graders: Prisma.$gradersPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     event_time: Date
     actor_type: string
-    account_id: bigint | null
-    grader_id: bigint | null
+    account_id: number | null
+    grader_id: number | null
     action: string
     object_type: string | null
-    object_id: bigint | null
+    object_id: number | null
     details: runtime.JsonValue | null
     ip_address: string | null
     user_agent: string | null
@@ -1264,14 +1249,14 @@ export interface Prisma__activity_logsClient<T, Null = never, ExtArgs extends ru
  * Fields of the activity_logs model
  */
 export interface activity_logsFieldRefs {
-  readonly id: Prisma.FieldRef<"activity_logs", 'BigInt'>
+  readonly id: Prisma.FieldRef<"activity_logs", 'Int'>
   readonly event_time: Prisma.FieldRef<"activity_logs", 'DateTime'>
   readonly actor_type: Prisma.FieldRef<"activity_logs", 'String'>
-  readonly account_id: Prisma.FieldRef<"activity_logs", 'BigInt'>
-  readonly grader_id: Prisma.FieldRef<"activity_logs", 'BigInt'>
+  readonly account_id: Prisma.FieldRef<"activity_logs", 'Int'>
+  readonly grader_id: Prisma.FieldRef<"activity_logs", 'Int'>
   readonly action: Prisma.FieldRef<"activity_logs", 'String'>
   readonly object_type: Prisma.FieldRef<"activity_logs", 'String'>
-  readonly object_id: Prisma.FieldRef<"activity_logs", 'BigInt'>
+  readonly object_id: Prisma.FieldRef<"activity_logs", 'Int'>
   readonly details: Prisma.FieldRef<"activity_logs", 'Json'>
   readonly ip_address: Prisma.FieldRef<"activity_logs", 'String'>
   readonly user_agent: Prisma.FieldRef<"activity_logs", 'String'>

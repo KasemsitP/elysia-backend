@@ -31,18 +31,18 @@ export type RolesAvgAggregateOutputType = {
 }
 
 export type RolesSumAggregateOutputType = {
-  id: bigint | null
+  id: number | null
 }
 
 export type RolesMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   code: string | null
   name: string | null
   active: boolean | null
 }
 
 export type RolesMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   code: string | null
   name: string | null
   active: boolean | null
@@ -174,7 +174,7 @@ export type rolesGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 export type RolesGroupByOutputType = {
-  id: bigint
+  id: number
   code: string
   name: string
   active: boolean
@@ -204,7 +204,7 @@ export type rolesWhereInput = {
   AND?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
   OR?: Prisma.rolesWhereInput[]
   NOT?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
-  id?: Prisma.BigIntFilter<"roles"> | bigint | number
+  id?: Prisma.IntFilter<"roles"> | number
   code?: Prisma.StringFilter<"roles"> | string
   name?: Prisma.StringFilter<"roles"> | string
   active?: Prisma.BoolFilter<"roles"> | boolean
@@ -221,7 +221,7 @@ export type rolesOrderByWithRelationInput = {
 }
 
 export type rolesWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   code?: string
   AND?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
   OR?: Prisma.rolesWhereInput[]
@@ -247,14 +247,13 @@ export type rolesScalarWhereWithAggregatesInput = {
   AND?: Prisma.rolesScalarWhereWithAggregatesInput | Prisma.rolesScalarWhereWithAggregatesInput[]
   OR?: Prisma.rolesScalarWhereWithAggregatesInput[]
   NOT?: Prisma.rolesScalarWhereWithAggregatesInput | Prisma.rolesScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"roles"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"roles"> | number
   code?: Prisma.StringWithAggregatesFilter<"roles"> | string
   name?: Prisma.StringWithAggregatesFilter<"roles"> | string
   active?: Prisma.BoolWithAggregatesFilter<"roles"> | boolean
 }
 
 export type rolesCreateInput = {
-  id?: bigint | number
   code: string
   name: string
   active?: boolean
@@ -262,7 +261,7 @@ export type rolesCreateInput = {
 }
 
 export type rolesUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   active?: boolean
@@ -270,7 +269,6 @@ export type rolesUncheckedCreateInput = {
 }
 
 export type rolesUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -278,7 +276,7 @@ export type rolesUpdateInput = {
 }
 
 export type rolesUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -286,21 +284,20 @@ export type rolesUncheckedUpdateInput = {
 }
 
 export type rolesCreateManyInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   active?: boolean
 }
 
 export type rolesUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type rolesUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -361,14 +358,13 @@ export type rolesUpdateOneRequiredWithoutAccountsNestedInput = {
 }
 
 export type rolesCreateWithoutAccountsInput = {
-  id?: bigint | number
   code: string
   name: string
   active?: boolean
 }
 
 export type rolesUncheckedCreateWithoutAccountsInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   active?: boolean
@@ -391,14 +387,13 @@ export type rolesUpdateToOneWithWhereWithoutAccountsInput = {
 }
 
 export type rolesUpdateWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type rolesUncheckedUpdateWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -465,7 +460,7 @@ export type $rolesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     accounts: Prisma.$accountsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     code: string
     name: string
     active: boolean
@@ -839,7 +834,7 @@ export interface Prisma__rolesClient<T, Null = never, ExtArgs extends runtime.Ty
  * Fields of the roles model
  */
 export interface rolesFieldRefs {
-  readonly id: Prisma.FieldRef<"roles", 'BigInt'>
+  readonly id: Prisma.FieldRef<"roles", 'Int'>
   readonly code: Prisma.FieldRef<"roles", 'String'>
   readonly name: Prisma.FieldRef<"roles", 'String'>
   readonly active: Prisma.FieldRef<"roles", 'Boolean'>

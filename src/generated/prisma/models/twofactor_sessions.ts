@@ -34,16 +34,16 @@ export type Twofactor_sessionsAvgAggregateOutputType = {
 }
 
 export type Twofactor_sessionsSumAggregateOutputType = {
-  id: bigint | null
-  account_id: bigint | null
-  campaign_id: bigint | null
+  id: number | null
+  account_id: number | null
+  campaign_id: number | null
   attempts: number | null
 }
 
 export type Twofactor_sessionsMinAggregateOutputType = {
-  id: bigint | null
-  account_id: bigint | null
-  campaign_id: bigint | null
+  id: number | null
+  account_id: number | null
+  campaign_id: number | null
   purpose: string | null
   otp_hash: string | null
   created_at: Date | null
@@ -54,9 +54,9 @@ export type Twofactor_sessionsMinAggregateOutputType = {
 }
 
 export type Twofactor_sessionsMaxAggregateOutputType = {
-  id: bigint | null
-  account_id: bigint | null
-  campaign_id: bigint | null
+  id: number | null
+  account_id: number | null
+  campaign_id: number | null
   purpose: string | null
   otp_hash: string | null
   created_at: Date | null
@@ -222,9 +222,9 @@ export type twofactor_sessionsGroupByArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 export type Twofactor_sessionsGroupByOutputType = {
-  id: bigint
-  account_id: bigint
-  campaign_id: bigint | null
+  id: number
+  account_id: number
+  campaign_id: number | null
   purpose: string
   otp_hash: string
   created_at: Date
@@ -258,9 +258,9 @@ export type twofactor_sessionsWhereInput = {
   AND?: Prisma.twofactor_sessionsWhereInput | Prisma.twofactor_sessionsWhereInput[]
   OR?: Prisma.twofactor_sessionsWhereInput[]
   NOT?: Prisma.twofactor_sessionsWhereInput | Prisma.twofactor_sessionsWhereInput[]
-  id?: Prisma.BigIntFilter<"twofactor_sessions"> | bigint | number
-  account_id?: Prisma.BigIntFilter<"twofactor_sessions"> | bigint | number
-  campaign_id?: Prisma.BigIntNullableFilter<"twofactor_sessions"> | bigint | number | null
+  id?: Prisma.IntFilter<"twofactor_sessions"> | number
+  account_id?: Prisma.IntFilter<"twofactor_sessions"> | number
+  campaign_id?: Prisma.IntNullableFilter<"twofactor_sessions"> | number | null
   purpose?: Prisma.StringFilter<"twofactor_sessions"> | string
   otp_hash?: Prisma.StringFilter<"twofactor_sessions"> | string
   created_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
@@ -285,12 +285,12 @@ export type twofactor_sessionsOrderByWithRelationInput = {
 }
 
 export type twofactor_sessionsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   AND?: Prisma.twofactor_sessionsWhereInput | Prisma.twofactor_sessionsWhereInput[]
   OR?: Prisma.twofactor_sessionsWhereInput[]
   NOT?: Prisma.twofactor_sessionsWhereInput | Prisma.twofactor_sessionsWhereInput[]
-  account_id?: Prisma.BigIntFilter<"twofactor_sessions"> | bigint | number
-  campaign_id?: Prisma.BigIntNullableFilter<"twofactor_sessions"> | bigint | number | null
+  account_id?: Prisma.IntFilter<"twofactor_sessions"> | number
+  campaign_id?: Prisma.IntNullableFilter<"twofactor_sessions"> | number | null
   purpose?: Prisma.StringFilter<"twofactor_sessions"> | string
   otp_hash?: Prisma.StringFilter<"twofactor_sessions"> | string
   created_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
@@ -322,9 +322,9 @@ export type twofactor_sessionsScalarWhereWithAggregatesInput = {
   AND?: Prisma.twofactor_sessionsScalarWhereWithAggregatesInput | Prisma.twofactor_sessionsScalarWhereWithAggregatesInput[]
   OR?: Prisma.twofactor_sessionsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.twofactor_sessionsScalarWhereWithAggregatesInput | Prisma.twofactor_sessionsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"twofactor_sessions"> | bigint | number
-  account_id?: Prisma.BigIntWithAggregatesFilter<"twofactor_sessions"> | bigint | number
-  campaign_id?: Prisma.BigIntNullableWithAggregatesFilter<"twofactor_sessions"> | bigint | number | null
+  id?: Prisma.IntWithAggregatesFilter<"twofactor_sessions"> | number
+  account_id?: Prisma.IntWithAggregatesFilter<"twofactor_sessions"> | number
+  campaign_id?: Prisma.IntNullableWithAggregatesFilter<"twofactor_sessions"> | number | null
   purpose?: Prisma.StringWithAggregatesFilter<"twofactor_sessions"> | string
   otp_hash?: Prisma.StringWithAggregatesFilter<"twofactor_sessions"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"twofactor_sessions"> | Date | string
@@ -335,9 +335,8 @@ export type twofactor_sessionsScalarWhereWithAggregatesInput = {
 }
 
 export type twofactor_sessionsCreateInput = {
-  id?: bigint | number
-  account_id: bigint | number
-  campaign_id?: bigint | number | null
+  account_id: number
+  campaign_id?: number | null
   purpose: string
   otp_hash: string
   created_at?: Date | string
@@ -348,9 +347,9 @@ export type twofactor_sessionsCreateInput = {
 }
 
 export type twofactor_sessionsUncheckedCreateInput = {
-  id?: bigint | number
-  account_id: bigint | number
-  campaign_id?: bigint | number | null
+  id?: number
+  account_id: number
+  campaign_id?: number | null
   purpose: string
   otp_hash: string
   created_at?: Date | string
@@ -361,9 +360,8 @@ export type twofactor_sessionsUncheckedCreateInput = {
 }
 
 export type twofactor_sessionsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  account_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  account_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -374,9 +372,9 @@ export type twofactor_sessionsUpdateInput = {
 }
 
 export type twofactor_sessionsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  account_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  account_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -387,9 +385,9 @@ export type twofactor_sessionsUncheckedUpdateInput = {
 }
 
 export type twofactor_sessionsCreateManyInput = {
-  id?: bigint | number
-  account_id: bigint | number
-  campaign_id?: bigint | number | null
+  id?: number
+  account_id: number
+  campaign_id?: number | null
   purpose: string
   otp_hash: string
   created_at?: Date | string
@@ -400,9 +398,8 @@ export type twofactor_sessionsCreateManyInput = {
 }
 
 export type twofactor_sessionsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  account_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  account_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -413,9 +410,9 @@ export type twofactor_sessionsUpdateManyMutationInput = {
 }
 
 export type twofactor_sessionsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  account_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  account_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
   otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -520,9 +517,9 @@ export type $twofactor_sessionsPayload<ExtArgs extends runtime.Types.Extensions.
   name: "twofactor_sessions"
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    account_id: bigint
-    campaign_id: bigint | null
+    id: number
+    account_id: number
+    campaign_id: number | null
     purpose: string
     otp_hash: string
     created_at: Date
@@ -899,9 +896,9 @@ export interface Prisma__twofactor_sessionsClient<T, Null = never, ExtArgs exten
  * Fields of the twofactor_sessions model
  */
 export interface twofactor_sessionsFieldRefs {
-  readonly id: Prisma.FieldRef<"twofactor_sessions", 'BigInt'>
-  readonly account_id: Prisma.FieldRef<"twofactor_sessions", 'BigInt'>
-  readonly campaign_id: Prisma.FieldRef<"twofactor_sessions", 'BigInt'>
+  readonly id: Prisma.FieldRef<"twofactor_sessions", 'Int'>
+  readonly account_id: Prisma.FieldRef<"twofactor_sessions", 'Int'>
+  readonly campaign_id: Prisma.FieldRef<"twofactor_sessions", 'Int'>
   readonly purpose: Prisma.FieldRef<"twofactor_sessions", 'String'>
   readonly otp_hash: Prisma.FieldRef<"twofactor_sessions", 'String'>
   readonly created_at: Prisma.FieldRef<"twofactor_sessions", 'DateTime'>

@@ -32,13 +32,12 @@ export type Exam_campaignsAvgAggregateOutputType = {
 }
 
 export type Exam_campaignsSumAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   qr_active: number | null
 }
 
 export type Exam_campaignsMinAggregateOutputType = {
-  id: bigint | null
-  code: string | null
+  id: number | null
   name: string | null
   is_active: boolean | null
   year_be: string | null
@@ -49,8 +48,7 @@ export type Exam_campaignsMinAggregateOutputType = {
 }
 
 export type Exam_campaignsMaxAggregateOutputType = {
-  id: bigint | null
-  code: string | null
+  id: number | null
   name: string | null
   is_active: boolean | null
   year_be: string | null
@@ -62,7 +60,6 @@ export type Exam_campaignsMaxAggregateOutputType = {
 
 export type Exam_campaignsCountAggregateOutputType = {
   id: number
-  code: number
   name: number
   is_active: number
   year_be: number
@@ -86,7 +83,6 @@ export type Exam_campaignsSumAggregateInputType = {
 
 export type Exam_campaignsMinAggregateInputType = {
   id?: true
-  code?: true
   name?: true
   is_active?: true
   year_be?: true
@@ -98,7 +94,6 @@ export type Exam_campaignsMinAggregateInputType = {
 
 export type Exam_campaignsMaxAggregateInputType = {
   id?: true
-  code?: true
   name?: true
   is_active?: true
   year_be?: true
@@ -110,7 +105,6 @@ export type Exam_campaignsMaxAggregateInputType = {
 
 export type Exam_campaignsCountAggregateInputType = {
   id?: true
-  code?: true
   name?: true
   is_active?: true
   year_be?: true
@@ -208,8 +202,7 @@ export type exam_campaignsGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 export type Exam_campaignsGroupByOutputType = {
-  id: bigint
-  code: string | null
+  id: number
   name: string | null
   is_active: boolean
   year_be: string
@@ -243,8 +236,7 @@ export type exam_campaignsWhereInput = {
   AND?: Prisma.exam_campaignsWhereInput | Prisma.exam_campaignsWhereInput[]
   OR?: Prisma.exam_campaignsWhereInput[]
   NOT?: Prisma.exam_campaignsWhereInput | Prisma.exam_campaignsWhereInput[]
-  id?: Prisma.BigIntFilter<"exam_campaigns"> | bigint | number
-  code?: Prisma.StringNullableFilter<"exam_campaigns"> | string | null
+  id?: Prisma.IntFilter<"exam_campaigns"> | number
   name?: Prisma.StringNullableFilter<"exam_campaigns"> | string | null
   is_active?: Prisma.BoolFilter<"exam_campaigns"> | boolean
   year_be?: Prisma.StringFilter<"exam_campaigns"> | string
@@ -262,7 +254,6 @@ export type exam_campaignsWhereInput = {
 
 export type exam_campaignsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  code?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
@@ -280,9 +271,8 @@ export type exam_campaignsOrderByWithRelationInput = {
 }
 
 export type exam_campaignsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
-  code?: string
-  campaign_size_year_be_code?: Prisma.exam_campaignsCampaign_sizeYear_beCodeCompoundUniqueInput
+  id?: number
+  campaign_size_year_be?: Prisma.exam_campaignsCampaign_sizeYear_beCompoundUniqueInput
   year_be_campaign_size?: Prisma.exam_campaignsYear_beCampaign_sizeCompoundUniqueInput
   AND?: Prisma.exam_campaignsWhereInput | Prisma.exam_campaignsWhereInput[]
   OR?: Prisma.exam_campaignsWhereInput[]
@@ -300,11 +290,10 @@ export type exam_campaignsWhereUniqueInput = Prisma.AtLeast<{
   graders?: Prisma.GradersListRelationFilter
   sessions?: Prisma.SessionsListRelationFilter
   user_campaigns?: Prisma.User_campaignsListRelationFilter
-}, "id" | "code" | "campaign_size_year_be_code" | "year_be_campaign_size">
+}, "id" | "campaign_size_year_be" | "year_be_campaign_size">
 
 export type exam_campaignsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  code?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
@@ -323,8 +312,7 @@ export type exam_campaignsScalarWhereWithAggregatesInput = {
   AND?: Prisma.exam_campaignsScalarWhereWithAggregatesInput | Prisma.exam_campaignsScalarWhereWithAggregatesInput[]
   OR?: Prisma.exam_campaignsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.exam_campaignsScalarWhereWithAggregatesInput | Prisma.exam_campaignsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"exam_campaigns"> | bigint | number
-  code?: Prisma.StringNullableWithAggregatesFilter<"exam_campaigns"> | string | null
+  id?: Prisma.IntWithAggregatesFilter<"exam_campaigns"> | number
   name?: Prisma.StringNullableWithAggregatesFilter<"exam_campaigns"> | string | null
   is_active?: Prisma.BoolWithAggregatesFilter<"exam_campaigns"> | boolean
   year_be?: Prisma.StringWithAggregatesFilter<"exam_campaigns"> | string
@@ -335,8 +323,6 @@ export type exam_campaignsScalarWhereWithAggregatesInput = {
 }
 
 export type exam_campaignsCreateInput = {
-  id?: bigint | number
-  code?: string | null
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -353,8 +339,7 @@ export type exam_campaignsCreateInput = {
 }
 
 export type exam_campaignsUncheckedCreateInput = {
-  id?: bigint | number
-  code?: string | null
+  id?: number
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -371,8 +356,6 @@ export type exam_campaignsUncheckedCreateInput = {
 }
 
 export type exam_campaignsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -389,8 +372,7 @@ export type exam_campaignsUpdateInput = {
 }
 
 export type exam_campaignsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -407,8 +389,7 @@ export type exam_campaignsUncheckedUpdateInput = {
 }
 
 export type exam_campaignsCreateManyInput = {
-  id?: bigint | number
-  code?: string | null
+  id?: number
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -419,8 +400,6 @@ export type exam_campaignsCreateManyInput = {
 }
 
 export type exam_campaignsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -431,8 +410,7 @@ export type exam_campaignsUpdateManyMutationInput = {
 }
 
 export type exam_campaignsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -453,10 +431,9 @@ export type exam_campaignsOrderByRelevanceInput = {
   search: string
 }
 
-export type exam_campaignsCampaign_sizeYear_beCodeCompoundUniqueInput = {
+export type exam_campaignsCampaign_sizeYear_beCompoundUniqueInput = {
   campaign_size: string
   year_be: string
-  code: string
 }
 
 export type exam_campaignsYear_beCampaign_sizeCompoundUniqueInput = {
@@ -466,7 +443,6 @@ export type exam_campaignsYear_beCampaign_sizeCompoundUniqueInput = {
 
 export type exam_campaignsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
@@ -483,7 +459,6 @@ export type exam_campaignsAvgOrderByAggregateInput = {
 
 export type exam_campaignsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
@@ -495,7 +470,6 @@ export type exam_campaignsMaxOrderByAggregateInput = {
 
 export type exam_campaignsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
@@ -602,8 +576,6 @@ export type exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput = {
 }
 
 export type exam_campaignsCreateWithoutCampaign_keysInput = {
-  id?: bigint | number
-  code?: string | null
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -619,8 +591,7 @@ export type exam_campaignsCreateWithoutCampaign_keysInput = {
 }
 
 export type exam_campaignsUncheckedCreateWithoutCampaign_keysInput = {
-  id?: bigint | number
-  code?: string | null
+  id?: number
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -652,8 +623,6 @@ export type exam_campaignsUpdateToOneWithWhereWithoutCampaign_keysInput = {
 }
 
 export type exam_campaignsUpdateWithoutCampaign_keysInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -669,8 +638,7 @@ export type exam_campaignsUpdateWithoutCampaign_keysInput = {
 }
 
 export type exam_campaignsUncheckedUpdateWithoutCampaign_keysInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -686,8 +654,6 @@ export type exam_campaignsUncheckedUpdateWithoutCampaign_keysInput = {
 }
 
 export type exam_campaignsCreateWithoutExam_roomsInput = {
-  id?: bigint | number
-  code?: string | null
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -703,8 +669,7 @@ export type exam_campaignsCreateWithoutExam_roomsInput = {
 }
 
 export type exam_campaignsUncheckedCreateWithoutExam_roomsInput = {
-  id?: bigint | number
-  code?: string | null
+  id?: number
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -736,8 +701,6 @@ export type exam_campaignsUpdateToOneWithWhereWithoutExam_roomsInput = {
 }
 
 export type exam_campaignsUpdateWithoutExam_roomsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -753,8 +716,7 @@ export type exam_campaignsUpdateWithoutExam_roomsInput = {
 }
 
 export type exam_campaignsUncheckedUpdateWithoutExam_roomsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -770,8 +732,6 @@ export type exam_campaignsUncheckedUpdateWithoutExam_roomsInput = {
 }
 
 export type exam_campaignsCreateWithoutGrader_work_locksInput = {
-  id?: bigint | number
-  code?: string | null
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -787,8 +747,7 @@ export type exam_campaignsCreateWithoutGrader_work_locksInput = {
 }
 
 export type exam_campaignsUncheckedCreateWithoutGrader_work_locksInput = {
-  id?: bigint | number
-  code?: string | null
+  id?: number
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -820,8 +779,6 @@ export type exam_campaignsUpdateToOneWithWhereWithoutGrader_work_locksInput = {
 }
 
 export type exam_campaignsUpdateWithoutGrader_work_locksInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -837,8 +794,7 @@ export type exam_campaignsUpdateWithoutGrader_work_locksInput = {
 }
 
 export type exam_campaignsUncheckedUpdateWithoutGrader_work_locksInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -854,8 +810,6 @@ export type exam_campaignsUncheckedUpdateWithoutGrader_work_locksInput = {
 }
 
 export type exam_campaignsCreateWithoutGradersInput = {
-  id?: bigint | number
-  code?: string | null
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -871,8 +825,7 @@ export type exam_campaignsCreateWithoutGradersInput = {
 }
 
 export type exam_campaignsUncheckedCreateWithoutGradersInput = {
-  id?: bigint | number
-  code?: string | null
+  id?: number
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -904,8 +857,6 @@ export type exam_campaignsUpdateToOneWithWhereWithoutGradersInput = {
 }
 
 export type exam_campaignsUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -921,8 +872,7 @@ export type exam_campaignsUpdateWithoutGradersInput = {
 }
 
 export type exam_campaignsUncheckedUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -938,8 +888,6 @@ export type exam_campaignsUncheckedUpdateWithoutGradersInput = {
 }
 
 export type exam_campaignsCreateWithoutSessionsInput = {
-  id?: bigint | number
-  code?: string | null
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -955,8 +903,7 @@ export type exam_campaignsCreateWithoutSessionsInput = {
 }
 
 export type exam_campaignsUncheckedCreateWithoutSessionsInput = {
-  id?: bigint | number
-  code?: string | null
+  id?: number
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -988,8 +935,6 @@ export type exam_campaignsUpdateToOneWithWhereWithoutSessionsInput = {
 }
 
 export type exam_campaignsUpdateWithoutSessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1005,8 +950,7 @@ export type exam_campaignsUpdateWithoutSessionsInput = {
 }
 
 export type exam_campaignsUncheckedUpdateWithoutSessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1022,8 +966,6 @@ export type exam_campaignsUncheckedUpdateWithoutSessionsInput = {
 }
 
 export type exam_campaignsCreateWithoutUser_campaignsInput = {
-  id?: bigint | number
-  code?: string | null
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -1039,8 +981,7 @@ export type exam_campaignsCreateWithoutUser_campaignsInput = {
 }
 
 export type exam_campaignsUncheckedCreateWithoutUser_campaignsInput = {
-  id?: bigint | number
-  code?: string | null
+  id?: number
   name?: string | null
   is_active?: boolean
   year_be: string
@@ -1072,8 +1013,6 @@ export type exam_campaignsUpdateToOneWithWhereWithoutUser_campaignsInput = {
 }
 
 export type exam_campaignsUpdateWithoutUser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1089,8 +1028,7 @@ export type exam_campaignsUpdateWithoutUser_campaignsInput = {
 }
 
 export type exam_campaignsUncheckedUpdateWithoutUser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1183,7 +1121,6 @@ export type Exam_campaignsCountOutputTypeCountUser_campaignsArgs<ExtArgs extends
 
 export type exam_campaignsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  code?: boolean
   name?: boolean
   is_active?: boolean
   year_be?: boolean
@@ -1204,7 +1141,6 @@ export type exam_campaignsSelect<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type exam_campaignsSelectScalar = {
   id?: boolean
-  code?: boolean
   name?: boolean
   is_active?: boolean
   year_be?: boolean
@@ -1214,7 +1150,7 @@ export type exam_campaignsSelectScalar = {
   qr_active?: boolean
 }
 
-export type exam_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "is_active" | "year_be" | "site" | "campaign_size" | "is_unlock" | "qr_active", ExtArgs["result"]["exam_campaigns"]>
+export type exam_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "is_active" | "year_be" | "site" | "campaign_size" | "is_unlock" | "qr_active", ExtArgs["result"]["exam_campaigns"]>
 export type exam_campaignsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   campaign_keys?: boolean | Prisma.exam_campaigns$campaign_keysArgs<ExtArgs>
   exam_rooms?: boolean | Prisma.exam_campaigns$exam_roomsArgs<ExtArgs>
@@ -1236,8 +1172,7 @@ export type $exam_campaignsPayload<ExtArgs extends runtime.Types.Extensions.Inte
     user_campaigns: Prisma.$user_campaignsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    code: string | null
+    id: number
     name: string | null
     is_active: boolean
     year_be: string
@@ -1620,8 +1555,7 @@ export interface Prisma__exam_campaignsClient<T, Null = never, ExtArgs extends r
  * Fields of the exam_campaigns model
  */
 export interface exam_campaignsFieldRefs {
-  readonly id: Prisma.FieldRef<"exam_campaigns", 'BigInt'>
-  readonly code: Prisma.FieldRef<"exam_campaigns", 'String'>
+  readonly id: Prisma.FieldRef<"exam_campaigns", 'Int'>
   readonly name: Prisma.FieldRef<"exam_campaigns", 'String'>
   readonly is_active: Prisma.FieldRef<"exam_campaigns", 'Boolean'>
   readonly year_be: Prisma.FieldRef<"exam_campaigns", 'String'>

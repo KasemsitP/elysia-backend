@@ -9,13 +9,13 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model accounts {
-  id                 BigInt               @id @default(autoincrement())
+  id                 Int                  @id @default(autoincrement())
   username           String               @unique(map: "accounts_index_46") @db.VarChar(64)
   password_hash      String               @db.VarChar(256)
   full_name          String               @db.VarChar(128)
   email              String?              @db.VarChar(128)
   active             Boolean              @default(true)
-  role_id            BigInt
+  role_id            Int
   session_version    Int                  @default(1)
   manager_order      Int?                 @db.TinyInt
   title              String?              @db.VarChar(20)
@@ -33,14 +33,14 @@ model accounts {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model activity_logs {
-  id          BigInt    @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   event_time  DateTime  @default(dbgenerated("(now())")) @db.Timestamp(0)
   actor_type  String    @db.VarChar(16)
-  account_id  BigInt?
-  grader_id   BigInt?
+  account_id  Int?
+  grader_id   Int?
   action      String    @db.VarChar(64)
   object_type String?   @db.VarChar(64)
-  object_id   BigInt?
+  object_id   Int?
   details     Json?
   ip_address  String?   @db.VarChar(64)
   user_agent  String?   @db.Text
@@ -55,7 +55,7 @@ model activity_logs {
 
 model auth_sessions {
   sid        String    @id @db.VarChar(128)
-  account_id BigInt?
+  account_id Int?
   expires    Int       @db.UnsignedInt
   data       String    @db.Text
   accounts   accounts? @relation(fields: [account_id], references: [id], onUpdate: NoAction, map: "fk_auth_session_accounts")
@@ -65,11 +65,9 @@ model auth_sessions {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model bags {
-  id                   BigInt                 @id @default(autoincrement())
+  id                   Int                    @id @default(autoincrement())
   session_id           Int
   bag_no               Int
-  sid_start            String?                @db.VarChar(32)
-  sid_end              String?                @db.VarChar(32)
   count_items          Int                    @default(30)
   status               String                 @default("CREATED") @db.VarChar(16)
   created_at           DateTime               @default(dbgenerated("(now())")) @db.Timestamp(0)
@@ -84,15 +82,15 @@ model bags {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model booklets {
-  id                   BigInt                 @id @default(autoincrement())
+  id                   Int                    @id @default(autoincrement())
   session_id           Int
-  campaign_id          BigInt?
+  campaign_id          Int?
   user_code            String?                @db.VarChar(32)
   qr_payload           String                 @unique(map: "qr_payload") @db.VarChar(512)
   seq_in_bag           Int?                   @db.SmallInt
   status               String                 @default("PRINTED") @db.VarChar(16)
   created_at           DateTime               @default(dbgenerated("(now())")) @db.Timestamp(0)
-  bag_id               BigInt?
+  bag_id               Int?
   random_num           String?                @db.VarChar(6)
   sessions             sessions               @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booklets_ibfk_1")
   bags                 bags?                  @relation(fields: [bag_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booklets_bag")
@@ -111,12 +109,9 @@ model booklets {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model campaign_keys {
-  id             BigInt         @id @default(autoincrement())
-  campaign_id    BigInt
-  account_id     BigInt?
-  key            String?        @db.VarChar(128)
-  algor          String         @default("AES-256-GCM") @db.VarChar(32)
-  iv             String         @db.VarChar(128)
+  id             Int            @id @default(autoincrement())
+  campaign_id    Int
+  account_id     Int?
   active         Boolean        @default(true)
   created_at     DateTime       @default(dbgenerated("(now())")) @db.Timestamp(0)
   order_num      Int?           @default(1)
@@ -129,8 +124,7 @@ model campaign_keys {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model exam_campaigns {
-  id                BigInt              @id @default(autoincrement())
-  code              String?             @unique(map: "code") @db.VarChar(32)
+  id                Int                 @id @default(autoincrement())
   name              String?             @db.VarChar(128)
   is_active         Boolean             @default(true)
   year_be           String              @db.VarChar(255)
@@ -145,12 +139,12 @@ model exam_campaigns {
   sessions          sessions[]
   user_campaigns    user_campaigns[]
 
-  @@unique([campaign_size, year_be, code], map: "uq_campaign_year_user")
+  @@unique([campaign_size, year_be], map: "uq_campaign_year_user")
   @@unique([year_be, campaign_size], map: "uq_year_campaign")
 }
 
 model exam_rooms {
-  campaign_id    BigInt
+  campaign_id    Int
   room_code      String           @db.VarChar(64)
   capacity       Int
   exam_campaigns exam_campaigns   @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_exam_rooms_campaign")
@@ -161,10 +155,10 @@ model exam_rooms {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grader_assignments {
-  grader_id           BigInt
+  grader_id           Int
   session_id          Int
-  subject_id          BigInt
-  subject_question_id BigInt
+  subject_id          Int
+  subject_question_id Int
   subject_questions   subject_questions @relation(fields: [subject_question_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ga_subject_question")
   graders             graders           @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grader_assignments_ibfk_1")
   sessions            sessions          @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grader_assignments_ibfk_2")
@@ -180,15 +174,15 @@ model grader_assignments {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grader_work_locks {
-  id             BigInt         @id @default(autoincrement())
-  grader_id      BigInt
-  campaign_id    BigInt
-  bag_id         BigInt
+  id             Int            @id @default(autoincrement())
+  grader_id      Int
+  campaign_id    Int
+  bag_id         Int
   question_no    Int            @db.SmallInt
   status         String         @default("ACTIVE") @db.VarChar(20)
   locked_at      DateTime       @default(now()) @db.Timestamp(0)
   released_at    DateTime?      @db.Timestamp(0)
-  created_by     BigInt?
+  created_by     Int?
   bags           bags           @relation(fields: [bag_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_bag")
   exam_campaigns exam_campaigns @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_campaign")
   graders        graders        @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_grader")
@@ -200,9 +194,9 @@ model grader_work_locks {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model graders {
-  id                                                        BigInt                 @id @default(autoincrement())
-  campaign_id                                               BigInt?
-  account_id                                                BigInt?
+  id                                                        Int                    @id @default(autoincrement())
+  campaign_id                                               Int?
+  account_id                                                Int?
   activity_logs                                             activity_logs[]
   grader_assignments                                        grader_assignments[]
   grader_work_locks                                         grader_work_locks[]
@@ -220,13 +214,13 @@ model graders {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grading_score_drafts {
-  id            BigInt        @id @default(autoincrement())
-  bag_id        BigInt
-  booklet_id    BigInt
-  subject_id    BigInt
+  id            Int           @id @default(autoincrement())
+  bag_id        Int
+  booklet_id    Int
+  subject_id    Int
   question_no   Int           @db.SmallInt
-  slot_id       BigInt        @unique(map: "uq_gsd_slot")
-  grader_id     BigInt
+  slot_id       Int           @unique(map: "uq_gsd_slot")
+  grader_id     Int
   score         Int
   status        String        @default("DRAFT") @db.VarChar(20)
   created_at    DateTime      @default(now()) @db.Timestamp(0)
@@ -245,17 +239,17 @@ model grading_score_drafts {
 }
 
 model grading_score_logs {
-  id                                                       BigInt         @id @default(autoincrement())
-  booklet_id                                               BigInt
-  subject_id                                               BigInt
+  id                                                       Int            @id @default(autoincrement())
+  booklet_id                                               Int
+  subject_id                                               Int
   question_no                                              Int            @db.SmallInt
-  slot_id1                                                 BigInt?
-  slot_id2                                                 BigInt?
-  grader1_id                                               BigInt?
-  grader2_id                                               BigInt?
+  slot_id1                                                 Int?
+  slot_id2                                                 Int?
+  grader1_id                                               Int?
+  grader2_id                                               Int?
   old_score1                                               Int?
   old_score2                                               Int?
-  changed_by                                               BigInt
+  changed_by                                               Int
   changed_at                                               DateTime       @default(now()) @db.Timestamp(0)
   booklets                                                 booklets       @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_booklet")
   accounts                                                 accounts       @relation(fields: [changed_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_changed_by")
@@ -277,10 +271,10 @@ model grading_score_logs {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grading_scores {
-  id            BigInt        @id @default(autoincrement())
-  slot_id       BigInt
+  id            Int           @id @default(autoincrement())
+  slot_id       Int
   score         Int
-  entered_by    BigInt
+  entered_by    Int
   entered_at    DateTime      @default(dbgenerated("(now())")) @db.Timestamp(0)
   grading_slots grading_slots @relation(fields: [slot_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grading_scores_ibfk_1")
   graders       graders       @relation(fields: [entered_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grading_scores_ibfk_2")
@@ -292,13 +286,13 @@ model grading_scores {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grading_slots {
-  id                                                            BigInt                @id @default(autoincrement())
+  id                                                            Int                   @id @default(autoincrement())
   question_no                                                   Int                   @db.SmallInt
   grader_order                                                  Int                   @db.SmallInt
   status                                                        String                @default("OPEN") @db.VarChar(16)
-  grader_id                                                     BigInt?
-  booklet_id                                                    BigInt
-  subject_id                                                    BigInt
+  grader_id                                                     Int?
+  booklet_id                                                    Int
+  subject_id                                                    Int
   grading_score_drafts                                          grading_score_drafts?
   grading_score_logs_grading_score_logs_slot_id1Tograding_slots grading_score_logs[]  @relation("grading_score_logs_slot_id1Tograding_slots")
   grading_score_logs_grading_score_logs_slot_id2Tograding_slots grading_score_logs[]  @relation("grading_score_logs_slot_id2Tograding_slots")
@@ -320,7 +314,7 @@ model grading_slots {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model roles {
-  id       BigInt     @id @default(autoincrement())
+  id       Int        @id @default(autoincrement())
   code     String     @unique(map: "code") @db.VarChar(32)
   name     String     @db.VarChar(64)
   active   Boolean    @default(true)
@@ -330,11 +324,10 @@ model roles {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model session_subjects {
   session_id         Int
-  subject_id         BigInt
+  subject_id         Int
   start_at           DateTime             @db.Timestamp(0)
   end_at             DateTime             @db.Timestamp(0)
   question_count     Int
-  question_range     String?              @db.VarChar(32)
   order_no           Int
   grader_assignments grader_assignments[]
   sessions           sessions             @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "session_subjects_ibfk_1")
@@ -350,7 +343,7 @@ model sessions {
   id                                                           Int                  @id @default(autoincrement())
   session_code                                                 String               @db.VarChar(32)
   exam_date                                                    DateTime             @db.Date
-  campaign_id                                                  BigInt
+  campaign_id                                                  Int
   day_no                                                       Int
   title                                                        String?              @db.VarChar(128)
   bags                                                         bags[]
@@ -368,8 +361,8 @@ model sessions {
 }
 
 model subject_questions {
-  id                 BigInt               @id @default(autoincrement())
-  subject_id         BigInt
+  id                 Int                  @id @default(autoincrement())
+  subject_id         Int
   question_no        Int
   label              String               @db.VarChar(255)
   max_score          Int?
@@ -382,7 +375,7 @@ model subject_questions {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model subjects {
-  id                   BigInt                 @id @default(autoincrement())
+  id                   Int                    @id @default(autoincrement())
   code                 String                 @unique(map: "code") @db.VarChar(16)
   name                 String                 @db.Text
   full_score           Int                    @default(0)
@@ -395,9 +388,9 @@ model subjects {
 }
 
 model twofactor_sessions {
-  id          BigInt    @id @default(autoincrement())
-  account_id  BigInt
-  campaign_id BigInt?
+  id          Int       @id @default(autoincrement())
+  account_id  Int
+  campaign_id Int?
   purpose     String    @db.VarChar(32)
   otp_hash    String    @db.VarChar(255)
   created_at  DateTime  @default(now()) @db.Timestamp(0)
@@ -409,10 +402,9 @@ model twofactor_sessions {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model user_campaigns {
-  id                                                                       BigInt          @id @default(autoincrement())
-  user_id                                                                  BigInt
-  campaign_id                                                              BigInt
-  final_score                                                              Decimal?        @db.Decimal(10, 0)
+  id                                                                       Int             @id @default(autoincrement())
+  user_id                                                                  Int
+  campaign_id                                                              Int
   room_code                                                                String?         @db.VarChar(64)
   row_no                                                                   Int?
   col_no                                                                   Int?
@@ -431,9 +423,9 @@ model user_campaigns {
 }
 
 model user_sessions {
-  id                                                                        BigInt         @id @default(autoincrement())
-  user_campaign_id                                                          BigInt
-  campaign_id                                                               BigInt
+  id                                                                        Int            @id @default(autoincrement())
+  user_campaign_id                                                          Int
+  campaign_id                                                               Int
   session_id                                                                Int
   user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns user_campaigns @relation("user_sessions_user_campaign_id_campaign_idTouser_campaigns", fields: [user_campaign_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "user_sessions_ibfk_4")
   user_campaigns_user_sessions_user_campaign_idTouser_campaigns             user_campaigns @relation("user_sessions_user_campaign_idTouser_campaigns", fields: [user_campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_sessions_ibfk_5")
@@ -451,7 +443,7 @@ model user_sessions {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model users {
-  id             BigInt           @id @default(autoincrement())
+  id             Int              @id @default(autoincrement())
   user_code      String           @unique(map: "user_code") @db.VarChar(32)
   full_name      String           @db.Text
   first_name     String?          @db.VarChar(128)

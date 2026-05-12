@@ -142,8 +142,6 @@ export const BagsScalarFieldEnum = {
   id: 'id',
   session_id: 'session_id',
   bag_no: 'bag_no',
-  sid_start: 'sid_start',
-  sid_end: 'sid_end',
   count_items: 'count_items',
   status: 'status',
   created_at: 'created_at'
@@ -172,9 +170,6 @@ export const Campaign_keysScalarFieldEnum = {
   id: 'id',
   campaign_id: 'campaign_id',
   account_id: 'account_id',
-  key: 'key',
-  algor: 'algor',
-  iv: 'iv',
   active: 'active',
   created_at: 'created_at',
   order_num: 'order_num'
@@ -185,7 +180,6 @@ export type Campaign_keysScalarFieldEnum = (typeof Campaign_keysScalarFieldEnum)
 
 export const Exam_campaignsScalarFieldEnum = {
   id: 'id',
-  code: 'code',
   name: 'name',
   is_active: 'is_active',
   year_be: 'year_be',
@@ -316,7 +310,6 @@ export const Session_subjectsScalarFieldEnum = {
   start_at: 'start_at',
   end_at: 'end_at',
   question_count: 'question_count',
-  question_range: 'question_range',
   order_no: 'order_no'
 } as const
 
@@ -377,7 +370,6 @@ export const User_campaignsScalarFieldEnum = {
   id: 'id',
   user_id: 'user_id',
   campaign_id: 'campaign_id',
-  final_score: 'final_score',
   room_code: 'room_code',
   row_no: 'row_no',
   col_no: 'col_no'
@@ -482,8 +474,6 @@ export type auth_sessionsOrderByRelevanceFieldEnum = (typeof auth_sessionsOrderB
 
 
 export const bagsOrderByRelevanceFieldEnum = {
-  sid_start: 'sid_start',
-  sid_end: 'sid_end',
   status: 'status'
 } as const
 
@@ -500,17 +490,7 @@ export const bookletsOrderByRelevanceFieldEnum = {
 export type bookletsOrderByRelevanceFieldEnum = (typeof bookletsOrderByRelevanceFieldEnum)[keyof typeof bookletsOrderByRelevanceFieldEnum]
 
 
-export const campaign_keysOrderByRelevanceFieldEnum = {
-  key: 'key',
-  algor: 'algor',
-  iv: 'iv'
-} as const
-
-export type campaign_keysOrderByRelevanceFieldEnum = (typeof campaign_keysOrderByRelevanceFieldEnum)[keyof typeof campaign_keysOrderByRelevanceFieldEnum]
-
-
 export const exam_campaignsOrderByRelevanceFieldEnum = {
-  code: 'code',
   name: 'name',
   year_be: 'year_be',
   site: 'site',
@@ -554,13 +534,6 @@ export const rolesOrderByRelevanceFieldEnum = {
 } as const
 
 export type rolesOrderByRelevanceFieldEnum = (typeof rolesOrderByRelevanceFieldEnum)[keyof typeof rolesOrderByRelevanceFieldEnum]
-
-
-export const session_subjectsOrderByRelevanceFieldEnum = {
-  question_range: 'question_range'
-} as const
-
-export type session_subjectsOrderByRelevanceFieldEnum = (typeof session_subjectsOrderByRelevanceFieldEnum)[keyof typeof session_subjectsOrderByRelevanceFieldEnum]
 
 
 export const sessionsOrderByRelevanceFieldEnum = {

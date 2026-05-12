@@ -34,15 +34,15 @@ export type Subject_questionsAvgAggregateOutputType = {
 }
 
 export type Subject_questionsSumAggregateOutputType = {
-  id: bigint | null
-  subject_id: bigint | null
+  id: number | null
+  subject_id: number | null
   question_no: number | null
   max_score: number | null
 }
 
 export type Subject_questionsMinAggregateOutputType = {
-  id: bigint | null
-  subject_id: bigint | null
+  id: number | null
+  subject_id: number | null
   question_no: number | null
   label: string | null
   max_score: number | null
@@ -50,8 +50,8 @@ export type Subject_questionsMinAggregateOutputType = {
 }
 
 export type Subject_questionsMaxAggregateOutputType = {
-  id: bigint | null
-  subject_id: bigint | null
+  id: number | null
+  subject_id: number | null
   question_no: number | null
   label: string | null
   max_score: number | null
@@ -198,8 +198,8 @@ export type subject_questionsGroupByArgs<ExtArgs extends runtime.Types.Extension
 }
 
 export type Subject_questionsGroupByOutputType = {
-  id: bigint
-  subject_id: bigint
+  id: number
+  subject_id: number
   question_no: number
   label: string
   max_score: number | null
@@ -230,8 +230,8 @@ export type subject_questionsWhereInput = {
   AND?: Prisma.subject_questionsWhereInput | Prisma.subject_questionsWhereInput[]
   OR?: Prisma.subject_questionsWhereInput[]
   NOT?: Prisma.subject_questionsWhereInput | Prisma.subject_questionsWhereInput[]
-  id?: Prisma.BigIntFilter<"subject_questions"> | bigint | number
-  subject_id?: Prisma.BigIntFilter<"subject_questions"> | bigint | number
+  id?: Prisma.IntFilter<"subject_questions"> | number
+  subject_id?: Prisma.IntFilter<"subject_questions"> | number
   question_no?: Prisma.IntFilter<"subject_questions"> | number
   label?: Prisma.StringFilter<"subject_questions"> | string
   max_score?: Prisma.IntNullableFilter<"subject_questions"> | number | null
@@ -253,12 +253,12 @@ export type subject_questionsOrderByWithRelationInput = {
 }
 
 export type subject_questionsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   subject_id_question_no?: Prisma.subject_questionsSubject_idQuestion_noCompoundUniqueInput
   AND?: Prisma.subject_questionsWhereInput | Prisma.subject_questionsWhereInput[]
   OR?: Prisma.subject_questionsWhereInput[]
   NOT?: Prisma.subject_questionsWhereInput | Prisma.subject_questionsWhereInput[]
-  subject_id?: Prisma.BigIntFilter<"subject_questions"> | bigint | number
+  subject_id?: Prisma.IntFilter<"subject_questions"> | number
   question_no?: Prisma.IntFilter<"subject_questions"> | number
   label?: Prisma.StringFilter<"subject_questions"> | string
   max_score?: Prisma.IntNullableFilter<"subject_questions"> | number | null
@@ -285,8 +285,8 @@ export type subject_questionsScalarWhereWithAggregatesInput = {
   AND?: Prisma.subject_questionsScalarWhereWithAggregatesInput | Prisma.subject_questionsScalarWhereWithAggregatesInput[]
   OR?: Prisma.subject_questionsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.subject_questionsScalarWhereWithAggregatesInput | Prisma.subject_questionsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"subject_questions"> | bigint | number
-  subject_id?: Prisma.BigIntWithAggregatesFilter<"subject_questions"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"subject_questions"> | number
+  subject_id?: Prisma.IntWithAggregatesFilter<"subject_questions"> | number
   question_no?: Prisma.IntWithAggregatesFilter<"subject_questions"> | number
   label?: Prisma.StringWithAggregatesFilter<"subject_questions"> | string
   max_score?: Prisma.IntNullableWithAggregatesFilter<"subject_questions"> | number | null
@@ -294,7 +294,6 @@ export type subject_questionsScalarWhereWithAggregatesInput = {
 }
 
 export type subject_questionsCreateInput = {
-  id?: bigint | number
   question_no: number
   label: string
   max_score?: number | null
@@ -304,8 +303,8 @@ export type subject_questionsCreateInput = {
 }
 
 export type subject_questionsUncheckedCreateInput = {
-  id?: bigint | number
-  subject_id: bigint | number
+  id?: number
+  subject_id: number
   question_no: number
   label: string
   max_score?: number | null
@@ -314,7 +313,6 @@ export type subject_questionsUncheckedCreateInput = {
 }
 
 export type subject_questionsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -324,8 +322,8 @@ export type subject_questionsUpdateInput = {
 }
 
 export type subject_questionsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -334,8 +332,8 @@ export type subject_questionsUncheckedUpdateInput = {
 }
 
 export type subject_questionsCreateManyInput = {
-  id?: bigint | number
-  subject_id: bigint | number
+  id?: number
+  subject_id: number
   question_no: number
   label: string
   max_score?: number | null
@@ -343,7 +341,6 @@ export type subject_questionsCreateManyInput = {
 }
 
 export type subject_questionsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -351,8 +348,8 @@ export type subject_questionsUpdateManyMutationInput = {
 }
 
 export type subject_questionsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -371,7 +368,7 @@ export type subject_questionsOrderByRelevanceInput = {
 }
 
 export type subject_questionsSubject_idQuestion_noCompoundUniqueInput = {
-  subject_id: bigint | number
+  subject_id: number
   question_no: number
 }
 
@@ -483,7 +480,6 @@ export type subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput = {
 }
 
 export type subject_questionsCreateWithoutGrader_assignmentsInput = {
-  id?: bigint | number
   question_no: number
   label: string
   max_score?: number | null
@@ -492,8 +488,8 @@ export type subject_questionsCreateWithoutGrader_assignmentsInput = {
 }
 
 export type subject_questionsUncheckedCreateWithoutGrader_assignmentsInput = {
-  id?: bigint | number
-  subject_id: bigint | number
+  id?: number
+  subject_id: number
   question_no: number
   label: string
   max_score?: number | null
@@ -517,7 +513,6 @@ export type subject_questionsUpdateToOneWithWhereWithoutGrader_assignmentsInput 
 }
 
 export type subject_questionsUpdateWithoutGrader_assignmentsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -526,8 +521,8 @@ export type subject_questionsUpdateWithoutGrader_assignmentsInput = {
 }
 
 export type subject_questionsUncheckedUpdateWithoutGrader_assignmentsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -535,7 +530,6 @@ export type subject_questionsUncheckedUpdateWithoutGrader_assignmentsInput = {
 }
 
 export type subject_questionsCreateWithoutSubjectsInput = {
-  id?: bigint | number
   question_no: number
   label: string
   max_score?: number | null
@@ -544,7 +538,7 @@ export type subject_questionsCreateWithoutSubjectsInput = {
 }
 
 export type subject_questionsUncheckedCreateWithoutSubjectsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   label: string
   max_score?: number | null
@@ -582,8 +576,8 @@ export type subject_questionsScalarWhereInput = {
   AND?: Prisma.subject_questionsScalarWhereInput | Prisma.subject_questionsScalarWhereInput[]
   OR?: Prisma.subject_questionsScalarWhereInput[]
   NOT?: Prisma.subject_questionsScalarWhereInput | Prisma.subject_questionsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"subject_questions"> | bigint | number
-  subject_id?: Prisma.BigIntFilter<"subject_questions"> | bigint | number
+  id?: Prisma.IntFilter<"subject_questions"> | number
+  subject_id?: Prisma.IntFilter<"subject_questions"> | number
   question_no?: Prisma.IntFilter<"subject_questions"> | number
   label?: Prisma.StringFilter<"subject_questions"> | string
   max_score?: Prisma.IntNullableFilter<"subject_questions"> | number | null
@@ -591,7 +585,7 @@ export type subject_questionsScalarWhereInput = {
 }
 
 export type subject_questionsCreateManySubjectsInput = {
-  id?: bigint | number
+  id?: number
   question_no: number
   label: string
   max_score?: number | null
@@ -599,7 +593,6 @@ export type subject_questionsCreateManySubjectsInput = {
 }
 
 export type subject_questionsUpdateWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -608,7 +601,7 @@ export type subject_questionsUpdateWithoutSubjectsInput = {
 }
 
 export type subject_questionsUncheckedUpdateWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -617,7 +610,7 @@ export type subject_questionsUncheckedUpdateWithoutSubjectsInput = {
 }
 
 export type subject_questionsUncheckedUpdateManyWithoutSubjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -692,8 +685,8 @@ export type $subject_questionsPayload<ExtArgs extends runtime.Types.Extensions.I
     subjects: Prisma.$subjectsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    subject_id: bigint
+    id: number
+    subject_id: number
     question_no: number
     label: string
     max_score: number | null
@@ -1069,8 +1062,8 @@ export interface Prisma__subject_questionsClient<T, Null = never, ExtArgs extend
  * Fields of the subject_questions model
  */
 export interface subject_questionsFieldRefs {
-  readonly id: Prisma.FieldRef<"subject_questions", 'BigInt'>
-  readonly subject_id: Prisma.FieldRef<"subject_questions", 'BigInt'>
+  readonly id: Prisma.FieldRef<"subject_questions", 'Int'>
+  readonly subject_id: Prisma.FieldRef<"subject_questions", 'Int'>
   readonly question_no: Prisma.FieldRef<"subject_questions", 'Int'>
   readonly label: Prisma.FieldRef<"subject_questions", 'String'>
   readonly max_score: Prisma.FieldRef<"subject_questions", 'Int'>

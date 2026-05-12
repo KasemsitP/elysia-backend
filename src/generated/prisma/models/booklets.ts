@@ -35,36 +35,36 @@ export type BookletsAvgAggregateOutputType = {
 }
 
 export type BookletsSumAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   session_id: number | null
-  campaign_id: bigint | null
+  campaign_id: number | null
   seq_in_bag: number | null
-  bag_id: bigint | null
+  bag_id: number | null
 }
 
 export type BookletsMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   session_id: number | null
-  campaign_id: bigint | null
+  campaign_id: number | null
   user_code: string | null
   qr_payload: string | null
   seq_in_bag: number | null
   status: string | null
   created_at: Date | null
-  bag_id: bigint | null
+  bag_id: number | null
   random_num: string | null
 }
 
 export type BookletsMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   session_id: number | null
-  campaign_id: bigint | null
+  campaign_id: number | null
   user_code: string | null
   qr_payload: string | null
   seq_in_bag: number | null
   status: string | null
   created_at: Date | null
-  bag_id: bigint | null
+  bag_id: number | null
   random_num: string | null
 }
 
@@ -226,15 +226,15 @@ export type bookletsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type BookletsGroupByOutputType = {
-  id: bigint
+  id: number
   session_id: number
-  campaign_id: bigint | null
+  campaign_id: number | null
   user_code: string | null
   qr_payload: string
   seq_in_bag: number | null
   status: string
   created_at: Date
-  bag_id: bigint | null
+  bag_id: number | null
   random_num: string | null
   _count: BookletsCountAggregateOutputType | null
   _avg: BookletsAvgAggregateOutputType | null
@@ -262,15 +262,15 @@ export type bookletsWhereInput = {
   AND?: Prisma.bookletsWhereInput | Prisma.bookletsWhereInput[]
   OR?: Prisma.bookletsWhereInput[]
   NOT?: Prisma.bookletsWhereInput | Prisma.bookletsWhereInput[]
-  id?: Prisma.BigIntFilter<"booklets"> | bigint | number
+  id?: Prisma.IntFilter<"booklets"> | number
   session_id?: Prisma.IntFilter<"booklets"> | number
-  campaign_id?: Prisma.BigIntNullableFilter<"booklets"> | bigint | number | null
+  campaign_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   user_code?: Prisma.StringNullableFilter<"booklets"> | string | null
   qr_payload?: Prisma.StringFilter<"booklets"> | string
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
   status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
-  bag_id?: Prisma.BigIntNullableFilter<"booklets"> | bigint | number | null
+  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
   sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
   bags?: Prisma.XOR<Prisma.BagsNullableScalarRelationFilter, Prisma.bagsWhereInput> | null
@@ -299,19 +299,19 @@ export type bookletsOrderByWithRelationInput = {
 }
 
 export type bookletsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   qr_payload?: string
   session_id_random_num?: Prisma.bookletsSession_idRandom_numCompoundUniqueInput
   AND?: Prisma.bookletsWhereInput | Prisma.bookletsWhereInput[]
   OR?: Prisma.bookletsWhereInput[]
   NOT?: Prisma.bookletsWhereInput | Prisma.bookletsWhereInput[]
   session_id?: Prisma.IntFilter<"booklets"> | number
-  campaign_id?: Prisma.BigIntNullableFilter<"booklets"> | bigint | number | null
+  campaign_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   user_code?: Prisma.StringNullableFilter<"booklets"> | string | null
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
   status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
-  bag_id?: Prisma.BigIntNullableFilter<"booklets"> | bigint | number | null
+  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
   sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
   bags?: Prisma.XOR<Prisma.BagsNullableScalarRelationFilter, Prisma.bagsWhereInput> | null
@@ -342,21 +342,20 @@ export type bookletsScalarWhereWithAggregatesInput = {
   AND?: Prisma.bookletsScalarWhereWithAggregatesInput | Prisma.bookletsScalarWhereWithAggregatesInput[]
   OR?: Prisma.bookletsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.bookletsScalarWhereWithAggregatesInput | Prisma.bookletsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"booklets"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"booklets"> | number
   session_id?: Prisma.IntWithAggregatesFilter<"booklets"> | number
-  campaign_id?: Prisma.BigIntNullableWithAggregatesFilter<"booklets"> | bigint | number | null
+  campaign_id?: Prisma.IntNullableWithAggregatesFilter<"booklets"> | number | null
   user_code?: Prisma.StringNullableWithAggregatesFilter<"booklets"> | string | null
   qr_payload?: Prisma.StringWithAggregatesFilter<"booklets"> | string
   seq_in_bag?: Prisma.IntNullableWithAggregatesFilter<"booklets"> | number | null
   status?: Prisma.StringWithAggregatesFilter<"booklets"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"booklets"> | Date | string
-  bag_id?: Prisma.BigIntNullableWithAggregatesFilter<"booklets"> | bigint | number | null
+  bag_id?: Prisma.IntNullableWithAggregatesFilter<"booklets"> | number | null
   random_num?: Prisma.StringNullableWithAggregatesFilter<"booklets"> | string | null
 }
 
 export type bookletsCreateInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
@@ -371,15 +370,15 @@ export type bookletsCreateInput = {
 }
 
 export type bookletsUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
   status?: string
   created_at?: Date | string
-  bag_id?: bigint | number | null
+  bag_id?: number | null
   random_num?: string | null
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
@@ -387,8 +386,7 @@ export type bookletsUncheckedCreateInput = {
 }
 
 export type bookletsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -403,15 +401,15 @@ export type bookletsUpdateInput = {
 }
 
 export type bookletsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
@@ -419,21 +417,20 @@ export type bookletsUncheckedUpdateInput = {
 }
 
 export type bookletsCreateManyInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
   status?: string
   created_at?: Date | string
-  bag_id?: bigint | number | null
+  bag_id?: number | null
   random_num?: string | null
 }
 
 export type bookletsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -443,15 +440,15 @@ export type bookletsUpdateManyMutationInput = {
 }
 
 export type bookletsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -663,8 +660,7 @@ export type bookletsUncheckedUpdateManyWithoutSessionsNestedInput = {
 }
 
 export type bookletsCreateWithoutBagsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
@@ -678,9 +674,9 @@ export type bookletsCreateWithoutBagsInput = {
 }
 
 export type bookletsUncheckedCreateWithoutBagsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
@@ -722,21 +718,20 @@ export type bookletsScalarWhereInput = {
   AND?: Prisma.bookletsScalarWhereInput | Prisma.bookletsScalarWhereInput[]
   OR?: Prisma.bookletsScalarWhereInput[]
   NOT?: Prisma.bookletsScalarWhereInput | Prisma.bookletsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"booklets"> | bigint | number
+  id?: Prisma.IntFilter<"booklets"> | number
   session_id?: Prisma.IntFilter<"booklets"> | number
-  campaign_id?: Prisma.BigIntNullableFilter<"booklets"> | bigint | number | null
+  campaign_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   user_code?: Prisma.StringNullableFilter<"booklets"> | string | null
   qr_payload?: Prisma.StringFilter<"booklets"> | string
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
   status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
-  bag_id?: Prisma.BigIntNullableFilter<"booklets"> | bigint | number | null
+  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
 }
 
 export type bookletsCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
@@ -750,15 +745,15 @@ export type bookletsCreateWithoutGrading_score_draftsInput = {
 }
 
 export type bookletsUncheckedCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
   status?: string
   created_at?: Date | string
-  bag_id?: bigint | number | null
+  bag_id?: number | null
   random_num?: string | null
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
@@ -781,8 +776,7 @@ export type bookletsUpdateToOneWithWhereWithoutGrading_score_draftsInput = {
 }
 
 export type bookletsUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -796,23 +790,22 @@ export type bookletsUpdateWithoutGrading_score_draftsInput = {
 }
 
 export type bookletsUncheckedUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsCreateWithoutGrading_score_logsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
@@ -826,15 +819,15 @@ export type bookletsCreateWithoutGrading_score_logsInput = {
 }
 
 export type bookletsUncheckedCreateWithoutGrading_score_logsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
   status?: string
   created_at?: Date | string
-  bag_id?: bigint | number | null
+  bag_id?: number | null
   random_num?: string | null
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
@@ -857,8 +850,7 @@ export type bookletsUpdateToOneWithWhereWithoutGrading_score_logsInput = {
 }
 
 export type bookletsUpdateWithoutGrading_score_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -872,23 +864,22 @@ export type bookletsUpdateWithoutGrading_score_logsInput = {
 }
 
 export type bookletsUncheckedUpdateWithoutGrading_score_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsCreateWithoutGrading_slotsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
@@ -902,15 +893,15 @@ export type bookletsCreateWithoutGrading_slotsInput = {
 }
 
 export type bookletsUncheckedCreateWithoutGrading_slotsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
   status?: string
   created_at?: Date | string
-  bag_id?: bigint | number | null
+  bag_id?: number | null
   random_num?: string | null
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
@@ -933,8 +924,7 @@ export type bookletsUpdateToOneWithWhereWithoutGrading_slotsInput = {
 }
 
 export type bookletsUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -948,23 +938,22 @@ export type bookletsUpdateWithoutGrading_slotsInput = {
 }
 
 export type bookletsUncheckedUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsCreateWithoutSessionsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
@@ -978,14 +967,14 @@ export type bookletsCreateWithoutSessionsInput = {
 }
 
 export type bookletsUncheckedCreateWithoutSessionsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
   status?: string
   created_at?: Date | string
-  bag_id?: bigint | number | null
+  bag_id?: number | null
   random_num?: string | null
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
@@ -1019,9 +1008,9 @@ export type bookletsUpdateManyWithWhereWithoutSessionsInput = {
 }
 
 export type bookletsCreateManyBagsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
-  campaign_id?: bigint | number | null
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
@@ -1031,8 +1020,7 @@ export type bookletsCreateManyBagsInput = {
 }
 
 export type bookletsUpdateWithoutBagsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1046,9 +1034,9 @@ export type bookletsUpdateWithoutBagsInput = {
 }
 
 export type bookletsUncheckedUpdateWithoutBagsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1061,9 +1049,9 @@ export type bookletsUncheckedUpdateWithoutBagsInput = {
 }
 
 export type bookletsUncheckedUpdateManyWithoutBagsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1073,20 +1061,19 @@ export type bookletsUncheckedUpdateManyWithoutBagsInput = {
 }
 
 export type bookletsCreateManySessionsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
   status?: string
   created_at?: Date | string
-  bag_id?: bigint | number | null
+  bag_id?: number | null
   random_num?: string | null
 }
 
 export type bookletsUpdateWithoutSessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1100,14 +1087,14 @@ export type bookletsUpdateWithoutSessionsInput = {
 }
 
 export type bookletsUncheckedUpdateWithoutSessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
@@ -1115,14 +1102,14 @@ export type bookletsUncheckedUpdateWithoutSessionsInput = {
 }
 
 export type bookletsUncheckedUpdateManyWithoutSessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -1229,15 +1216,15 @@ export type $bookletsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     grading_slots: Prisma.$grading_slotsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     session_id: number
-    campaign_id: bigint | null
+    campaign_id: number | null
     user_code: string | null
     qr_payload: string
     seq_in_bag: number | null
     status: string
     created_at: Date
-    bag_id: bigint | null
+    bag_id: number | null
     random_num: string | null
   }, ExtArgs["result"]["booklets"]>
   composites: {}
@@ -1613,15 +1600,15 @@ export interface Prisma__bookletsClient<T, Null = never, ExtArgs extends runtime
  * Fields of the booklets model
  */
 export interface bookletsFieldRefs {
-  readonly id: Prisma.FieldRef<"booklets", 'BigInt'>
+  readonly id: Prisma.FieldRef<"booklets", 'Int'>
   readonly session_id: Prisma.FieldRef<"booklets", 'Int'>
-  readonly campaign_id: Prisma.FieldRef<"booklets", 'BigInt'>
+  readonly campaign_id: Prisma.FieldRef<"booklets", 'Int'>
   readonly user_code: Prisma.FieldRef<"booklets", 'String'>
   readonly qr_payload: Prisma.FieldRef<"booklets", 'String'>
   readonly seq_in_bag: Prisma.FieldRef<"booklets", 'Int'>
   readonly status: Prisma.FieldRef<"booklets", 'String'>
   readonly created_at: Prisma.FieldRef<"booklets", 'DateTime'>
-  readonly bag_id: Prisma.FieldRef<"booklets", 'BigInt'>
+  readonly bag_id: Prisma.FieldRef<"booklets", 'Int'>
   readonly random_num: Prisma.FieldRef<"booklets", 'String'>
 }
     

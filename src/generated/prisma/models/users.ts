@@ -31,11 +31,11 @@ export type UsersAvgAggregateOutputType = {
 }
 
 export type UsersSumAggregateOutputType = {
-  id: bigint | null
+  id: number | null
 }
 
 export type UsersMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   user_code: string | null
   full_name: string | null
   first_name: string | null
@@ -46,7 +46,7 @@ export type UsersMinAggregateOutputType = {
 }
 
 export type UsersMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   user_code: string | null
   full_name: string | null
   first_name: string | null
@@ -198,7 +198,7 @@ export type usersGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 export type UsersGroupByOutputType = {
-  id: bigint
+  id: number
   user_code: string
   full_name: string
   first_name: string | null
@@ -232,7 +232,7 @@ export type usersWhereInput = {
   AND?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
   OR?: Prisma.usersWhereInput[]
   NOT?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
-  id?: Prisma.BigIntFilter<"users"> | bigint | number
+  id?: Prisma.IntFilter<"users"> | number
   user_code?: Prisma.StringFilter<"users"> | string
   full_name?: Prisma.StringFilter<"users"> | string
   first_name?: Prisma.StringNullableFilter<"users"> | string | null
@@ -257,7 +257,7 @@ export type usersOrderByWithRelationInput = {
 }
 
 export type usersWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   user_code?: string
   AND?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
   OR?: Prisma.usersWhereInput[]
@@ -291,7 +291,7 @@ export type usersScalarWhereWithAggregatesInput = {
   AND?: Prisma.usersScalarWhereWithAggregatesInput | Prisma.usersScalarWhereWithAggregatesInput[]
   OR?: Prisma.usersScalarWhereWithAggregatesInput[]
   NOT?: Prisma.usersScalarWhereWithAggregatesInput | Prisma.usersScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"users"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"users"> | number
   user_code?: Prisma.StringWithAggregatesFilter<"users"> | string
   full_name?: Prisma.StringWithAggregatesFilter<"users"> | string
   first_name?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
@@ -302,7 +302,6 @@ export type usersScalarWhereWithAggregatesInput = {
 }
 
 export type usersCreateInput = {
-  id?: bigint | number
   user_code: string
   full_name: string
   first_name?: string | null
@@ -314,7 +313,7 @@ export type usersCreateInput = {
 }
 
 export type usersUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   user_code: string
   full_name: string
   first_name?: string | null
@@ -326,7 +325,6 @@ export type usersUncheckedCreateInput = {
 }
 
 export type usersUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -338,7 +336,7 @@ export type usersUpdateInput = {
 }
 
 export type usersUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -350,7 +348,7 @@ export type usersUncheckedUpdateInput = {
 }
 
 export type usersCreateManyInput = {
-  id?: bigint | number
+  id?: number
   user_code: string
   full_name: string
   first_name?: string | null
@@ -361,7 +359,6 @@ export type usersCreateManyInput = {
 }
 
 export type usersUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -372,7 +369,7 @@ export type usersUpdateManyMutationInput = {
 }
 
 export type usersUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -449,7 +446,6 @@ export type usersUpdateOneRequiredWithoutUser_campaignsNestedInput = {
 }
 
 export type usersCreateWithoutUser_campaignsInput = {
-  id?: bigint | number
   user_code: string
   full_name: string
   first_name?: string | null
@@ -460,7 +456,7 @@ export type usersCreateWithoutUser_campaignsInput = {
 }
 
 export type usersUncheckedCreateWithoutUser_campaignsInput = {
-  id?: bigint | number
+  id?: number
   user_code: string
   full_name: string
   first_name?: string | null
@@ -487,7 +483,6 @@ export type usersUpdateToOneWithWhereWithoutUser_campaignsInput = {
 }
 
 export type usersUpdateWithoutUser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -498,7 +493,7 @@ export type usersUpdateWithoutUser_campaignsInput = {
 }
 
 export type usersUncheckedUpdateWithoutUser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -577,7 +572,7 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     user_campaigns: Prisma.$user_campaignsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     user_code: string
     full_name: string
     first_name: string | null
@@ -955,7 +950,7 @@ export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Ty
  * Fields of the users model
  */
 export interface usersFieldRefs {
-  readonly id: Prisma.FieldRef<"users", 'BigInt'>
+  readonly id: Prisma.FieldRef<"users", 'Int'>
   readonly user_code: Prisma.FieldRef<"users", 'String'>
   readonly full_name: Prisma.FieldRef<"users", 'String'>
   readonly first_name: Prisma.FieldRef<"users", 'String'>

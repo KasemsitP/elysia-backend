@@ -36,36 +36,36 @@ export type Grader_work_locksAvgAggregateOutputType = {
 }
 
 export type Grader_work_locksSumAggregateOutputType = {
-  id: bigint | null
-  grader_id: bigint | null
-  campaign_id: bigint | null
-  bag_id: bigint | null
+  id: number | null
+  grader_id: number | null
+  campaign_id: number | null
+  bag_id: number | null
   question_no: number | null
-  created_by: bigint | null
+  created_by: number | null
 }
 
 export type Grader_work_locksMinAggregateOutputType = {
-  id: bigint | null
-  grader_id: bigint | null
-  campaign_id: bigint | null
-  bag_id: bigint | null
+  id: number | null
+  grader_id: number | null
+  campaign_id: number | null
+  bag_id: number | null
   question_no: number | null
   status: string | null
   locked_at: Date | null
   released_at: Date | null
-  created_by: bigint | null
+  created_by: number | null
 }
 
 export type Grader_work_locksMaxAggregateOutputType = {
-  id: bigint | null
-  grader_id: bigint | null
-  campaign_id: bigint | null
-  bag_id: bigint | null
+  id: number | null
+  grader_id: number | null
+  campaign_id: number | null
+  bag_id: number | null
   question_no: number | null
   status: string | null
   locked_at: Date | null
   released_at: Date | null
-  created_by: bigint | null
+  created_by: number | null
 }
 
 export type Grader_work_locksCountAggregateOutputType = {
@@ -224,15 +224,15 @@ export type grader_work_locksGroupByArgs<ExtArgs extends runtime.Types.Extension
 }
 
 export type Grader_work_locksGroupByOutputType = {
-  id: bigint
-  grader_id: bigint
-  campaign_id: bigint
-  bag_id: bigint
+  id: number
+  grader_id: number
+  campaign_id: number
+  bag_id: number
   question_no: number
   status: string
   locked_at: Date
   released_at: Date | null
-  created_by: bigint | null
+  created_by: number | null
   _count: Grader_work_locksCountAggregateOutputType | null
   _avg: Grader_work_locksAvgAggregateOutputType | null
   _sum: Grader_work_locksSumAggregateOutputType | null
@@ -259,15 +259,15 @@ export type grader_work_locksWhereInput = {
   AND?: Prisma.grader_work_locksWhereInput | Prisma.grader_work_locksWhereInput[]
   OR?: Prisma.grader_work_locksWhereInput[]
   NOT?: Prisma.grader_work_locksWhereInput | Prisma.grader_work_locksWhereInput[]
-  id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
-  grader_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
-  bag_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
+  id?: Prisma.IntFilter<"grader_work_locks"> | number
+  grader_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  campaign_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  bag_id?: Prisma.IntFilter<"grader_work_locks"> | number
   question_no?: Prisma.IntFilter<"grader_work_locks"> | number
   status?: Prisma.StringFilter<"grader_work_locks"> | string
   locked_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
   released_at?: Prisma.DateTimeNullableFilter<"grader_work_locks"> | Date | string | null
-  created_by?: Prisma.BigIntNullableFilter<"grader_work_locks"> | bigint | number | null
+  created_by?: Prisma.IntNullableFilter<"grader_work_locks"> | number | null
   bags?: Prisma.XOR<Prisma.BagsScalarRelationFilter, Prisma.bagsWhereInput>
   exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
@@ -290,18 +290,18 @@ export type grader_work_locksOrderByWithRelationInput = {
 }
 
 export type grader_work_locksWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   AND?: Prisma.grader_work_locksWhereInput | Prisma.grader_work_locksWhereInput[]
   OR?: Prisma.grader_work_locksWhereInput[]
   NOT?: Prisma.grader_work_locksWhereInput | Prisma.grader_work_locksWhereInput[]
-  grader_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
-  bag_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
+  grader_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  campaign_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  bag_id?: Prisma.IntFilter<"grader_work_locks"> | number
   question_no?: Prisma.IntFilter<"grader_work_locks"> | number
   status?: Prisma.StringFilter<"grader_work_locks"> | string
   locked_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
   released_at?: Prisma.DateTimeNullableFilter<"grader_work_locks"> | Date | string | null
-  created_by?: Prisma.BigIntNullableFilter<"grader_work_locks"> | bigint | number | null
+  created_by?: Prisma.IntNullableFilter<"grader_work_locks"> | number | null
   bags?: Prisma.XOR<Prisma.BagsScalarRelationFilter, Prisma.bagsWhereInput>
   exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
@@ -328,96 +328,93 @@ export type grader_work_locksScalarWhereWithAggregatesInput = {
   AND?: Prisma.grader_work_locksScalarWhereWithAggregatesInput | Prisma.grader_work_locksScalarWhereWithAggregatesInput[]
   OR?: Prisma.grader_work_locksScalarWhereWithAggregatesInput[]
   NOT?: Prisma.grader_work_locksScalarWhereWithAggregatesInput | Prisma.grader_work_locksScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"grader_work_locks"> | bigint | number
-  grader_id?: Prisma.BigIntWithAggregatesFilter<"grader_work_locks"> | bigint | number
-  campaign_id?: Prisma.BigIntWithAggregatesFilter<"grader_work_locks"> | bigint | number
-  bag_id?: Prisma.BigIntWithAggregatesFilter<"grader_work_locks"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
+  grader_id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
+  campaign_id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
+  bag_id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
   question_no?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
   status?: Prisma.StringWithAggregatesFilter<"grader_work_locks"> | string
   locked_at?: Prisma.DateTimeWithAggregatesFilter<"grader_work_locks"> | Date | string
   released_at?: Prisma.DateTimeNullableWithAggregatesFilter<"grader_work_locks"> | Date | string | null
-  created_by?: Prisma.BigIntNullableWithAggregatesFilter<"grader_work_locks"> | bigint | number | null
+  created_by?: Prisma.IntNullableWithAggregatesFilter<"grader_work_locks"> | number | null
 }
 
 export type grader_work_locksCreateInput = {
-  id?: bigint | number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
   bags: Prisma.bagsCreateNestedOneWithoutGrader_work_locksInput
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutGrader_work_locksInput
   graders: Prisma.gradersCreateNestedOneWithoutGrader_work_locksInput
 }
 
 export type grader_work_locksUncheckedCreateInput = {
-  id?: bigint | number
-  grader_id: bigint | number
-  campaign_id: bigint | number
-  bag_id: bigint | number
+  id?: number
+  grader_id: number
+  campaign_id: number
+  bag_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
 }
 
 export type grader_work_locksUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrader_work_locksNestedInput
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutGrader_work_locksNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrader_work_locksNestedInput
 }
 
 export type grader_work_locksUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  bag_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type grader_work_locksCreateManyInput = {
-  id?: bigint | number
-  grader_id: bigint | number
-  campaign_id: bigint | number
-  bag_id: bigint | number
+  id?: number
+  grader_id: number
+  campaign_id: number
+  bag_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
 }
 
 export type grader_work_locksUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type grader_work_locksUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  bag_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type Grader_work_locksListRelationFilter = {
@@ -617,25 +614,24 @@ export type grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput = {
 }
 
 export type grader_work_locksCreateWithoutBagsInput = {
-  id?: bigint | number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutGrader_work_locksInput
   graders: Prisma.gradersCreateNestedOneWithoutGrader_work_locksInput
 }
 
 export type grader_work_locksUncheckedCreateWithoutBagsInput = {
-  id?: bigint | number
-  grader_id: bigint | number
-  campaign_id: bigint | number
+  id?: number
+  grader_id: number
+  campaign_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
 }
 
 export type grader_work_locksCreateOrConnectWithoutBagsInput = {
@@ -668,37 +664,36 @@ export type grader_work_locksScalarWhereInput = {
   AND?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
   OR?: Prisma.grader_work_locksScalarWhereInput[]
   NOT?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
-  grader_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
-  bag_id?: Prisma.BigIntFilter<"grader_work_locks"> | bigint | number
+  id?: Prisma.IntFilter<"grader_work_locks"> | number
+  grader_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  campaign_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  bag_id?: Prisma.IntFilter<"grader_work_locks"> | number
   question_no?: Prisma.IntFilter<"grader_work_locks"> | number
   status?: Prisma.StringFilter<"grader_work_locks"> | string
   locked_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
   released_at?: Prisma.DateTimeNullableFilter<"grader_work_locks"> | Date | string | null
-  created_by?: Prisma.BigIntNullableFilter<"grader_work_locks"> | bigint | number | null
+  created_by?: Prisma.IntNullableFilter<"grader_work_locks"> | number | null
 }
 
 export type grader_work_locksCreateWithoutExam_campaignsInput = {
-  id?: bigint | number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
   bags: Prisma.bagsCreateNestedOneWithoutGrader_work_locksInput
   graders: Prisma.gradersCreateNestedOneWithoutGrader_work_locksInput
 }
 
 export type grader_work_locksUncheckedCreateWithoutExam_campaignsInput = {
-  id?: bigint | number
-  grader_id: bigint | number
-  bag_id: bigint | number
+  id?: number
+  grader_id: number
+  bag_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
 }
 
 export type grader_work_locksCreateOrConnectWithoutExam_campaignsInput = {
@@ -728,25 +723,24 @@ export type grader_work_locksUpdateManyWithWhereWithoutExam_campaignsInput = {
 }
 
 export type grader_work_locksCreateWithoutGradersInput = {
-  id?: bigint | number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
   bags: Prisma.bagsCreateNestedOneWithoutGrader_work_locksInput
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutGrader_work_locksInput
 }
 
 export type grader_work_locksUncheckedCreateWithoutGradersInput = {
-  id?: bigint | number
-  campaign_id: bigint | number
-  bag_id: bigint | number
+  id?: number
+  campaign_id: number
+  bag_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
 }
 
 export type grader_work_locksCreateOrConnectWithoutGradersInput = {
@@ -776,135 +770,132 @@ export type grader_work_locksUpdateManyWithWhereWithoutGradersInput = {
 }
 
 export type grader_work_locksCreateManyBagsInput = {
-  id?: bigint | number
-  grader_id: bigint | number
-  campaign_id: bigint | number
+  id?: number
+  grader_id: number
+  campaign_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
 }
 
 export type grader_work_locksUpdateWithoutBagsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutGrader_work_locksNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrader_work_locksNestedInput
 }
 
 export type grader_work_locksUncheckedUpdateWithoutBagsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type grader_work_locksUncheckedUpdateManyWithoutBagsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type grader_work_locksCreateManyExam_campaignsInput = {
-  id?: bigint | number
-  grader_id: bigint | number
-  bag_id: bigint | number
+  id?: number
+  grader_id: number
+  bag_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
 }
 
 export type grader_work_locksUpdateWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrader_work_locksNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrader_work_locksNestedInput
 }
 
 export type grader_work_locksUncheckedUpdateWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  bag_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type grader_work_locksUncheckedUpdateManyWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  bag_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type grader_work_locksCreateManyGradersInput = {
-  id?: bigint | number
-  campaign_id: bigint | number
-  bag_id: bigint | number
+  id?: number
+  campaign_id: number
+  bag_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: bigint | number | null
+  created_by?: number | null
 }
 
 export type grader_work_locksUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrader_work_locksNestedInput
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutGrader_work_locksNestedInput
 }
 
 export type grader_work_locksUncheckedUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  bag_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type grader_work_locksUncheckedUpdateManyWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  bag_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -953,15 +944,15 @@ export type $grader_work_locksPayload<ExtArgs extends runtime.Types.Extensions.I
     graders: Prisma.$gradersPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    grader_id: bigint
-    campaign_id: bigint
-    bag_id: bigint
+    id: number
+    grader_id: number
+    campaign_id: number
+    bag_id: number
     question_no: number
     status: string
     locked_at: Date
     released_at: Date | null
-    created_by: bigint | null
+    created_by: number | null
   }, ExtArgs["result"]["grader_work_locks"]>
   composites: {}
 }
@@ -1334,15 +1325,15 @@ export interface Prisma__grader_work_locksClient<T, Null = never, ExtArgs extend
  * Fields of the grader_work_locks model
  */
 export interface grader_work_locksFieldRefs {
-  readonly id: Prisma.FieldRef<"grader_work_locks", 'BigInt'>
-  readonly grader_id: Prisma.FieldRef<"grader_work_locks", 'BigInt'>
-  readonly campaign_id: Prisma.FieldRef<"grader_work_locks", 'BigInt'>
-  readonly bag_id: Prisma.FieldRef<"grader_work_locks", 'BigInt'>
+  readonly id: Prisma.FieldRef<"grader_work_locks", 'Int'>
+  readonly grader_id: Prisma.FieldRef<"grader_work_locks", 'Int'>
+  readonly campaign_id: Prisma.FieldRef<"grader_work_locks", 'Int'>
+  readonly bag_id: Prisma.FieldRef<"grader_work_locks", 'Int'>
   readonly question_no: Prisma.FieldRef<"grader_work_locks", 'Int'>
   readonly status: Prisma.FieldRef<"grader_work_locks", 'String'>
   readonly locked_at: Prisma.FieldRef<"grader_work_locks", 'DateTime'>
   readonly released_at: Prisma.FieldRef<"grader_work_locks", 'DateTime'>
-  readonly created_by: Prisma.FieldRef<"grader_work_locks", 'BigInt'>
+  readonly created_by: Prisma.FieldRef<"grader_work_locks", 'Int'>
 }
     
 

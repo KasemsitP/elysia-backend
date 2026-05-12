@@ -1,4 +1,3 @@
-import "./cores/bigint";
 import { app } from "./app";
 import { env } from "./cores/env";
 

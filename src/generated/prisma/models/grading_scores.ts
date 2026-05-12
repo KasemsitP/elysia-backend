@@ -34,25 +34,25 @@ export type Grading_scoresAvgAggregateOutputType = {
 }
 
 export type Grading_scoresSumAggregateOutputType = {
-  id: bigint | null
-  slot_id: bigint | null
+  id: number | null
+  slot_id: number | null
   score: number | null
-  entered_by: bigint | null
+  entered_by: number | null
 }
 
 export type Grading_scoresMinAggregateOutputType = {
-  id: bigint | null
-  slot_id: bigint | null
+  id: number | null
+  slot_id: number | null
   score: number | null
-  entered_by: bigint | null
+  entered_by: number | null
   entered_at: Date | null
 }
 
 export type Grading_scoresMaxAggregateOutputType = {
-  id: bigint | null
-  slot_id: bigint | null
+  id: number | null
+  slot_id: number | null
   score: number | null
-  entered_by: bigint | null
+  entered_by: number | null
   entered_at: Date | null
 }
 
@@ -192,10 +192,10 @@ export type grading_scoresGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 export type Grading_scoresGroupByOutputType = {
-  id: bigint
-  slot_id: bigint
+  id: number
+  slot_id: number
   score: number
-  entered_by: bigint
+  entered_by: number
   entered_at: Date
   _count: Grading_scoresCountAggregateOutputType | null
   _avg: Grading_scoresAvgAggregateOutputType | null
@@ -223,10 +223,10 @@ export type grading_scoresWhereInput = {
   AND?: Prisma.grading_scoresWhereInput | Prisma.grading_scoresWhereInput[]
   OR?: Prisma.grading_scoresWhereInput[]
   NOT?: Prisma.grading_scoresWhereInput | Prisma.grading_scoresWhereInput[]
-  id?: Prisma.BigIntFilter<"grading_scores"> | bigint | number
-  slot_id?: Prisma.BigIntFilter<"grading_scores"> | bigint | number
+  id?: Prisma.IntFilter<"grading_scores"> | number
+  slot_id?: Prisma.IntFilter<"grading_scores"> | number
   score?: Prisma.IntFilter<"grading_scores"> | number
-  entered_by?: Prisma.BigIntFilter<"grading_scores"> | bigint | number
+  entered_by?: Prisma.IntFilter<"grading_scores"> | number
   entered_at?: Prisma.DateTimeFilter<"grading_scores"> | Date | string
   grading_slots?: Prisma.XOR<Prisma.Grading_slotsScalarRelationFilter, Prisma.grading_slotsWhereInput>
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
@@ -243,14 +243,14 @@ export type grading_scoresOrderByWithRelationInput = {
 }
 
 export type grading_scoresWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   slot_id_entered_by?: Prisma.grading_scoresSlot_idEntered_byCompoundUniqueInput
   AND?: Prisma.grading_scoresWhereInput | Prisma.grading_scoresWhereInput[]
   OR?: Prisma.grading_scoresWhereInput[]
   NOT?: Prisma.grading_scoresWhereInput | Prisma.grading_scoresWhereInput[]
-  slot_id?: Prisma.BigIntFilter<"grading_scores"> | bigint | number
+  slot_id?: Prisma.IntFilter<"grading_scores"> | number
   score?: Prisma.IntFilter<"grading_scores"> | number
-  entered_by?: Prisma.BigIntFilter<"grading_scores"> | bigint | number
+  entered_by?: Prisma.IntFilter<"grading_scores"> | number
   entered_at?: Prisma.DateTimeFilter<"grading_scores"> | Date | string
   grading_slots?: Prisma.XOR<Prisma.Grading_slotsScalarRelationFilter, Prisma.grading_slotsWhereInput>
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
@@ -273,15 +273,14 @@ export type grading_scoresScalarWhereWithAggregatesInput = {
   AND?: Prisma.grading_scoresScalarWhereWithAggregatesInput | Prisma.grading_scoresScalarWhereWithAggregatesInput[]
   OR?: Prisma.grading_scoresScalarWhereWithAggregatesInput[]
   NOT?: Prisma.grading_scoresScalarWhereWithAggregatesInput | Prisma.grading_scoresScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"grading_scores"> | bigint | number
-  slot_id?: Prisma.BigIntWithAggregatesFilter<"grading_scores"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"grading_scores"> | number
+  slot_id?: Prisma.IntWithAggregatesFilter<"grading_scores"> | number
   score?: Prisma.IntWithAggregatesFilter<"grading_scores"> | number
-  entered_by?: Prisma.BigIntWithAggregatesFilter<"grading_scores"> | bigint | number
+  entered_by?: Prisma.IntWithAggregatesFilter<"grading_scores"> | number
   entered_at?: Prisma.DateTimeWithAggregatesFilter<"grading_scores"> | Date | string
 }
 
 export type grading_scoresCreateInput = {
-  id?: bigint | number
   score: number
   entered_at?: Date | string
   grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_scoresInput
@@ -289,15 +288,14 @@ export type grading_scoresCreateInput = {
 }
 
 export type grading_scoresUncheckedCreateInput = {
-  id?: bigint | number
-  slot_id: bigint | number
+  id?: number
+  slot_id: number
   score: number
-  entered_by: bigint | number
+  entered_by: number
   entered_at?: Date | string
 }
 
 export type grading_scoresUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_scoresNestedInput
@@ -305,32 +303,31 @@ export type grading_scoresUpdateInput = {
 }
 
 export type grading_scoresUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  slot_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  entered_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  entered_by?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_scoresCreateManyInput = {
-  id?: bigint | number
-  slot_id: bigint | number
+  id?: number
+  slot_id: number
   score: number
-  entered_by: bigint | number
+  entered_by: number
   entered_at?: Date | string
 }
 
 export type grading_scoresUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_scoresUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  slot_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  entered_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  entered_by?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -345,8 +342,8 @@ export type grading_scoresOrderByRelationAggregateInput = {
 }
 
 export type grading_scoresSlot_idEntered_byCompoundUniqueInput = {
-  slot_id: bigint | number
-  entered_by: bigint | number
+  slot_id: number
+  entered_by: number
 }
 
 export type grading_scoresCountOrderByAggregateInput = {
@@ -472,15 +469,14 @@ export type grading_scoresUncheckedUpdateManyWithoutGrading_slotsNestedInput = {
 }
 
 export type grading_scoresCreateWithoutGradersInput = {
-  id?: bigint | number
   score: number
   entered_at?: Date | string
   grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_scoresInput
 }
 
 export type grading_scoresUncheckedCreateWithoutGradersInput = {
-  id?: bigint | number
-  slot_id: bigint | number
+  id?: number
+  slot_id: number
   score: number
   entered_at?: Date | string
 }
@@ -515,24 +511,23 @@ export type grading_scoresScalarWhereInput = {
   AND?: Prisma.grading_scoresScalarWhereInput | Prisma.grading_scoresScalarWhereInput[]
   OR?: Prisma.grading_scoresScalarWhereInput[]
   NOT?: Prisma.grading_scoresScalarWhereInput | Prisma.grading_scoresScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"grading_scores"> | bigint | number
-  slot_id?: Prisma.BigIntFilter<"grading_scores"> | bigint | number
+  id?: Prisma.IntFilter<"grading_scores"> | number
+  slot_id?: Prisma.IntFilter<"grading_scores"> | number
   score?: Prisma.IntFilter<"grading_scores"> | number
-  entered_by?: Prisma.BigIntFilter<"grading_scores"> | bigint | number
+  entered_by?: Prisma.IntFilter<"grading_scores"> | number
   entered_at?: Prisma.DateTimeFilter<"grading_scores"> | Date | string
 }
 
 export type grading_scoresCreateWithoutGrading_slotsInput = {
-  id?: bigint | number
   score: number
   entered_at?: Date | string
   graders: Prisma.gradersCreateNestedOneWithoutGrading_scoresInput
 }
 
 export type grading_scoresUncheckedCreateWithoutGrading_slotsInput = {
-  id?: bigint | number
+  id?: number
   score: number
-  entered_by: bigint | number
+  entered_by: number
   entered_at?: Date | string
 }
 
@@ -563,58 +558,56 @@ export type grading_scoresUpdateManyWithWhereWithoutGrading_slotsInput = {
 }
 
 export type grading_scoresCreateManyGradersInput = {
-  id?: bigint | number
-  slot_id: bigint | number
+  id?: number
+  slot_id: number
   score: number
   entered_at?: Date | string
 }
 
 export type grading_scoresUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_scoresNestedInput
 }
 
 export type grading_scoresUncheckedUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  slot_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_scoresUncheckedUpdateManyWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  slot_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_scoresCreateManyGrading_slotsInput = {
-  id?: bigint | number
+  id?: number
   score: number
-  entered_by: bigint | number
+  entered_by: number
   entered_at?: Date | string
 }
 
 export type grading_scoresUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrading_scoresNestedInput
 }
 
 export type grading_scoresUncheckedUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  entered_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  entered_by?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_scoresUncheckedUpdateManyWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
-  entered_by?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  entered_by?: Prisma.IntFieldUpdateOperationsInput | number
   entered_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -653,10 +646,10 @@ export type $grading_scoresPayload<ExtArgs extends runtime.Types.Extensions.Inte
     graders: Prisma.$gradersPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    slot_id: bigint
+    id: number
+    slot_id: number
     score: number
-    entered_by: bigint
+    entered_by: number
     entered_at: Date
   }, ExtArgs["result"]["grading_scores"]>
   composites: {}
@@ -1029,10 +1022,10 @@ export interface Prisma__grading_scoresClient<T, Null = never, ExtArgs extends r
  * Fields of the grading_scores model
  */
 export interface grading_scoresFieldRefs {
-  readonly id: Prisma.FieldRef<"grading_scores", 'BigInt'>
-  readonly slot_id: Prisma.FieldRef<"grading_scores", 'BigInt'>
+  readonly id: Prisma.FieldRef<"grading_scores", 'Int'>
+  readonly slot_id: Prisma.FieldRef<"grading_scores", 'Int'>
   readonly score: Prisma.FieldRef<"grading_scores", 'Int'>
-  readonly entered_by: Prisma.FieldRef<"grading_scores", 'BigInt'>
+  readonly entered_by: Prisma.FieldRef<"grading_scores", 'Int'>
   readonly entered_at: Prisma.FieldRef<"grading_scores", 'DateTime'>
 }
     

@@ -32,19 +32,19 @@ export type SubjectsAvgAggregateOutputType = {
 }
 
 export type SubjectsSumAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   full_score: number | null
 }
 
 export type SubjectsMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   code: string | null
   name: string | null
   full_score: number | null
 }
 
 export type SubjectsMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   code: string | null
   name: string | null
   full_score: number | null
@@ -178,7 +178,7 @@ export type subjectsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type SubjectsGroupByOutputType = {
-  id: bigint
+  id: number
   code: string
   name: string
   full_score: number
@@ -208,7 +208,7 @@ export type subjectsWhereInput = {
   AND?: Prisma.subjectsWhereInput | Prisma.subjectsWhereInput[]
   OR?: Prisma.subjectsWhereInput[]
   NOT?: Prisma.subjectsWhereInput | Prisma.subjectsWhereInput[]
-  id?: Prisma.BigIntFilter<"subjects"> | bigint | number
+  id?: Prisma.IntFilter<"subjects"> | number
   code?: Prisma.StringFilter<"subjects"> | string
   name?: Prisma.StringFilter<"subjects"> | string
   full_score?: Prisma.IntFilter<"subjects"> | number
@@ -235,7 +235,7 @@ export type subjectsOrderByWithRelationInput = {
 }
 
 export type subjectsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   code?: string
   AND?: Prisma.subjectsWhereInput | Prisma.subjectsWhereInput[]
   OR?: Prisma.subjectsWhereInput[]
@@ -266,14 +266,13 @@ export type subjectsScalarWhereWithAggregatesInput = {
   AND?: Prisma.subjectsScalarWhereWithAggregatesInput | Prisma.subjectsScalarWhereWithAggregatesInput[]
   OR?: Prisma.subjectsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.subjectsScalarWhereWithAggregatesInput | Prisma.subjectsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"subjects"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"subjects"> | number
   code?: Prisma.StringWithAggregatesFilter<"subjects"> | string
   name?: Prisma.StringWithAggregatesFilter<"subjects"> | string
   full_score?: Prisma.IntWithAggregatesFilter<"subjects"> | number
 }
 
 export type subjectsCreateInput = {
-  id?: bigint | number
   code: string
   name: string
   full_score?: number
@@ -286,7 +285,7 @@ export type subjectsCreateInput = {
 }
 
 export type subjectsUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   full_score?: number
@@ -299,7 +298,6 @@ export type subjectsUncheckedCreateInput = {
 }
 
 export type subjectsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -312,7 +310,7 @@ export type subjectsUpdateInput = {
 }
 
 export type subjectsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -325,21 +323,20 @@ export type subjectsUncheckedUpdateInput = {
 }
 
 export type subjectsCreateManyInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   full_score?: number
 }
 
 export type subjectsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type subjectsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -472,7 +469,6 @@ export type subjectsUpdateOneRequiredWithoutSubject_questionsNestedInput = {
 }
 
 export type subjectsCreateWithoutGrader_assignmentsInput = {
-  id?: bigint | number
   code: string
   name: string
   full_score?: number
@@ -484,7 +480,7 @@ export type subjectsCreateWithoutGrader_assignmentsInput = {
 }
 
 export type subjectsUncheckedCreateWithoutGrader_assignmentsInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   full_score?: number
@@ -512,7 +508,6 @@ export type subjectsUpdateToOneWithWhereWithoutGrader_assignmentsInput = {
 }
 
 export type subjectsUpdateWithoutGrader_assignmentsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -524,7 +519,7 @@ export type subjectsUpdateWithoutGrader_assignmentsInput = {
 }
 
 export type subjectsUncheckedUpdateWithoutGrader_assignmentsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -536,7 +531,6 @@ export type subjectsUncheckedUpdateWithoutGrader_assignmentsInput = {
 }
 
 export type subjectsCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
   code: string
   name: string
   full_score?: number
@@ -548,7 +542,7 @@ export type subjectsCreateWithoutGrading_score_draftsInput = {
 }
 
 export type subjectsUncheckedCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   full_score?: number
@@ -576,7 +570,6 @@ export type subjectsUpdateToOneWithWhereWithoutGrading_score_draftsInput = {
 }
 
 export type subjectsUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -588,7 +581,7 @@ export type subjectsUpdateWithoutGrading_score_draftsInput = {
 }
 
 export type subjectsUncheckedUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -600,7 +593,6 @@ export type subjectsUncheckedUpdateWithoutGrading_score_draftsInput = {
 }
 
 export type subjectsCreateWithoutGrading_score_logsInput = {
-  id?: bigint | number
   code: string
   name: string
   full_score?: number
@@ -612,7 +604,7 @@ export type subjectsCreateWithoutGrading_score_logsInput = {
 }
 
 export type subjectsUncheckedCreateWithoutGrading_score_logsInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   full_score?: number
@@ -640,7 +632,6 @@ export type subjectsUpdateToOneWithWhereWithoutGrading_score_logsInput = {
 }
 
 export type subjectsUpdateWithoutGrading_score_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -652,7 +643,7 @@ export type subjectsUpdateWithoutGrading_score_logsInput = {
 }
 
 export type subjectsUncheckedUpdateWithoutGrading_score_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -664,7 +655,6 @@ export type subjectsUncheckedUpdateWithoutGrading_score_logsInput = {
 }
 
 export type subjectsCreateWithoutGrading_slotsInput = {
-  id?: bigint | number
   code: string
   name: string
   full_score?: number
@@ -676,7 +666,7 @@ export type subjectsCreateWithoutGrading_slotsInput = {
 }
 
 export type subjectsUncheckedCreateWithoutGrading_slotsInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   full_score?: number
@@ -704,7 +694,6 @@ export type subjectsUpdateToOneWithWhereWithoutGrading_slotsInput = {
 }
 
 export type subjectsUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -716,7 +705,7 @@ export type subjectsUpdateWithoutGrading_slotsInput = {
 }
 
 export type subjectsUncheckedUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -728,7 +717,6 @@ export type subjectsUncheckedUpdateWithoutGrading_slotsInput = {
 }
 
 export type subjectsCreateWithoutSession_subjectsInput = {
-  id?: bigint | number
   code: string
   name: string
   full_score?: number
@@ -740,7 +728,7 @@ export type subjectsCreateWithoutSession_subjectsInput = {
 }
 
 export type subjectsUncheckedCreateWithoutSession_subjectsInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   full_score?: number
@@ -768,7 +756,6 @@ export type subjectsUpdateToOneWithWhereWithoutSession_subjectsInput = {
 }
 
 export type subjectsUpdateWithoutSession_subjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -780,7 +767,7 @@ export type subjectsUpdateWithoutSession_subjectsInput = {
 }
 
 export type subjectsUncheckedUpdateWithoutSession_subjectsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -792,7 +779,6 @@ export type subjectsUncheckedUpdateWithoutSession_subjectsInput = {
 }
 
 export type subjectsCreateWithoutSubject_questionsInput = {
-  id?: bigint | number
   code: string
   name: string
   full_score?: number
@@ -804,7 +790,7 @@ export type subjectsCreateWithoutSubject_questionsInput = {
 }
 
 export type subjectsUncheckedCreateWithoutSubject_questionsInput = {
-  id?: bigint | number
+  id?: number
   code: string
   name: string
   full_score?: number
@@ -832,7 +818,6 @@ export type subjectsUpdateToOneWithWhereWithoutSubject_questionsInput = {
 }
 
 export type subjectsUpdateWithoutSubject_questionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -844,7 +829,7 @@ export type subjectsUpdateWithoutSubject_questionsInput = {
 }
 
 export type subjectsUncheckedUpdateWithoutSubject_questionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
@@ -976,7 +961,7 @@ export type $subjectsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     subject_questions: Prisma.$subject_questionsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     code: string
     name: string
     full_score: number
@@ -1355,7 +1340,7 @@ export interface Prisma__subjectsClient<T, Null = never, ExtArgs extends runtime
  * Fields of the subjects model
  */
 export interface subjectsFieldRefs {
-  readonly id: Prisma.FieldRef<"subjects", 'BigInt'>
+  readonly id: Prisma.FieldRef<"subjects", 'Int'>
   readonly code: Prisma.FieldRef<"subjects", 'String'>
   readonly name: Prisma.FieldRef<"subjects", 'String'>
   readonly full_score: Prisma.FieldRef<"subjects", 'Int'>

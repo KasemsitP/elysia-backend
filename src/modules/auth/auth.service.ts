@@ -14,20 +14,20 @@ import type {
 import { graderRepo } from "../grader/grader.repo";
 
 
-function decodeRole(role_id: string): "ADMIN" | "MANAGER" | "GRADER" | "STAFF" {
+function decodeRole(role_id: number): "ADMIN" | "MANAGER" | "GRADER" | "STAFF" {
     switch (role_id) {
-        case "1": return "ADMIN";
-        case "2": return "STAFF";
-        case "3": return "MANAGER";
-        case "4": return "GRADER";
+        case 1: return "ADMIN";
+        case 2: return "STAFF";
+        case 3: return "MANAGER";
+        case 4: return "GRADER";
         default: throw new AppError("Invalid role", 500);
     }
 }
 
 function toAuthAccountResponse(account: {
-    id: string;
+    id: number;
     email?: string | null;
-    role_id: string;
+    role_id: number;
     full_name: string;
     username: string;
 }): AuthAccountResponse {
@@ -41,16 +41,16 @@ function toAuthAccountResponse(account: {
 }
 
 function toAuthAccountGraderResponse(account: {
-    id: string;
+    id: number;
     email?: string | null;
-    role_id: string;
+    role_id: number;
     full_name: string;
     username: string;
     campaign_id?: number | null;
 }, grader: {
-    id: string;
-    account_id: string | null;
-    campaign_id: string | null;
+    id: number;
+    account_id: number | null;
+    campaign_id: number | null;
 }): AuthAccountGraderResponse {
     return {
         id: account.id,
@@ -82,7 +82,7 @@ export const authService = {
         if (!isPasswordValid) {
             throw new AppError("รหัสผ่านไม่ถูกต้อง", 401);
         }
-        const isGrader = account.role_id === "4";
+        const isGrader = account.role_id === 4;
 
         if (isGrader) {
             const grader = await graderRepo.getGraderByAccountId(account.id);

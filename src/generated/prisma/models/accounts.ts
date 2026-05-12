@@ -35,21 +35,21 @@ export type AccountsAvgAggregateOutputType = {
 }
 
 export type AccountsSumAggregateOutputType = {
-  id: bigint | null
-  role_id: bigint | null
+  id: number | null
+  role_id: number | null
   session_version: number | null
   manager_order: number | null
   campaign_id: number | null
 }
 
 export type AccountsMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   username: string | null
   password_hash: string | null
   full_name: string | null
   email: string | null
   active: boolean | null
-  role_id: bigint | null
+  role_id: number | null
   session_version: number | null
   manager_order: number | null
   title: string | null
@@ -58,13 +58,13 @@ export type AccountsMinAggregateOutputType = {
 }
 
 export type AccountsMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   username: string | null
   password_hash: string | null
   full_name: string | null
   email: string | null
   active: boolean | null
-  role_id: bigint | null
+  role_id: number | null
   session_version: number | null
   manager_order: number | null
   title: string | null
@@ -238,13 +238,13 @@ export type accountsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type AccountsGroupByOutputType = {
-  id: bigint
+  id: number
   username: string
   password_hash: string
   full_name: string
   email: string | null
   active: boolean
-  role_id: bigint
+  role_id: number
   session_version: number
   manager_order: number | null
   title: string | null
@@ -276,13 +276,13 @@ export type accountsWhereInput = {
   AND?: Prisma.accountsWhereInput | Prisma.accountsWhereInput[]
   OR?: Prisma.accountsWhereInput[]
   NOT?: Prisma.accountsWhereInput | Prisma.accountsWhereInput[]
-  id?: Prisma.BigIntFilter<"accounts"> | bigint | number
+  id?: Prisma.IntFilter<"accounts"> | number
   username?: Prisma.StringFilter<"accounts"> | string
   password_hash?: Prisma.StringFilter<"accounts"> | string
   full_name?: Prisma.StringFilter<"accounts"> | string
   email?: Prisma.StringNullableFilter<"accounts"> | string | null
   active?: Prisma.BoolFilter<"accounts"> | boolean
-  role_id?: Prisma.BigIntFilter<"accounts"> | bigint | number
+  role_id?: Prisma.IntFilter<"accounts"> | number
   session_version?: Prisma.IntFilter<"accounts"> | number
   manager_order?: Prisma.IntNullableFilter<"accounts"> | number | null
   title?: Prisma.StringNullableFilter<"accounts"> | string | null
@@ -319,7 +319,7 @@ export type accountsOrderByWithRelationInput = {
 }
 
 export type accountsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   username?: string
   AND?: Prisma.accountsWhereInput | Prisma.accountsWhereInput[]
   OR?: Prisma.accountsWhereInput[]
@@ -328,7 +328,7 @@ export type accountsWhereUniqueInput = Prisma.AtLeast<{
   full_name?: Prisma.StringFilter<"accounts"> | string
   email?: Prisma.StringNullableFilter<"accounts"> | string | null
   active?: Prisma.BoolFilter<"accounts"> | boolean
-  role_id?: Prisma.BigIntFilter<"accounts"> | bigint | number
+  role_id?: Prisma.IntFilter<"accounts"> | number
   session_version?: Prisma.IntFilter<"accounts"> | number
   manager_order?: Prisma.IntNullableFilter<"accounts"> | number | null
   title?: Prisma.StringNullableFilter<"accounts"> | string | null
@@ -366,13 +366,13 @@ export type accountsScalarWhereWithAggregatesInput = {
   AND?: Prisma.accountsScalarWhereWithAggregatesInput | Prisma.accountsScalarWhereWithAggregatesInput[]
   OR?: Prisma.accountsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.accountsScalarWhereWithAggregatesInput | Prisma.accountsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"accounts"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"accounts"> | number
   username?: Prisma.StringWithAggregatesFilter<"accounts"> | string
   password_hash?: Prisma.StringWithAggregatesFilter<"accounts"> | string
   full_name?: Prisma.StringWithAggregatesFilter<"accounts"> | string
   email?: Prisma.StringNullableWithAggregatesFilter<"accounts"> | string | null
   active?: Prisma.BoolWithAggregatesFilter<"accounts"> | boolean
-  role_id?: Prisma.BigIntWithAggregatesFilter<"accounts"> | bigint | number
+  role_id?: Prisma.IntWithAggregatesFilter<"accounts"> | number
   session_version?: Prisma.IntWithAggregatesFilter<"accounts"> | number
   manager_order?: Prisma.IntNullableWithAggregatesFilter<"accounts"> | number | null
   title?: Prisma.StringNullableWithAggregatesFilter<"accounts"> | string | null
@@ -381,7 +381,6 @@ export type accountsScalarWhereWithAggregatesInput = {
 }
 
 export type accountsCreateInput = {
-  id?: bigint | number
   username: string
   password_hash: string
   full_name: string
@@ -401,13 +400,13 @@ export type accountsCreateInput = {
 }
 
 export type accountsUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
   email?: string | null
   active?: boolean
-  role_id: bigint | number
+  role_id: number
   session_version?: number
   manager_order?: number | null
   title?: string | null
@@ -421,7 +420,6 @@ export type accountsUncheckedCreateInput = {
 }
 
 export type accountsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -441,13 +439,13 @@ export type accountsUpdateInput = {
 }
 
 export type accountsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  role_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -461,13 +459,13 @@ export type accountsUncheckedUpdateInput = {
 }
 
 export type accountsCreateManyInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
   email?: string | null
   active?: boolean
-  role_id: bigint | number
+  role_id: number
   session_version?: number
   manager_order?: number | null
   title?: string | null
@@ -476,7 +474,6 @@ export type accountsCreateManyInput = {
 }
 
 export type accountsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -490,13 +487,13 @@ export type accountsUpdateManyMutationInput = {
 }
 
 export type accountsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  role_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -589,14 +586,6 @@ export type AccountsListRelationFilter = {
 
 export type accountsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type BigIntFieldUpdateOperationsInput = {
-  set?: bigint | number
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -752,7 +741,6 @@ export type accountsUncheckedUpdateManyWithoutRolesNestedInput = {
 }
 
 export type accountsCreateWithoutActivity_logsInput = {
-  id?: bigint | number
   username: string
   password_hash: string
   full_name: string
@@ -771,13 +759,13 @@ export type accountsCreateWithoutActivity_logsInput = {
 }
 
 export type accountsUncheckedCreateWithoutActivity_logsInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
   email?: string | null
   active?: boolean
-  role_id: bigint | number
+  role_id: number
   session_version?: number
   manager_order?: number | null
   title?: string | null
@@ -806,7 +794,6 @@ export type accountsUpdateToOneWithWhereWithoutActivity_logsInput = {
 }
 
 export type accountsUpdateWithoutActivity_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -825,13 +812,13 @@ export type accountsUpdateWithoutActivity_logsInput = {
 }
 
 export type accountsUncheckedUpdateWithoutActivity_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  role_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -844,7 +831,6 @@ export type accountsUncheckedUpdateWithoutActivity_logsInput = {
 }
 
 export type accountsCreateWithoutAuth_sessionsInput = {
-  id?: bigint | number
   username: string
   password_hash: string
   full_name: string
@@ -863,13 +849,13 @@ export type accountsCreateWithoutAuth_sessionsInput = {
 }
 
 export type accountsUncheckedCreateWithoutAuth_sessionsInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
   email?: string | null
   active?: boolean
-  role_id: bigint | number
+  role_id: number
   session_version?: number
   manager_order?: number | null
   title?: string | null
@@ -898,7 +884,6 @@ export type accountsUpdateToOneWithWhereWithoutAuth_sessionsInput = {
 }
 
 export type accountsUpdateWithoutAuth_sessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -917,13 +902,13 @@ export type accountsUpdateWithoutAuth_sessionsInput = {
 }
 
 export type accountsUncheckedUpdateWithoutAuth_sessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  role_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -936,7 +921,6 @@ export type accountsUncheckedUpdateWithoutAuth_sessionsInput = {
 }
 
 export type accountsCreateWithoutCampaign_keysInput = {
-  id?: bigint | number
   username: string
   password_hash: string
   full_name: string
@@ -955,13 +939,13 @@ export type accountsCreateWithoutCampaign_keysInput = {
 }
 
 export type accountsUncheckedCreateWithoutCampaign_keysInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
   email?: string | null
   active?: boolean
-  role_id: bigint | number
+  role_id: number
   session_version?: number
   manager_order?: number | null
   title?: string | null
@@ -990,7 +974,6 @@ export type accountsUpdateToOneWithWhereWithoutCampaign_keysInput = {
 }
 
 export type accountsUpdateWithoutCampaign_keysInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1009,13 +992,13 @@ export type accountsUpdateWithoutCampaign_keysInput = {
 }
 
 export type accountsUncheckedUpdateWithoutCampaign_keysInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  role_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1028,7 +1011,6 @@ export type accountsUncheckedUpdateWithoutCampaign_keysInput = {
 }
 
 export type accountsCreateWithoutGradersInput = {
-  id?: bigint | number
   username: string
   password_hash: string
   full_name: string
@@ -1047,13 +1029,13 @@ export type accountsCreateWithoutGradersInput = {
 }
 
 export type accountsUncheckedCreateWithoutGradersInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
   email?: string | null
   active?: boolean
-  role_id: bigint | number
+  role_id: number
   session_version?: number
   manager_order?: number | null
   title?: string | null
@@ -1082,7 +1064,6 @@ export type accountsUpdateToOneWithWhereWithoutGradersInput = {
 }
 
 export type accountsUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1101,13 +1082,13 @@ export type accountsUpdateWithoutGradersInput = {
 }
 
 export type accountsUncheckedUpdateWithoutGradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  role_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1120,7 +1101,6 @@ export type accountsUncheckedUpdateWithoutGradersInput = {
 }
 
 export type accountsCreateWithoutGrading_score_logsInput = {
-  id?: bigint | number
   username: string
   password_hash: string
   full_name: string
@@ -1139,13 +1119,13 @@ export type accountsCreateWithoutGrading_score_logsInput = {
 }
 
 export type accountsUncheckedCreateWithoutGrading_score_logsInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
   email?: string | null
   active?: boolean
-  role_id: bigint | number
+  role_id: number
   session_version?: number
   manager_order?: number | null
   title?: string | null
@@ -1174,7 +1154,6 @@ export type accountsUpdateToOneWithWhereWithoutGrading_score_logsInput = {
 }
 
 export type accountsUpdateWithoutGrading_score_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1193,13 +1172,13 @@ export type accountsUpdateWithoutGrading_score_logsInput = {
 }
 
 export type accountsUncheckedUpdateWithoutGrading_score_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  role_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1212,7 +1191,6 @@ export type accountsUncheckedUpdateWithoutGrading_score_logsInput = {
 }
 
 export type accountsCreateWithoutRolesInput = {
-  id?: bigint | number
   username: string
   password_hash: string
   full_name: string
@@ -1231,7 +1209,7 @@ export type accountsCreateWithoutRolesInput = {
 }
 
 export type accountsUncheckedCreateWithoutRolesInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
@@ -1279,13 +1257,13 @@ export type accountsScalarWhereInput = {
   AND?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
   OR?: Prisma.accountsScalarWhereInput[]
   NOT?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"accounts"> | bigint | number
+  id?: Prisma.IntFilter<"accounts"> | number
   username?: Prisma.StringFilter<"accounts"> | string
   password_hash?: Prisma.StringFilter<"accounts"> | string
   full_name?: Prisma.StringFilter<"accounts"> | string
   email?: Prisma.StringNullableFilter<"accounts"> | string | null
   active?: Prisma.BoolFilter<"accounts"> | boolean
-  role_id?: Prisma.BigIntFilter<"accounts"> | bigint | number
+  role_id?: Prisma.IntFilter<"accounts"> | number
   session_version?: Prisma.IntFilter<"accounts"> | number
   manager_order?: Prisma.IntNullableFilter<"accounts"> | number | null
   title?: Prisma.StringNullableFilter<"accounts"> | string | null
@@ -1294,7 +1272,7 @@ export type accountsScalarWhereInput = {
 }
 
 export type accountsCreateManyRolesInput = {
-  id?: bigint | number
+  id?: number
   username: string
   password_hash: string
   full_name: string
@@ -1308,7 +1286,6 @@ export type accountsCreateManyRolesInput = {
 }
 
 export type accountsUpdateWithoutRolesInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1327,7 +1304,7 @@ export type accountsUpdateWithoutRolesInput = {
 }
 
 export type accountsUncheckedUpdateWithoutRolesInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1346,7 +1323,7 @@ export type accountsUncheckedUpdateWithoutRolesInput = {
 }
 
 export type accountsUncheckedUpdateManyWithoutRolesInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1487,13 +1464,13 @@ export type $accountsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     grading_score_logs: Prisma.$grading_score_logsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     username: string
     password_hash: string
     full_name: string
     email: string | null
     active: boolean
-    role_id: bigint
+    role_id: number
     session_version: number
     manager_order: number | null
     title: string | null
@@ -1874,13 +1851,13 @@ export interface Prisma__accountsClient<T, Null = never, ExtArgs extends runtime
  * Fields of the accounts model
  */
 export interface accountsFieldRefs {
-  readonly id: Prisma.FieldRef<"accounts", 'BigInt'>
+  readonly id: Prisma.FieldRef<"accounts", 'Int'>
   readonly username: Prisma.FieldRef<"accounts", 'String'>
   readonly password_hash: Prisma.FieldRef<"accounts", 'String'>
   readonly full_name: Prisma.FieldRef<"accounts", 'String'>
   readonly email: Prisma.FieldRef<"accounts", 'String'>
   readonly active: Prisma.FieldRef<"accounts", 'Boolean'>
-  readonly role_id: Prisma.FieldRef<"accounts", 'BigInt'>
+  readonly role_id: Prisma.FieldRef<"accounts", 'Int'>
   readonly session_version: Prisma.FieldRef<"accounts", 'Int'>
   readonly manager_order: Prisma.FieldRef<"accounts", 'Int'>
   readonly title: Prisma.FieldRef<"accounts", 'String'>

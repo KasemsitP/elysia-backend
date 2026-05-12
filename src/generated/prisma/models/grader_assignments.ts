@@ -34,24 +34,24 @@ export type Grader_assignmentsAvgAggregateOutputType = {
 }
 
 export type Grader_assignmentsSumAggregateOutputType = {
-  grader_id: bigint | null
+  grader_id: number | null
   session_id: number | null
-  subject_id: bigint | null
-  subject_question_id: bigint | null
+  subject_id: number | null
+  subject_question_id: number | null
 }
 
 export type Grader_assignmentsMinAggregateOutputType = {
-  grader_id: bigint | null
+  grader_id: number | null
   session_id: number | null
-  subject_id: bigint | null
-  subject_question_id: bigint | null
+  subject_id: number | null
+  subject_question_id: number | null
 }
 
 export type Grader_assignmentsMaxAggregateOutputType = {
-  grader_id: bigint | null
+  grader_id: number | null
   session_id: number | null
-  subject_id: bigint | null
-  subject_question_id: bigint | null
+  subject_id: number | null
+  subject_question_id: number | null
 }
 
 export type Grader_assignmentsCountAggregateOutputType = {
@@ -186,10 +186,10 @@ export type grader_assignmentsGroupByArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 export type Grader_assignmentsGroupByOutputType = {
-  grader_id: bigint
+  grader_id: number
   session_id: number
-  subject_id: bigint
-  subject_question_id: bigint
+  subject_id: number
+  subject_question_id: number
   _count: Grader_assignmentsCountAggregateOutputType | null
   _avg: Grader_assignmentsAvgAggregateOutputType | null
   _sum: Grader_assignmentsSumAggregateOutputType | null
@@ -216,10 +216,10 @@ export type grader_assignmentsWhereInput = {
   AND?: Prisma.grader_assignmentsWhereInput | Prisma.grader_assignmentsWhereInput[]
   OR?: Prisma.grader_assignmentsWhereInput[]
   NOT?: Prisma.grader_assignmentsWhereInput | Prisma.grader_assignmentsWhereInput[]
-  grader_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
+  grader_id?: Prisma.IntFilter<"grader_assignments"> | number
   session_id?: Prisma.IntFilter<"grader_assignments"> | number
-  subject_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
-  subject_question_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
+  subject_id?: Prisma.IntFilter<"grader_assignments"> | number
+  subject_question_id?: Prisma.IntFilter<"grader_assignments"> | number
   subject_questions?: Prisma.XOR<Prisma.Subject_questionsScalarRelationFilter, Prisma.subject_questionsWhereInput>
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
   sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
@@ -244,10 +244,10 @@ export type grader_assignmentsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.grader_assignmentsWhereInput | Prisma.grader_assignmentsWhereInput[]
   OR?: Prisma.grader_assignmentsWhereInput[]
   NOT?: Prisma.grader_assignmentsWhereInput | Prisma.grader_assignmentsWhereInput[]
-  grader_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
+  grader_id?: Prisma.IntFilter<"grader_assignments"> | number
   session_id?: Prisma.IntFilter<"grader_assignments"> | number
-  subject_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
-  subject_question_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
+  subject_id?: Prisma.IntFilter<"grader_assignments"> | number
+  subject_question_id?: Prisma.IntFilter<"grader_assignments"> | number
   subject_questions?: Prisma.XOR<Prisma.Subject_questionsScalarRelationFilter, Prisma.subject_questionsWhereInput>
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
   sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
@@ -271,10 +271,10 @@ export type grader_assignmentsScalarWhereWithAggregatesInput = {
   AND?: Prisma.grader_assignmentsScalarWhereWithAggregatesInput | Prisma.grader_assignmentsScalarWhereWithAggregatesInput[]
   OR?: Prisma.grader_assignmentsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.grader_assignmentsScalarWhereWithAggregatesInput | Prisma.grader_assignmentsScalarWhereWithAggregatesInput[]
-  grader_id?: Prisma.BigIntWithAggregatesFilter<"grader_assignments"> | bigint | number
+  grader_id?: Prisma.IntWithAggregatesFilter<"grader_assignments"> | number
   session_id?: Prisma.IntWithAggregatesFilter<"grader_assignments"> | number
-  subject_id?: Prisma.BigIntWithAggregatesFilter<"grader_assignments"> | bigint | number
-  subject_question_id?: Prisma.BigIntWithAggregatesFilter<"grader_assignments"> | bigint | number
+  subject_id?: Prisma.IntWithAggregatesFilter<"grader_assignments"> | number
+  subject_question_id?: Prisma.IntWithAggregatesFilter<"grader_assignments"> | number
 }
 
 export type grader_assignmentsCreateInput = {
@@ -286,10 +286,10 @@ export type grader_assignmentsCreateInput = {
 }
 
 export type grader_assignmentsUncheckedCreateInput = {
-  grader_id: bigint | number
+  grader_id: number
   session_id: number
-  subject_id: bigint | number
-  subject_question_id: bigint | number
+  subject_id: number
+  subject_question_id: number
 }
 
 export type grader_assignmentsUpdateInput = {
@@ -301,17 +301,17 @@ export type grader_assignmentsUpdateInput = {
 }
 
 export type grader_assignmentsUncheckedUpdateInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsCreateManyInput = {
-  grader_id: bigint | number
+  grader_id: number
   session_id: number
-  subject_id: bigint | number
-  subject_question_id: bigint | number
+  subject_id: number
+  subject_question_id: number
 }
 
 export type grader_assignmentsUpdateManyMutationInput = {
@@ -319,16 +319,16 @@ export type grader_assignmentsUpdateManyMutationInput = {
 }
 
 export type grader_assignmentsUncheckedUpdateManyInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsGrader_idSession_idSubject_question_idCompoundUniqueInput = {
-  grader_id: bigint | number
+  grader_id: number
   session_id: number
-  subject_question_id: bigint | number
+  subject_question_id: number
 }
 
 export type grader_assignmentsCountOrderByAggregateInput = {
@@ -595,8 +595,8 @@ export type grader_assignmentsCreateWithoutGradersInput = {
 
 export type grader_assignmentsUncheckedCreateWithoutGradersInput = {
   session_id: number
-  subject_id: bigint | number
-  subject_question_id: bigint | number
+  subject_id: number
+  subject_question_id: number
 }
 
 export type grader_assignmentsCreateOrConnectWithoutGradersInput = {
@@ -629,10 +629,10 @@ export type grader_assignmentsScalarWhereInput = {
   AND?: Prisma.grader_assignmentsScalarWhereInput | Prisma.grader_assignmentsScalarWhereInput[]
   OR?: Prisma.grader_assignmentsScalarWhereInput[]
   NOT?: Prisma.grader_assignmentsScalarWhereInput | Prisma.grader_assignmentsScalarWhereInput[]
-  grader_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
+  grader_id?: Prisma.IntFilter<"grader_assignments"> | number
   session_id?: Prisma.IntFilter<"grader_assignments"> | number
-  subject_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
-  subject_question_id?: Prisma.BigIntFilter<"grader_assignments"> | bigint | number
+  subject_id?: Prisma.IntFilter<"grader_assignments"> | number
+  subject_question_id?: Prisma.IntFilter<"grader_assignments"> | number
 }
 
 export type grader_assignmentsCreateWithoutSession_subjectsInput = {
@@ -643,8 +643,8 @@ export type grader_assignmentsCreateWithoutSession_subjectsInput = {
 }
 
 export type grader_assignmentsUncheckedCreateWithoutSession_subjectsInput = {
-  grader_id: bigint | number
-  subject_question_id: bigint | number
+  grader_id: number
+  subject_question_id: number
 }
 
 export type grader_assignmentsCreateOrConnectWithoutSession_subjectsInput = {
@@ -681,9 +681,9 @@ export type grader_assignmentsCreateWithoutSessionsInput = {
 }
 
 export type grader_assignmentsUncheckedCreateWithoutSessionsInput = {
-  grader_id: bigint | number
-  subject_id: bigint | number
-  subject_question_id: bigint | number
+  grader_id: number
+  subject_id: number
+  subject_question_id: number
 }
 
 export type grader_assignmentsCreateOrConnectWithoutSessionsInput = {
@@ -720,9 +720,9 @@ export type grader_assignmentsCreateWithoutSubject_questionsInput = {
 }
 
 export type grader_assignmentsUncheckedCreateWithoutSubject_questionsInput = {
-  grader_id: bigint | number
+  grader_id: number
   session_id: number
-  subject_id: bigint | number
+  subject_id: number
 }
 
 export type grader_assignmentsCreateOrConnectWithoutSubject_questionsInput = {
@@ -759,9 +759,9 @@ export type grader_assignmentsCreateWithoutSubjectsInput = {
 }
 
 export type grader_assignmentsUncheckedCreateWithoutSubjectsInput = {
-  grader_id: bigint | number
+  grader_id: number
   session_id: number
-  subject_question_id: bigint | number
+  subject_question_id: number
 }
 
 export type grader_assignmentsCreateOrConnectWithoutSubjectsInput = {
@@ -792,8 +792,8 @@ export type grader_assignmentsUpdateManyWithWhereWithoutSubjectsInput = {
 
 export type grader_assignmentsCreateManyGradersInput = {
   session_id: number
-  subject_id: bigint | number
-  subject_question_id: bigint | number
+  subject_id: number
+  subject_question_id: number
 }
 
 export type grader_assignmentsUpdateWithoutGradersInput = {
@@ -805,19 +805,19 @@ export type grader_assignmentsUpdateWithoutGradersInput = {
 
 export type grader_assignmentsUncheckedUpdateWithoutGradersInput = {
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsUncheckedUpdateManyWithoutGradersInput = {
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsCreateManySession_subjectsInput = {
-  grader_id: bigint | number
-  subject_question_id: bigint | number
+  grader_id: number
+  subject_question_id: number
 }
 
 export type grader_assignmentsUpdateWithoutSession_subjectsInput = {
@@ -828,19 +828,19 @@ export type grader_assignmentsUpdateWithoutSession_subjectsInput = {
 }
 
 export type grader_assignmentsUncheckedUpdateWithoutSession_subjectsInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsUncheckedUpdateManyWithoutSession_subjectsInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsCreateManySessionsInput = {
-  grader_id: bigint | number
-  subject_id: bigint | number
-  subject_question_id: bigint | number
+  grader_id: number
+  subject_id: number
+  subject_question_id: number
 }
 
 export type grader_assignmentsUpdateWithoutSessionsInput = {
@@ -851,21 +851,21 @@ export type grader_assignmentsUpdateWithoutSessionsInput = {
 }
 
 export type grader_assignmentsUncheckedUpdateWithoutSessionsInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsUncheckedUpdateManyWithoutSessionsInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsCreateManySubject_questionsInput = {
-  grader_id: bigint | number
+  grader_id: number
   session_id: number
-  subject_id: bigint | number
+  subject_id: number
 }
 
 export type grader_assignmentsUpdateWithoutSubject_questionsInput = {
@@ -876,21 +876,21 @@ export type grader_assignmentsUpdateWithoutSubject_questionsInput = {
 }
 
 export type grader_assignmentsUncheckedUpdateWithoutSubject_questionsInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsUncheckedUpdateManyWithoutSubject_questionsInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsCreateManySubjectsInput = {
-  grader_id: bigint | number
+  grader_id: number
   session_id: number
-  subject_question_id: bigint | number
+  subject_question_id: number
 }
 
 export type grader_assignmentsUpdateWithoutSubjectsInput = {
@@ -901,15 +901,15 @@ export type grader_assignmentsUpdateWithoutSubjectsInput = {
 }
 
 export type grader_assignmentsUncheckedUpdateWithoutSubjectsInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type grader_assignmentsUncheckedUpdateManyWithoutSubjectsInput = {
-  grader_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_question_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -954,10 +954,10 @@ export type $grader_assignmentsPayload<ExtArgs extends runtime.Types.Extensions.
     session_subjects: Prisma.$session_subjectsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    grader_id: bigint
+    grader_id: number
     session_id: number
-    subject_id: bigint
-    subject_question_id: bigint
+    subject_id: number
+    subject_question_id: number
   }, ExtArgs["result"]["grader_assignments"]>
   composites: {}
 }
@@ -1332,10 +1332,10 @@ export interface Prisma__grader_assignmentsClient<T, Null = never, ExtArgs exten
  * Fields of the grader_assignments model
  */
 export interface grader_assignmentsFieldRefs {
-  readonly grader_id: Prisma.FieldRef<"grader_assignments", 'BigInt'>
+  readonly grader_id: Prisma.FieldRef<"grader_assignments", 'Int'>
   readonly session_id: Prisma.FieldRef<"grader_assignments", 'Int'>
-  readonly subject_id: Prisma.FieldRef<"grader_assignments", 'BigInt'>
-  readonly subject_question_id: Prisma.FieldRef<"grader_assignments", 'BigInt'>
+  readonly subject_id: Prisma.FieldRef<"grader_assignments", 'Int'>
+  readonly subject_question_id: Prisma.FieldRef<"grader_assignments", 'Int'>
 }
     
 

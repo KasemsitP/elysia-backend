@@ -34,29 +34,25 @@ export type BagsAvgAggregateOutputType = {
 }
 
 export type BagsSumAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   session_id: number | null
   bag_no: number | null
   count_items: number | null
 }
 
 export type BagsMinAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   session_id: number | null
   bag_no: number | null
-  sid_start: string | null
-  sid_end: string | null
   count_items: number | null
   status: string | null
   created_at: Date | null
 }
 
 export type BagsMaxAggregateOutputType = {
-  id: bigint | null
+  id: number | null
   session_id: number | null
   bag_no: number | null
-  sid_start: string | null
-  sid_end: string | null
   count_items: number | null
   status: string | null
   created_at: Date | null
@@ -66,8 +62,6 @@ export type BagsCountAggregateOutputType = {
   id: number
   session_id: number
   bag_no: number
-  sid_start: number
-  sid_end: number
   count_items: number
   status: number
   created_at: number
@@ -93,8 +87,6 @@ export type BagsMinAggregateInputType = {
   id?: true
   session_id?: true
   bag_no?: true
-  sid_start?: true
-  sid_end?: true
   count_items?: true
   status?: true
   created_at?: true
@@ -104,8 +96,6 @@ export type BagsMaxAggregateInputType = {
   id?: true
   session_id?: true
   bag_no?: true
-  sid_start?: true
-  sid_end?: true
   count_items?: true
   status?: true
   created_at?: true
@@ -115,8 +105,6 @@ export type BagsCountAggregateInputType = {
   id?: true
   session_id?: true
   bag_no?: true
-  sid_start?: true
-  sid_end?: true
   count_items?: true
   status?: true
   created_at?: true
@@ -210,11 +198,9 @@ export type bagsGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 }
 
 export type BagsGroupByOutputType = {
-  id: bigint
+  id: number
   session_id: number
   bag_no: number
-  sid_start: string | null
-  sid_end: string | null
   count_items: number
   status: string
   created_at: Date
@@ -244,11 +230,9 @@ export type bagsWhereInput = {
   AND?: Prisma.bagsWhereInput | Prisma.bagsWhereInput[]
   OR?: Prisma.bagsWhereInput[]
   NOT?: Prisma.bagsWhereInput | Prisma.bagsWhereInput[]
-  id?: Prisma.BigIntFilter<"bags"> | bigint | number
+  id?: Prisma.IntFilter<"bags"> | number
   session_id?: Prisma.IntFilter<"bags"> | number
   bag_no?: Prisma.IntFilter<"bags"> | number
-  sid_start?: Prisma.StringNullableFilter<"bags"> | string | null
-  sid_end?: Prisma.StringNullableFilter<"bags"> | string | null
   count_items?: Prisma.IntFilter<"bags"> | number
   status?: Prisma.StringFilter<"bags"> | string
   created_at?: Prisma.DateTimeFilter<"bags"> | Date | string
@@ -262,8 +246,6 @@ export type bagsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   session_id?: Prisma.SortOrder
   bag_no?: Prisma.SortOrder
-  sid_start?: Prisma.SortOrderInput | Prisma.SortOrder
-  sid_end?: Prisma.SortOrderInput | Prisma.SortOrder
   count_items?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -275,15 +257,13 @@ export type bagsOrderByWithRelationInput = {
 }
 
 export type bagsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   session_id_bag_no?: Prisma.bagsSession_idBag_noCompoundUniqueInput
   AND?: Prisma.bagsWhereInput | Prisma.bagsWhereInput[]
   OR?: Prisma.bagsWhereInput[]
   NOT?: Prisma.bagsWhereInput | Prisma.bagsWhereInput[]
   session_id?: Prisma.IntFilter<"bags"> | number
   bag_no?: Prisma.IntFilter<"bags"> | number
-  sid_start?: Prisma.StringNullableFilter<"bags"> | string | null
-  sid_end?: Prisma.StringNullableFilter<"bags"> | string | null
   count_items?: Prisma.IntFilter<"bags"> | number
   status?: Prisma.StringFilter<"bags"> | string
   created_at?: Prisma.DateTimeFilter<"bags"> | Date | string
@@ -297,8 +277,6 @@ export type bagsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   session_id?: Prisma.SortOrder
   bag_no?: Prisma.SortOrder
-  sid_start?: Prisma.SortOrderInput | Prisma.SortOrder
-  sid_end?: Prisma.SortOrderInput | Prisma.SortOrder
   count_items?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -313,21 +291,16 @@ export type bagsScalarWhereWithAggregatesInput = {
   AND?: Prisma.bagsScalarWhereWithAggregatesInput | Prisma.bagsScalarWhereWithAggregatesInput[]
   OR?: Prisma.bagsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.bagsScalarWhereWithAggregatesInput | Prisma.bagsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"bags"> | bigint | number
+  id?: Prisma.IntWithAggregatesFilter<"bags"> | number
   session_id?: Prisma.IntWithAggregatesFilter<"bags"> | number
   bag_no?: Prisma.IntWithAggregatesFilter<"bags"> | number
-  sid_start?: Prisma.StringNullableWithAggregatesFilter<"bags"> | string | null
-  sid_end?: Prisma.StringNullableWithAggregatesFilter<"bags"> | string | null
   count_items?: Prisma.IntWithAggregatesFilter<"bags"> | number
   status?: Prisma.StringWithAggregatesFilter<"bags"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"bags"> | Date | string
 }
 
 export type bagsCreateInput = {
-  id?: bigint | number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -338,11 +311,9 @@ export type bagsCreateInput = {
 }
 
 export type bagsUncheckedCreateInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -352,10 +323,7 @@ export type bagsUncheckedCreateInput = {
 }
 
 export type bagsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -366,11 +334,9 @@ export type bagsUpdateInput = {
 }
 
 export type bagsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -380,32 +346,25 @@ export type bagsUncheckedUpdateInput = {
 }
 
 export type bagsCreateManyInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
 }
 
 export type bagsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type bagsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -426,8 +385,6 @@ export type bagsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   session_id?: Prisma.SortOrder
   bag_no?: Prisma.SortOrder
-  sid_start?: Prisma.SortOrder
-  sid_end?: Prisma.SortOrder
   count_items?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -444,8 +401,6 @@ export type bagsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   session_id?: Prisma.SortOrder
   bag_no?: Prisma.SortOrder
-  sid_start?: Prisma.SortOrder
-  sid_end?: Prisma.SortOrder
   count_items?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -455,8 +410,6 @@ export type bagsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   session_id?: Prisma.SortOrder
   bag_no?: Prisma.SortOrder
-  sid_start?: Prisma.SortOrder
-  sid_end?: Prisma.SortOrder
   count_items?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
@@ -576,10 +529,7 @@ export type bagsUncheckedUpdateManyWithoutSessionsNestedInput = {
 }
 
 export type bagsCreateWithoutBookletsInput = {
-  id?: bigint | number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -589,11 +539,9 @@ export type bagsCreateWithoutBookletsInput = {
 }
 
 export type bagsUncheckedCreateWithoutBookletsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -618,10 +566,7 @@ export type bagsUpdateToOneWithWhereWithoutBookletsInput = {
 }
 
 export type bagsUpdateWithoutBookletsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -631,11 +576,9 @@ export type bagsUpdateWithoutBookletsInput = {
 }
 
 export type bagsUncheckedUpdateWithoutBookletsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -644,10 +587,7 @@ export type bagsUncheckedUpdateWithoutBookletsInput = {
 }
 
 export type bagsCreateWithoutGrader_work_locksInput = {
-  id?: bigint | number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -657,11 +597,9 @@ export type bagsCreateWithoutGrader_work_locksInput = {
 }
 
 export type bagsUncheckedCreateWithoutGrader_work_locksInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -686,10 +624,7 @@ export type bagsUpdateToOneWithWhereWithoutGrader_work_locksInput = {
 }
 
 export type bagsUpdateWithoutGrader_work_locksInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -699,11 +634,9 @@ export type bagsUpdateWithoutGrader_work_locksInput = {
 }
 
 export type bagsUncheckedUpdateWithoutGrader_work_locksInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -712,10 +645,7 @@ export type bagsUncheckedUpdateWithoutGrader_work_locksInput = {
 }
 
 export type bagsCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -725,11 +655,9 @@ export type bagsCreateWithoutGrading_score_draftsInput = {
 }
 
 export type bagsUncheckedCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
+  id?: number
   session_id: number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -754,10 +682,7 @@ export type bagsUpdateToOneWithWhereWithoutGrading_score_draftsInput = {
 }
 
 export type bagsUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -767,11 +692,9 @@ export type bagsUpdateWithoutGrading_score_draftsInput = {
 }
 
 export type bagsUncheckedUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -780,10 +703,7 @@ export type bagsUncheckedUpdateWithoutGrading_score_draftsInput = {
 }
 
 export type bagsCreateWithoutSessionsInput = {
-  id?: bigint | number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -793,10 +713,8 @@ export type bagsCreateWithoutSessionsInput = {
 }
 
 export type bagsUncheckedCreateWithoutSessionsInput = {
-  id?: bigint | number
+  id?: number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
@@ -835,31 +753,24 @@ export type bagsScalarWhereInput = {
   AND?: Prisma.bagsScalarWhereInput | Prisma.bagsScalarWhereInput[]
   OR?: Prisma.bagsScalarWhereInput[]
   NOT?: Prisma.bagsScalarWhereInput | Prisma.bagsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"bags"> | bigint | number
+  id?: Prisma.IntFilter<"bags"> | number
   session_id?: Prisma.IntFilter<"bags"> | number
   bag_no?: Prisma.IntFilter<"bags"> | number
-  sid_start?: Prisma.StringNullableFilter<"bags"> | string | null
-  sid_end?: Prisma.StringNullableFilter<"bags"> | string | null
   count_items?: Prisma.IntFilter<"bags"> | number
   status?: Prisma.StringFilter<"bags"> | string
   created_at?: Prisma.DateTimeFilter<"bags"> | Date | string
 }
 
 export type bagsCreateManySessionsInput = {
-  id?: bigint | number
+  id?: number
   bag_no: number
-  sid_start?: string | null
-  sid_end?: string | null
   count_items?: number
   status?: string
   created_at?: Date | string
 }
 
 export type bagsUpdateWithoutSessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -869,10 +780,8 @@ export type bagsUpdateWithoutSessionsInput = {
 }
 
 export type bagsUncheckedUpdateWithoutSessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -882,10 +791,8 @@ export type bagsUncheckedUpdateWithoutSessionsInput = {
 }
 
 export type bagsUncheckedUpdateManyWithoutSessionsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_no?: Prisma.IntFieldUpdateOperationsInput | number
-  sid_start?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sid_end?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   count_items?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -944,8 +851,6 @@ export type bagsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   id?: boolean
   session_id?: boolean
   bag_no?: boolean
-  sid_start?: boolean
-  sid_end?: boolean
   count_items?: boolean
   status?: boolean
   created_at?: boolean
@@ -962,14 +867,12 @@ export type bagsSelectScalar = {
   id?: boolean
   session_id?: boolean
   bag_no?: boolean
-  sid_start?: boolean
-  sid_end?: boolean
   count_items?: boolean
   status?: boolean
   created_at?: boolean
 }
 
-export type bagsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "session_id" | "bag_no" | "sid_start" | "sid_end" | "count_items" | "status" | "created_at", ExtArgs["result"]["bags"]>
+export type bagsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "session_id" | "bag_no" | "count_items" | "status" | "created_at", ExtArgs["result"]["bags"]>
 export type bagsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.sessionsDefaultArgs<ExtArgs>
   booklets?: boolean | Prisma.bags$bookletsArgs<ExtArgs>
@@ -987,11 +890,9 @@ export type $bagsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     grading_score_drafts: Prisma.$grading_score_draftsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
+    id: number
     session_id: number
     bag_no: number
-    sid_start: string | null
-    sid_end: string | null
     count_items: number
     status: string
     created_at: Date
@@ -1368,11 +1269,9 @@ export interface Prisma__bagsClient<T, Null = never, ExtArgs extends runtime.Typ
  * Fields of the bags model
  */
 export interface bagsFieldRefs {
-  readonly id: Prisma.FieldRef<"bags", 'BigInt'>
+  readonly id: Prisma.FieldRef<"bags", 'Int'>
   readonly session_id: Prisma.FieldRef<"bags", 'Int'>
   readonly bag_no: Prisma.FieldRef<"bags", 'Int'>
-  readonly sid_start: Prisma.FieldRef<"bags", 'String'>
-  readonly sid_end: Prisma.FieldRef<"bags", 'String'>
   readonly count_items: Prisma.FieldRef<"bags", 'Int'>
   readonly status: Prisma.FieldRef<"bags", 'String'>
   readonly created_at: Prisma.FieldRef<"bags", 'DateTime'>

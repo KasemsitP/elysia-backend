@@ -33,21 +33,21 @@ export type GradersAvgAggregateOutputType = {
 }
 
 export type GradersSumAggregateOutputType = {
-  id: bigint | null
-  campaign_id: bigint | null
-  account_id: bigint | null
+  id: number | null
+  campaign_id: number | null
+  account_id: number | null
 }
 
 export type GradersMinAggregateOutputType = {
-  id: bigint | null
-  campaign_id: bigint | null
-  account_id: bigint | null
+  id: number | null
+  campaign_id: number | null
+  account_id: number | null
 }
 
 export type GradersMaxAggregateOutputType = {
-  id: bigint | null
-  campaign_id: bigint | null
-  account_id: bigint | null
+  id: number | null
+  campaign_id: number | null
+  account_id: number | null
 }
 
 export type GradersCountAggregateOutputType = {
@@ -176,9 +176,9 @@ export type gradersGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 export type GradersGroupByOutputType = {
-  id: bigint
-  campaign_id: bigint | null
-  account_id: bigint | null
+  id: number
+  campaign_id: number | null
+  account_id: number | null
   _count: GradersCountAggregateOutputType | null
   _avg: GradersAvgAggregateOutputType | null
   _sum: GradersSumAggregateOutputType | null
@@ -205,9 +205,9 @@ export type gradersWhereInput = {
   AND?: Prisma.gradersWhereInput | Prisma.gradersWhereInput[]
   OR?: Prisma.gradersWhereInput[]
   NOT?: Prisma.gradersWhereInput | Prisma.gradersWhereInput[]
-  id?: Prisma.BigIntFilter<"graders"> | bigint | number
-  campaign_id?: Prisma.BigIntNullableFilter<"graders"> | bigint | number | null
-  account_id?: Prisma.BigIntNullableFilter<"graders"> | bigint | number | null
+  id?: Prisma.IntFilter<"graders"> | number
+  campaign_id?: Prisma.IntNullableFilter<"graders"> | number | null
+  account_id?: Prisma.IntNullableFilter<"graders"> | number | null
   activity_logs?: Prisma.Activity_logsListRelationFilter
   grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
   grader_work_locks?: Prisma.Grader_work_locksListRelationFilter
@@ -237,12 +237,12 @@ export type gradersOrderByWithRelationInput = {
 }
 
 export type gradersWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   AND?: Prisma.gradersWhereInput | Prisma.gradersWhereInput[]
   OR?: Prisma.gradersWhereInput[]
   NOT?: Prisma.gradersWhereInput | Prisma.gradersWhereInput[]
-  campaign_id?: Prisma.BigIntNullableFilter<"graders"> | bigint | number | null
-  account_id?: Prisma.BigIntNullableFilter<"graders"> | bigint | number | null
+  campaign_id?: Prisma.IntNullableFilter<"graders"> | number | null
+  account_id?: Prisma.IntNullableFilter<"graders"> | number | null
   activity_logs?: Prisma.Activity_logsListRelationFilter
   grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
   grader_work_locks?: Prisma.Grader_work_locksListRelationFilter
@@ -270,13 +270,12 @@ export type gradersScalarWhereWithAggregatesInput = {
   AND?: Prisma.gradersScalarWhereWithAggregatesInput | Prisma.gradersScalarWhereWithAggregatesInput[]
   OR?: Prisma.gradersScalarWhereWithAggregatesInput[]
   NOT?: Prisma.gradersScalarWhereWithAggregatesInput | Prisma.gradersScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"graders"> | bigint | number
-  campaign_id?: Prisma.BigIntNullableWithAggregatesFilter<"graders"> | bigint | number | null
-  account_id?: Prisma.BigIntNullableWithAggregatesFilter<"graders"> | bigint | number | null
+  id?: Prisma.IntWithAggregatesFilter<"graders"> | number
+  campaign_id?: Prisma.IntNullableWithAggregatesFilter<"graders"> | number | null
+  account_id?: Prisma.IntNullableWithAggregatesFilter<"graders"> | number | null
 }
 
 export type gradersCreateInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
@@ -290,9 +289,9 @@ export type gradersCreateInput = {
 }
 
 export type gradersUncheckedCreateInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
@@ -304,7 +303,6 @@ export type gradersUncheckedCreateInput = {
 }
 
 export type gradersUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
@@ -318,9 +316,9 @@ export type gradersUpdateInput = {
 }
 
 export type gradersUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
@@ -332,19 +330,19 @@ export type gradersUncheckedUpdateInput = {
 }
 
 export type gradersCreateManyInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
 }
 
 export type gradersUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+
 }
 
 export type gradersUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type GradersListRelationFilter = {
@@ -602,7 +600,6 @@ export type gradersUpdateOneWithoutGrading_slotsNestedInput = {
 }
 
 export type gradersCreateWithoutAccountsInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
@@ -615,8 +612,8 @@ export type gradersCreateWithoutAccountsInput = {
 }
 
 export type gradersUncheckedCreateWithoutAccountsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
@@ -657,13 +654,12 @@ export type gradersScalarWhereInput = {
   AND?: Prisma.gradersScalarWhereInput | Prisma.gradersScalarWhereInput[]
   OR?: Prisma.gradersScalarWhereInput[]
   NOT?: Prisma.gradersScalarWhereInput | Prisma.gradersScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"graders"> | bigint | number
-  campaign_id?: Prisma.BigIntNullableFilter<"graders"> | bigint | number | null
-  account_id?: Prisma.BigIntNullableFilter<"graders"> | bigint | number | null
+  id?: Prisma.IntFilter<"graders"> | number
+  campaign_id?: Prisma.IntNullableFilter<"graders"> | number | null
+  account_id?: Prisma.IntNullableFilter<"graders"> | number | null
 }
 
 export type gradersCreateWithoutActivity_logsInput = {
-  id?: bigint | number
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
   exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutGradersInput
@@ -676,9 +672,9 @@ export type gradersCreateWithoutActivity_logsInput = {
 }
 
 export type gradersUncheckedCreateWithoutActivity_logsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutGradersInput
@@ -705,7 +701,6 @@ export type gradersUpdateToOneWithWhereWithoutActivity_logsInput = {
 }
 
 export type gradersUpdateWithoutActivity_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
   exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutGradersNestedInput
@@ -718,9 +713,9 @@ export type gradersUpdateWithoutActivity_logsInput = {
 }
 
 export type gradersUncheckedUpdateWithoutActivity_logsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutGradersNestedInput
@@ -731,7 +726,6 @@ export type gradersUncheckedUpdateWithoutActivity_logsInput = {
 }
 
 export type gradersCreateWithoutExam_campaignsInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
@@ -744,8 +738,8 @@ export type gradersCreateWithoutExam_campaignsInput = {
 }
 
 export type gradersUncheckedCreateWithoutExam_campaignsInput = {
-  id?: bigint | number
-  account_id?: bigint | number | null
+  id?: number
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
@@ -783,7 +777,6 @@ export type gradersUpdateManyWithWhereWithoutExam_campaignsInput = {
 }
 
 export type gradersCreateWithoutGrader_assignmentsInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
   exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutGradersInput
@@ -796,9 +789,9 @@ export type gradersCreateWithoutGrader_assignmentsInput = {
 }
 
 export type gradersUncheckedCreateWithoutGrader_assignmentsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutGradersInput
@@ -825,7 +818,6 @@ export type gradersUpdateToOneWithWhereWithoutGrader_assignmentsInput = {
 }
 
 export type gradersUpdateWithoutGrader_assignmentsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
   exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutGradersNestedInput
@@ -838,9 +830,9 @@ export type gradersUpdateWithoutGrader_assignmentsInput = {
 }
 
 export type gradersUncheckedUpdateWithoutGrader_assignmentsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutGradersNestedInput
@@ -851,7 +843,6 @@ export type gradersUncheckedUpdateWithoutGrader_assignmentsInput = {
 }
 
 export type gradersCreateWithoutGrader_work_locksInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutGradersInput
@@ -864,9 +855,9 @@ export type gradersCreateWithoutGrader_work_locksInput = {
 }
 
 export type gradersUncheckedCreateWithoutGrader_work_locksInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutGradersInput
@@ -893,7 +884,6 @@ export type gradersUpdateToOneWithWhereWithoutGrader_work_locksInput = {
 }
 
 export type gradersUpdateWithoutGrader_work_locksInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutGradersNestedInput
@@ -906,9 +896,9 @@ export type gradersUpdateWithoutGrader_work_locksInput = {
 }
 
 export type gradersUncheckedUpdateWithoutGrader_work_locksInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutGradersNestedInput
@@ -919,7 +909,6 @@ export type gradersUncheckedUpdateWithoutGrader_work_locksInput = {
 }
 
 export type gradersCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
@@ -932,9 +921,9 @@ export type gradersCreateWithoutGrading_score_draftsInput = {
 }
 
 export type gradersUncheckedCreateWithoutGrading_score_draftsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
@@ -961,7 +950,6 @@ export type gradersUpdateToOneWithWhereWithoutGrading_score_draftsInput = {
 }
 
 export type gradersUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
@@ -974,9 +962,9 @@ export type gradersUpdateWithoutGrading_score_draftsInput = {
 }
 
 export type gradersUncheckedUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
@@ -987,7 +975,6 @@ export type gradersUncheckedUpdateWithoutGrading_score_draftsInput = {
 }
 
 export type gradersCreateWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
@@ -1000,9 +987,9 @@ export type gradersCreateWithoutGrading_score_logs_grading_score_logs_grader1_id
 }
 
 export type gradersUncheckedCreateWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
@@ -1018,7 +1005,6 @@ export type gradersCreateOrConnectWithoutGrading_score_logs_grading_score_logs_g
 }
 
 export type gradersCreateWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
@@ -1031,9 +1017,9 @@ export type gradersCreateWithoutGrading_score_logs_grading_score_logs_grader2_id
 }
 
 export type gradersUncheckedCreateWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
@@ -1060,7 +1046,6 @@ export type gradersUpdateToOneWithWhereWithoutGrading_score_logs_grading_score_l
 }
 
 export type gradersUpdateWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
@@ -1073,9 +1058,9 @@ export type gradersUpdateWithoutGrading_score_logs_grading_score_logs_grader1_id
 }
 
 export type gradersUncheckedUpdateWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
@@ -1097,7 +1082,6 @@ export type gradersUpdateToOneWithWhereWithoutGrading_score_logs_grading_score_l
 }
 
 export type gradersUpdateWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
@@ -1110,9 +1094,9 @@ export type gradersUpdateWithoutGrading_score_logs_grading_score_logs_grader2_id
 }
 
 export type gradersUncheckedUpdateWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
@@ -1123,7 +1107,6 @@ export type gradersUncheckedUpdateWithoutGrading_score_logs_grading_score_logs_g
 }
 
 export type gradersCreateWithoutGrading_scoresInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
@@ -1136,9 +1119,9 @@ export type gradersCreateWithoutGrading_scoresInput = {
 }
 
 export type gradersUncheckedCreateWithoutGrading_scoresInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
@@ -1165,7 +1148,6 @@ export type gradersUpdateToOneWithWhereWithoutGrading_scoresInput = {
 }
 
 export type gradersUpdateWithoutGrading_scoresInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
@@ -1178,9 +1160,9 @@ export type gradersUpdateWithoutGrading_scoresInput = {
 }
 
 export type gradersUncheckedUpdateWithoutGrading_scoresInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
@@ -1191,7 +1173,6 @@ export type gradersUncheckedUpdateWithoutGrading_scoresInput = {
 }
 
 export type gradersCreateWithoutGrading_slotsInput = {
-  id?: bigint | number
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutGradersInput
@@ -1204,9 +1185,9 @@ export type gradersCreateWithoutGrading_slotsInput = {
 }
 
 export type gradersUncheckedCreateWithoutGrading_slotsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
-  account_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
+  account_id?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutGradersInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutGradersInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutGradersInput
@@ -1233,7 +1214,6 @@ export type gradersUpdateToOneWithWhereWithoutGrading_slotsInput = {
 }
 
 export type gradersUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
@@ -1246,9 +1226,9 @@ export type gradersUpdateWithoutGrading_slotsInput = {
 }
 
 export type gradersUncheckedUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
@@ -1259,12 +1239,11 @@ export type gradersUncheckedUpdateWithoutGrading_slotsInput = {
 }
 
 export type gradersCreateManyAccountsInput = {
-  id?: bigint | number
-  campaign_id?: bigint | number | null
+  id?: number
+  campaign_id?: number | null
 }
 
 export type gradersUpdateWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
@@ -1277,8 +1256,8 @@ export type gradersUpdateWithoutAccountsInput = {
 }
 
 export type gradersUncheckedUpdateWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
@@ -1290,17 +1269,16 @@ export type gradersUncheckedUpdateWithoutAccountsInput = {
 }
 
 export type gradersUncheckedUpdateManyWithoutAccountsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type gradersCreateManyExam_campaignsInput = {
-  id?: bigint | number
-  account_id?: bigint | number | null
+  id?: number
+  account_id?: number | null
 }
 
 export type gradersUpdateWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   activity_logs?: Prisma.activity_logsUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutGradersNestedInput
@@ -1313,8 +1291,8 @@ export type gradersUpdateWithoutExam_campaignsInput = {
 }
 
 export type gradersUncheckedUpdateWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutGradersNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutGradersNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput
@@ -1326,8 +1304,8 @@ export type gradersUncheckedUpdateWithoutExam_campaignsInput = {
 }
 
 export type gradersUncheckedUpdateManyWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -1479,9 +1457,9 @@ export type $gradersPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     grading_slots: Prisma.$grading_slotsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    campaign_id: bigint | null
-    account_id: bigint | null
+    id: number
+    campaign_id: number | null
+    account_id: number | null
   }, ExtArgs["result"]["graders"]>
   composites: {}
 }
@@ -1861,9 +1839,9 @@ export interface Prisma__gradersClient<T, Null = never, ExtArgs extends runtime.
  * Fields of the graders model
  */
 export interface gradersFieldRefs {
-  readonly id: Prisma.FieldRef<"graders", 'BigInt'>
-  readonly campaign_id: Prisma.FieldRef<"graders", 'BigInt'>
-  readonly account_id: Prisma.FieldRef<"graders", 'BigInt'>
+  readonly id: Prisma.FieldRef<"graders", 'Int'>
+  readonly campaign_id: Prisma.FieldRef<"graders", 'Int'>
+  readonly account_id: Prisma.FieldRef<"graders", 'Int'>
 }
     
 

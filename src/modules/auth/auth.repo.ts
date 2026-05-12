@@ -1,15 +1,14 @@
 import { prisma, type Tx } from "../../cores/prisma";
-import { serializeBigInt } from "../../cores/bigint";
 
 export const authRepo = {
     async findAccountByUsername(username: string) {
         const account = await prisma.accounts.findUnique({ where: { username } });
-        return account ? serializeBigInt(account) : null;
+        return account ? account : null;
     },
 
     async findAccountById(accountId: string) {
         const account = await prisma.accounts.findUnique({
-            where: { id: BigInt(accountId) },
+            where: { id: Number(accountId) },
             include: {
                 roles: {
                     select: {
@@ -19,7 +18,7 @@ export const authRepo = {
                 }
             }
         });
-        return account ? serializeBigInt(account) : null;
+        return account ? account : null;
     },
 
     async createAccount(data: {
@@ -39,32 +38,32 @@ export const authRepo = {
                 password_hash: data.password_hash,
                 full_name: data.full_name,
                 email: data.email ?? null,
-                role_id: BigInt(data.role_id),
+                role_id: Number(data.role_id),
                 manager_order: data.manager_order ?? null,
                 title: data.title,
                 campaign_id: data.campaign_id
 
             },
         });
-        return serializeBigInt(account);
+        return account;
     },
 
     updatePassword(accountId: string, password_hash: string) {
         return prisma.accounts.update({
-            where: { id: BigInt(accountId) },
+            where: { id: Number(accountId) },
             data: { password_hash },
         });
     },
 
     async revokeAccount(accountId: string) {
         await prisma.accounts.update({
-            where: { id: BigInt(accountId) },
+            where: { id: Number(accountId) },
             data: { active: false },
         });
     },
     async unRevokeAccount(accountId: string) {
         await prisma.accounts.update({
-            where: { id: BigInt(accountId) },
+            where: { id: Number(accountId) },
             data: { active: true },
         });
     },

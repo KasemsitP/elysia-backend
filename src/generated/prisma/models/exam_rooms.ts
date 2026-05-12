@@ -32,18 +32,18 @@ export type Exam_roomsAvgAggregateOutputType = {
 }
 
 export type Exam_roomsSumAggregateOutputType = {
-  campaign_id: bigint | null
+  campaign_id: number | null
   capacity: number | null
 }
 
 export type Exam_roomsMinAggregateOutputType = {
-  campaign_id: bigint | null
+  campaign_id: number | null
   room_code: string | null
   capacity: number | null
 }
 
 export type Exam_roomsMaxAggregateOutputType = {
-  campaign_id: bigint | null
+  campaign_id: number | null
   room_code: string | null
   capacity: number | null
 }
@@ -172,7 +172,7 @@ export type exam_roomsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 export type Exam_roomsGroupByOutputType = {
-  campaign_id: bigint
+  campaign_id: number
   room_code: string
   capacity: number
   _count: Exam_roomsCountAggregateOutputType | null
@@ -201,7 +201,7 @@ export type exam_roomsWhereInput = {
   AND?: Prisma.exam_roomsWhereInput | Prisma.exam_roomsWhereInput[]
   OR?: Prisma.exam_roomsWhereInput[]
   NOT?: Prisma.exam_roomsWhereInput | Prisma.exam_roomsWhereInput[]
-  campaign_id?: Prisma.BigIntFilter<"exam_rooms"> | bigint | number
+  campaign_id?: Prisma.IntFilter<"exam_rooms"> | number
   room_code?: Prisma.StringFilter<"exam_rooms"> | string
   capacity?: Prisma.IntFilter<"exam_rooms"> | number
   exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
@@ -222,7 +222,7 @@ export type exam_roomsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.exam_roomsWhereInput | Prisma.exam_roomsWhereInput[]
   OR?: Prisma.exam_roomsWhereInput[]
   NOT?: Prisma.exam_roomsWhereInput | Prisma.exam_roomsWhereInput[]
-  campaign_id?: Prisma.BigIntFilter<"exam_rooms"> | bigint | number
+  campaign_id?: Prisma.IntFilter<"exam_rooms"> | number
   room_code?: Prisma.StringFilter<"exam_rooms"> | string
   capacity?: Prisma.IntFilter<"exam_rooms"> | number
   exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
@@ -244,7 +244,7 @@ export type exam_roomsScalarWhereWithAggregatesInput = {
   AND?: Prisma.exam_roomsScalarWhereWithAggregatesInput | Prisma.exam_roomsScalarWhereWithAggregatesInput[]
   OR?: Prisma.exam_roomsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.exam_roomsScalarWhereWithAggregatesInput | Prisma.exam_roomsScalarWhereWithAggregatesInput[]
-  campaign_id?: Prisma.BigIntWithAggregatesFilter<"exam_rooms"> | bigint | number
+  campaign_id?: Prisma.IntWithAggregatesFilter<"exam_rooms"> | number
   room_code?: Prisma.StringWithAggregatesFilter<"exam_rooms"> | string
   capacity?: Prisma.IntWithAggregatesFilter<"exam_rooms"> | number
 }
@@ -257,7 +257,7 @@ export type exam_roomsCreateInput = {
 }
 
 export type exam_roomsUncheckedCreateInput = {
-  campaign_id: bigint | number
+  campaign_id: number
   room_code: string
   capacity: number
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_roomsInput
@@ -271,14 +271,14 @@ export type exam_roomsUpdateInput = {
 }
 
 export type exam_roomsUncheckedUpdateInput = {
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_roomsNestedInput
 }
 
 export type exam_roomsCreateManyInput = {
-  campaign_id: bigint | number
+  campaign_id: number
   room_code: string
   capacity: number
 }
@@ -289,7 +289,7 @@ export type exam_roomsUpdateManyMutationInput = {
 }
 
 export type exam_roomsUncheckedUpdateManyInput = {
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -311,7 +311,7 @@ export type exam_roomsOrderByRelevanceInput = {
 }
 
 export type exam_roomsCampaign_idRoom_codeCompoundUniqueInput = {
-  campaign_id: bigint | number
+  campaign_id: number
   room_code: string
 }
 
@@ -448,7 +448,7 @@ export type exam_roomsScalarWhereInput = {
   AND?: Prisma.exam_roomsScalarWhereInput | Prisma.exam_roomsScalarWhereInput[]
   OR?: Prisma.exam_roomsScalarWhereInput[]
   NOT?: Prisma.exam_roomsScalarWhereInput | Prisma.exam_roomsScalarWhereInput[]
-  campaign_id?: Prisma.BigIntFilter<"exam_rooms"> | bigint | number
+  campaign_id?: Prisma.IntFilter<"exam_rooms"> | number
   room_code?: Prisma.StringFilter<"exam_rooms"> | string
   capacity?: Prisma.IntFilter<"exam_rooms"> | number
 }
@@ -460,7 +460,7 @@ export type exam_roomsCreateWithoutUser_campaignsInput = {
 }
 
 export type exam_roomsUncheckedCreateWithoutUser_campaignsInput = {
-  campaign_id: bigint | number
+  campaign_id: number
   room_code: string
   capacity: number
 }
@@ -488,7 +488,7 @@ export type exam_roomsUpdateWithoutUser_campaignsInput = {
 }
 
 export type exam_roomsUncheckedUpdateWithoutUser_campaignsInput = {
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -577,7 +577,7 @@ export type $exam_roomsPayload<ExtArgs extends runtime.Types.Extensions.Internal
     user_campaigns: Prisma.$user_campaignsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    campaign_id: bigint
+    campaign_id: number
     room_code: string
     capacity: number
   }, ExtArgs["result"]["exam_rooms"]>
@@ -951,7 +951,7 @@ export interface Prisma__exam_roomsClient<T, Null = never, ExtArgs extends runti
  * Fields of the exam_rooms model
  */
 export interface exam_roomsFieldRefs {
-  readonly campaign_id: Prisma.FieldRef<"exam_rooms", 'BigInt'>
+  readonly campaign_id: Prisma.FieldRef<"exam_rooms", 'Int'>
   readonly room_code: Prisma.FieldRef<"exam_rooms", 'String'>
   readonly capacity: Prisma.FieldRef<"exam_rooms", 'Int'>
 }

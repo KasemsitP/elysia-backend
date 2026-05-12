@@ -30,35 +30,31 @@ export type User_campaignsAvgAggregateOutputType = {
   id: number | null
   user_id: number | null
   campaign_id: number | null
-  final_score: runtime.Decimal | null
   row_no: number | null
   col_no: number | null
 }
 
 export type User_campaignsSumAggregateOutputType = {
-  id: bigint | null
-  user_id: bigint | null
-  campaign_id: bigint | null
-  final_score: runtime.Decimal | null
+  id: number | null
+  user_id: number | null
+  campaign_id: number | null
   row_no: number | null
   col_no: number | null
 }
 
 export type User_campaignsMinAggregateOutputType = {
-  id: bigint | null
-  user_id: bigint | null
-  campaign_id: bigint | null
-  final_score: runtime.Decimal | null
+  id: number | null
+  user_id: number | null
+  campaign_id: number | null
   room_code: string | null
   row_no: number | null
   col_no: number | null
 }
 
 export type User_campaignsMaxAggregateOutputType = {
-  id: bigint | null
-  user_id: bigint | null
-  campaign_id: bigint | null
-  final_score: runtime.Decimal | null
+  id: number | null
+  user_id: number | null
+  campaign_id: number | null
   room_code: string | null
   row_no: number | null
   col_no: number | null
@@ -68,7 +64,6 @@ export type User_campaignsCountAggregateOutputType = {
   id: number
   user_id: number
   campaign_id: number
-  final_score: number
   room_code: number
   row_no: number
   col_no: number
@@ -80,7 +75,6 @@ export type User_campaignsAvgAggregateInputType = {
   id?: true
   user_id?: true
   campaign_id?: true
-  final_score?: true
   row_no?: true
   col_no?: true
 }
@@ -89,7 +83,6 @@ export type User_campaignsSumAggregateInputType = {
   id?: true
   user_id?: true
   campaign_id?: true
-  final_score?: true
   row_no?: true
   col_no?: true
 }
@@ -98,7 +91,6 @@ export type User_campaignsMinAggregateInputType = {
   id?: true
   user_id?: true
   campaign_id?: true
-  final_score?: true
   room_code?: true
   row_no?: true
   col_no?: true
@@ -108,7 +100,6 @@ export type User_campaignsMaxAggregateInputType = {
   id?: true
   user_id?: true
   campaign_id?: true
-  final_score?: true
   room_code?: true
   row_no?: true
   col_no?: true
@@ -118,7 +109,6 @@ export type User_campaignsCountAggregateInputType = {
   id?: true
   user_id?: true
   campaign_id?: true
-  final_score?: true
   room_code?: true
   row_no?: true
   col_no?: true
@@ -212,10 +202,9 @@ export type user_campaignsGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 export type User_campaignsGroupByOutputType = {
-  id: bigint
-  user_id: bigint
-  campaign_id: bigint
-  final_score: runtime.Decimal | null
+  id: number
+  user_id: number
+  campaign_id: number
   room_code: string | null
   row_no: number | null
   col_no: number | null
@@ -245,10 +234,9 @@ export type user_campaignsWhereInput = {
   AND?: Prisma.user_campaignsWhereInput | Prisma.user_campaignsWhereInput[]
   OR?: Prisma.user_campaignsWhereInput[]
   NOT?: Prisma.user_campaignsWhereInput | Prisma.user_campaignsWhereInput[]
-  id?: Prisma.BigIntFilter<"user_campaigns"> | bigint | number
-  user_id?: Prisma.BigIntFilter<"user_campaigns"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"user_campaigns"> | bigint | number
-  final_score?: Prisma.DecimalNullableFilter<"user_campaigns"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFilter<"user_campaigns"> | number
+  user_id?: Prisma.IntFilter<"user_campaigns"> | number
+  campaign_id?: Prisma.IntFilter<"user_campaigns"> | number
   room_code?: Prisma.StringNullableFilter<"user_campaigns"> | string | null
   row_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
   col_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
@@ -263,7 +251,6 @@ export type user_campaignsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  final_score?: Prisma.SortOrderInput | Prisma.SortOrder
   room_code?: Prisma.SortOrderInput | Prisma.SortOrder
   row_no?: Prisma.SortOrderInput | Prisma.SortOrder
   col_no?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -276,16 +263,15 @@ export type user_campaignsOrderByWithRelationInput = {
 }
 
 export type user_campaignsWhereUniqueInput = Prisma.AtLeast<{
-  id?: bigint | number
+  id?: number
   id_campaign_id?: Prisma.user_campaignsIdCampaign_idCompoundUniqueInput
   campaign_id_room_code_row_no_col_no?: Prisma.user_campaignsCampaign_idRoom_codeRow_noCol_noCompoundUniqueInput
   user_id_campaign_id?: Prisma.user_campaignsUser_idCampaign_idCompoundUniqueInput
   AND?: Prisma.user_campaignsWhereInput | Prisma.user_campaignsWhereInput[]
   OR?: Prisma.user_campaignsWhereInput[]
   NOT?: Prisma.user_campaignsWhereInput | Prisma.user_campaignsWhereInput[]
-  user_id?: Prisma.BigIntFilter<"user_campaigns"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"user_campaigns"> | bigint | number
-  final_score?: Prisma.DecimalNullableFilter<"user_campaigns"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  user_id?: Prisma.IntFilter<"user_campaigns"> | number
+  campaign_id?: Prisma.IntFilter<"user_campaigns"> | number
   room_code?: Prisma.StringNullableFilter<"user_campaigns"> | string | null
   row_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
   col_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
@@ -300,7 +286,6 @@ export type user_campaignsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  final_score?: Prisma.SortOrderInput | Prisma.SortOrder
   room_code?: Prisma.SortOrderInput | Prisma.SortOrder
   row_no?: Prisma.SortOrderInput | Prisma.SortOrder
   col_no?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -315,18 +300,15 @@ export type user_campaignsScalarWhereWithAggregatesInput = {
   AND?: Prisma.user_campaignsScalarWhereWithAggregatesInput | Prisma.user_campaignsScalarWhereWithAggregatesInput[]
   OR?: Prisma.user_campaignsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.user_campaignsScalarWhereWithAggregatesInput | Prisma.user_campaignsScalarWhereWithAggregatesInput[]
-  id?: Prisma.BigIntWithAggregatesFilter<"user_campaigns"> | bigint | number
-  user_id?: Prisma.BigIntWithAggregatesFilter<"user_campaigns"> | bigint | number
-  campaign_id?: Prisma.BigIntWithAggregatesFilter<"user_campaigns"> | bigint | number
-  final_score?: Prisma.DecimalNullableWithAggregatesFilter<"user_campaigns"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntWithAggregatesFilter<"user_campaigns"> | number
+  user_id?: Prisma.IntWithAggregatesFilter<"user_campaigns"> | number
+  campaign_id?: Prisma.IntWithAggregatesFilter<"user_campaigns"> | number
   room_code?: Prisma.StringNullableWithAggregatesFilter<"user_campaigns"> | string | null
   row_no?: Prisma.IntNullableWithAggregatesFilter<"user_campaigns"> | number | null
   col_no?: Prisma.IntNullableWithAggregatesFilter<"user_campaigns"> | number | null
 }
 
 export type user_campaignsCreateInput = {
-  id?: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: number | null
   col_no?: number | null
   exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
@@ -337,10 +319,9 @@ export type user_campaignsCreateInput = {
 }
 
 export type user_campaignsUncheckedCreateInput = {
-  id?: bigint | number
-  user_id: bigint | number
-  campaign_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  user_id: number
+  campaign_id: number
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
@@ -349,8 +330,6 @@ export type user_campaignsUncheckedCreateInput = {
 }
 
 export type user_campaignsUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
@@ -361,10 +340,9 @@ export type user_campaignsUpdateInput = {
 }
 
 export type user_campaignsUncheckedUpdateInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -373,27 +351,23 @@ export type user_campaignsUncheckedUpdateInput = {
 }
 
 export type user_campaignsCreateManyInput = {
-  id?: bigint | number
-  user_id: bigint | number
-  campaign_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  user_id: number
+  campaign_id: number
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
 }
 
 export type user_campaignsUpdateManyMutationInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type user_campaignsUncheckedUpdateManyInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -416,27 +390,26 @@ export type user_campaignsOrderByRelevanceInput = {
 }
 
 export type user_campaignsIdCampaign_idCompoundUniqueInput = {
-  id: bigint | number
-  campaign_id: bigint | number
+  id: number
+  campaign_id: number
 }
 
 export type user_campaignsCampaign_idRoom_codeRow_noCol_noCompoundUniqueInput = {
-  campaign_id: bigint | number
+  campaign_id: number
   room_code: string
   row_no: number
   col_no: number
 }
 
 export type user_campaignsUser_idCampaign_idCompoundUniqueInput = {
-  user_id: bigint | number
-  campaign_id: bigint | number
+  user_id: number
+  campaign_id: number
 }
 
 export type user_campaignsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  final_score?: Prisma.SortOrder
   room_code?: Prisma.SortOrder
   row_no?: Prisma.SortOrder
   col_no?: Prisma.SortOrder
@@ -446,7 +419,6 @@ export type user_campaignsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  final_score?: Prisma.SortOrder
   row_no?: Prisma.SortOrder
   col_no?: Prisma.SortOrder
 }
@@ -455,7 +427,6 @@ export type user_campaignsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  final_score?: Prisma.SortOrder
   room_code?: Prisma.SortOrder
   row_no?: Prisma.SortOrder
   col_no?: Prisma.SortOrder
@@ -465,7 +436,6 @@ export type user_campaignsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  final_score?: Prisma.SortOrder
   room_code?: Prisma.SortOrder
   row_no?: Prisma.SortOrder
   col_no?: Prisma.SortOrder
@@ -475,7 +445,6 @@ export type user_campaignsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  final_score?: Prisma.SortOrder
   row_no?: Prisma.SortOrder
   col_no?: Prisma.SortOrder
 }
@@ -569,14 +538,6 @@ export type user_campaignsUncheckedUpdateManyWithoutExam_roomsNestedInput = {
   deleteMany?: Prisma.user_campaignsScalarWhereInput | Prisma.user_campaignsScalarWhereInput[]
 }
 
-export type NullableDecimalFieldUpdateOperationsInput = {
-  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
-  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
-}
-
 export type user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
   create?: Prisma.XOR<Prisma.user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput>
   connectOrCreate?: Prisma.user_campaignsCreateOrConnectWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
@@ -648,8 +609,6 @@ export type user_campaignsUncheckedUpdateManyWithoutUsersNestedInput = {
 }
 
 export type user_campaignsCreateWithoutExam_campaignsInput = {
-  id?: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: number | null
   col_no?: number | null
   exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
@@ -659,9 +618,8 @@ export type user_campaignsCreateWithoutExam_campaignsInput = {
 }
 
 export type user_campaignsUncheckedCreateWithoutExam_campaignsInput = {
-  id?: bigint | number
-  user_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  user_id: number
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
@@ -699,18 +657,15 @@ export type user_campaignsScalarWhereInput = {
   AND?: Prisma.user_campaignsScalarWhereInput | Prisma.user_campaignsScalarWhereInput[]
   OR?: Prisma.user_campaignsScalarWhereInput[]
   NOT?: Prisma.user_campaignsScalarWhereInput | Prisma.user_campaignsScalarWhereInput[]
-  id?: Prisma.BigIntFilter<"user_campaigns"> | bigint | number
-  user_id?: Prisma.BigIntFilter<"user_campaigns"> | bigint | number
-  campaign_id?: Prisma.BigIntFilter<"user_campaigns"> | bigint | number
-  final_score?: Prisma.DecimalNullableFilter<"user_campaigns"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFilter<"user_campaigns"> | number
+  user_id?: Prisma.IntFilter<"user_campaigns"> | number
+  campaign_id?: Prisma.IntFilter<"user_campaigns"> | number
   room_code?: Prisma.StringNullableFilter<"user_campaigns"> | string | null
   row_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
   col_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
 }
 
 export type user_campaignsCreateWithoutExam_roomsInput = {
-  id?: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: number | null
   col_no?: number | null
   users: Prisma.usersCreateNestedOneWithoutUser_campaignsInput
@@ -720,9 +675,8 @@ export type user_campaignsCreateWithoutExam_roomsInput = {
 }
 
 export type user_campaignsUncheckedCreateWithoutExam_roomsInput = {
-  id?: bigint | number
-  user_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  user_id: number
   row_no?: number | null
   col_no?: number | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
@@ -756,8 +710,6 @@ export type user_campaignsUpdateManyWithWhereWithoutExam_roomsInput = {
 }
 
 export type user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: number | null
   col_no?: number | null
   exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
@@ -767,10 +719,9 @@ export type user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign
 }
 
 export type user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
-  user_id: bigint | number
-  campaign_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  user_id: number
+  campaign_id: number
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
@@ -783,8 +734,6 @@ export type user_campaignsCreateOrConnectWithoutUser_sessions_user_sessions_user
 }
 
 export type user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: number | null
   col_no?: number | null
   exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
@@ -794,10 +743,9 @@ export type user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign
 }
 
 export type user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: bigint | number
-  user_id: bigint | number
-  campaign_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  user_id: number
+  campaign_id: number
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
@@ -821,8 +769,6 @@ export type user_campaignsUpdateToOneWithWhereWithoutUser_sessions_user_sessions
 }
 
 export type user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
@@ -832,10 +778,9 @@ export type user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign
 }
 
 export type user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -854,8 +799,6 @@ export type user_campaignsUpdateToOneWithWhereWithoutUser_sessions_user_sessions
 }
 
 export type user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
@@ -865,10 +808,9 @@ export type user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign
 }
 
 export type user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -876,8 +818,6 @@ export type user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user
 }
 
 export type user_campaignsCreateWithoutUsersInput = {
-  id?: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: number | null
   col_no?: number | null
   exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
@@ -887,9 +827,8 @@ export type user_campaignsCreateWithoutUsersInput = {
 }
 
 export type user_campaignsUncheckedCreateWithoutUsersInput = {
-  id?: bigint | number
-  campaign_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  campaign_id: number
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
@@ -924,17 +863,14 @@ export type user_campaignsUpdateManyWithWhereWithoutUsersInput = {
 }
 
 export type user_campaignsCreateManyExam_campaignsInput = {
-  id?: bigint | number
-  user_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  user_id: number
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
 }
 
 export type user_campaignsUpdateWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
@@ -944,9 +880,8 @@ export type user_campaignsUpdateWithoutExam_campaignsInput = {
 }
 
 export type user_campaignsUncheckedUpdateWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -955,25 +890,21 @@ export type user_campaignsUncheckedUpdateWithoutExam_campaignsInput = {
 }
 
 export type user_campaignsUncheckedUpdateManyWithoutExam_campaignsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type user_campaignsCreateManyExam_roomsInput = {
-  id?: bigint | number
-  user_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  user_id: number
   row_no?: number | null
   col_no?: number | null
 }
 
 export type user_campaignsUpdateWithoutExam_roomsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   users?: Prisma.usersUpdateOneRequiredWithoutUser_campaignsNestedInput
@@ -983,9 +914,8 @@ export type user_campaignsUpdateWithoutExam_roomsInput = {
 }
 
 export type user_campaignsUncheckedUpdateWithoutExam_roomsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
@@ -993,25 +923,21 @@ export type user_campaignsUncheckedUpdateWithoutExam_roomsInput = {
 }
 
 export type user_campaignsUncheckedUpdateManyWithoutExam_roomsInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type user_campaignsCreateManyUsersInput = {
-  id?: bigint | number
-  campaign_id: bigint | number
-  final_score?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: number
+  campaign_id: number
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
 }
 
 export type user_campaignsUpdateWithoutUsersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
@@ -1021,9 +947,8 @@ export type user_campaignsUpdateWithoutUsersInput = {
 }
 
 export type user_campaignsUncheckedUpdateWithoutUsersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1032,9 +957,8 @@ export type user_campaignsUncheckedUpdateWithoutUsersInput = {
 }
 
 export type user_campaignsUncheckedUpdateManyWithoutUsersInput = {
-  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  campaign_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  final_score?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1084,7 +1008,6 @@ export type user_campaignsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   user_id?: boolean
   campaign_id?: boolean
-  final_score?: boolean
   room_code?: boolean
   row_no?: boolean
   col_no?: boolean
@@ -1102,13 +1025,12 @@ export type user_campaignsSelectScalar = {
   id?: boolean
   user_id?: boolean
   campaign_id?: boolean
-  final_score?: boolean
   room_code?: boolean
   row_no?: boolean
   col_no?: boolean
 }
 
-export type user_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "campaign_id" | "final_score" | "room_code" | "row_no" | "col_no", ExtArgs["result"]["user_campaigns"]>
+export type user_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "campaign_id" | "room_code" | "row_no" | "col_no", ExtArgs["result"]["user_campaigns"]>
 export type user_campaignsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   exam_rooms?: boolean | Prisma.user_campaigns$exam_roomsArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
@@ -1128,10 +1050,9 @@ export type $user_campaignsPayload<ExtArgs extends runtime.Types.Extensions.Inte
     user_sessions_user_sessions_user_campaign_idTouser_campaigns: Prisma.$user_sessionsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: bigint
-    user_id: bigint
-    campaign_id: bigint
-    final_score: runtime.Decimal | null
+    id: number
+    user_id: number
+    campaign_id: number
     room_code: string | null
     row_no: number | null
     col_no: number | null
@@ -1509,10 +1430,9 @@ export interface Prisma__user_campaignsClient<T, Null = never, ExtArgs extends r
  * Fields of the user_campaigns model
  */
 export interface user_campaignsFieldRefs {
-  readonly id: Prisma.FieldRef<"user_campaigns", 'BigInt'>
-  readonly user_id: Prisma.FieldRef<"user_campaigns", 'BigInt'>
-  readonly campaign_id: Prisma.FieldRef<"user_campaigns", 'BigInt'>
-  readonly final_score: Prisma.FieldRef<"user_campaigns", 'Decimal'>
+  readonly id: Prisma.FieldRef<"user_campaigns", 'Int'>
+  readonly user_id: Prisma.FieldRef<"user_campaigns", 'Int'>
+  readonly campaign_id: Prisma.FieldRef<"user_campaigns", 'Int'>
   readonly room_code: Prisma.FieldRef<"user_campaigns", 'String'>
   readonly row_no: Prisma.FieldRef<"user_campaigns", 'Int'>
   readonly col_no: Prisma.FieldRef<"user_campaigns", 'Int'>

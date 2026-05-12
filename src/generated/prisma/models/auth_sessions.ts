@@ -32,20 +32,20 @@ export type Auth_sessionsAvgAggregateOutputType = {
 }
 
 export type Auth_sessionsSumAggregateOutputType = {
-  account_id: bigint | null
+  account_id: number | null
   expires: number | null
 }
 
 export type Auth_sessionsMinAggregateOutputType = {
   sid: string | null
-  account_id: bigint | null
+  account_id: number | null
   expires: number | null
   data: string | null
 }
 
 export type Auth_sessionsMaxAggregateOutputType = {
   sid: string | null
-  account_id: bigint | null
+  account_id: number | null
   expires: number | null
   data: string | null
 }
@@ -179,7 +179,7 @@ export type auth_sessionsGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type Auth_sessionsGroupByOutputType = {
   sid: string
-  account_id: bigint | null
+  account_id: number | null
   expires: number
   data: string
   _count: Auth_sessionsCountAggregateOutputType | null
@@ -209,7 +209,7 @@ export type auth_sessionsWhereInput = {
   OR?: Prisma.auth_sessionsWhereInput[]
   NOT?: Prisma.auth_sessionsWhereInput | Prisma.auth_sessionsWhereInput[]
   sid?: Prisma.StringFilter<"auth_sessions"> | string
-  account_id?: Prisma.BigIntNullableFilter<"auth_sessions"> | bigint | number | null
+  account_id?: Prisma.IntNullableFilter<"auth_sessions"> | number | null
   expires?: Prisma.IntFilter<"auth_sessions"> | number
   data?: Prisma.StringFilter<"auth_sessions"> | string
   accounts?: Prisma.XOR<Prisma.AccountsNullableScalarRelationFilter, Prisma.accountsWhereInput> | null
@@ -229,7 +229,7 @@ export type auth_sessionsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.auth_sessionsWhereInput | Prisma.auth_sessionsWhereInput[]
   OR?: Prisma.auth_sessionsWhereInput[]
   NOT?: Prisma.auth_sessionsWhereInput | Prisma.auth_sessionsWhereInput[]
-  account_id?: Prisma.BigIntNullableFilter<"auth_sessions"> | bigint | number | null
+  account_id?: Prisma.IntNullableFilter<"auth_sessions"> | number | null
   expires?: Prisma.IntFilter<"auth_sessions"> | number
   data?: Prisma.StringFilter<"auth_sessions"> | string
   accounts?: Prisma.XOR<Prisma.AccountsNullableScalarRelationFilter, Prisma.accountsWhereInput> | null
@@ -252,7 +252,7 @@ export type auth_sessionsScalarWhereWithAggregatesInput = {
   OR?: Prisma.auth_sessionsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.auth_sessionsScalarWhereWithAggregatesInput | Prisma.auth_sessionsScalarWhereWithAggregatesInput[]
   sid?: Prisma.StringWithAggregatesFilter<"auth_sessions"> | string
-  account_id?: Prisma.BigIntNullableWithAggregatesFilter<"auth_sessions"> | bigint | number | null
+  account_id?: Prisma.IntNullableWithAggregatesFilter<"auth_sessions"> | number | null
   expires?: Prisma.IntWithAggregatesFilter<"auth_sessions"> | number
   data?: Prisma.StringWithAggregatesFilter<"auth_sessions"> | string
 }
@@ -266,7 +266,7 @@ export type auth_sessionsCreateInput = {
 
 export type auth_sessionsUncheckedCreateInput = {
   sid: string
-  account_id?: bigint | number | null
+  account_id?: number | null
   expires: number
   data: string
 }
@@ -280,14 +280,14 @@ export type auth_sessionsUpdateInput = {
 
 export type auth_sessionsUncheckedUpdateInput = {
   sid?: Prisma.StringFieldUpdateOperationsInput | string
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type auth_sessionsCreateManyInput = {
   sid: string
-  account_id?: bigint | number | null
+  account_id?: number | null
   expires: number
   data: string
 }
@@ -300,7 +300,7 @@ export type auth_sessionsUpdateManyMutationInput = {
 
 export type auth_sessionsUncheckedUpdateManyInput = {
   sid?: Prisma.StringFieldUpdateOperationsInput | string
-  account_id?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -437,7 +437,7 @@ export type auth_sessionsScalarWhereInput = {
   OR?: Prisma.auth_sessionsScalarWhereInput[]
   NOT?: Prisma.auth_sessionsScalarWhereInput | Prisma.auth_sessionsScalarWhereInput[]
   sid?: Prisma.StringFilter<"auth_sessions"> | string
-  account_id?: Prisma.BigIntNullableFilter<"auth_sessions"> | bigint | number | null
+  account_id?: Prisma.IntNullableFilter<"auth_sessions"> | number | null
   expires?: Prisma.IntFilter<"auth_sessions"> | number
   data?: Prisma.StringFilter<"auth_sessions"> | string
 }
@@ -497,7 +497,7 @@ export type $auth_sessionsPayload<ExtArgs extends runtime.Types.Extensions.Inter
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     sid: string
-    account_id: bigint | null
+    account_id: number | null
     expires: number
     data: string
   }, ExtArgs["result"]["auth_sessions"]>
@@ -871,7 +871,7 @@ export interface Prisma__auth_sessionsClient<T, Null = never, ExtArgs extends ru
  */
 export interface auth_sessionsFieldRefs {
   readonly sid: Prisma.FieldRef<"auth_sessions", 'String'>
-  readonly account_id: Prisma.FieldRef<"auth_sessions", 'BigInt'>
+  readonly account_id: Prisma.FieldRef<"auth_sessions", 'Int'>
   readonly expires: Prisma.FieldRef<"auth_sessions", 'Int'>
   readonly data: Prisma.FieldRef<"auth_sessions", 'String'>
 }
