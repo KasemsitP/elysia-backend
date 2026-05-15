@@ -49,7 +49,7 @@ export const campaignService = {
     async findQrActive(campaign_id: number) {
         const campaign = await campaignRepo.findCampaignById(campaign_id);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        return { success: true, data: campaign.qr_active };
+        return { success: true, data: campaign.qr_active === 1 ? true : false };
     },
 
     async updateQrActive(campaign_id: number) {

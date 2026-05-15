@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@elysia/cors": "^1.4.2",
+    "@elysiajs/eden": "^1.4.9",
     "@grotto/logysia": "^0.1.6",
     "@prisma/adapter-mariadb": "^7.8.0",
     "@prisma/client": "^7.8.0",

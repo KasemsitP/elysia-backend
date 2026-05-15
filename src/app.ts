@@ -16,3 +16,5 @@ export const app = new Elysia({ prefix: "/api" })
     })
     .use(authRoutes)
     .use(campaignRoutes)
+
+export type App = typeof app;
