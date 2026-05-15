@@ -28,90 +28,104 @@ export type AggregateExam_campaigns = {
 
 export type Exam_campaignsAvgAggregateOutputType = {
   id: number | null
-  qr_active: number | null
 }
 
 export type Exam_campaignsSumAggregateOutputType = {
   id: number | null
-  qr_active: number | null
 }
 
 export type Exam_campaignsMinAggregateOutputType = {
   id: number | null
   name: string | null
-  is_active: boolean | null
   year_be: string | null
   site: string | null
   campaign_size: string | null
+  is_active: boolean | null
   is_unlock: boolean | null
-  qr_active: number | null
+  qr_active: boolean | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Exam_campaignsMaxAggregateOutputType = {
   id: number | null
   name: string | null
-  is_active: boolean | null
   year_be: string | null
   site: string | null
   campaign_size: string | null
+  is_active: boolean | null
   is_unlock: boolean | null
-  qr_active: number | null
+  qr_active: boolean | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Exam_campaignsCountAggregateOutputType = {
   id: number
   name: number
-  is_active: number
   year_be: number
   site: number
   campaign_size: number
+  is_active: number
   is_unlock: number
   qr_active: number
+  created_at: number
+  updated_at: number
+  deleted_at: number
   _all: number
 }
 
 
 export type Exam_campaignsAvgAggregateInputType = {
   id?: true
-  qr_active?: true
 }
 
 export type Exam_campaignsSumAggregateInputType = {
   id?: true
-  qr_active?: true
 }
 
 export type Exam_campaignsMinAggregateInputType = {
   id?: true
   name?: true
-  is_active?: true
   year_be?: true
   site?: true
   campaign_size?: true
+  is_active?: true
   is_unlock?: true
   qr_active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type Exam_campaignsMaxAggregateInputType = {
   id?: true
   name?: true
-  is_active?: true
   year_be?: true
   site?: true
   campaign_size?: true
+  is_active?: true
   is_unlock?: true
   qr_active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type Exam_campaignsCountAggregateInputType = {
   id?: true
   name?: true
-  is_active?: true
   year_be?: true
   site?: true
   campaign_size?: true
+  is_active?: true
   is_unlock?: true
   qr_active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -204,12 +218,15 @@ export type exam_campaignsGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 export type Exam_campaignsGroupByOutputType = {
   id: number
   name: string | null
-  is_active: boolean
   year_be: string
   site: string | null
   campaign_size: string
+  is_active: boolean
   is_unlock: boolean
-  qr_active: number
+  qr_active: boolean
+  created_at: Date
+  updated_at: Date
+  deleted_at: Date | null
   _count: Exam_campaignsCountAggregateOutputType | null
   _avg: Exam_campaignsAvgAggregateOutputType | null
   _sum: Exam_campaignsSumAggregateOutputType | null
@@ -238,69 +255,110 @@ export type exam_campaignsWhereInput = {
   NOT?: Prisma.exam_campaignsWhereInput | Prisma.exam_campaignsWhereInput[]
   id?: Prisma.IntFilter<"exam_campaigns"> | number
   name?: Prisma.StringNullableFilter<"exam_campaigns"> | string | null
-  is_active?: Prisma.BoolFilter<"exam_campaigns"> | boolean
   year_be?: Prisma.StringFilter<"exam_campaigns"> | string
   site?: Prisma.StringNullableFilter<"exam_campaigns"> | string | null
   campaign_size?: Prisma.StringFilter<"exam_campaigns"> | string
+  is_active?: Prisma.BoolFilter<"exam_campaigns"> | boolean
   is_unlock?: Prisma.BoolFilter<"exam_campaigns"> | boolean
-  qr_active?: Prisma.IntFilter<"exam_campaigns"> | number
+  qr_active?: Prisma.BoolFilter<"exam_campaigns"> | boolean
+  created_at?: Prisma.DateTimeFilter<"exam_campaigns"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"exam_campaigns"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"exam_campaigns"> | Date | string | null
+  accounts?: Prisma.AccountsListRelationFilter
+  bags?: Prisma.BagsListRelationFilter
+  booklet_incident_reports?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_question_notes?: Prisma.Booklet_question_notesListRelationFilter
+  booklets?: Prisma.BookletsListRelationFilter
   campaign_keys?: Prisma.Campaign_keysListRelationFilter
+  campaign_settings?: Prisma.Campaign_settingsListRelationFilter
+  campaign_subjects?: Prisma.Campaign_subjectsListRelationFilter
   exam_rooms?: Prisma.Exam_roomsListRelationFilter
-  grader_work_locks?: Prisma.Grader_work_locksListRelationFilter
   graders?: Prisma.GradersListRelationFilter
+  notification_messages?: Prisma.Notification_messagesListRelationFilter
+  qr_scan_logs?: Prisma.Qr_scan_logsListRelationFilter
+  question_choice_groups?: Prisma.Question_choice_groupsListRelationFilter
   sessions?: Prisma.SessionsListRelationFilter
+  twofactor_sessions?: Prisma.Twofactor_sessionsListRelationFilter
   user_campaigns?: Prisma.User_campaignsListRelationFilter
 }
 
 export type exam_campaignsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
-  is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
   site?: Prisma.SortOrderInput | Prisma.SortOrder
   campaign_size?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
   is_unlock?: Prisma.SortOrder
   qr_active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  accounts?: Prisma.accountsOrderByRelationAggregateInput
+  bags?: Prisma.bagsOrderByRelationAggregateInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsOrderByRelationAggregateInput
+  booklet_question_notes?: Prisma.booklet_question_notesOrderByRelationAggregateInput
+  booklets?: Prisma.bookletsOrderByRelationAggregateInput
   campaign_keys?: Prisma.campaign_keysOrderByRelationAggregateInput
+  campaign_settings?: Prisma.campaign_settingsOrderByRelationAggregateInput
+  campaign_subjects?: Prisma.campaign_subjectsOrderByRelationAggregateInput
   exam_rooms?: Prisma.exam_roomsOrderByRelationAggregateInput
-  grader_work_locks?: Prisma.grader_work_locksOrderByRelationAggregateInput
   graders?: Prisma.gradersOrderByRelationAggregateInput
+  notification_messages?: Prisma.notification_messagesOrderByRelationAggregateInput
+  qr_scan_logs?: Prisma.qr_scan_logsOrderByRelationAggregateInput
+  question_choice_groups?: Prisma.question_choice_groupsOrderByRelationAggregateInput
   sessions?: Prisma.sessionsOrderByRelationAggregateInput
+  twofactor_sessions?: Prisma.twofactor_sessionsOrderByRelationAggregateInput
   user_campaigns?: Prisma.user_campaignsOrderByRelationAggregateInput
   _relevance?: Prisma.exam_campaignsOrderByRelevanceInput
 }
 
 export type exam_campaignsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  campaign_size_year_be?: Prisma.exam_campaignsCampaign_sizeYear_beCompoundUniqueInput
   year_be_campaign_size?: Prisma.exam_campaignsYear_beCampaign_sizeCompoundUniqueInput
   AND?: Prisma.exam_campaignsWhereInput | Prisma.exam_campaignsWhereInput[]
   OR?: Prisma.exam_campaignsWhereInput[]
   NOT?: Prisma.exam_campaignsWhereInput | Prisma.exam_campaignsWhereInput[]
   name?: Prisma.StringNullableFilter<"exam_campaigns"> | string | null
-  is_active?: Prisma.BoolFilter<"exam_campaigns"> | boolean
   year_be?: Prisma.StringFilter<"exam_campaigns"> | string
   site?: Prisma.StringNullableFilter<"exam_campaigns"> | string | null
   campaign_size?: Prisma.StringFilter<"exam_campaigns"> | string
+  is_active?: Prisma.BoolFilter<"exam_campaigns"> | boolean
   is_unlock?: Prisma.BoolFilter<"exam_campaigns"> | boolean
-  qr_active?: Prisma.IntFilter<"exam_campaigns"> | number
+  qr_active?: Prisma.BoolFilter<"exam_campaigns"> | boolean
+  created_at?: Prisma.DateTimeFilter<"exam_campaigns"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"exam_campaigns"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"exam_campaigns"> | Date | string | null
+  accounts?: Prisma.AccountsListRelationFilter
+  bags?: Prisma.BagsListRelationFilter
+  booklet_incident_reports?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_question_notes?: Prisma.Booklet_question_notesListRelationFilter
+  booklets?: Prisma.BookletsListRelationFilter
   campaign_keys?: Prisma.Campaign_keysListRelationFilter
+  campaign_settings?: Prisma.Campaign_settingsListRelationFilter
+  campaign_subjects?: Prisma.Campaign_subjectsListRelationFilter
   exam_rooms?: Prisma.Exam_roomsListRelationFilter
-  grader_work_locks?: Prisma.Grader_work_locksListRelationFilter
   graders?: Prisma.GradersListRelationFilter
+  notification_messages?: Prisma.Notification_messagesListRelationFilter
+  qr_scan_logs?: Prisma.Qr_scan_logsListRelationFilter
+  question_choice_groups?: Prisma.Question_choice_groupsListRelationFilter
   sessions?: Prisma.SessionsListRelationFilter
+  twofactor_sessions?: Prisma.Twofactor_sessionsListRelationFilter
   user_campaigns?: Prisma.User_campaignsListRelationFilter
-}, "id" | "campaign_size_year_be" | "year_be_campaign_size">
+}, "id" | "year_be_campaign_size">
 
 export type exam_campaignsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
-  is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
   site?: Prisma.SortOrderInput | Prisma.SortOrder
   campaign_size?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
   is_unlock?: Prisma.SortOrder
   qr_active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.exam_campaignsCountOrderByAggregateInput
   _avg?: Prisma.exam_campaignsAvgOrderByAggregateInput
   _max?: Prisma.exam_campaignsMaxOrderByAggregateInput
@@ -314,110 +372,179 @@ export type exam_campaignsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.exam_campaignsScalarWhereWithAggregatesInput | Prisma.exam_campaignsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"exam_campaigns"> | number
   name?: Prisma.StringNullableWithAggregatesFilter<"exam_campaigns"> | string | null
-  is_active?: Prisma.BoolWithAggregatesFilter<"exam_campaigns"> | boolean
   year_be?: Prisma.StringWithAggregatesFilter<"exam_campaigns"> | string
   site?: Prisma.StringNullableWithAggregatesFilter<"exam_campaigns"> | string | null
   campaign_size?: Prisma.StringWithAggregatesFilter<"exam_campaigns"> | string
+  is_active?: Prisma.BoolWithAggregatesFilter<"exam_campaigns"> | boolean
   is_unlock?: Prisma.BoolWithAggregatesFilter<"exam_campaigns"> | boolean
-  qr_active?: Prisma.IntWithAggregatesFilter<"exam_campaigns"> | number
+  qr_active?: Prisma.BoolWithAggregatesFilter<"exam_campaigns"> | boolean
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"exam_campaigns"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"exam_campaigns"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"exam_campaigns"> | Date | string | null
 }
 
 export type exam_campaignsCreateInput = {
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
 }
 
 export type exam_campaignsUncheckedCreateInput = {
   id?: number
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
 }
 
 export type exam_campaignsUpdateInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsCreateManyInput = {
   id?: number
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type exam_campaignsUpdateManyMutationInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type exam_campaignsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type Exam_campaignsNullableScalarRelationFilter = {
+  is?: Prisma.exam_campaignsWhereInput | null
+  isNot?: Prisma.exam_campaignsWhereInput | null
 }
 
 export type Exam_campaignsScalarRelationFilter = {
@@ -431,11 +558,6 @@ export type exam_campaignsOrderByRelevanceInput = {
   search: string
 }
 
-export type exam_campaignsCampaign_sizeYear_beCompoundUniqueInput = {
-  campaign_size: string
-  year_be: string
-}
-
 export type exam_campaignsYear_beCampaign_sizeCompoundUniqueInput = {
   year_be: string
   campaign_size: string
@@ -444,49 +566,95 @@ export type exam_campaignsYear_beCampaign_sizeCompoundUniqueInput = {
 export type exam_campaignsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
   site?: Prisma.SortOrder
   campaign_size?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
   is_unlock?: Prisma.SortOrder
   qr_active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type exam_campaignsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  qr_active?: Prisma.SortOrder
 }
 
 export type exam_campaignsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
   site?: Prisma.SortOrder
   campaign_size?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
   is_unlock?: Prisma.SortOrder
   qr_active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type exam_campaignsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  is_active?: Prisma.SortOrder
   year_be?: Prisma.SortOrder
   site?: Prisma.SortOrder
   campaign_size?: Prisma.SortOrder
+  is_active?: Prisma.SortOrder
   is_unlock?: Prisma.SortOrder
   qr_active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type exam_campaignsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  qr_active?: Prisma.SortOrder
 }
 
-export type Exam_campaignsNullableScalarRelationFilter = {
-  is?: Prisma.exam_campaignsWhereInput | null
-  isNot?: Prisma.exam_campaignsWhereInput | null
+export type exam_campaignsCreateNestedOneWithoutAccountsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutAccountsInput, Prisma.exam_campaignsUncheckedCreateWithoutAccountsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutAccountsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneWithoutAccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutAccountsInput, Prisma.exam_campaignsUncheckedCreateWithoutAccountsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutAccountsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutAccountsInput
+  disconnect?: Prisma.exam_campaignsWhereInput | boolean
+  delete?: Prisma.exam_campaignsWhereInput | boolean
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutAccountsInput, Prisma.exam_campaignsUpdateWithoutAccountsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutAccountsInput>
+}
+
+export type exam_campaignsCreateNestedOneWithoutBagsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBagsInput, Prisma.exam_campaignsUncheckedCreateWithoutBagsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutBagsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneRequiredWithoutBagsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBagsInput, Prisma.exam_campaignsUncheckedCreateWithoutBagsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutBagsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutBagsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutBagsInput, Prisma.exam_campaignsUpdateWithoutBagsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutBagsInput>
+}
+
+export type exam_campaignsCreateNestedOneWithoutBookletsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBookletsInput, Prisma.exam_campaignsUncheckedCreateWithoutBookletsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutBookletsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBookletsInput, Prisma.exam_campaignsUncheckedCreateWithoutBookletsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutBookletsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutBookletsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutBookletsInput, Prisma.exam_campaignsUpdateWithoutBookletsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutBookletsInput>
 }
 
 export type exam_campaignsCreateNestedOneWithoutCampaign_keysInput = {
@@ -517,32 +685,16 @@ export type exam_campaignsUpdateOneRequiredWithoutExam_roomsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutExam_roomsInput, Prisma.exam_campaignsUpdateWithoutExam_roomsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutExam_roomsInput>
 }
 
-export type exam_campaignsCreateNestedOneWithoutGrader_work_locksInput = {
-  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutGrader_work_locksInput, Prisma.exam_campaignsUncheckedCreateWithoutGrader_work_locksInput>
-  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutGrader_work_locksInput
-  connect?: Prisma.exam_campaignsWhereUniqueInput
-}
-
-export type exam_campaignsUpdateOneRequiredWithoutGrader_work_locksNestedInput = {
-  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutGrader_work_locksInput, Prisma.exam_campaignsUncheckedCreateWithoutGrader_work_locksInput>
-  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutGrader_work_locksInput
-  upsert?: Prisma.exam_campaignsUpsertWithoutGrader_work_locksInput
-  connect?: Prisma.exam_campaignsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutGrader_work_locksInput, Prisma.exam_campaignsUpdateWithoutGrader_work_locksInput>, Prisma.exam_campaignsUncheckedUpdateWithoutGrader_work_locksInput>
-}
-
 export type exam_campaignsCreateNestedOneWithoutGradersInput = {
   create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutGradersInput, Prisma.exam_campaignsUncheckedCreateWithoutGradersInput>
   connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutGradersInput
   connect?: Prisma.exam_campaignsWhereUniqueInput
 }
 
-export type exam_campaignsUpdateOneWithoutGradersNestedInput = {
+export type exam_campaignsUpdateOneRequiredWithoutGradersNestedInput = {
   create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutGradersInput, Prisma.exam_campaignsUncheckedCreateWithoutGradersInput>
   connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutGradersInput
   upsert?: Prisma.exam_campaignsUpsertWithoutGradersInput
-  disconnect?: Prisma.exam_campaignsWhereInput | boolean
-  delete?: Prisma.exam_campaignsWhereInput | boolean
   connect?: Prisma.exam_campaignsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutGradersInput, Prisma.exam_campaignsUpdateWithoutGradersInput>, Prisma.exam_campaignsUncheckedUpdateWithoutGradersInput>
 }
@@ -561,6 +713,22 @@ export type exam_campaignsUpdateOneRequiredWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutSessionsInput, Prisma.exam_campaignsUpdateWithoutSessionsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutSessionsInput>
 }
 
+export type exam_campaignsCreateNestedOneWithoutTwofactor_sessionsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutTwofactor_sessionsInput, Prisma.exam_campaignsUncheckedCreateWithoutTwofactor_sessionsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutTwofactor_sessionsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneWithoutTwofactor_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutTwofactor_sessionsInput, Prisma.exam_campaignsUncheckedCreateWithoutTwofactor_sessionsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutTwofactor_sessionsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutTwofactor_sessionsInput
+  disconnect?: Prisma.exam_campaignsWhereInput | boolean
+  delete?: Prisma.exam_campaignsWhereInput | boolean
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutTwofactor_sessionsInput, Prisma.exam_campaignsUpdateWithoutTwofactor_sessionsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutTwofactor_sessionsInput>
+}
+
 export type exam_campaignsCreateNestedOneWithoutUser_campaignsInput = {
   create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutUser_campaignsInput, Prisma.exam_campaignsUncheckedCreateWithoutUser_campaignsInput>
   connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutUser_campaignsInput
@@ -575,34 +743,552 @@ export type exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutUser_campaignsInput, Prisma.exam_campaignsUpdateWithoutUser_campaignsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutUser_campaignsInput>
 }
 
-export type exam_campaignsCreateWithoutCampaign_keysInput = {
+export type exam_campaignsCreateNestedOneWithoutBooklet_incident_reportsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBooklet_incident_reportsInput, Prisma.exam_campaignsUncheckedCreateWithoutBooklet_incident_reportsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutBooklet_incident_reportsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneRequiredWithoutBooklet_incident_reportsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBooklet_incident_reportsInput, Prisma.exam_campaignsUncheckedCreateWithoutBooklet_incident_reportsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutBooklet_incident_reportsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutBooklet_incident_reportsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutBooklet_incident_reportsInput, Prisma.exam_campaignsUpdateWithoutBooklet_incident_reportsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutBooklet_incident_reportsInput>
+}
+
+export type exam_campaignsCreateNestedOneWithoutBooklet_question_notesInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBooklet_question_notesInput, Prisma.exam_campaignsUncheckedCreateWithoutBooklet_question_notesInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutBooklet_question_notesInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneRequiredWithoutBooklet_question_notesNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBooklet_question_notesInput, Prisma.exam_campaignsUncheckedCreateWithoutBooklet_question_notesInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutBooklet_question_notesInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutBooklet_question_notesInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutBooklet_question_notesInput, Prisma.exam_campaignsUpdateWithoutBooklet_question_notesInput>, Prisma.exam_campaignsUncheckedUpdateWithoutBooklet_question_notesInput>
+}
+
+export type exam_campaignsCreateNestedOneWithoutCampaign_settingsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutCampaign_settingsInput, Prisma.exam_campaignsUncheckedCreateWithoutCampaign_settingsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutCampaign_settingsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneRequiredWithoutCampaign_settingsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutCampaign_settingsInput, Prisma.exam_campaignsUncheckedCreateWithoutCampaign_settingsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutCampaign_settingsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutCampaign_settingsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutCampaign_settingsInput, Prisma.exam_campaignsUpdateWithoutCampaign_settingsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutCampaign_settingsInput>
+}
+
+export type exam_campaignsCreateNestedOneWithoutCampaign_subjectsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutCampaign_subjectsInput, Prisma.exam_campaignsUncheckedCreateWithoutCampaign_subjectsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutCampaign_subjectsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneRequiredWithoutCampaign_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutCampaign_subjectsInput, Prisma.exam_campaignsUncheckedCreateWithoutCampaign_subjectsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutCampaign_subjectsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutCampaign_subjectsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutCampaign_subjectsInput, Prisma.exam_campaignsUpdateWithoutCampaign_subjectsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutCampaign_subjectsInput>
+}
+
+export type exam_campaignsCreateNestedOneWithoutNotification_messagesInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutNotification_messagesInput, Prisma.exam_campaignsUncheckedCreateWithoutNotification_messagesInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutNotification_messagesInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneWithoutNotification_messagesNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutNotification_messagesInput, Prisma.exam_campaignsUncheckedCreateWithoutNotification_messagesInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutNotification_messagesInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutNotification_messagesInput
+  disconnect?: Prisma.exam_campaignsWhereInput | boolean
+  delete?: Prisma.exam_campaignsWhereInput | boolean
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutNotification_messagesInput, Prisma.exam_campaignsUpdateWithoutNotification_messagesInput>, Prisma.exam_campaignsUncheckedUpdateWithoutNotification_messagesInput>
+}
+
+export type exam_campaignsCreateNestedOneWithoutQr_scan_logsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutQr_scan_logsInput, Prisma.exam_campaignsUncheckedCreateWithoutQr_scan_logsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutQr_scan_logsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneWithoutQr_scan_logsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutQr_scan_logsInput, Prisma.exam_campaignsUncheckedCreateWithoutQr_scan_logsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutQr_scan_logsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutQr_scan_logsInput
+  disconnect?: Prisma.exam_campaignsWhereInput | boolean
+  delete?: Prisma.exam_campaignsWhereInput | boolean
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutQr_scan_logsInput, Prisma.exam_campaignsUpdateWithoutQr_scan_logsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutQr_scan_logsInput>
+}
+
+export type exam_campaignsCreateNestedOneWithoutQuestion_choice_groupsInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutQuestion_choice_groupsInput, Prisma.exam_campaignsUncheckedCreateWithoutQuestion_choice_groupsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutQuestion_choice_groupsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+}
+
+export type exam_campaignsUpdateOneRequiredWithoutQuestion_choice_groupsNestedInput = {
+  create?: Prisma.XOR<Prisma.exam_campaignsCreateWithoutQuestion_choice_groupsInput, Prisma.exam_campaignsUncheckedCreateWithoutQuestion_choice_groupsInput>
+  connectOrCreate?: Prisma.exam_campaignsCreateOrConnectWithoutQuestion_choice_groupsInput
+  upsert?: Prisma.exam_campaignsUpsertWithoutQuestion_choice_groupsInput
+  connect?: Prisma.exam_campaignsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutQuestion_choice_groupsInput, Prisma.exam_campaignsUpdateWithoutQuestion_choice_groupsInput>, Prisma.exam_campaignsUncheckedUpdateWithoutQuestion_choice_groupsInput>
+}
+
+export type exam_campaignsCreateWithoutAccountsInput = {
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutAccountsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutAccountsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutAccountsInput, Prisma.exam_campaignsUncheckedCreateWithoutAccountsInput>
+}
+
+export type exam_campaignsUpsertWithoutAccountsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutAccountsInput, Prisma.exam_campaignsUncheckedUpdateWithoutAccountsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutAccountsInput, Prisma.exam_campaignsUncheckedCreateWithoutAccountsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutAccountsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutAccountsInput, Prisma.exam_campaignsUncheckedUpdateWithoutAccountsInput>
+}
+
+export type exam_campaignsUpdateWithoutAccountsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutAccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutBagsInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutBagsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutBagsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBagsInput, Prisma.exam_campaignsUncheckedCreateWithoutBagsInput>
+}
+
+export type exam_campaignsUpsertWithoutBagsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutBagsInput, Prisma.exam_campaignsUncheckedUpdateWithoutBagsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBagsInput, Prisma.exam_campaignsUncheckedCreateWithoutBagsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutBagsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutBagsInput, Prisma.exam_campaignsUncheckedUpdateWithoutBagsInput>
+}
+
+export type exam_campaignsUpdateWithoutBagsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutBagsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutBookletsInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutBookletsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutBookletsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBookletsInput, Prisma.exam_campaignsUncheckedCreateWithoutBookletsInput>
+}
+
+export type exam_campaignsUpsertWithoutBookletsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutBookletsInput, Prisma.exam_campaignsUncheckedUpdateWithoutBookletsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBookletsInput, Prisma.exam_campaignsUncheckedCreateWithoutBookletsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutBookletsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutBookletsInput, Prisma.exam_campaignsUncheckedUpdateWithoutBookletsInput>
+}
+
+export type exam_campaignsUpdateWithoutBookletsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutBookletsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutCampaign_keysInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
 }
 
 export type exam_campaignsUncheckedCreateWithoutCampaign_keysInput = {
   id?: number
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
 }
 
@@ -624,63 +1310,115 @@ export type exam_campaignsUpdateToOneWithWhereWithoutCampaign_keysInput = {
 
 export type exam_campaignsUpdateWithoutCampaign_keysInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsUncheckedUpdateWithoutCampaign_keysInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsCreateWithoutExam_roomsInput = {
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
 }
 
 export type exam_campaignsUncheckedCreateWithoutExam_roomsInput = {
   id?: number
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
 }
 
@@ -702,141 +1440,115 @@ export type exam_campaignsUpdateToOneWithWhereWithoutExam_roomsInput = {
 
 export type exam_campaignsUpdateWithoutExam_roomsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsUncheckedUpdateWithoutExam_roomsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
-}
-
-export type exam_campaignsCreateWithoutGrader_work_locksInput = {
-  name?: string | null
-  is_active?: boolean
-  year_be: string
-  site?: string | null
-  campaign_size: string
-  is_unlock?: boolean
-  qr_active?: number
-  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
-  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
-  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
-  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
-  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
-}
-
-export type exam_campaignsUncheckedCreateWithoutGrader_work_locksInput = {
-  id?: number
-  name?: string | null
-  is_active?: boolean
-  year_be: string
-  site?: string | null
-  campaign_size: string
-  is_unlock?: boolean
-  qr_active?: number
-  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
-  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
-  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
-  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
-  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
-}
-
-export type exam_campaignsCreateOrConnectWithoutGrader_work_locksInput = {
-  where: Prisma.exam_campaignsWhereUniqueInput
-  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutGrader_work_locksInput, Prisma.exam_campaignsUncheckedCreateWithoutGrader_work_locksInput>
-}
-
-export type exam_campaignsUpsertWithoutGrader_work_locksInput = {
-  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutGrader_work_locksInput, Prisma.exam_campaignsUncheckedUpdateWithoutGrader_work_locksInput>
-  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutGrader_work_locksInput, Prisma.exam_campaignsUncheckedCreateWithoutGrader_work_locksInput>
-  where?: Prisma.exam_campaignsWhereInput
-}
-
-export type exam_campaignsUpdateToOneWithWhereWithoutGrader_work_locksInput = {
-  where?: Prisma.exam_campaignsWhereInput
-  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutGrader_work_locksInput, Prisma.exam_campaignsUncheckedUpdateWithoutGrader_work_locksInput>
-}
-
-export type exam_campaignsUpdateWithoutGrader_work_locksInput = {
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  year_be?: Prisma.StringFieldUpdateOperationsInput | string
-  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
-  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
-  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
-  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
-  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
-  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
-}
-
-export type exam_campaignsUncheckedUpdateWithoutGrader_work_locksInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  year_be?: Prisma.StringFieldUpdateOperationsInput | string
-  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
-  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsCreateWithoutGradersInput = {
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
 }
 
 export type exam_campaignsUncheckedCreateWithoutGradersInput = {
   id?: number
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
 }
 
@@ -858,63 +1570,115 @@ export type exam_campaignsUpdateToOneWithWhereWithoutGradersInput = {
 
 export type exam_campaignsUpdateWithoutGradersInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsUncheckedUpdateWithoutGradersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsCreateWithoutSessionsInput = {
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
 }
 
 export type exam_campaignsUncheckedCreateWithoutSessionsInput = {
   id?: number
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
 }
 
@@ -936,64 +1700,246 @@ export type exam_campaignsUpdateToOneWithWhereWithoutSessionsInput = {
 
 export type exam_campaignsUpdateWithoutSessionsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutTwofactor_sessionsInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutTwofactor_sessionsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutTwofactor_sessionsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutTwofactor_sessionsInput, Prisma.exam_campaignsUncheckedCreateWithoutTwofactor_sessionsInput>
+}
+
+export type exam_campaignsUpsertWithoutTwofactor_sessionsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutTwofactor_sessionsInput, Prisma.exam_campaignsUncheckedUpdateWithoutTwofactor_sessionsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutTwofactor_sessionsInput, Prisma.exam_campaignsUncheckedCreateWithoutTwofactor_sessionsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutTwofactor_sessionsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutTwofactor_sessionsInput, Prisma.exam_campaignsUncheckedUpdateWithoutTwofactor_sessionsInput>
+}
+
+export type exam_campaignsUpdateWithoutTwofactor_sessionsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutTwofactor_sessionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsCreateWithoutUser_campaignsInput = {
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
 }
 
 export type exam_campaignsUncheckedCreateWithoutUser_campaignsInput = {
   id?: number
   name?: string | null
-  is_active?: boolean
   year_be: string
   site?: string | null
   campaign_size: string
+  is_active?: boolean
   is_unlock?: boolean
-  qr_active?: number
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
   exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutExam_campaignsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
   sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
 }
 
 export type exam_campaignsCreateOrConnectWithoutUser_campaignsInput = {
@@ -1014,33 +1960,969 @@ export type exam_campaignsUpdateToOneWithWhereWithoutUser_campaignsInput = {
 
 export type exam_campaignsUpdateWithoutUser_campaignsInput = {
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
 }
 
 export type exam_campaignsUncheckedUpdateWithoutUser_campaignsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   year_be?: Prisma.StringFieldUpdateOperationsInput | string
   site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  qr_active?: Prisma.IntFieldUpdateOperationsInput | number
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
-  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutExam_campaignsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutBooklet_incident_reportsInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutBooklet_incident_reportsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutBooklet_incident_reportsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBooklet_incident_reportsInput, Prisma.exam_campaignsUncheckedCreateWithoutBooklet_incident_reportsInput>
+}
+
+export type exam_campaignsUpsertWithoutBooklet_incident_reportsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutBooklet_incident_reportsInput, Prisma.exam_campaignsUncheckedUpdateWithoutBooklet_incident_reportsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBooklet_incident_reportsInput, Prisma.exam_campaignsUncheckedCreateWithoutBooklet_incident_reportsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutBooklet_incident_reportsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutBooklet_incident_reportsInput, Prisma.exam_campaignsUncheckedUpdateWithoutBooklet_incident_reportsInput>
+}
+
+export type exam_campaignsUpdateWithoutBooklet_incident_reportsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutBooklet_incident_reportsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutBooklet_question_notesInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutBooklet_question_notesInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutBooklet_question_notesInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBooklet_question_notesInput, Prisma.exam_campaignsUncheckedCreateWithoutBooklet_question_notesInput>
+}
+
+export type exam_campaignsUpsertWithoutBooklet_question_notesInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutBooklet_question_notesInput, Prisma.exam_campaignsUncheckedUpdateWithoutBooklet_question_notesInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutBooklet_question_notesInput, Prisma.exam_campaignsUncheckedCreateWithoutBooklet_question_notesInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutBooklet_question_notesInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutBooklet_question_notesInput, Prisma.exam_campaignsUncheckedUpdateWithoutBooklet_question_notesInput>
+}
+
+export type exam_campaignsUpdateWithoutBooklet_question_notesInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutBooklet_question_notesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutCampaign_settingsInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutCampaign_settingsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutCampaign_settingsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutCampaign_settingsInput, Prisma.exam_campaignsUncheckedCreateWithoutCampaign_settingsInput>
+}
+
+export type exam_campaignsUpsertWithoutCampaign_settingsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutCampaign_settingsInput, Prisma.exam_campaignsUncheckedUpdateWithoutCampaign_settingsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutCampaign_settingsInput, Prisma.exam_campaignsUncheckedCreateWithoutCampaign_settingsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutCampaign_settingsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutCampaign_settingsInput, Prisma.exam_campaignsUncheckedUpdateWithoutCampaign_settingsInput>
+}
+
+export type exam_campaignsUpdateWithoutCampaign_settingsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutCampaign_settingsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutCampaign_subjectsInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutCampaign_subjectsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutCampaign_subjectsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutCampaign_subjectsInput, Prisma.exam_campaignsUncheckedCreateWithoutCampaign_subjectsInput>
+}
+
+export type exam_campaignsUpsertWithoutCampaign_subjectsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutCampaign_subjectsInput, Prisma.exam_campaignsUncheckedUpdateWithoutCampaign_subjectsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutCampaign_subjectsInput, Prisma.exam_campaignsUncheckedCreateWithoutCampaign_subjectsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutCampaign_subjectsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutCampaign_subjectsInput, Prisma.exam_campaignsUncheckedUpdateWithoutCampaign_subjectsInput>
+}
+
+export type exam_campaignsUpdateWithoutCampaign_subjectsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutCampaign_subjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutNotification_messagesInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutNotification_messagesInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutNotification_messagesInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutNotification_messagesInput, Prisma.exam_campaignsUncheckedCreateWithoutNotification_messagesInput>
+}
+
+export type exam_campaignsUpsertWithoutNotification_messagesInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutNotification_messagesInput, Prisma.exam_campaignsUncheckedUpdateWithoutNotification_messagesInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutNotification_messagesInput, Prisma.exam_campaignsUncheckedCreateWithoutNotification_messagesInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutNotification_messagesInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutNotification_messagesInput, Prisma.exam_campaignsUncheckedUpdateWithoutNotification_messagesInput>
+}
+
+export type exam_campaignsUpdateWithoutNotification_messagesInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutNotification_messagesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutQr_scan_logsInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutQr_scan_logsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutQr_scan_logsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutQr_scan_logsInput, Prisma.exam_campaignsUncheckedCreateWithoutQr_scan_logsInput>
+}
+
+export type exam_campaignsUpsertWithoutQr_scan_logsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutQr_scan_logsInput, Prisma.exam_campaignsUncheckedUpdateWithoutQr_scan_logsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutQr_scan_logsInput, Prisma.exam_campaignsUncheckedCreateWithoutQr_scan_logsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutQr_scan_logsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutQr_scan_logsInput, Prisma.exam_campaignsUncheckedUpdateWithoutQr_scan_logsInput>
+}
+
+export type exam_campaignsUpdateWithoutQr_scan_logsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutQr_scan_logsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  question_choice_groups?: Prisma.question_choice_groupsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsCreateWithoutQuestion_choice_groupsInput = {
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsUncheckedCreateWithoutQuestion_choice_groupsInput = {
+  id?: number
+  name?: string | null
+  year_be: string
+  site?: string | null
+  campaign_size: string
+  is_active?: boolean
+  is_unlock?: boolean
+  qr_active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  exam_rooms?: Prisma.exam_roomsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutExam_campaignsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutExam_campaignsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  sessions?: Prisma.sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput
+  user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_campaignsInput
+}
+
+export type exam_campaignsCreateOrConnectWithoutQuestion_choice_groupsInput = {
+  where: Prisma.exam_campaignsWhereUniqueInput
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutQuestion_choice_groupsInput, Prisma.exam_campaignsUncheckedCreateWithoutQuestion_choice_groupsInput>
+}
+
+export type exam_campaignsUpsertWithoutQuestion_choice_groupsInput = {
+  update: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutQuestion_choice_groupsInput, Prisma.exam_campaignsUncheckedUpdateWithoutQuestion_choice_groupsInput>
+  create: Prisma.XOR<Prisma.exam_campaignsCreateWithoutQuestion_choice_groupsInput, Prisma.exam_campaignsUncheckedCreateWithoutQuestion_choice_groupsInput>
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+export type exam_campaignsUpdateToOneWithWhereWithoutQuestion_choice_groupsInput = {
+  where?: Prisma.exam_campaignsWhereInput
+  data: Prisma.XOR<Prisma.exam_campaignsUpdateWithoutQuestion_choice_groupsInput, Prisma.exam_campaignsUncheckedUpdateWithoutQuestion_choice_groupsInput>
+}
+
+export type exam_campaignsUpdateWithoutQuestion_choice_groupsInput = {
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_campaignsNestedInput
+}
+
+export type exam_campaignsUncheckedUpdateWithoutQuestion_choice_groupsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year_be?: Prisma.StringFieldUpdateOperationsInput | string
+  site?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  campaign_size?: Prisma.StringFieldUpdateOperationsInput | string
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_unlock?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  qr_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  booklets?: Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_settings?: Prisma.campaign_settingsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  sessions?: Prisma.sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput
+  user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_campaignsNestedInput
 }
 
 
@@ -1049,20 +2931,40 @@ export type exam_campaignsUncheckedUpdateWithoutUser_campaignsInput = {
  */
 
 export type Exam_campaignsCountOutputType = {
+  accounts: number
+  bags: number
+  booklet_incident_reports: number
+  booklet_question_notes: number
+  booklets: number
   campaign_keys: number
+  campaign_settings: number
+  campaign_subjects: number
   exam_rooms: number
-  grader_work_locks: number
   graders: number
+  notification_messages: number
+  qr_scan_logs: number
+  question_choice_groups: number
   sessions: number
+  twofactor_sessions: number
   user_campaigns: number
 }
 
 export type Exam_campaignsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  accounts?: boolean | Exam_campaignsCountOutputTypeCountAccountsArgs
+  bags?: boolean | Exam_campaignsCountOutputTypeCountBagsArgs
+  booklet_incident_reports?: boolean | Exam_campaignsCountOutputTypeCountBooklet_incident_reportsArgs
+  booklet_question_notes?: boolean | Exam_campaignsCountOutputTypeCountBooklet_question_notesArgs
+  booklets?: boolean | Exam_campaignsCountOutputTypeCountBookletsArgs
   campaign_keys?: boolean | Exam_campaignsCountOutputTypeCountCampaign_keysArgs
+  campaign_settings?: boolean | Exam_campaignsCountOutputTypeCountCampaign_settingsArgs
+  campaign_subjects?: boolean | Exam_campaignsCountOutputTypeCountCampaign_subjectsArgs
   exam_rooms?: boolean | Exam_campaignsCountOutputTypeCountExam_roomsArgs
-  grader_work_locks?: boolean | Exam_campaignsCountOutputTypeCountGrader_work_locksArgs
   graders?: boolean | Exam_campaignsCountOutputTypeCountGradersArgs
+  notification_messages?: boolean | Exam_campaignsCountOutputTypeCountNotification_messagesArgs
+  qr_scan_logs?: boolean | Exam_campaignsCountOutputTypeCountQr_scan_logsArgs
+  question_choice_groups?: boolean | Exam_campaignsCountOutputTypeCountQuestion_choice_groupsArgs
   sessions?: boolean | Exam_campaignsCountOutputTypeCountSessionsArgs
+  twofactor_sessions?: boolean | Exam_campaignsCountOutputTypeCountTwofactor_sessionsArgs
   user_campaigns?: boolean | Exam_campaignsCountOutputTypeCountUser_campaignsArgs
 }
 
@@ -1079,8 +2981,57 @@ export type Exam_campaignsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Typ
 /**
  * Exam_campaignsCountOutputType without action
  */
+export type Exam_campaignsCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.accountsWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountBagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.bagsWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountBooklet_incident_reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_incident_reportsWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountBooklet_question_notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_question_notesWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountBookletsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.bookletsWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
 export type Exam_campaignsCountOutputTypeCountCampaign_keysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.campaign_keysWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountCampaign_settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.campaign_settingsWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountCampaign_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.campaign_subjectsWhereInput
 }
 
 /**
@@ -1093,13 +3044,6 @@ export type Exam_campaignsCountOutputTypeCountExam_roomsArgs<ExtArgs extends run
 /**
  * Exam_campaignsCountOutputType without action
  */
-export type Exam_campaignsCountOutputTypeCountGrader_work_locksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.grader_work_locksWhereInput
-}
-
-/**
- * Exam_campaignsCountOutputType without action
- */
 export type Exam_campaignsCountOutputTypeCountGradersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.gradersWhereInput
 }
@@ -1107,8 +3051,36 @@ export type Exam_campaignsCountOutputTypeCountGradersArgs<ExtArgs extends runtim
 /**
  * Exam_campaignsCountOutputType without action
  */
+export type Exam_campaignsCountOutputTypeCountNotification_messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.notification_messagesWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountQr_scan_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.qr_scan_logsWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountQuestion_choice_groupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.question_choice_groupsWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
 export type Exam_campaignsCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.sessionsWhereInput
+}
+
+/**
+ * Exam_campaignsCountOutputType without action
+ */
+export type Exam_campaignsCountOutputTypeCountTwofactor_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.twofactor_sessionsWhereInput
 }
 
 /**
@@ -1122,17 +3094,30 @@ export type Exam_campaignsCountOutputTypeCountUser_campaignsArgs<ExtArgs extends
 export type exam_campaignsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  is_active?: boolean
   year_be?: boolean
   site?: boolean
   campaign_size?: boolean
+  is_active?: boolean
   is_unlock?: boolean
   qr_active?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  accounts?: boolean | Prisma.exam_campaigns$accountsArgs<ExtArgs>
+  bags?: boolean | Prisma.exam_campaigns$bagsArgs<ExtArgs>
+  booklet_incident_reports?: boolean | Prisma.exam_campaigns$booklet_incident_reportsArgs<ExtArgs>
+  booklet_question_notes?: boolean | Prisma.exam_campaigns$booklet_question_notesArgs<ExtArgs>
+  booklets?: boolean | Prisma.exam_campaigns$bookletsArgs<ExtArgs>
   campaign_keys?: boolean | Prisma.exam_campaigns$campaign_keysArgs<ExtArgs>
+  campaign_settings?: boolean | Prisma.exam_campaigns$campaign_settingsArgs<ExtArgs>
+  campaign_subjects?: boolean | Prisma.exam_campaigns$campaign_subjectsArgs<ExtArgs>
   exam_rooms?: boolean | Prisma.exam_campaigns$exam_roomsArgs<ExtArgs>
-  grader_work_locks?: boolean | Prisma.exam_campaigns$grader_work_locksArgs<ExtArgs>
   graders?: boolean | Prisma.exam_campaigns$gradersArgs<ExtArgs>
+  notification_messages?: boolean | Prisma.exam_campaigns$notification_messagesArgs<ExtArgs>
+  qr_scan_logs?: boolean | Prisma.exam_campaigns$qr_scan_logsArgs<ExtArgs>
+  question_choice_groups?: boolean | Prisma.exam_campaigns$question_choice_groupsArgs<ExtArgs>
   sessions?: boolean | Prisma.exam_campaigns$sessionsArgs<ExtArgs>
+  twofactor_sessions?: boolean | Prisma.exam_campaigns$twofactor_sessionsArgs<ExtArgs>
   user_campaigns?: boolean | Prisma.exam_campaigns$user_campaignsArgs<ExtArgs>
   _count?: boolean | Prisma.Exam_campaignsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["exam_campaigns"]>
@@ -1142,21 +3127,34 @@ export type exam_campaignsSelect<ExtArgs extends runtime.Types.Extensions.Intern
 export type exam_campaignsSelectScalar = {
   id?: boolean
   name?: boolean
-  is_active?: boolean
   year_be?: boolean
   site?: boolean
   campaign_size?: boolean
+  is_active?: boolean
   is_unlock?: boolean
   qr_active?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type exam_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "is_active" | "year_be" | "site" | "campaign_size" | "is_unlock" | "qr_active", ExtArgs["result"]["exam_campaigns"]>
+export type exam_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year_be" | "site" | "campaign_size" | "is_active" | "is_unlock" | "qr_active" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["exam_campaigns"]>
 export type exam_campaignsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  accounts?: boolean | Prisma.exam_campaigns$accountsArgs<ExtArgs>
+  bags?: boolean | Prisma.exam_campaigns$bagsArgs<ExtArgs>
+  booklet_incident_reports?: boolean | Prisma.exam_campaigns$booklet_incident_reportsArgs<ExtArgs>
+  booklet_question_notes?: boolean | Prisma.exam_campaigns$booklet_question_notesArgs<ExtArgs>
+  booklets?: boolean | Prisma.exam_campaigns$bookletsArgs<ExtArgs>
   campaign_keys?: boolean | Prisma.exam_campaigns$campaign_keysArgs<ExtArgs>
+  campaign_settings?: boolean | Prisma.exam_campaigns$campaign_settingsArgs<ExtArgs>
+  campaign_subjects?: boolean | Prisma.exam_campaigns$campaign_subjectsArgs<ExtArgs>
   exam_rooms?: boolean | Prisma.exam_campaigns$exam_roomsArgs<ExtArgs>
-  grader_work_locks?: boolean | Prisma.exam_campaigns$grader_work_locksArgs<ExtArgs>
   graders?: boolean | Prisma.exam_campaigns$gradersArgs<ExtArgs>
+  notification_messages?: boolean | Prisma.exam_campaigns$notification_messagesArgs<ExtArgs>
+  qr_scan_logs?: boolean | Prisma.exam_campaigns$qr_scan_logsArgs<ExtArgs>
+  question_choice_groups?: boolean | Prisma.exam_campaigns$question_choice_groupsArgs<ExtArgs>
   sessions?: boolean | Prisma.exam_campaigns$sessionsArgs<ExtArgs>
+  twofactor_sessions?: boolean | Prisma.exam_campaigns$twofactor_sessionsArgs<ExtArgs>
   user_campaigns?: boolean | Prisma.exam_campaigns$user_campaignsArgs<ExtArgs>
   _count?: boolean | Prisma.Exam_campaignsCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1164,22 +3162,35 @@ export type exam_campaignsInclude<ExtArgs extends runtime.Types.Extensions.Inter
 export type $exam_campaignsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "exam_campaigns"
   objects: {
+    accounts: Prisma.$accountsPayload<ExtArgs>[]
+    bags: Prisma.$bagsPayload<ExtArgs>[]
+    booklet_incident_reports: Prisma.$booklet_incident_reportsPayload<ExtArgs>[]
+    booklet_question_notes: Prisma.$booklet_question_notesPayload<ExtArgs>[]
+    booklets: Prisma.$bookletsPayload<ExtArgs>[]
     campaign_keys: Prisma.$campaign_keysPayload<ExtArgs>[]
+    campaign_settings: Prisma.$campaign_settingsPayload<ExtArgs>[]
+    campaign_subjects: Prisma.$campaign_subjectsPayload<ExtArgs>[]
     exam_rooms: Prisma.$exam_roomsPayload<ExtArgs>[]
-    grader_work_locks: Prisma.$grader_work_locksPayload<ExtArgs>[]
     graders: Prisma.$gradersPayload<ExtArgs>[]
+    notification_messages: Prisma.$notification_messagesPayload<ExtArgs>[]
+    qr_scan_logs: Prisma.$qr_scan_logsPayload<ExtArgs>[]
+    question_choice_groups: Prisma.$question_choice_groupsPayload<ExtArgs>[]
     sessions: Prisma.$sessionsPayload<ExtArgs>[]
+    twofactor_sessions: Prisma.$twofactor_sessionsPayload<ExtArgs>[]
     user_campaigns: Prisma.$user_campaignsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string | null
-    is_active: boolean
     year_be: string
     site: string | null
     campaign_size: string
+    is_active: boolean
     is_unlock: boolean
-    qr_active: number
+    qr_active: boolean
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["exam_campaigns"]>
   composites: {}
 }
@@ -1520,11 +3531,21 @@ readonly fields: exam_campaignsFieldRefs;
  */
 export interface Prisma__exam_campaignsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  accounts<T extends Prisma.exam_campaigns$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$accountsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bags<T extends Prisma.exam_campaigns$bagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$bagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$bagsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_incident_reports<T extends Prisma.exam_campaigns$booklet_incident_reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$booklet_incident_reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_incident_reportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_question_notes<T extends Prisma.exam_campaigns$booklet_question_notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$booklet_question_notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_question_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklets<T extends Prisma.exam_campaigns$bookletsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$bookletsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$bookletsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   campaign_keys<T extends Prisma.exam_campaigns$campaign_keysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$campaign_keysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_keysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaign_settings<T extends Prisma.exam_campaigns$campaign_settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$campaign_settingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_settingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaign_subjects<T extends Prisma.exam_campaigns$campaign_subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$campaign_subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_subjectsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   exam_rooms<T extends Prisma.exam_campaigns$exam_roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$exam_roomsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$exam_roomsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  grader_work_locks<T extends Prisma.exam_campaigns$grader_work_locksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$grader_work_locksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grader_work_locksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   graders<T extends Prisma.exam_campaigns$gradersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$gradersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$gradersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notification_messages<T extends Prisma.exam_campaigns$notification_messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$notification_messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$notification_messagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qr_scan_logs<T extends Prisma.exam_campaigns$qr_scan_logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$qr_scan_logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$qr_scan_logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  question_choice_groups<T extends Prisma.exam_campaigns$question_choice_groupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$question_choice_groupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$question_choice_groupsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sessions<T extends Prisma.exam_campaigns$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  twofactor_sessions<T extends Prisma.exam_campaigns$twofactor_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$twofactor_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$twofactor_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   user_campaigns<T extends Prisma.exam_campaigns$user_campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaigns$user_campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_campaignsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1557,12 +3578,15 @@ export interface Prisma__exam_campaignsClient<T, Null = never, ExtArgs extends r
 export interface exam_campaignsFieldRefs {
   readonly id: Prisma.FieldRef<"exam_campaigns", 'Int'>
   readonly name: Prisma.FieldRef<"exam_campaigns", 'String'>
-  readonly is_active: Prisma.FieldRef<"exam_campaigns", 'Boolean'>
   readonly year_be: Prisma.FieldRef<"exam_campaigns", 'String'>
   readonly site: Prisma.FieldRef<"exam_campaigns", 'String'>
   readonly campaign_size: Prisma.FieldRef<"exam_campaigns", 'String'>
+  readonly is_active: Prisma.FieldRef<"exam_campaigns", 'Boolean'>
   readonly is_unlock: Prisma.FieldRef<"exam_campaigns", 'Boolean'>
-  readonly qr_active: Prisma.FieldRef<"exam_campaigns", 'Int'>
+  readonly qr_active: Prisma.FieldRef<"exam_campaigns", 'Boolean'>
+  readonly created_at: Prisma.FieldRef<"exam_campaigns", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"exam_campaigns", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"exam_campaigns", 'DateTime'>
 }
     
 
@@ -1911,6 +3935,126 @@ export type exam_campaignsDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * exam_campaigns.accounts
+ */
+export type exam_campaigns$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the accounts
+   */
+  select?: Prisma.accountsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the accounts
+   */
+  omit?: Prisma.accountsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.accountsInclude<ExtArgs> | null
+  where?: Prisma.accountsWhereInput
+  orderBy?: Prisma.accountsOrderByWithRelationInput | Prisma.accountsOrderByWithRelationInput[]
+  cursor?: Prisma.accountsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AccountsScalarFieldEnum | Prisma.AccountsScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.bags
+ */
+export type exam_campaigns$bagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the bags
+   */
+  select?: Prisma.bagsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the bags
+   */
+  omit?: Prisma.bagsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.bagsInclude<ExtArgs> | null
+  where?: Prisma.bagsWhereInput
+  orderBy?: Prisma.bagsOrderByWithRelationInput | Prisma.bagsOrderByWithRelationInput[]
+  cursor?: Prisma.bagsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BagsScalarFieldEnum | Prisma.BagsScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.booklet_incident_reports
+ */
+export type exam_campaigns$booklet_incident_reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_incident_reports
+   */
+  select?: Prisma.booklet_incident_reportsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_incident_reports
+   */
+  omit?: Prisma.booklet_incident_reportsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_incident_reportsInclude<ExtArgs> | null
+  where?: Prisma.booklet_incident_reportsWhereInput
+  orderBy?: Prisma.booklet_incident_reportsOrderByWithRelationInput | Prisma.booklet_incident_reportsOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_incident_reportsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_incident_reportsScalarFieldEnum | Prisma.Booklet_incident_reportsScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.booklet_question_notes
+ */
+export type exam_campaigns$booklet_question_notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_question_notes
+   */
+  select?: Prisma.booklet_question_notesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_question_notes
+   */
+  omit?: Prisma.booklet_question_notesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_question_notesInclude<ExtArgs> | null
+  where?: Prisma.booklet_question_notesWhereInput
+  orderBy?: Prisma.booklet_question_notesOrderByWithRelationInput | Prisma.booklet_question_notesOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_question_notesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_question_notesScalarFieldEnum | Prisma.Booklet_question_notesScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.booklets
+ */
+export type exam_campaigns$bookletsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklets
+   */
+  select?: Prisma.bookletsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklets
+   */
+  omit?: Prisma.bookletsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.bookletsInclude<ExtArgs> | null
+  where?: Prisma.bookletsWhereInput
+  orderBy?: Prisma.bookletsOrderByWithRelationInput | Prisma.bookletsOrderByWithRelationInput[]
+  cursor?: Prisma.bookletsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BookletsScalarFieldEnum | Prisma.BookletsScalarFieldEnum[]
+}
+
+/**
  * exam_campaigns.campaign_keys
  */
 export type exam_campaigns$campaign_keysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1932,6 +4076,54 @@ export type exam_campaigns$campaign_keysArgs<ExtArgs extends runtime.Types.Exten
   take?: number
   skip?: number
   distinct?: Prisma.Campaign_keysScalarFieldEnum | Prisma.Campaign_keysScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.campaign_settings
+ */
+export type exam_campaigns$campaign_settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the campaign_settings
+   */
+  select?: Prisma.campaign_settingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the campaign_settings
+   */
+  omit?: Prisma.campaign_settingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.campaign_settingsInclude<ExtArgs> | null
+  where?: Prisma.campaign_settingsWhereInput
+  orderBy?: Prisma.campaign_settingsOrderByWithRelationInput | Prisma.campaign_settingsOrderByWithRelationInput[]
+  cursor?: Prisma.campaign_settingsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Campaign_settingsScalarFieldEnum | Prisma.Campaign_settingsScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.campaign_subjects
+ */
+export type exam_campaigns$campaign_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the campaign_subjects
+   */
+  select?: Prisma.campaign_subjectsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the campaign_subjects
+   */
+  omit?: Prisma.campaign_subjectsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.campaign_subjectsInclude<ExtArgs> | null
+  where?: Prisma.campaign_subjectsWhereInput
+  orderBy?: Prisma.campaign_subjectsOrderByWithRelationInput | Prisma.campaign_subjectsOrderByWithRelationInput[]
+  cursor?: Prisma.campaign_subjectsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Campaign_subjectsScalarFieldEnum | Prisma.Campaign_subjectsScalarFieldEnum[]
 }
 
 /**
@@ -1959,30 +4151,6 @@ export type exam_campaigns$exam_roomsArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
- * exam_campaigns.grader_work_locks
- */
-export type exam_campaigns$grader_work_locksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the grader_work_locks
-   */
-  select?: Prisma.grader_work_locksSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the grader_work_locks
-   */
-  omit?: Prisma.grader_work_locksOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.grader_work_locksInclude<ExtArgs> | null
-  where?: Prisma.grader_work_locksWhereInput
-  orderBy?: Prisma.grader_work_locksOrderByWithRelationInput | Prisma.grader_work_locksOrderByWithRelationInput[]
-  cursor?: Prisma.grader_work_locksWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Grader_work_locksScalarFieldEnum | Prisma.Grader_work_locksScalarFieldEnum[]
-}
-
-/**
  * exam_campaigns.graders
  */
 export type exam_campaigns$gradersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2007,6 +4175,78 @@ export type exam_campaigns$gradersArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * exam_campaigns.notification_messages
+ */
+export type exam_campaigns$notification_messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the notification_messages
+   */
+  select?: Prisma.notification_messagesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the notification_messages
+   */
+  omit?: Prisma.notification_messagesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.notification_messagesInclude<ExtArgs> | null
+  where?: Prisma.notification_messagesWhereInput
+  orderBy?: Prisma.notification_messagesOrderByWithRelationInput | Prisma.notification_messagesOrderByWithRelationInput[]
+  cursor?: Prisma.notification_messagesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Notification_messagesScalarFieldEnum | Prisma.Notification_messagesScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.qr_scan_logs
+ */
+export type exam_campaigns$qr_scan_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the qr_scan_logs
+   */
+  select?: Prisma.qr_scan_logsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the qr_scan_logs
+   */
+  omit?: Prisma.qr_scan_logsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.qr_scan_logsInclude<ExtArgs> | null
+  where?: Prisma.qr_scan_logsWhereInput
+  orderBy?: Prisma.qr_scan_logsOrderByWithRelationInput | Prisma.qr_scan_logsOrderByWithRelationInput[]
+  cursor?: Prisma.qr_scan_logsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Qr_scan_logsScalarFieldEnum | Prisma.Qr_scan_logsScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.question_choice_groups
+ */
+export type exam_campaigns$question_choice_groupsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the question_choice_groups
+   */
+  select?: Prisma.question_choice_groupsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the question_choice_groups
+   */
+  omit?: Prisma.question_choice_groupsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.question_choice_groupsInclude<ExtArgs> | null
+  where?: Prisma.question_choice_groupsWhereInput
+  orderBy?: Prisma.question_choice_groupsOrderByWithRelationInput | Prisma.question_choice_groupsOrderByWithRelationInput[]
+  cursor?: Prisma.question_choice_groupsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Question_choice_groupsScalarFieldEnum | Prisma.Question_choice_groupsScalarFieldEnum[]
+}
+
+/**
  * exam_campaigns.sessions
  */
 export type exam_campaigns$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2028,6 +4268,30 @@ export type exam_campaigns$sessionsArgs<ExtArgs extends runtime.Types.Extensions
   take?: number
   skip?: number
   distinct?: Prisma.SessionsScalarFieldEnum | Prisma.SessionsScalarFieldEnum[]
+}
+
+/**
+ * exam_campaigns.twofactor_sessions
+ */
+export type exam_campaigns$twofactor_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the twofactor_sessions
+   */
+  select?: Prisma.twofactor_sessionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the twofactor_sessions
+   */
+  omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
+  where?: Prisma.twofactor_sessionsWhereInput
+  orderBy?: Prisma.twofactor_sessionsOrderByWithRelationInput | Prisma.twofactor_sessionsOrderByWithRelationInput[]
+  cursor?: Prisma.twofactor_sessionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Twofactor_sessionsScalarFieldEnum | Prisma.Twofactor_sessionsScalarFieldEnum[]
 }
 
 /**

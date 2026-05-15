@@ -47,6 +47,9 @@ export type Subject_questionsMinAggregateOutputType = {
   label: string | null
   max_score: number | null
   note: string | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Subject_questionsMaxAggregateOutputType = {
@@ -56,6 +59,9 @@ export type Subject_questionsMaxAggregateOutputType = {
   label: string | null
   max_score: number | null
   note: string | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Subject_questionsCountAggregateOutputType = {
@@ -65,6 +71,9 @@ export type Subject_questionsCountAggregateOutputType = {
   label: number
   max_score: number
   note: number
+  created_at: number
+  updated_at: number
+  deleted_at: number
   _all: number
 }
 
@@ -90,6 +99,9 @@ export type Subject_questionsMinAggregateInputType = {
   label?: true
   max_score?: true
   note?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type Subject_questionsMaxAggregateInputType = {
@@ -99,6 +111,9 @@ export type Subject_questionsMaxAggregateInputType = {
   label?: true
   max_score?: true
   note?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type Subject_questionsCountAggregateInputType = {
@@ -108,6 +123,9 @@ export type Subject_questionsCountAggregateInputType = {
   label?: true
   max_score?: true
   note?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -204,6 +222,9 @@ export type Subject_questionsGroupByOutputType = {
   label: string
   max_score: number | null
   note: string | null
+  created_at: Date
+  updated_at: Date
+  deleted_at: Date | null
   _count: Subject_questionsCountAggregateOutputType | null
   _avg: Subject_questionsAvgAggregateOutputType | null
   _sum: Subject_questionsSumAggregateOutputType | null
@@ -236,7 +257,9 @@ export type subject_questionsWhereInput = {
   label?: Prisma.StringFilter<"subject_questions"> | string
   max_score?: Prisma.IntNullableFilter<"subject_questions"> | number | null
   note?: Prisma.StringNullableFilter<"subject_questions"> | string | null
-  grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
+  created_at?: Prisma.DateTimeFilter<"subject_questions"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"subject_questions"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"subject_questions"> | Date | string | null
   subjects?: Prisma.XOR<Prisma.SubjectsScalarRelationFilter, Prisma.subjectsWhereInput>
 }
 
@@ -247,7 +270,9 @@ export type subject_questionsOrderByWithRelationInput = {
   label?: Prisma.SortOrder
   max_score?: Prisma.SortOrderInput | Prisma.SortOrder
   note?: Prisma.SortOrderInput | Prisma.SortOrder
-  grader_assignments?: Prisma.grader_assignmentsOrderByRelationAggregateInput
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   subjects?: Prisma.subjectsOrderByWithRelationInput
   _relevance?: Prisma.subject_questionsOrderByRelevanceInput
 }
@@ -263,7 +288,9 @@ export type subject_questionsWhereUniqueInput = Prisma.AtLeast<{
   label?: Prisma.StringFilter<"subject_questions"> | string
   max_score?: Prisma.IntNullableFilter<"subject_questions"> | number | null
   note?: Prisma.StringNullableFilter<"subject_questions"> | string | null
-  grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
+  created_at?: Prisma.DateTimeFilter<"subject_questions"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"subject_questions"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"subject_questions"> | Date | string | null
   subjects?: Prisma.XOR<Prisma.SubjectsScalarRelationFilter, Prisma.subjectsWhereInput>
 }, "id" | "subject_id_question_no">
 
@@ -274,6 +301,9 @@ export type subject_questionsOrderByWithAggregationInput = {
   label?: Prisma.SortOrder
   max_score?: Prisma.SortOrderInput | Prisma.SortOrder
   note?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.subject_questionsCountOrderByAggregateInput
   _avg?: Prisma.subject_questionsAvgOrderByAggregateInput
   _max?: Prisma.subject_questionsMaxOrderByAggregateInput
@@ -291,6 +321,9 @@ export type subject_questionsScalarWhereWithAggregatesInput = {
   label?: Prisma.StringWithAggregatesFilter<"subject_questions"> | string
   max_score?: Prisma.IntNullableWithAggregatesFilter<"subject_questions"> | number | null
   note?: Prisma.StringNullableWithAggregatesFilter<"subject_questions"> | string | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"subject_questions"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"subject_questions"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"subject_questions"> | Date | string | null
 }
 
 export type subject_questionsCreateInput = {
@@ -298,7 +331,9 @@ export type subject_questionsCreateInput = {
   label: string
   max_score?: number | null
   note?: string | null
-  grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSubject_questionsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   subjects: Prisma.subjectsCreateNestedOneWithoutSubject_questionsInput
 }
 
@@ -309,7 +344,9 @@ export type subject_questionsUncheckedCreateInput = {
   label: string
   max_score?: number | null
   note?: string | null
-  grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSubject_questionsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type subject_questionsUpdateInput = {
@@ -317,7 +354,9 @@ export type subject_questionsUpdateInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSubject_questionsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   subjects?: Prisma.subjectsUpdateOneRequiredWithoutSubject_questionsNestedInput
 }
 
@@ -328,7 +367,9 @@ export type subject_questionsUncheckedUpdateInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSubject_questionsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type subject_questionsCreateManyInput = {
@@ -338,6 +379,9 @@ export type subject_questionsCreateManyInput = {
   label: string
   max_score?: number | null
   note?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type subject_questionsUpdateManyMutationInput = {
@@ -345,6 +389,9 @@ export type subject_questionsUpdateManyMutationInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type subject_questionsUncheckedUpdateManyInput = {
@@ -354,11 +401,9 @@ export type subject_questionsUncheckedUpdateManyInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
-export type Subject_questionsScalarRelationFilter = {
-  is?: Prisma.subject_questionsWhereInput
-  isNot?: Prisma.subject_questionsWhereInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type subject_questionsOrderByRelevanceInput = {
@@ -379,6 +424,9 @@ export type subject_questionsCountOrderByAggregateInput = {
   label?: Prisma.SortOrder
   max_score?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type subject_questionsAvgOrderByAggregateInput = {
@@ -395,6 +443,9 @@ export type subject_questionsMaxOrderByAggregateInput = {
   label?: Prisma.SortOrder
   max_score?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type subject_questionsMinOrderByAggregateInput = {
@@ -404,6 +455,9 @@ export type subject_questionsMinOrderByAggregateInput = {
   label?: Prisma.SortOrder
   max_score?: Prisma.SortOrder
   note?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type subject_questionsSumOrderByAggregateInput = {
@@ -421,20 +475,6 @@ export type Subject_questionsListRelationFilter = {
 
 export type subject_questionsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
-}
-
-export type subject_questionsCreateNestedOneWithoutGrader_assignmentsInput = {
-  create?: Prisma.XOR<Prisma.subject_questionsCreateWithoutGrader_assignmentsInput, Prisma.subject_questionsUncheckedCreateWithoutGrader_assignmentsInput>
-  connectOrCreate?: Prisma.subject_questionsCreateOrConnectWithoutGrader_assignmentsInput
-  connect?: Prisma.subject_questionsWhereUniqueInput
-}
-
-export type subject_questionsUpdateOneRequiredWithoutGrader_assignmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.subject_questionsCreateWithoutGrader_assignmentsInput, Prisma.subject_questionsUncheckedCreateWithoutGrader_assignmentsInput>
-  connectOrCreate?: Prisma.subject_questionsCreateOrConnectWithoutGrader_assignmentsInput
-  upsert?: Prisma.subject_questionsUpsertWithoutGrader_assignmentsInput
-  connect?: Prisma.subject_questionsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.subject_questionsUpdateToOneWithWhereWithoutGrader_assignmentsInput, Prisma.subject_questionsUpdateWithoutGrader_assignmentsInput>, Prisma.subject_questionsUncheckedUpdateWithoutGrader_assignmentsInput>
 }
 
 export type subject_questionsCreateNestedManyWithoutSubjectsInput = {
@@ -479,62 +519,14 @@ export type subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput = {
   deleteMany?: Prisma.subject_questionsScalarWhereInput | Prisma.subject_questionsScalarWhereInput[]
 }
 
-export type subject_questionsCreateWithoutGrader_assignmentsInput = {
-  question_no: number
-  label: string
-  max_score?: number | null
-  note?: string | null
-  subjects: Prisma.subjectsCreateNestedOneWithoutSubject_questionsInput
-}
-
-export type subject_questionsUncheckedCreateWithoutGrader_assignmentsInput = {
-  id?: number
-  subject_id: number
-  question_no: number
-  label: string
-  max_score?: number | null
-  note?: string | null
-}
-
-export type subject_questionsCreateOrConnectWithoutGrader_assignmentsInput = {
-  where: Prisma.subject_questionsWhereUniqueInput
-  create: Prisma.XOR<Prisma.subject_questionsCreateWithoutGrader_assignmentsInput, Prisma.subject_questionsUncheckedCreateWithoutGrader_assignmentsInput>
-}
-
-export type subject_questionsUpsertWithoutGrader_assignmentsInput = {
-  update: Prisma.XOR<Prisma.subject_questionsUpdateWithoutGrader_assignmentsInput, Prisma.subject_questionsUncheckedUpdateWithoutGrader_assignmentsInput>
-  create: Prisma.XOR<Prisma.subject_questionsCreateWithoutGrader_assignmentsInput, Prisma.subject_questionsUncheckedCreateWithoutGrader_assignmentsInput>
-  where?: Prisma.subject_questionsWhereInput
-}
-
-export type subject_questionsUpdateToOneWithWhereWithoutGrader_assignmentsInput = {
-  where?: Prisma.subject_questionsWhereInput
-  data: Prisma.XOR<Prisma.subject_questionsUpdateWithoutGrader_assignmentsInput, Prisma.subject_questionsUncheckedUpdateWithoutGrader_assignmentsInput>
-}
-
-export type subject_questionsUpdateWithoutGrader_assignmentsInput = {
-  question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  label?: Prisma.StringFieldUpdateOperationsInput | string
-  max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutSubject_questionsNestedInput
-}
-
-export type subject_questionsUncheckedUpdateWithoutGrader_assignmentsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
-  question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  label?: Prisma.StringFieldUpdateOperationsInput | string
-  max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-}
-
 export type subject_questionsCreateWithoutSubjectsInput = {
   question_no: number
   label: string
   max_score?: number | null
   note?: string | null
-  grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSubject_questionsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type subject_questionsUncheckedCreateWithoutSubjectsInput = {
@@ -543,7 +535,9 @@ export type subject_questionsUncheckedCreateWithoutSubjectsInput = {
   label: string
   max_score?: number | null
   note?: string | null
-  grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSubject_questionsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type subject_questionsCreateOrConnectWithoutSubjectsInput = {
@@ -582,6 +576,9 @@ export type subject_questionsScalarWhereInput = {
   label?: Prisma.StringFilter<"subject_questions"> | string
   max_score?: Prisma.IntNullableFilter<"subject_questions"> | number | null
   note?: Prisma.StringNullableFilter<"subject_questions"> | string | null
+  created_at?: Prisma.DateTimeFilter<"subject_questions"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"subject_questions"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"subject_questions"> | Date | string | null
 }
 
 export type subject_questionsCreateManySubjectsInput = {
@@ -590,6 +587,9 @@ export type subject_questionsCreateManySubjectsInput = {
   label: string
   max_score?: number | null
   note?: string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type subject_questionsUpdateWithoutSubjectsInput = {
@@ -597,7 +597,9 @@ export type subject_questionsUpdateWithoutSubjectsInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSubject_questionsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type subject_questionsUncheckedUpdateWithoutSubjectsInput = {
@@ -606,7 +608,9 @@ export type subject_questionsUncheckedUpdateWithoutSubjectsInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSubject_questionsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type subject_questionsUncheckedUpdateManyWithoutSubjectsInput = {
@@ -615,37 +619,11 @@ export type subject_questionsUncheckedUpdateManyWithoutSubjectsInput = {
   label?: Prisma.StringFieldUpdateOperationsInput | string
   max_score?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   note?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-
-/**
- * Count Type Subject_questionsCountOutputType
- */
-
-export type Subject_questionsCountOutputType = {
-  grader_assignments: number
-}
-
-export type Subject_questionsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  grader_assignments?: boolean | Subject_questionsCountOutputTypeCountGrader_assignmentsArgs
-}
-
-/**
- * Subject_questionsCountOutputType without action
- */
-export type Subject_questionsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subject_questionsCountOutputType
-   */
-  select?: Prisma.Subject_questionsCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * Subject_questionsCountOutputType without action
- */
-export type Subject_questionsCountOutputTypeCountGrader_assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.grader_assignmentsWhereInput
-}
 
 
 export type subject_questionsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -655,9 +633,10 @@ export type subject_questionsSelect<ExtArgs extends runtime.Types.Extensions.Int
   label?: boolean
   max_score?: boolean
   note?: boolean
-  grader_assignments?: boolean | Prisma.subject_questions$grader_assignmentsArgs<ExtArgs>
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
   subjects?: boolean | Prisma.subjectsDefaultArgs<ExtArgs>
-  _count?: boolean | Prisma.Subject_questionsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subject_questions"]>
 
 
@@ -669,19 +648,19 @@ export type subject_questionsSelectScalar = {
   label?: boolean
   max_score?: boolean
   note?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type subject_questionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subject_id" | "question_no" | "label" | "max_score" | "note", ExtArgs["result"]["subject_questions"]>
+export type subject_questionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subject_id" | "question_no" | "label" | "max_score" | "note" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["subject_questions"]>
 export type subject_questionsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  grader_assignments?: boolean | Prisma.subject_questions$grader_assignmentsArgs<ExtArgs>
   subjects?: boolean | Prisma.subjectsDefaultArgs<ExtArgs>
-  _count?: boolean | Prisma.Subject_questionsCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $subject_questionsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "subject_questions"
   objects: {
-    grader_assignments: Prisma.$grader_assignmentsPayload<ExtArgs>[]
     subjects: Prisma.$subjectsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -691,6 +670,9 @@ export type $subject_questionsPayload<ExtArgs extends runtime.Types.Extensions.I
     label: string
     max_score: number | null
     note: string | null
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["subject_questions"]>
   composites: {}
 }
@@ -1031,7 +1013,6 @@ readonly fields: subject_questionsFieldRefs;
  */
 export interface Prisma__subject_questionsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  grader_assignments<T extends Prisma.subject_questions$grader_assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subject_questions$grader_assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grader_assignmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subjects<T extends Prisma.subjectsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjectsDefaultArgs<ExtArgs>>): Prisma.Prisma__subjectsClient<runtime.Types.Result.GetResult<Prisma.$subjectsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1068,6 +1049,9 @@ export interface subject_questionsFieldRefs {
   readonly label: Prisma.FieldRef<"subject_questions", 'String'>
   readonly max_score: Prisma.FieldRef<"subject_questions", 'Int'>
   readonly note: Prisma.FieldRef<"subject_questions", 'String'>
+  readonly created_at: Prisma.FieldRef<"subject_questions", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"subject_questions", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"subject_questions", 'DateTime'>
 }
     
 
@@ -1413,30 +1397,6 @@ export type subject_questionsDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many subject_questions to delete.
    */
   limit?: number
-}
-
-/**
- * subject_questions.grader_assignments
- */
-export type subject_questions$grader_assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the grader_assignments
-   */
-  select?: Prisma.grader_assignmentsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the grader_assignments
-   */
-  omit?: Prisma.grader_assignmentsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.grader_assignmentsInclude<ExtArgs> | null
-  where?: Prisma.grader_assignmentsWhereInput
-  orderBy?: Prisma.grader_assignmentsOrderByWithRelationInput | Prisma.grader_assignmentsOrderByWithRelationInput[]
-  cursor?: Prisma.grader_assignmentsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Grader_assignmentsScalarFieldEnum | Prisma.Grader_assignmentsScalarFieldEnum[]
 }
 
 /**

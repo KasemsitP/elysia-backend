@@ -161,3 +161,93 @@ export type user_sessions = Prisma.user_sessionsModel
  * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
  */
 export type users = Prisma.usersModel
+/**
+ * Model booklet_incident_reports
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type booklet_incident_reports = Prisma.booklet_incident_reportsModel
+/**
+ * Model booklet_question_choices
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type booklet_question_choices = Prisma.booklet_question_choicesModel
+/**
+ * Model booklet_question_notes
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type booklet_question_notes = Prisma.booklet_question_notesModel
+/**
+ * Model campaign_settings
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type campaign_settings = Prisma.campaign_settingsModel
+/**
+ * Model campaign_subjects
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type campaign_subjects = Prisma.campaign_subjectsModel
+/**
+ * Model incident_attachments
+ * 
+ */
+export type incident_attachments = Prisma.incident_attachmentsModel
+/**
+ * Model notification_delivery_logs
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type notification_delivery_logs = Prisma.notification_delivery_logsModel
+/**
+ * Model notification_messages
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type notification_messages = Prisma.notification_messagesModel
+/**
+ * Model notification_preferences
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type notification_preferences = Prisma.notification_preferencesModel
+/**
+ * Model notification_recipients
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type notification_recipients = Prisma.notification_recipientsModel
+/**
+ * Model notification_templates
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type notification_templates = Prisma.notification_templatesModel
+/**
+ * Model qr_scan_logs
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type qr_scan_logs = Prisma.qr_scan_logsModel
+/**
+ * Model question_choice_group_items
+ * 
+ */
+export type question_choice_group_items = Prisma.question_choice_group_itemsModel
+/**
+ * Model question_choice_groups
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type question_choice_groups = Prisma.question_choice_groupsModel
+/**
+ * Model service_outbox_events
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type service_outbox_events = Prisma.service_outbox_eventsModel
+/**
+ * Model session_counters
+ * 
+ */
+export type session_counters = Prisma.session_countersModel
+/**
+ * Model session_subject_questions
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type session_subject_questions = Prisma.session_subject_questionsModel
+/**
+ * Model setting_definitions
+ * This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+ */
+export type setting_definitions = Prisma.setting_definitionsModel

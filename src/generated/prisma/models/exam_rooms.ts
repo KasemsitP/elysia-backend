@@ -40,18 +40,27 @@ export type Exam_roomsMinAggregateOutputType = {
   campaign_id: number | null
   room_code: string | null
   capacity: number | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Exam_roomsMaxAggregateOutputType = {
   campaign_id: number | null
   room_code: string | null
   capacity: number | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Exam_roomsCountAggregateOutputType = {
   campaign_id: number
   room_code: number
   capacity: number
+  created_at: number
+  updated_at: number
+  deleted_at: number
   _all: number
 }
 
@@ -70,18 +79,27 @@ export type Exam_roomsMinAggregateInputType = {
   campaign_id?: true
   room_code?: true
   capacity?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type Exam_roomsMaxAggregateInputType = {
   campaign_id?: true
   room_code?: true
   capacity?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type Exam_roomsCountAggregateInputType = {
   campaign_id?: true
   room_code?: true
   capacity?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -175,6 +193,9 @@ export type Exam_roomsGroupByOutputType = {
   campaign_id: number
   room_code: string
   capacity: number
+  created_at: Date
+  updated_at: Date
+  deleted_at: Date | null
   _count: Exam_roomsCountAggregateOutputType | null
   _avg: Exam_roomsAvgAggregateOutputType | null
   _sum: Exam_roomsSumAggregateOutputType | null
@@ -204,6 +225,9 @@ export type exam_roomsWhereInput = {
   campaign_id?: Prisma.IntFilter<"exam_rooms"> | number
   room_code?: Prisma.StringFilter<"exam_rooms"> | string
   capacity?: Prisma.IntFilter<"exam_rooms"> | number
+  created_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"exam_rooms"> | Date | string | null
   exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   user_campaigns?: Prisma.User_campaignsListRelationFilter
 }
@@ -212,6 +236,9 @@ export type exam_roomsOrderByWithRelationInput = {
   campaign_id?: Prisma.SortOrder
   room_code?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   exam_campaigns?: Prisma.exam_campaignsOrderByWithRelationInput
   user_campaigns?: Prisma.user_campaignsOrderByRelationAggregateInput
   _relevance?: Prisma.exam_roomsOrderByRelevanceInput
@@ -225,6 +252,9 @@ export type exam_roomsWhereUniqueInput = Prisma.AtLeast<{
   campaign_id?: Prisma.IntFilter<"exam_rooms"> | number
   room_code?: Prisma.StringFilter<"exam_rooms"> | string
   capacity?: Prisma.IntFilter<"exam_rooms"> | number
+  created_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"exam_rooms"> | Date | string | null
   exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   user_campaigns?: Prisma.User_campaignsListRelationFilter
 }, "campaign_id_room_code">
@@ -233,6 +263,9 @@ export type exam_roomsOrderByWithAggregationInput = {
   campaign_id?: Prisma.SortOrder
   room_code?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.exam_roomsCountOrderByAggregateInput
   _avg?: Prisma.exam_roomsAvgOrderByAggregateInput
   _max?: Prisma.exam_roomsMaxOrderByAggregateInput
@@ -247,11 +280,17 @@ export type exam_roomsScalarWhereWithAggregatesInput = {
   campaign_id?: Prisma.IntWithAggregatesFilter<"exam_rooms"> | number
   room_code?: Prisma.StringWithAggregatesFilter<"exam_rooms"> | string
   capacity?: Prisma.IntWithAggregatesFilter<"exam_rooms"> | number
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"exam_rooms"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"exam_rooms"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"exam_rooms"> | Date | string | null
 }
 
 export type exam_roomsCreateInput = {
   room_code: string
   capacity: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutExam_roomsInput
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_roomsInput
 }
@@ -260,12 +299,18 @@ export type exam_roomsUncheckedCreateInput = {
   campaign_id: number
   room_code: string
   capacity: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_roomsInput
 }
 
 export type exam_roomsUpdateInput = {
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutExam_roomsNestedInput
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_roomsNestedInput
 }
@@ -274,6 +319,9 @@ export type exam_roomsUncheckedUpdateInput = {
   campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_roomsNestedInput
 }
 
@@ -281,17 +329,26 @@ export type exam_roomsCreateManyInput = {
   campaign_id: number
   room_code: string
   capacity: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type exam_roomsUpdateManyMutationInput = {
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type exam_roomsUncheckedUpdateManyInput = {
   campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type Exam_roomsListRelationFilter = {
@@ -319,6 +376,9 @@ export type exam_roomsCountOrderByAggregateInput = {
   campaign_id?: Prisma.SortOrder
   room_code?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type exam_roomsAvgOrderByAggregateInput = {
@@ -330,12 +390,18 @@ export type exam_roomsMaxOrderByAggregateInput = {
   campaign_id?: Prisma.SortOrder
   room_code?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type exam_roomsMinOrderByAggregateInput = {
   campaign_id?: Prisma.SortOrder
   room_code?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type exam_roomsSumOrderByAggregateInput = {
@@ -409,12 +475,18 @@ export type exam_roomsUpdateOneWithoutUser_campaignsNestedInput = {
 export type exam_roomsCreateWithoutExam_campaignsInput = {
   room_code: string
   capacity: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_roomsInput
 }
 
 export type exam_roomsUncheckedCreateWithoutExam_campaignsInput = {
   room_code: string
   capacity: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_roomsInput
 }
 
@@ -451,11 +523,17 @@ export type exam_roomsScalarWhereInput = {
   campaign_id?: Prisma.IntFilter<"exam_rooms"> | number
   room_code?: Prisma.StringFilter<"exam_rooms"> | string
   capacity?: Prisma.IntFilter<"exam_rooms"> | number
+  created_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"exam_rooms"> | Date | string | null
 }
 
 export type exam_roomsCreateWithoutUser_campaignsInput = {
   room_code: string
   capacity: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutExam_roomsInput
 }
 
@@ -463,6 +541,9 @@ export type exam_roomsUncheckedCreateWithoutUser_campaignsInput = {
   campaign_id: number
   room_code: string
   capacity: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type exam_roomsCreateOrConnectWithoutUser_campaignsInput = {
@@ -484,6 +565,9 @@ export type exam_roomsUpdateToOneWithWhereWithoutUser_campaignsInput = {
 export type exam_roomsUpdateWithoutUser_campaignsInput = {
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutExam_roomsNestedInput
 }
 
@@ -491,28 +575,43 @@ export type exam_roomsUncheckedUpdateWithoutUser_campaignsInput = {
   campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type exam_roomsCreateManyExam_campaignsInput = {
   room_code: string
   capacity: number
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type exam_roomsUpdateWithoutExam_campaignsInput = {
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_roomsNestedInput
 }
 
 export type exam_roomsUncheckedUpdateWithoutExam_campaignsInput = {
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_roomsNestedInput
 }
 
 export type exam_roomsUncheckedUpdateManyWithoutExam_campaignsInput = {
   room_code?: Prisma.StringFieldUpdateOperationsInput | string
   capacity?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -550,6 +649,9 @@ export type exam_roomsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   campaign_id?: boolean
   room_code?: boolean
   capacity?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
   exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
   user_campaigns?: boolean | Prisma.exam_rooms$user_campaignsArgs<ExtArgs>
   _count?: boolean | Prisma.Exam_roomsCountOutputTypeDefaultArgs<ExtArgs>
@@ -561,9 +663,12 @@ export type exam_roomsSelectScalar = {
   campaign_id?: boolean
   room_code?: boolean
   capacity?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type exam_roomsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"campaign_id" | "room_code" | "capacity", ExtArgs["result"]["exam_rooms"]>
+export type exam_roomsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"campaign_id" | "room_code" | "capacity" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["exam_rooms"]>
 export type exam_roomsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
   user_campaigns?: boolean | Prisma.exam_rooms$user_campaignsArgs<ExtArgs>
@@ -580,6 +685,9 @@ export type $exam_roomsPayload<ExtArgs extends runtime.Types.Extensions.Internal
     campaign_id: number
     room_code: string
     capacity: number
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["exam_rooms"]>
   composites: {}
 }
@@ -954,6 +1062,9 @@ export interface exam_roomsFieldRefs {
   readonly campaign_id: Prisma.FieldRef<"exam_rooms", 'Int'>
   readonly room_code: Prisma.FieldRef<"exam_rooms", 'String'>
   readonly capacity: Prisma.FieldRef<"exam_rooms", 'Int'>
+  readonly created_at: Prisma.FieldRef<"exam_rooms", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"exam_rooms", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"exam_rooms", 'DateTime'>
 }
     
 

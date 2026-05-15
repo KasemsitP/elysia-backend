@@ -9,32 +9,56 @@ datasource db {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model accounts {
-  id                 Int                  @id @default(autoincrement())
-  username           String               @unique(map: "accounts_index_46") @db.VarChar(64)
-  password_hash      String               @db.VarChar(256)
-  full_name          String               @db.VarChar(128)
-  email              String?              @db.VarChar(128)
-  active             Boolean              @default(true)
-  role_id            Int
-  session_version    Int                  @default(1)
-  manager_order      Int?                 @db.TinyInt
-  title              String?              @db.VarChar(20)
-  delete_at          DateTime?            @db.DateTime(0)
-  campaign_id        Int?
-  roles              roles                @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "accounts_ibfk_1")
-  activity_logs      activity_logs[]
-  auth_sessions      auth_sessions[]
-  campaign_keys      campaign_keys[]
-  graders            graders[]
-  grading_score_logs grading_score_logs[]
+  id                                                                                 Int                        @id @default(autoincrement())
+  username                                                                           String                     @db.VarChar(64)
+  password_hash                                                                      String                     @db.VarChar(256)
+  title                                                                              String?                    @db.VarChar(20)
+  full_name                                                                          String                     @db.VarChar(128)
+  email                                                                              String?                    @db.VarChar(128)
+  profile_image_url                                                                  String?                    @db.VarChar(512)
+  profile_image_key                                                                  String?                    @db.VarChar(512)
+  active                                                                             Boolean                    @default(true)
+  role_id                                                                            Int
+  campaign_id                                                                        Int?
+  session_version                                                                    Int                        @default(1)
+  manager_order                                                                      Int?                       @db.TinyInt
+  created_at                                                                         DateTime                   @default(now()) @db.DateTime(0)
+  updated_at                                                                         DateTime                   @default(now()) @db.DateTime(0)
+  deleted_at                                                                         DateTime?                  @db.DateTime(0)
+  active_unique_key                                                                  Int?                       @db.TinyInt
+  exam_campaigns                                                                     exam_campaigns?            @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_accounts_campaign")
+  roles                                                                              roles                      @relation(fields: [role_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "accounts_ibfk_1")
+  activity_logs                                                                      activity_logs[]
+  auth_sessions                                                                      auth_sessions[]
+  bags                                                                               bags[]
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts booklet_incident_reports[] @relation("booklet_incident_reports_assigned_to_account_idToaccounts")
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts booklet_incident_reports[] @relation("booklet_incident_reports_reported_by_account_idToaccounts")
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts booklet_incident_reports[] @relation("booklet_incident_reports_resolved_by_account_idToaccounts")
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts      booklet_question_notes[]   @relation("booklet_question_notes_created_by_account_idToaccounts")
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts     booklet_question_notes[]   @relation("booklet_question_notes_reviewed_by_account_idToaccounts")
+  campaign_keys                                                                      campaign_keys[]
+  campaign_settings_campaign_settings_created_by_account_idToaccounts                campaign_settings[]        @relation("campaign_settings_created_by_account_idToaccounts")
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts                campaign_settings[]        @relation("campaign_settings_updated_by_account_idToaccounts")
+  grader_work_locks                                                                  grader_work_locks[]
+  graders                                                                            graders[]
+  grading_score_logs                                                                 grading_score_logs[]
+  incident_attachments                                                               incident_attachments[]
+  notification_messages                                                              notification_messages[]
+  notification_preferences                                                           notification_preferences[]
+  notification_recipients                                                            notification_recipients[]
+  qr_scan_logs                                                                       qr_scan_logs[]
+  twofactor_sessions                                                                 twofactor_sessions[]
 
-  @@index([role_id], map: "accounts_index_47")
+  @@unique([username, active_unique_key], map: "uq_accounts_username_active")
+  @@index([active], map: "idx_accounts_active")
+  @@index([campaign_id], map: "idx_accounts_campaign")
+  @@index([role_id], map: "idx_accounts_role")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model activity_logs {
   id          Int       @id @default(autoincrement())
-  event_time  DateTime  @default(dbgenerated("(now())")) @db.Timestamp(0)
+  event_time  DateTime  @default(now()) @db.DateTime(0)
   actor_type  String    @db.VarChar(16)
   account_id  Int?
   grader_id   Int?
@@ -47,10 +71,10 @@ model activity_logs {
   accounts    accounts? @relation(fields: [account_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "activity_logs_ibfk_1")
   graders     graders?  @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "activity_logs_ibfk_2")
 
-  @@index([event_time], map: "activity_logs_index_51")
-  @@index([object_type, object_id], map: "activity_logs_index_52")
-  @@index([account_id], map: "activity_logs_index_53")
-  @@index([grader_id], map: "activity_logs_index_54")
+  @@index([account_id], map: "idx_activity_account")
+  @@index([event_time], map: "idx_activity_event_time")
+  @@index([grader_id], map: "idx_activity_grader")
+  @@index([object_type, object_id], map: "idx_activity_object")
 }
 
 model auth_sessions {
@@ -58,53 +82,82 @@ model auth_sessions {
   account_id Int?
   expires    Int       @db.UnsignedInt
   data       String    @db.Text
+  created_at DateTime  @default(now()) @db.DateTime(0)
+  updated_at DateTime  @default(now()) @db.DateTime(0)
   accounts   accounts? @relation(fields: [account_id], references: [id], onUpdate: NoAction, map: "fk_auth_session_accounts")
 
-  @@index([account_id], map: "ix_auth_session_account")
+  @@index([account_id], map: "idx_auth_sessions_account")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model bags {
-  id                   Int                    @id @default(autoincrement())
-  session_id           Int
-  bag_no               Int
-  count_items          Int                    @default(30)
-  status               String                 @default("CREATED") @db.VarChar(16)
-  created_at           DateTime               @default(dbgenerated("(now())")) @db.Timestamp(0)
-  sessions             sessions               @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "bags_ibfk_1")
-  booklets             booklets[]
-  grader_work_locks    grader_work_locks[]
-  grading_score_drafts grading_score_drafts[]
+  id                       Int                        @id @default(autoincrement())
+  campaign_id              Int
+  session_id               Int
+  bag_no                   Int
+  count_items              Int                        @default(30)
+  status                   String                     @default("CREATED") @db.VarChar(16)
+  created_by_account_id    Int?
+  created_at               DateTime                   @default(now()) @db.DateTime(0)
+  updated_at               DateTime                   @default(now()) @db.DateTime(0)
+  deleted_at               DateTime?                  @db.DateTime(0)
+  exam_campaigns           exam_campaigns             @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bags_campaign")
+  accounts                 accounts?                  @relation(fields: [created_by_account_id], references: [id], onUpdate: NoAction, map: "fk_bags_created_by_account")
+  sessions                 sessions                   @relation(fields: [session_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bags_session")
+  booklet_incident_reports booklet_incident_reports[]
+  booklet_question_notes   booklet_question_notes[]
+  booklets                 booklets[]
+  grader_work_locks        grader_work_locks[]
+  grading_score_drafts     grading_score_drafts[]
+  notification_messages    notification_messages[]
+  qr_scan_logs             qr_scan_logs[]
 
   @@unique([session_id, bag_no], map: "uq_bags_session_bagno")
-  @@index([session_id], map: "bags_index_26")
+  @@unique([id, campaign_id, session_id], map: "uq_bags_id_campaign_session")
+  @@index([session_id, campaign_id], map: "fk_bags_session")
+  @@index([campaign_id], map: "idx_bags_campaign")
+  @@index([created_by_account_id], map: "idx_bags_created_by")
+  @@index([session_id], map: "idx_bags_session")
+  @@index([status], map: "idx_bags_status")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model booklets {
-  id                   Int                    @id @default(autoincrement())
-  session_id           Int
-  campaign_id          Int?
-  user_code            String?                @db.VarChar(32)
-  qr_payload           String                 @unique(map: "qr_payload") @db.VarChar(512)
-  seq_in_bag           Int?                   @db.SmallInt
-  status               String                 @default("PRINTED") @db.VarChar(16)
-  created_at           DateTime               @default(dbgenerated("(now())")) @db.Timestamp(0)
-  bag_id               Int?
-  random_num           String?                @db.VarChar(6)
-  sessions             sessions               @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "booklets_ibfk_1")
-  bags                 bags?                  @relation(fields: [bag_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booklets_bag")
-  grading_score_drafts grading_score_drafts[]
-  grading_score_logs   grading_score_logs[]
-  grading_slots        grading_slots[]
+  id                       Int                        @id @default(autoincrement())
+  campaign_id              Int
+  session_id               Int
+  user_code                String?                    @db.VarChar(32)
+  qr_payload               String                     @unique(map: "uq_booklets_qr_payload") @db.VarChar(512)
+  bag_id                   Int?
+  seq_in_bag               Int?                       @db.SmallInt
+  random_num               String?                    @db.VarChar(6)
+  status                   String                     @default("PRINTED") @db.VarChar(16)
+  created_at               DateTime                   @default(now()) @db.DateTime(0)
+  updated_at               DateTime                   @default(now()) @db.DateTime(0)
+  deleted_at               DateTime?                  @db.DateTime(0)
+  booklet_incident_reports booklet_incident_reports[]
+  booklet_question_choices booklet_question_choices[]
+  booklet_question_notes   booklet_question_notes[]
+  bags                     bags?                      @relation(fields: [bag_id, campaign_id, session_id], references: [id, campaign_id, session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booklets_bag")
+  exam_campaigns           exam_campaigns             @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booklets_campaign")
+  sessions                 sessions                   @relation(fields: [session_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_booklets_session")
+  grading_score_drafts     grading_score_drafts[]
+  grading_score_logs       grading_score_logs[]
+  grading_slots            grading_slots[]
+  qr_scan_logs             qr_scan_logs[]
 
-  @@unique([session_id, random_num], map: "unique_session_random")
-  @@index([session_id], map: "booklets_index_29")
-  @@index([bag_id], map: "fk_booklets_bag")
+  @@unique([session_id, random_num], map: "session_id")
+  @@unique([session_id, random_num], map: "uq_booklets_session_random")
+  @@unique([session_id, user_code], map: "uq_booklets_session_user")
+  @@index([bag_id, campaign_id, session_id], map: "fk_booklets_bag")
   @@index([campaign_id], map: "idx_booklets_campaign")
   @@index([user_code], map: "idx_booklets_user_code")
-  @@index([session_id], map: "session_id")
-  @@index([session_id, user_code], map: "session_id_2")
+  @@index([session_id, campaign_id], map: "fk_booklets_session")
+  @@index([bag_id], map: "idx_booklets_bag")
+  @@index([campaign_id, session_id, status, bag_id], map: "idx_booklets_packaging_lookup")
+  @@index([session_id], map: "idx_booklets_session")
+  @@index([session_id, qr_payload], map: "idx_booklets_session_payload")
+  @@index([status], map: "idx_booklets_status")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -112,41 +165,64 @@ model campaign_keys {
   id             Int            @id @default(autoincrement())
   campaign_id    Int
   account_id     Int?
+  key_ciphertext String?        @db.VarChar(512)
+  algor          String         @default("AES-128-GCM") @db.VarChar(64)
+  iv             String?        @db.VarChar(128)
+  order_num      Int            @default(1)
   active         Boolean        @default(true)
-  created_at     DateTime       @default(dbgenerated("(now())")) @db.Timestamp(0)
-  order_num      Int?           @default(1)
-  exam_campaigns exam_campaigns @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "campaign_keys_ibfk_1")
+  created_at     DateTime       @default(now()) @db.DateTime(0)
+  updated_at     DateTime       @default(now()) @db.DateTime(0)
+  deleted_at     DateTime?      @db.DateTime(0)
   accounts       accounts?      @relation(fields: [account_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_campaign_keys_owner")
+  exam_campaigns exam_campaigns @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "campaign_keys_ibfk_1")
 
-  @@unique([campaign_id, order_num], map: "uq_campaign_order")
-  @@index([account_id], map: "fk_campaign_keys_owner")
+  @@unique([campaign_id, order_num], map: "uq_campaign_key_order")
+  @@index([account_id], map: "idx_campaign_keys_owner")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model exam_campaigns {
-  id                Int                 @id @default(autoincrement())
-  name              String?             @db.VarChar(128)
-  is_active         Boolean             @default(true)
-  year_be           String              @db.VarChar(255)
-  site              String?             @db.VarChar(255)
-  campaign_size     String              @db.VarChar(255)
-  is_unlock         Boolean             @default(false)
-  qr_active         Int                 @default(0) @db.TinyInt
-  campaign_keys     campaign_keys[]
-  exam_rooms        exam_rooms[]
-  grader_work_locks grader_work_locks[]
-  graders           graders[]
-  sessions          sessions[]
-  user_campaigns    user_campaigns[]
+  id                       Int                        @id @default(autoincrement())
+  name                     String?                    @db.VarChar(128)
+  year_be                  String                     @db.VarChar(10)
+  site                     String?                    @db.VarChar(255)
+  campaign_size            String                     @db.VarChar(64)
+  is_active                Boolean                    @default(true)
+  is_unlock                Boolean                    @default(false)
+  qr_active                Boolean                    @default(false)
+  created_at               DateTime                   @default(now()) @db.DateTime(0)
+  updated_at               DateTime                   @default(now()) @db.DateTime(0)
+  deleted_at               DateTime?                  @db.DateTime(0)
+  accounts                 accounts[]
+  bags                     bags[]
+  booklet_incident_reports booklet_incident_reports[]
+  booklet_question_notes   booklet_question_notes[]
+  booklets                 booklets[]
+  campaign_keys            campaign_keys[]
+  campaign_settings        campaign_settings[]
+  campaign_subjects        campaign_subjects[]
+  exam_rooms               exam_rooms[]
+  graders                  graders[]
+  notification_messages    notification_messages[]
+  qr_scan_logs             qr_scan_logs[]
+  question_choice_groups   question_choice_groups[]
+  sessions                 sessions[]
+  twofactor_sessions       twofactor_sessions[]
+  user_campaigns           user_campaigns[]
 
-  @@unique([campaign_size, year_be], map: "uq_campaign_year_user")
-  @@unique([year_be, campaign_size], map: "uq_year_campaign")
+  @@unique([year_be, campaign_size], map: "uq_campaign_year_size")
+  @@index([is_active], map: "idx_campaign_active")
+  @@index([qr_active], map: "idx_campaign_qr_active")
+  @@index([is_unlock], map: "idx_campaign_unlock")
 }
 
 model exam_rooms {
   campaign_id    Int
   room_code      String           @db.VarChar(64)
   capacity       Int
+  created_at     DateTime         @default(now()) @db.DateTime(0)
+  updated_at     DateTime         @default(now()) @db.DateTime(0)
+  deleted_at     DateTime?        @db.DateTime(0)
   exam_campaigns exam_campaigns   @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_exam_rooms_campaign")
   user_campaigns user_campaigns[]
 
@@ -155,118 +231,175 @@ model exam_rooms {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grader_assignments {
-  grader_id           Int
-  session_id          Int
-  subject_id          Int
-  subject_question_id Int
-  subject_questions   subject_questions @relation(fields: [subject_question_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ga_subject_question")
-  graders             graders           @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grader_assignments_ibfk_1")
-  sessions            sessions          @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grader_assignments_ibfk_2")
-  subjects            subjects          @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grader_assignments_ibfk_3")
-  session_subjects    session_subjects  @relation(fields: [session_id, subject_id], references: [session_id, subject_id], onDelete: NoAction, onUpdate: NoAction, map: "grader_assignments_ibfk_4")
+  id                          Int                       @id @default(autoincrement())
+  campaign_id                 Int
+  grader_id                   Int
+  session_id                  Int
+  campaign_subject_id         Int
+  session_subject_id          Int
+  session_subject_question_id Int
+  active                      Boolean                   @default(true)
+  created_at                  DateTime                  @default(now()) @db.DateTime(0)
+  updated_at                  DateTime                  @default(now()) @db.DateTime(0)
+  deleted_at                  DateTime?                 @db.DateTime(0)
+  campaign_subjects           campaign_subjects         @relation(fields: [campaign_subject_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ga_campaign_subject")
+  graders                     graders                   @relation(fields: [grader_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ga_grader_campaign")
+  sessions                    sessions                  @relation(fields: [session_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ga_session_campaign")
+  session_subjects            session_subjects          @relation(fields: [session_subject_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ga_session_subject")
+  session_subject_questions   session_subject_questions @relation(fields: [session_subject_question_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ga_ssq")
 
-  @@id([grader_id, session_id, subject_question_id])
-  @@unique([grader_id, session_id, subject_question_id], map: "uq_grader_session_question")
-  @@index([subject_question_id], map: "fk_ga_subject_question")
-  @@index([session_id, subject_id], map: "session_id")
-  @@index([subject_id], map: "subject_id")
+  @@unique([grader_id, session_subject_question_id], map: "uq_ga_grader_question")
+  @@index([campaign_subject_id, campaign_id], map: "fk_ga_campaign_subject")
+  @@index([grader_id, campaign_id], map: "fk_ga_grader_campaign")
+  @@index([session_id, campaign_id], map: "fk_ga_session_campaign")
+  @@index([session_subject_id, session_id, campaign_id], map: "fk_ga_session_subject")
+  @@index([session_subject_question_id, session_id, campaign_id], map: "fk_ga_ssq")
+  @@index([campaign_id], map: "idx_ga_campaign")
+  @@index([campaign_subject_id], map: "idx_ga_campaign_subject")
+  @@index([session_subject_question_id], map: "idx_ga_question")
+  @@index([session_id], map: "idx_ga_session")
+  @@index([session_subject_id], map: "idx_ga_session_subject")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grader_work_locks {
-  id             Int            @id @default(autoincrement())
-  grader_id      Int
-  campaign_id    Int
-  bag_id         Int
-  question_no    Int            @db.SmallInt
-  status         String         @default("ACTIVE") @db.VarChar(20)
-  locked_at      DateTime       @default(now()) @db.Timestamp(0)
-  released_at    DateTime?      @db.Timestamp(0)
-  created_by     Int?
-  bags           bags           @relation(fields: [bag_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_bag")
-  exam_campaigns exam_campaigns @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_campaign")
-  graders        graders        @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_grader")
+  id                          Int                       @id @default(autoincrement())
+  grader_id                   Int
+  campaign_id                 Int
+  session_id                  Int
+  bag_id                      Int
+  session_subject_question_id Int
+  question_no                 Int                       @db.SmallInt
+  status                      String                    @default("ACTIVE") @db.VarChar(20)
+  locked_at                   DateTime                  @default(now()) @db.DateTime(0)
+  released_at                 DateTime?                 @db.DateTime(0)
+  created_by                  Int?
+  created_at                  DateTime                  @default(now()) @db.DateTime(0)
+  updated_at                  DateTime                  @default(now()) @db.DateTime(0)
+  bags                        bags                      @relation(fields: [bag_id, campaign_id, session_id], references: [id, campaign_id, session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_bag")
+  accounts                    accounts?                 @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_created_by")
+  graders                     graders                   @relation(fields: [grader_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_grader_campaign")
+  session_subject_questions   session_subject_questions @relation(fields: [session_subject_question_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gwl_question")
 
-  @@index([bag_id, question_no, status], map: "idx_gwl_bag_question")
-  @@index([campaign_id, status], map: "idx_gwl_campaign")
-  @@index([grader_id], map: "idx_gwl_grader_id")
+  @@index([bag_id, campaign_id, session_id], map: "fk_gwl_bag")
+  @@index([created_by], map: "fk_gwl_created_by")
+  @@index([grader_id, campaign_id], map: "fk_gwl_grader_campaign")
+  @@index([session_subject_question_id, session_id, campaign_id], map: "fk_gwl_question")
+  @@index([bag_id, session_subject_question_id, status], map: "idx_gwl_bag_question_status")
+  @@index([campaign_id, status], map: "idx_gwl_campaign_status")
+  @@index([grader_id, status], map: "idx_gwl_grader_status")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model graders {
-  id                                                        Int                    @id @default(autoincrement())
-  campaign_id                                               Int?
+  id                                                        Int                        @id @default(autoincrement())
+  campaign_id                                               Int
   account_id                                                Int?
+  active                                                    Boolean                    @default(true)
+  created_at                                                DateTime                   @default(now()) @db.DateTime(0)
+  updated_at                                                DateTime                   @default(now()) @db.DateTime(0)
+  deleted_at                                                DateTime?                  @db.DateTime(0)
   activity_logs                                             activity_logs[]
+  booklet_incident_reports                                  booklet_incident_reports[]
+  booklet_question_notes                                    booklet_question_notes[]
   grader_assignments                                        grader_assignments[]
   grader_work_locks                                         grader_work_locks[]
-  exam_campaigns                                            exam_campaigns?        @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "graders_ibfk_1")
-  accounts                                                  accounts?              @relation(fields: [account_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "graders_ibfk_2")
+  accounts                                                  accounts?                  @relation(fields: [account_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "graders_ibfk_2")
+  exam_campaigns                                            exam_campaigns             @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "graders_ibfk_1")
   grading_score_drafts                                      grading_score_drafts[]
-  grading_score_logs_grading_score_logs_grader1_idTograders grading_score_logs[]   @relation("grading_score_logs_grader1_idTograders")
-  grading_score_logs_grading_score_logs_grader2_idTograders grading_score_logs[]   @relation("grading_score_logs_grader2_idTograders")
+  grading_score_logs_grading_score_logs_grader1_idTograders grading_score_logs[]       @relation("grading_score_logs_grader1_idTograders")
+  grading_score_logs_grading_score_logs_grader2_idTograders grading_score_logs[]       @relation("grading_score_logs_grader2_idTograders")
   grading_scores                                            grading_scores[]
   grading_slots                                             grading_slots[]
+  incident_attachments                                      incident_attachments[]
+  notification_recipients                                   notification_recipients[]
+  qr_scan_logs                                              qr_scan_logs[]
 
-  @@index([account_id], map: "account_id")
-  @@index([campaign_id], map: "graders_index_37")
+  @@unique([campaign_id, account_id], map: "uq_graders_campaign_account")
+  @@unique([id, campaign_id], map: "uq_graders_id_campaign")
+  @@index([account_id], map: "idx_graders_account")
+  @@index([campaign_id], map: "idx_graders_campaign")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grading_score_drafts {
-  id            Int           @id @default(autoincrement())
-  bag_id        Int
-  booklet_id    Int
-  subject_id    Int
-  question_no   Int           @db.SmallInt
-  slot_id       Int           @unique(map: "uq_gsd_slot")
-  grader_id     Int
-  score         Int
-  status        String        @default("DRAFT") @db.VarChar(20)
-  created_at    DateTime      @default(now()) @db.Timestamp(0)
-  updated_at    DateTime      @default(now()) @db.Timestamp(0)
-  bags          bags          @relation(fields: [bag_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_bag")
-  booklets      booklets      @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_booklet")
-  graders       graders       @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_grader")
-  grading_slots grading_slots @relation(fields: [slot_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_slot")
-  subjects      subjects      @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_subject")
+  id                          Int                       @id @default(autoincrement())
+  campaign_id                 Int
+  session_id                  Int
+  bag_id                      Int
+  booklet_id                  Int
+  campaign_subject_id         Int
+  session_subject_id          Int
+  session_subject_question_id Int
+  question_no                 Int                       @db.SmallInt
+  slot_id                     Int                       @unique(map: "uq_gsd_slot")
+  grader_id                   Int
+  score                       Int
+  status                      String                    @default("DRAFT") @db.VarChar(20)
+  created_at                  DateTime                  @default(now()) @db.DateTime(0)
+  updated_at                  DateTime                  @default(now()) @db.DateTime(0)
+  deleted_at                  DateTime?                 @db.DateTime(0)
+  bags                        bags                      @relation(fields: [bag_id, campaign_id, session_id], references: [id, campaign_id, session_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_bag")
+  booklets                    booklets                  @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_booklet")
+  campaign_subjects           campaign_subjects         @relation(fields: [campaign_subject_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_campaign_subject")
+  graders                     graders                   @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_grader")
+  session_subjects            session_subjects          @relation(fields: [session_subject_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_session_subject")
+  grading_slots               grading_slots             @relation(fields: [slot_id, grader_id], references: [id, grader_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_slot_grader")
+  session_subject_questions   session_subject_questions @relation(fields: [session_subject_question_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_ssq")
 
   @@index([booklet_id], map: "fk_gsd_booklet")
-  @@index([grader_id], map: "fk_gsd_grader")
-  @@index([subject_id], map: "fk_gsd_subject")
-  @@index([bag_id], map: "idx_gsd_bag")
   @@index([bag_id, status], map: "idx_gsd_bag_status")
+  @@index([bag_id, campaign_id, session_id], map: "fk_gsd_bag")
+  @@index([campaign_subject_id, campaign_id], map: "fk_gsd_campaign_subject")
+  @@index([session_subject_id, session_id, campaign_id], map: "fk_gsd_session_subject")
+  @@unique([slot_id, grader_id], map: "uq_gsd_slot_grader")
+  @@index([session_subject_question_id, session_id, campaign_id], map: "fk_gsd_ssq")
+  @@index([grader_id, bag_id, session_subject_question_id, status], map: "idx_gsd_grader_bag_question_status")
+  @@index([grader_id, status], map: "idx_gsd_grader_status")
+  @@index([session_subject_question_id], map: "idx_gsd_question")
 }
 
 model grading_score_logs {
-  id                                                       Int            @id @default(autoincrement())
+  id                                                       Int                       @id @default(autoincrement())
+  campaign_id                                              Int
+  session_id                                               Int
   booklet_id                                               Int
-  subject_id                                               Int
-  question_no                                              Int            @db.SmallInt
+  campaign_subject_id                                      Int
+  session_subject_id                                       Int
+  session_subject_question_id                              Int
+  question_no                                              Int                       @db.SmallInt
   slot_id1                                                 Int?
   slot_id2                                                 Int?
   grader1_id                                               Int?
   grader2_id                                               Int?
   old_score1                                               Int?
   old_score2                                               Int?
+  new_score1                                               Int?
+  new_score2                                               Int?
+  reason                                                   String?                   @db.Text
   changed_by                                               Int
-  changed_at                                               DateTime       @default(now()) @db.Timestamp(0)
-  booklets                                                 booklets       @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_booklet")
-  accounts                                                 accounts       @relation(fields: [changed_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_changed_by")
-  graders_grading_score_logs_grader1_idTograders           graders?       @relation("grading_score_logs_grader1_idTograders", fields: [grader1_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_grader1")
-  graders_grading_score_logs_grader2_idTograders           graders?       @relation("grading_score_logs_grader2_idTograders", fields: [grader2_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_grader2")
-  grading_slots_grading_score_logs_slot_id1Tograding_slots grading_slots? @relation("grading_score_logs_slot_id1Tograding_slots", fields: [slot_id1], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_slot1")
-  grading_slots_grading_score_logs_slot_id2Tograding_slots grading_slots? @relation("grading_score_logs_slot_id2Tograding_slots", fields: [slot_id2], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_slot2")
-  subjects                                                 subjects       @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_subject")
+  changed_at                                               DateTime                  @default(now()) @db.DateTime(0)
+  created_at                                               DateTime                  @default(now()) @db.DateTime(0)
+  booklets                                                 booklets                  @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_booklet")
+  campaign_subjects                                        campaign_subjects         @relation(fields: [campaign_subject_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_campaign_subject")
+  accounts                                                 accounts                  @relation(fields: [changed_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_changed_by")
+  graders_grading_score_logs_grader1_idTograders           graders?                  @relation("grading_score_logs_grader1_idTograders", fields: [grader1_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_grader1")
+  graders_grading_score_logs_grader2_idTograders           graders?                  @relation("grading_score_logs_grader2_idTograders", fields: [grader2_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_grader2")
+  session_subjects                                         session_subjects          @relation(fields: [session_subject_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_session_subject")
+  grading_slots_grading_score_logs_slot_id1Tograding_slots grading_slots?            @relation("grading_score_logs_slot_id1Tograding_slots", fields: [slot_id1], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_slot1")
+  grading_slots_grading_score_logs_slot_id2Tograding_slots grading_slots?            @relation("grading_score_logs_slot_id2Tograding_slots", fields: [slot_id2], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_slot2")
+  session_subject_questions                                session_subject_questions @relation(fields: [session_subject_question_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsl_ssq")
 
-  @@index([booklet_id], map: "booklet_id")
   @@index([grader1_id], map: "fk_gsl_grader1")
   @@index([grader2_id], map: "fk_gsl_grader2")
-  @@index([subject_id], map: "fk_gsl_subject")
   @@index([changed_by], map: "idx_gsl_changed_by")
-  @@index([booklet_id, subject_id, question_no], map: "idx_gsl_question")
+  @@index([booklet_id, session_subject_question_id], map: "idx_gsl_question")
   @@index([slot_id1], map: "idx_gsl_slot1")
   @@index([slot_id2], map: "idx_gsl_slot2")
+  @@index([campaign_subject_id, campaign_id], map: "fk_gsl_campaign_subject")
+  @@index([session_subject_id, session_id, campaign_id], map: "fk_gsl_session_subject")
+  @@index([session_subject_question_id, session_id, campaign_id], map: "fk_gsl_ssq")
+  @@index([session_id, question_no], map: "idx_gsl_session_question")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -275,129 +408,190 @@ model grading_scores {
   slot_id       Int
   score         Int
   entered_by    Int
-  entered_at    DateTime      @default(dbgenerated("(now())")) @db.Timestamp(0)
-  grading_slots grading_slots @relation(fields: [slot_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grading_scores_ibfk_1")
+  entered_at    DateTime      @default(now()) @db.DateTime(0)
+  created_at    DateTime      @default(now()) @db.DateTime(0)
+  updated_at    DateTime      @default(now()) @db.DateTime(0)
   graders       graders       @relation(fields: [entered_by], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grading_scores_ibfk_2")
+  grading_slots grading_slots @relation(fields: [slot_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grading_scores_ibfk_1")
 
   @@unique([slot_id, entered_by], map: "uq_score_once_per_grader")
-  @@index([slot_id], map: "grading_scores_index_44")
-  @@index([entered_by], map: "grading_scores_index_45")
+  @@index([entered_by], map: "idx_scores_entered_by")
+  @@index([slot_id], map: "idx_scores_slot")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model grading_slots {
-  id                                                            Int                   @id @default(autoincrement())
-  question_no                                                   Int                   @db.SmallInt
-  grader_order                                                  Int                   @db.SmallInt
-  status                                                        String                @default("OPEN") @db.VarChar(16)
-  grader_id                                                     Int?
+  id                                                            Int                       @id @default(autoincrement())
+  campaign_id                                                   Int
+  session_id                                                    Int
   booklet_id                                                    Int
-  subject_id                                                    Int
+  campaign_subject_id                                           Int
+  session_subject_id                                            Int
+  session_subject_question_id                                   Int
+  question_no                                                   Int                       @db.SmallInt
+  grader_order                                                  Int                       @db.SmallInt
+  grader_id                                                     Int?
+  status                                                        String                    @default("OPEN") @db.VarChar(16)
+  created_at                                                    DateTime                  @default(now()) @db.DateTime(0)
+  updated_at                                                    DateTime                  @default(now()) @db.DateTime(0)
+  deleted_at                                                    DateTime?                 @db.DateTime(0)
+  booklet_question_notes                                        booklet_question_notes[]
   grading_score_drafts                                          grading_score_drafts?
-  grading_score_logs_grading_score_logs_slot_id1Tograding_slots grading_score_logs[]  @relation("grading_score_logs_slot_id1Tograding_slots")
-  grading_score_logs_grading_score_logs_slot_id2Tograding_slots grading_score_logs[]  @relation("grading_score_logs_slot_id2Tograding_slots")
+  grading_score_logs_grading_score_logs_slot_id1Tograding_slots grading_score_logs[]      @relation("grading_score_logs_slot_id1Tograding_slots")
+  grading_score_logs_grading_score_logs_slot_id2Tograding_slots grading_score_logs[]      @relation("grading_score_logs_slot_id2Tograding_slots")
   grading_scores                                                grading_scores[]
-  booklets                                                      booklets              @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_grading_slots_booklet")
-  subjects                                                      subjects              @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_grading_slots_subject")
-  graders                                                       graders?              @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "grading_slots_ibfk_2")
+  booklets                                                      booklets                  @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_grading_slots_booklet")
+  campaign_subjects                                             campaign_subjects         @relation(fields: [campaign_subject_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_slot_campaign_subject")
+  graders                                                       graders?                  @relation(fields: [grader_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_slot_grader_campaign")
+  session_subjects                                              session_subjects          @relation(fields: [session_subject_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_slot_session_subject")
+  session_subject_questions                                     session_subject_questions @relation(fields: [session_subject_question_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_slot_ssq")
 
-  @@unique([booklet_id, subject_id, question_no, grader_order], map: "uq_slot")
-  @@unique([booklet_id, subject_id, question_no, grader_id], map: "uq_slot_grader")
-  @@index([subject_id], map: "fk_grading_slots_subject")
-  @@index([grader_order, booklet_id, subject_id], map: "grader_order")
-  @@index([grader_id], map: "grading_slots_index_40")
-  @@index([booklet_id, question_no], map: "idx_slot_booklet_question")
+  @@unique([booklet_id, session_subject_question_id, grader_order], map: "uq_slot")
+  @@unique([booklet_id, session_subject_question_id, grader_id], map: "uq_slot_grader")
+  @@unique([id, grader_id], map: "uq_slot_id_grader")
   @@index([booklet_id, status], map: "idx_slot_booklet_status")
-  @@index([grader_id, status], map: "ix_grader_work")
-  @@index([status], map: "ix_slot_status")
+  @@index([campaign_subject_id, campaign_id], map: "fk_slot_campaign_subject")
+  @@index([grader_id, campaign_id], map: "fk_slot_grader_campaign")
+  @@index([session_subject_id, session_id, campaign_id], map: "fk_slot_session_subject")
+  @@index([session_subject_question_id, session_id, campaign_id], map: "fk_slot_ssq")
+  @@index([campaign_id], map: "idx_slot_campaign")
+  @@index([grader_id, status], map: "idx_slot_grader_status")
+  @@index([session_subject_question_id], map: "idx_slot_question")
+  @@index([status], map: "idx_slot_status")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model roles {
-  id       Int        @id @default(autoincrement())
-  code     String     @unique(map: "code") @db.VarChar(32)
-  name     String     @db.VarChar(64)
-  active   Boolean    @default(true)
-  accounts accounts[]
+  id         Int        @id @default(autoincrement())
+  code       String     @unique(map: "uq_roles_code") @db.VarChar(32)
+  name       String     @db.VarChar(64)
+  active     Boolean    @default(true)
+  created_at DateTime   @default(now()) @db.DateTime(0)
+  updated_at DateTime   @default(now()) @db.DateTime(0)
+  deleted_at DateTime?  @db.DateTime(0)
+  accounts   accounts[]
+
+  @@index([active], map: "idx_roles_active")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model session_subjects {
-  session_id         Int
-  subject_id         Int
-  start_at           DateTime             @db.Timestamp(0)
-  end_at             DateTime             @db.Timestamp(0)
-  question_count     Int
-  order_no           Int
-  grader_assignments grader_assignments[]
-  sessions           sessions             @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "session_subjects_ibfk_1")
-  subjects           subjects             @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "session_subjects_ibfk_2")
+  id                        Int                         @id @default(autoincrement())
+  campaign_id               Int
+  session_id                Int
+  campaign_subject_id       Int
+  start_at                  DateTime                    @db.DateTime(0)
+  end_at                    DateTime                    @db.DateTime(0)
+  question_count            Int                         @default(0)
+  order_no                  Int
+  created_at                DateTime                    @default(now()) @db.DateTime(0)
+  updated_at                DateTime                    @default(now()) @db.DateTime(0)
+  deleted_at                DateTime?                   @db.DateTime(0)
+  grader_assignments        grader_assignments[]
+  grading_score_drafts      grading_score_drafts[]
+  grading_score_logs        grading_score_logs[]
+  grading_slots             grading_slots[]
+  question_choice_groups    question_choice_groups[]
+  session_subject_questions session_subject_questions[]
+  campaign_subjects         campaign_subjects           @relation(fields: [campaign_subject_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ss_campaign_subject")
+  sessions                  sessions                    @relation(fields: [session_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ss_session_campaign")
 
-  @@id([session_id, subject_id])
-  @@unique([session_id, order_no], map: "uq_ss_order")
-  @@index([subject_id], map: "session_subjects_index_8")
+  @@unique([id, session_id, campaign_id], map: "uq_ss_id_session_campaign")
+  @@unique([session_id, campaign_subject_id], map: "uq_ss_session_campaign_subject")
+  @@unique([session_id, order_no], map: "uq_ss_session_order")
+  @@index([campaign_subject_id, campaign_id], map: "fk_ss_campaign_subject")
+  @@index([session_id, campaign_id], map: "fk_ss_session_campaign")
+  @@index([campaign_id], map: "idx_ss_campaign")
+  @@index([campaign_subject_id], map: "idx_ss_campaign_subject")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model sessions {
-  id                                                           Int                  @id @default(autoincrement())
-  session_code                                                 String               @db.VarChar(32)
-  exam_date                                                    DateTime             @db.Date
+  id                                                           Int                         @id @default(autoincrement())
   campaign_id                                                  Int
+  session_code                                                 String                      @db.VarChar(32)
+  title                                                        String?                     @db.VarChar(128)
+  exam_date                                                    DateTime                    @db.Date
   day_no                                                       Int
-  title                                                        String?              @db.VarChar(128)
+  created_at                                                   DateTime                    @default(now()) @db.DateTime(0)
+  updated_at                                                   DateTime                    @default(now()) @db.DateTime(0)
+  deleted_at                                                   DateTime?                   @db.DateTime(0)
   bags                                                         bags[]
+  booklet_incident_reports                                     booklet_incident_reports[]
+  booklet_question_notes                                       booklet_question_notes[]
   booklets                                                     booklets[]
   grader_assignments                                           grader_assignments[]
+  notification_messages                                        notification_messages[]
+  qr_scan_logs                                                 qr_scan_logs[]
+  question_choice_groups                                       question_choice_groups[]
+  session_counters                                             session_counters?
+  session_subject_questions                                    session_subject_questions[]
   session_subjects                                             session_subjects[]
-  exam_campaigns                                               exam_campaigns       @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "sessions_ibfk_1")
-  user_sessions_user_sessions_session_idTosessions             user_sessions[]      @relation("user_sessions_session_idTosessions")
-  user_sessions_user_sessions_session_id_campaign_idTosessions user_sessions[]      @relation("user_sessions_session_id_campaign_idTosessions")
+  exam_campaigns                                               exam_campaigns              @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "sessions_ibfk_1")
+  user_sessions_user_sessions_session_id_campaign_idTosessions user_sessions[]             @relation("user_sessions_session_id_campaign_idTosessions")
 
-  @@unique([session_code, campaign_id], map: "sessions_index_2")
-  @@unique([campaign_id, day_no], map: "uq_session_day2")
-  @@unique([id, campaign_id], map: "uq_session_id_campaign")
-  @@index([campaign_id], map: "sessions_index_5")
+  @@unique([campaign_id, session_code], map: "uq_sessions_campaign_code")
+  @@unique([campaign_id, day_no], map: "uq_sessions_campaign_day")
+  @@unique([id, campaign_id], map: "uq_sessions_id_campaign")
+  @@index([campaign_id], map: "idx_sessions_campaign")
 }
 
 model subject_questions {
-  id                 Int                  @id @default(autoincrement())
-  subject_id         Int
-  question_no        Int
-  label              String               @db.VarChar(255)
-  max_score          Int?
-  note               String?              @db.Text
-  grader_assignments grader_assignments[]
-  subjects           subjects             @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_sq_subject")
+  id          Int       @id @default(autoincrement())
+  subject_id  Int
+  question_no Int
+  label       String    @db.VarChar(255)
+  max_score   Int?
+  note        String?   @db.Text
+  created_at  DateTime  @default(now()) @db.DateTime(0)
+  updated_at  DateTime  @default(now()) @db.DateTime(0)
+  deleted_at  DateTime? @db.DateTime(0)
+  subjects    subjects  @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_sq_subject")
 
   @@unique([subject_id, question_no], map: "uq_subject_question")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model subjects {
-  id                   Int                    @id @default(autoincrement())
-  code                 String                 @unique(map: "code") @db.VarChar(16)
-  name                 String                 @db.Text
-  full_score           Int                    @default(0)
-  grader_assignments   grader_assignments[]
-  grading_score_drafts grading_score_drafts[]
-  grading_score_logs   grading_score_logs[]
-  grading_slots        grading_slots[]
-  session_subjects     session_subjects[]
-  subject_questions    subject_questions[]
+  id                Int                 @id @default(autoincrement())
+  code              String              @unique(map: "uq_subjects_code") @db.VarChar(32)
+  name              String              @db.VarChar(255)
+  full_score        Int                 @default(0)
+  active            Boolean             @default(true)
+  created_at        DateTime            @default(now()) @db.DateTime(0)
+  updated_at        DateTime            @default(now()) @db.DateTime(0)
+  deleted_at        DateTime?           @db.DateTime(0)
+  campaign_subjects campaign_subjects[]
+  subject_questions subject_questions[]
+
+  @@index([active], map: "idx_subjects_active")
 }
 
 model twofactor_sessions {
-  id          Int       @id @default(autoincrement())
-  account_id  Int
-  campaign_id Int?
-  purpose     String    @db.VarChar(32)
-  otp_hash    String    @db.VarChar(255)
-  created_at  DateTime  @default(now()) @db.Timestamp(0)
-  expires_at  DateTime  @db.Timestamp(0)
-  used_at     DateTime? @db.Timestamp(0)
-  attempts    Int       @default(0)
-  otp_token   String    @db.VarChar(256)
+  id             Int             @id @default(autoincrement())
+  account_id     Int
+  campaign_id    Int?
+  purpose        String          @db.VarChar(32)
+  channel        String          @default("EMAIL") @db.VarChar(32)
+  target         String?         @db.VarChar(255)
+  otp_hash       String          @db.VarChar(255)
+  otp_token      String          @db.VarChar(256)
+  attempts       Int             @default(0)
+  max_attempts   Int             @default(5)
+  status         String          @default("PENDING") @db.VarChar(32)
+  created_at     DateTime        @default(now()) @db.DateTime(0)
+  expires_at     DateTime        @db.DateTime(0)
+  used_at        DateTime?       @db.DateTime(0)
+  updated_at     DateTime        @default(now()) @db.DateTime(0)
+  deleted_at     DateTime?       @db.DateTime(0)
+  accounts       accounts        @relation(fields: [account_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_2fa_account")
+  exam_campaigns exam_campaigns? @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_2fa_campaign")
+
+  @@index([account_id], map: "idx_2fa_account")
+  @@index([campaign_id], map: "idx_2fa_campaign")
+  @@index([purpose], map: "idx_2fa_purpose")
+  @@index([status, expires_at], map: "idx_2fa_status_expires")
+  @@index([otp_token], map: "idx_2fa_token")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
@@ -408,18 +602,20 @@ model user_campaigns {
   room_code                                                                String?         @db.VarChar(64)
   row_no                                                                   Int?
   col_no                                                                   Int?
+  created_at                                                               DateTime        @default(now()) @db.DateTime(0)
+  updated_at                                                               DateTime        @default(now()) @db.DateTime(0)
+  deleted_at                                                               DateTime?       @db.DateTime(0)
+  exam_campaigns                                                           exam_campaigns  @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_campaigns_ibfk_2")
   exam_rooms                                                               exam_rooms?     @relation(fields: [campaign_id, room_code], references: [campaign_id, room_code], onDelete: NoAction, onUpdate: NoAction, map: "fk_user_campaign_room")
   users                                                                    users           @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_campaigns_ibfk_1")
-  exam_campaigns                                                           exam_campaigns  @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_campaigns_ibfk_2")
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns user_sessions[] @relation("user_sessions_user_campaign_id_campaign_idTouser_campaigns")
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns             user_sessions[] @relation("user_sessions_user_campaign_idTouser_campaigns")
 
   @@unique([id, campaign_id], map: "uq_uc_id_campaign")
   @@unique([campaign_id, room_code, row_no, col_no], map: "uq_uc_seat_per_campaign")
   @@unique([user_id, campaign_id], map: "uq_uc_user_campaign")
-  @@index([room_code, row_no, col_no], map: "idx_room_seat")
-  @@index([user_id], map: "user_campaigns_index_15")
-  @@index([campaign_id], map: "user_campaigns_index_16")
+  @@index([campaign_id], map: "idx_uc_campaign")
+  @@index([room_code, row_no, col_no], map: "idx_uc_room_seat")
+  @@index([user_id], map: "idx_uc_user")
 }
 
 model user_sessions {
@@ -427,29 +623,519 @@ model user_sessions {
   user_campaign_id                                                          Int
   campaign_id                                                               Int
   session_id                                                                Int
-  user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns user_campaigns @relation("user_sessions_user_campaign_id_campaign_idTouser_campaigns", fields: [user_campaign_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "user_sessions_ibfk_4")
-  user_campaigns_user_sessions_user_campaign_idTouser_campaigns             user_campaigns @relation("user_sessions_user_campaign_idTouser_campaigns", fields: [user_campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_sessions_ibfk_5")
-  sessions_user_sessions_session_idTosessions                               sessions       @relation("user_sessions_session_idTosessions", fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "user_sessions_ibfk_6")
+  created_at                                                                DateTime       @default(now()) @db.DateTime(0)
+  updated_at                                                                DateTime       @default(now()) @db.DateTime(0)
+  deleted_at                                                                DateTime?      @db.DateTime(0)
   sessions_user_sessions_session_id_campaign_idTosessions                   sessions       @relation("user_sessions_session_id_campaign_idTosessions", fields: [session_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "user_sessions_ibfk_7")
+  user_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaigns user_campaigns @relation("user_sessions_user_campaign_id_campaign_idTouser_campaigns", fields: [user_campaign_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "user_sessions_ibfk_4")
 
   @@unique([user_campaign_id, session_id], map: "uq_us_uc_per_session")
-  @@index([campaign_id], map: "campaign_id")
-  @@index([session_id, campaign_id], map: "session_id")
-  @@index([user_campaign_id, campaign_id], map: "user_campaign_id")
-  @@index([user_campaign_id], map: "user_sessions_index_21")
-  @@index([session_id], map: "user_sessions_index_22")
-  @@index([campaign_id], map: "user_sessions_index_23")
+  @@index([user_campaign_id, campaign_id], map: "fk_us_user_campaign")
+  @@index([campaign_id], map: "idx_us_campaign")
+  @@index([session_id, campaign_id], map: "idx_us_session_campaign")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model users {
-  id             Int              @id @default(autoincrement())
-  user_code      String           @unique(map: "user_code") @db.VarChar(32)
-  full_name      String           @db.Text
-  first_name     String?          @db.VarChar(128)
-  last_name      String?          @db.VarChar(128)
-  title          String?          @db.VarChar(32)
-  national_id    String?          @db.VarChar(20)
-  birth_date     DateTime?        @db.Date
-  user_campaigns user_campaigns[]
+  id                  Int              @id @default(autoincrement())
+  user_code           String           @unique(map: "uq_users_user_code") @db.VarChar(32)
+  title               String?          @db.VarChar(32)
+  gender              String?          @db.VarChar(20)
+  full_name           String           @db.Text
+  first_name          String?          @db.VarChar(128)
+  last_name           String?          @db.VarChar(128)
+  first_name_en       String?          @db.VarChar(128)
+  last_name_en        String?          @db.VarChar(128)
+  national_id         String?          @db.VarChar(20)
+  birth_date          DateTime?        @db.Date
+  created_at          DateTime         @default(now()) @db.DateTime(0)
+  updated_at          DateTime         @default(now()) @db.DateTime(0)
+  deleted_at          DateTime?        @db.DateTime(0)
+  ethnicity           String?          @db.VarChar(64)
+  nationality_birth   String?          @db.VarChar(64)
+  nationality_current String?          @db.VarChar(64)
+  religion            String?          @db.VarChar(64)
+  phone               String?          @db.VarChar(20)
+  mobile              String?          @db.VarChar(20)
+  email               String?          @db.VarChar(128)
+  address             String?          @db.Text
+  study_degree        String?          @db.VarChar(128)
+  university          String?          @db.VarChar(128)
+  user_campaigns      user_campaigns[]
+
+  @@index([first_name, last_name], map: "idx_users_name")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booklet_incident_reports {
+  id                                                                 Int                    @id @default(autoincrement())
+  campaign_id                                                        Int
+  session_id                                                         Int
+  bag_id                                                             Int?
+  booklet_id                                                         Int?
+  incident_type                                                      String                 @db.VarChar(60)
+  severity                                                           String                 @default("MEDIUM") @db.VarChar(20)
+  title                                                              String                 @db.VarChar(255)
+  description                                                        String                 @db.Text
+  status                                                             String                 @default("OPEN") @db.VarChar(30)
+  reported_by_account_id                                             Int?
+  reported_by_grader_id                                              Int?
+  assigned_to_account_id                                             Int?
+  resolved_by_account_id                                             Int?
+  resolved_at                                                        DateTime?              @db.DateTime(0)
+  resolution_note                                                    String?                @db.Text
+  created_at                                                         DateTime               @default(now()) @db.DateTime(0)
+  updated_at                                                         DateTime               @default(now()) @db.DateTime(0)
+  deleted_at                                                         DateTime?              @db.DateTime(0)
+  accounts_booklet_incident_reports_assigned_to_account_idToaccounts accounts?              @relation("booklet_incident_reports_assigned_to_account_idToaccounts", fields: [assigned_to_account_id], references: [id], onUpdate: NoAction, map: "fk_bir_assigned_to_account")
+  bags                                                               bags?                  @relation(fields: [bag_id], references: [id], onUpdate: NoAction, map: "fk_bir_bag")
+  booklets                                                           booklets?              @relation(fields: [booklet_id], references: [id], onUpdate: NoAction, map: "fk_bir_booklet")
+  exam_campaigns                                                     exam_campaigns         @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bir_campaign")
+  accounts_booklet_incident_reports_reported_by_account_idToaccounts accounts?              @relation("booklet_incident_reports_reported_by_account_idToaccounts", fields: [reported_by_account_id], references: [id], onUpdate: NoAction, map: "fk_bir_reported_by_account")
+  graders                                                            graders?               @relation(fields: [reported_by_grader_id], references: [id], onUpdate: NoAction, map: "fk_bir_reported_by_grader")
+  accounts_booklet_incident_reports_resolved_by_account_idToaccounts accounts?              @relation("booklet_incident_reports_resolved_by_account_idToaccounts", fields: [resolved_by_account_id], references: [id], onUpdate: NoAction, map: "fk_bir_resolved_by_account")
+  sessions                                                           sessions               @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bir_session")
+  incident_attachments                                               incident_attachments[]
+
+  @@index([assigned_to_account_id], map: "fk_bir_assigned_to_account")
+  @@index([resolved_by_account_id], map: "fk_bir_resolved_by_account")
+  @@index([session_id], map: "fk_bir_session")
+  @@index([bag_id], map: "idx_bir_bag")
+  @@index([booklet_id], map: "idx_bir_booklet")
+  @@index([campaign_id, session_id], map: "idx_bir_campaign_session")
+  @@index([reported_by_account_id], map: "idx_bir_reported_by_account")
+  @@index([reported_by_grader_id], map: "idx_bir_reported_by_grader")
+  @@index([severity], map: "idx_bir_severity")
+  @@index([incident_type, status], map: "idx_bir_type_status")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booklet_question_choices {
+  id                          Int                       @id @default(autoincrement())
+  booklet_id                  Int
+  choice_group_id             Int
+  session_subject_question_id Int
+  selected_by                 String                    @default("GRADING") @db.VarChar(32)
+  created_at                  DateTime                  @default(now()) @db.DateTime(0)
+  updated_at                  DateTime                  @default(now()) @db.DateTime(0)
+  deleted_at                  DateTime?                 @db.DateTime(0)
+  booklets                    booklets                  @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bqc_booklet")
+  question_choice_groups      question_choice_groups    @relation(fields: [choice_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bqc_choice_group")
+  session_subject_questions   session_subject_questions @relation(fields: [session_subject_question_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bqc_question")
+
+  @@unique([booklet_id, choice_group_id, session_subject_question_id], map: "uq_booklet_choice_question")
+  @@index([choice_group_id], map: "fk_bqc_choice_group")
+  @@index([session_subject_question_id], map: "fk_bqc_question")
+  @@index([booklet_id, choice_group_id], map: "idx_bqc_booklet_group")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model booklet_question_notes {
+  id                                                               Int                       @id @default(autoincrement())
+  campaign_id                                                      Int
+  session_id                                                       Int
+  bag_id                                                           Int?
+  booklet_id                                                       Int
+  session_subject_question_id                                      Int
+  slot_id                                                          Int?
+  note_type                                                        String                    @default("GENERAL") @db.VarChar(50)
+  severity                                                         String                    @default("LOW") @db.VarChar(20)
+  note                                                             String                    @db.Text
+  status                                                           String                    @default("OPEN") @db.VarChar(30)
+  created_by_account_id                                            Int?
+  created_by_grader_id                                             Int?
+  reviewed_by_account_id                                           Int?
+  reviewed_at                                                      DateTime?                 @db.DateTime(0)
+  resolution_note                                                  String?                   @db.Text
+  created_at                                                       DateTime                  @default(now()) @db.DateTime(0)
+  updated_at                                                       DateTime                  @default(now()) @db.DateTime(0)
+  deleted_at                                                       DateTime?                 @db.DateTime(0)
+  bags                                                             bags?                     @relation(fields: [bag_id], references: [id], onUpdate: NoAction, map: "fk_bqn_bag")
+  booklets                                                         booklets                  @relation(fields: [booklet_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bqn_booklet")
+  exam_campaigns                                                   exam_campaigns            @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bqn_campaign")
+  accounts_booklet_question_notes_created_by_account_idToaccounts  accounts?                 @relation("booklet_question_notes_created_by_account_idToaccounts", fields: [created_by_account_id], references: [id], onUpdate: NoAction, map: "fk_bqn_created_by_account")
+  graders                                                          graders?                  @relation(fields: [created_by_grader_id], references: [id], onUpdate: NoAction, map: "fk_bqn_created_by_grader")
+  session_subject_questions                                        session_subject_questions @relation(fields: [session_subject_question_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bqn_question")
+  accounts_booklet_question_notes_reviewed_by_account_idToaccounts accounts?                 @relation("booklet_question_notes_reviewed_by_account_idToaccounts", fields: [reviewed_by_account_id], references: [id], onUpdate: NoAction, map: "fk_bqn_reviewed_by_account")
+  sessions                                                         sessions                  @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_bqn_session")
+  grading_slots                                                    grading_slots?            @relation(fields: [slot_id], references: [id], onUpdate: NoAction, map: "fk_bqn_slot")
+  incident_attachments                                             incident_attachments[]
+
+  @@index([reviewed_by_account_id], map: "fk_bqn_reviewed_by_account")
+  @@index([session_id], map: "fk_bqn_session")
+  @@index([bag_id], map: "idx_bqn_bag")
+  @@index([booklet_id], map: "idx_bqn_booklet")
+  @@index([campaign_id, session_id], map: "idx_bqn_campaign_session")
+  @@index([created_by_account_id], map: "idx_bqn_created_by_account")
+  @@index([created_by_grader_id], map: "idx_bqn_created_by_grader")
+  @@index([session_subject_question_id], map: "idx_bqn_question")
+  @@index([severity], map: "idx_bqn_severity")
+  @@index([slot_id], map: "idx_bqn_slot")
+  @@index([note_type, status], map: "idx_bqn_type_status")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model campaign_settings {
+  id                                                         Int            @id @default(autoincrement())
+  campaign_id                                                Int
+  setting_key                                                String         @db.VarChar(100)
+  setting_value                                              Json
+  value_type                                                 String         @default("STRING") @db.VarChar(30)
+  description                                                String?        @db.VarChar(255)
+  active                                                     Boolean        @default(true)
+  created_by_account_id                                      Int?
+  updated_by_account_id                                      Int?
+  created_at                                                 DateTime       @default(now()) @db.DateTime(0)
+  updated_at                                                 DateTime       @default(now()) @db.DateTime(0)
+  deleted_at                                                 DateTime?      @db.DateTime(0)
+  exam_campaigns                                             exam_campaigns @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_campaign_settings_campaign")
+  accounts_campaign_settings_created_by_account_idToaccounts accounts?      @relation("campaign_settings_created_by_account_idToaccounts", fields: [created_by_account_id], references: [id], onUpdate: NoAction, map: "fk_campaign_settings_created_by")
+  accounts_campaign_settings_updated_by_account_idToaccounts accounts?      @relation("campaign_settings_updated_by_account_idToaccounts", fields: [updated_by_account_id], references: [id], onUpdate: NoAction, map: "fk_campaign_settings_updated_by")
+
+  @@unique([campaign_id, setting_key], map: "uq_campaign_setting_key")
+  @@index([created_by_account_id], map: "fk_campaign_settings_created_by")
+  @@index([updated_by_account_id], map: "fk_campaign_settings_updated_by")
+  @@index([active], map: "idx_campaign_settings_active")
+  @@index([campaign_id], map: "idx_campaign_settings_campaign")
+  @@index([deleted_at], map: "idx_campaign_settings_deleted_at")
+  @@index([setting_key], map: "idx_campaign_settings_key")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model campaign_subjects {
+  id                   Int                    @id @default(autoincrement())
+  campaign_id          Int
+  subject_id           Int
+  code                 String                 @db.VarChar(32)
+  name                 String                 @db.VarChar(255)
+  full_score           Int                    @default(0)
+  order_no             Int                    @default(1)
+  active               Boolean                @default(true)
+  created_at           DateTime               @default(now()) @db.DateTime(0)
+  updated_at           DateTime               @default(now()) @db.DateTime(0)
+  deleted_at           DateTime?              @db.DateTime(0)
+  exam_campaigns       exam_campaigns         @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_cs_campaign")
+  subjects             subjects               @relation(fields: [subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_cs_subject")
+  grader_assignments   grader_assignments[]
+  grading_score_drafts grading_score_drafts[]
+  grading_score_logs   grading_score_logs[]
+  grading_slots        grading_slots[]
+  session_subjects     session_subjects[]
+
+  @@unique([campaign_id, code], map: "uq_cs_campaign_code")
+  @@unique([campaign_id, order_no], map: "uq_cs_campaign_order")
+  @@unique([campaign_id, subject_id], map: "uq_cs_campaign_subject")
+  @@unique([id, campaign_id], map: "uq_cs_id_campaign")
+  @@index([campaign_id, active], map: "idx_cs_campaign_active")
+  @@index([subject_id], map: "idx_cs_subject")
+}
+
+model incident_attachments {
+  id                       Int                       @id @default(autoincrement())
+  incident_id              Int?
+  booklet_question_note_id Int?
+  file_url                 String                    @db.VarChar(512)
+  file_key                 String                    @db.VarChar(512)
+  file_name                String?                   @db.VarChar(255)
+  mime_type                String?                   @db.VarChar(100)
+  file_size_bytes          Int?
+  uploaded_by_account_id   Int?
+  uploaded_by_grader_id    Int?
+  created_at               DateTime                  @default(now()) @db.DateTime(0)
+  updated_at               DateTime                  @default(now()) @db.DateTime(0)
+  deleted_at               DateTime?                 @db.DateTime(0)
+  booklet_incident_reports booklet_incident_reports? @relation(fields: [incident_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_ia_incident")
+  booklet_question_notes   booklet_question_notes?   @relation(fields: [booklet_question_note_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_ia_note")
+  accounts                 accounts?                 @relation(fields: [uploaded_by_account_id], references: [id], onUpdate: NoAction, map: "fk_ia_uploaded_by_account")
+  graders                  graders?                  @relation(fields: [uploaded_by_grader_id], references: [id], onUpdate: NoAction, map: "fk_ia_uploaded_by_grader")
+
+  @@index([uploaded_by_account_id], map: "fk_ia_uploaded_by_account")
+  @@index([uploaded_by_grader_id], map: "fk_ia_uploaded_by_grader")
+  @@index([incident_id], map: "idx_ia_incident")
+  @@index([booklet_question_note_id], map: "idx_ia_note")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model notification_delivery_logs {
+  id                      Int                      @id @default(autoincrement())
+  notification_id         Int
+  recipient_id            Int?
+  channel                 String                   @db.VarChar(32)
+  provider                String?                  @db.VarChar(64)
+  request_payload         Json?
+  response_payload        Json?
+  status                  String                   @db.VarChar(32)
+  error_message           String?                  @db.Text
+  attempt_no              Int                      @default(1)
+  created_at              DateTime                 @default(now()) @db.DateTime(0)
+  notification_messages   notification_messages    @relation(fields: [notification_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_ndl_notification")
+  notification_recipients notification_recipients? @relation(fields: [recipient_id], references: [id], onUpdate: NoAction, map: "fk_ndl_recipient")
+
+  @@index([created_at], map: "idx_ndl_created_at")
+  @@index([notification_id], map: "idx_ndl_notification")
+  @@index([recipient_id], map: "idx_ndl_recipient")
+  @@index([status], map: "idx_ndl_status")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model notification_messages {
+  id                         Int                          @id @default(autoincrement())
+  template_id                Int?
+  campaign_id                Int?
+  session_id                 Int?
+  bag_id                     Int?
+  type                       String                       @db.VarChar(64)
+  channel                    String                       @db.VarChar(32)
+  title                      String?                      @db.VarChar(255)
+  body                       String                       @db.Text
+  payload                    Json?
+  status                     String                       @default("PENDING") @db.VarChar(32)
+  scheduled_at               DateTime?                    @db.DateTime(0)
+  sent_at                    DateTime?                    @db.DateTime(0)
+  created_by                 Int?
+  created_at                 DateTime                     @default(now()) @db.DateTime(0)
+  updated_at                 DateTime                     @default(now()) @db.DateTime(0)
+  deleted_at                 DateTime?                    @db.DateTime(0)
+  notification_delivery_logs notification_delivery_logs[]
+  bags                       bags?                        @relation(fields: [bag_id], references: [id], onUpdate: NoAction, map: "fk_nm_bag")
+  exam_campaigns             exam_campaigns?              @relation(fields: [campaign_id], references: [id], onUpdate: NoAction, map: "fk_nm_campaign")
+  accounts                   accounts?                    @relation(fields: [created_by], references: [id], onUpdate: NoAction, map: "fk_nm_created_by")
+  sessions                   sessions?                    @relation(fields: [session_id], references: [id], onUpdate: NoAction, map: "fk_nm_session")
+  notification_templates     notification_templates?      @relation(fields: [template_id], references: [id], onUpdate: NoAction, map: "fk_nm_template")
+  notification_recipients    notification_recipients[]
+
+  @@index([created_by], map: "fk_nm_created_by")
+  @@index([template_id], map: "fk_nm_template")
+  @@index([bag_id], map: "idx_nm_bag")
+  @@index([campaign_id], map: "idx_nm_campaign")
+  @@index([scheduled_at], map: "idx_nm_scheduled_at")
+  @@index([session_id], map: "idx_nm_session")
+  @@index([type, status], map: "idx_nm_type_status")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model notification_preferences {
+  id                Int       @id @default(autoincrement())
+  account_id        Int
+  notification_type String    @db.VarChar(64)
+  channel           String    @db.VarChar(32)
+  enabled           Boolean   @default(true)
+  created_at        DateTime  @default(now()) @db.DateTime(0)
+  updated_at        DateTime  @default(now()) @db.DateTime(0)
+  deleted_at        DateTime? @db.DateTime(0)
+  accounts          accounts  @relation(fields: [account_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_np_account")
+
+  @@unique([account_id, notification_type, channel], map: "uq_np_account_type_channel")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model notification_recipients {
+  id                         Int                          @id @default(autoincrement())
+  notification_id            Int
+  account_id                 Int?
+  grader_id                  Int?
+  recipient_type             String                       @db.VarChar(32)
+  recipient_target           String                       @db.VarChar(255)
+  read_at                    DateTime?                    @db.DateTime(0)
+  dismissed_at               DateTime?                    @db.DateTime(0)
+  delivery_status            String                       @default("PENDING") @db.VarChar(32)
+  created_at                 DateTime                     @default(now()) @db.DateTime(0)
+  updated_at                 DateTime                     @default(now()) @db.DateTime(0)
+  deleted_at                 DateTime?                    @db.DateTime(0)
+  notification_delivery_logs notification_delivery_logs[]
+  accounts                   accounts?                    @relation(fields: [account_id], references: [id], onUpdate: NoAction, map: "fk_nr_account")
+  graders                    graders?                     @relation(fields: [grader_id], references: [id], onUpdate: NoAction, map: "fk_nr_grader")
+  notification_messages      notification_messages        @relation(fields: [notification_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_nr_notification")
+
+  @@index([account_id], map: "idx_nr_account")
+  @@index([grader_id], map: "idx_nr_grader")
+  @@index([notification_id], map: "idx_nr_notification")
+  @@index([delivery_status], map: "idx_nr_status")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model notification_templates {
+  id                    Int                     @id @default(autoincrement())
+  code                  String                  @db.VarChar(100)
+  name                  String                  @db.VarChar(255)
+  channel               String                  @db.VarChar(32)
+  subject_template      String?                 @db.VarChar(255)
+  body_template         String                  @db.Text
+  active                Boolean                 @default(true)
+  created_at            DateTime                @default(now()) @db.DateTime(0)
+  updated_at            DateTime                @default(now()) @db.DateTime(0)
+  deleted_at            DateTime?               @db.DateTime(0)
+  notification_messages notification_messages[]
+
+  @@unique([code, channel], map: "uq_notification_template_code_channel")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model qr_scan_logs {
+  id                    Int             @id @default(autoincrement())
+  campaign_id           Int?
+  session_id            Int?
+  bag_id                Int?
+  booklet_id            Int?
+  scanned_by_account_id Int?
+  scanned_by_grader_id  Int?
+  scan_context          String          @db.VarChar(50)
+  scan_result           String          @default("SUCCESS") @db.VarChar(30)
+  qr_payload_masked     String?         @db.VarChar(512)
+  qr_payload_hash       String?         @db.Char(64)
+  error_code            String?         @db.VarChar(100)
+  error_message         String?         @db.Text
+  ip_address            String?         @db.VarChar(64)
+  user_agent            String?         @db.Text
+  device_info           Json?
+  scanned_at            DateTime        @default(now()) @db.DateTime(0)
+  created_at            DateTime        @default(now()) @db.DateTime(0)
+  updated_at            DateTime        @default(now()) @db.DateTime(0)
+  deleted_at            DateTime?       @db.DateTime(0)
+  accounts              accounts?       @relation(fields: [scanned_by_account_id], references: [id], onUpdate: NoAction, map: "fk_qsl_account")
+  bags                  bags?           @relation(fields: [bag_id], references: [id], onUpdate: NoAction, map: "fk_qsl_bag")
+  booklets              booklets?       @relation(fields: [booklet_id], references: [id], onUpdate: NoAction, map: "fk_qsl_booklet")
+  exam_campaigns        exam_campaigns? @relation(fields: [campaign_id], references: [id], onUpdate: NoAction, map: "fk_qsl_campaign")
+  graders               graders?        @relation(fields: [scanned_by_grader_id], references: [id], onUpdate: NoAction, map: "fk_qsl_grader")
+  sessions              sessions?       @relation(fields: [session_id], references: [id], onUpdate: NoAction, map: "fk_qsl_session")
+
+  @@index([session_id], map: "fk_qsl_session")
+  @@index([scanned_by_account_id], map: "idx_qsl_account")
+  @@index([scanned_by_account_id, scan_context, scanned_at], map: "idx_qsl_account_context_time")
+  @@index([bag_id], map: "idx_qsl_bag")
+  @@index([booklet_id], map: "idx_qsl_booklet")
+  @@index([booklet_id, scan_context, scanned_at], map: "idx_qsl_booklet_context_time")
+  @@index([campaign_id, scan_context, scanned_at], map: "idx_qsl_campaign_context_time")
+  @@index([campaign_id, session_id], map: "idx_qsl_campaign_session")
+  @@index([scan_context, scan_result], map: "idx_qsl_context_result")
+  @@index([scanned_by_grader_id], map: "idx_qsl_grader")
+  @@index([qr_payload_hash], map: "idx_qsl_payload_hash")
+  @@index([scanned_at], map: "idx_qsl_scanned_at")
+}
+
+model question_choice_group_items {
+  id                          Int                       @id @default(autoincrement())
+  choice_group_id             Int
+  session_subject_question_id Int                       @unique(map: "uq_question_in_one_choice_group")
+  order_no                    Int                       @default(1)
+  created_at                  DateTime                  @default(now()) @db.DateTime(0)
+  updated_at                  DateTime                  @default(now()) @db.DateTime(0)
+  deleted_at                  DateTime?                 @db.DateTime(0)
+  question_choice_groups      question_choice_groups    @relation(fields: [choice_group_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_qcgi_group")
+  session_subject_questions   session_subject_questions @relation(fields: [session_subject_question_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_qcgi_question")
+
+  @@unique([choice_group_id, session_subject_question_id], map: "uq_choice_group_question")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model question_choice_groups {
+  id                          Int                           @id @default(autoincrement())
+  campaign_id                 Int
+  session_id                  Int
+  session_subject_id          Int
+  group_code                  String                        @db.VarChar(50)
+  title                       String                        @db.VarChar(255)
+  required_count              Int                           @default(1)
+  max_select_count            Int?
+  scoring_policy              String                        @default("SELECTED_ONLY") @db.VarChar(32)
+  active                      Boolean                       @default(true)
+  created_at                  DateTime                      @default(now()) @db.DateTime(0)
+  updated_at                  DateTime                      @default(now()) @db.DateTime(0)
+  deleted_at                  DateTime?                     @db.DateTime(0)
+  booklet_question_choices    booklet_question_choices[]
+  question_choice_group_items question_choice_group_items[]
+  exam_campaigns              exam_campaigns                @relation(fields: [campaign_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_qcg_campaign")
+  sessions                    sessions                      @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_qcg_session")
+  session_subjects            session_subjects              @relation(fields: [session_subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_qcg_session_subject")
+
+  @@unique([session_subject_id, group_code], map: "uq_choice_group_code")
+  @@index([campaign_id], map: "fk_qcg_campaign")
+  @@index([session_id], map: "fk_qcg_session")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model service_outbox_events {
+  id             Int       @id @default(autoincrement())
+  event_type     String    @db.VarChar(100)
+  aggregate_type String?   @db.VarChar(64)
+  aggregate_id   Int?
+  payload        Json
+  status         String    @default("PENDING") @db.VarChar(32)
+  attempts       Int       @default(0)
+  max_attempts   Int       @default(5)
+  available_at   DateTime  @default(now()) @db.DateTime(0)
+  locked_at      DateTime? @db.DateTime(0)
+  locked_by      String?   @db.VarChar(100)
+  processed_at   DateTime? @db.DateTime(0)
+  error_message  String?   @db.Text
+  created_at     DateTime  @default(now()) @db.DateTime(0)
+  updated_at     DateTime  @default(now()) @db.DateTime(0)
+  deleted_at     DateTime? @db.DateTime(0)
+
+  @@index([aggregate_type, aggregate_id], map: "idx_outbox_aggregate")
+  @@index([event_type], map: "idx_outbox_event_type")
+  @@index([status, available_at], map: "idx_outbox_status_available")
+  @@index([status, available_at, locked_at], map: "idx_outbox_worker_pick")
+}
+
+model session_counters {
+  session_id      Int      @id
+  next_bag_no     Int      @default(1)
+  next_random_seq Int      @default(1)
+  created_at      DateTime @default(now()) @db.DateTime(0)
+  updated_at      DateTime @default(now()) @db.DateTime(0)
+  sessions        sessions @relation(fields: [session_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_session_counters_session")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model session_subject_questions {
+  id                          Int                          @id @default(autoincrement())
+  campaign_id                 Int
+  session_id                  Int
+  session_subject_id          Int
+  question_no                 Int                          @db.SmallInt
+  label                       String                       @db.VarChar(255)
+  max_score                   Int                          @default(0)
+  question_type               String                       @default("REQUIRED") @db.VarChar(32)
+  note                        String?                      @db.Text
+  created_at                  DateTime                     @default(now()) @db.DateTime(0)
+  updated_at                  DateTime                     @default(now()) @db.DateTime(0)
+  deleted_at                  DateTime?                    @db.DateTime(0)
+  booklet_question_choices    booklet_question_choices[]
+  booklet_question_notes      booklet_question_notes[]
+  grader_assignments          grader_assignments[]
+  grader_work_locks           grader_work_locks[]
+  grading_score_drafts        grading_score_drafts[]
+  grading_score_logs          grading_score_logs[]
+  grading_slots               grading_slots[]
+  question_choice_group_items question_choice_group_items?
+  sessions                    sessions                     @relation(fields: [session_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ssq_session")
+  session_subjects            session_subjects             @relation(fields: [session_subject_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ssq_session_subject")
+
+  @@unique([id, session_id, campaign_id], map: "uq_ssq_id_session_campaign")
+  @@unique([session_id, question_no], map: "uq_ssq_session_question_no")
+  @@unique([session_subject_id, question_no], map: "uq_ssq_session_subject_question_no")
+  @@index([session_id, campaign_id], map: "fk_ssq_session")
+  @@index([session_subject_id, session_id, campaign_id], map: "fk_ssq_session_subject")
+  @@index([campaign_id], map: "idx_ssq_campaign")
+  @@index([session_subject_id], map: "idx_ssq_session_subject")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model setting_definitions {
+  id            Int       @id @default(autoincrement())
+  setting_key   String    @unique(map: "uq_setting_definitions_key") @db.VarChar(100)
+  name          String    @db.VarChar(255)
+  description   String?   @db.Text
+  value_type    String    @db.VarChar(30)
+  scope         String    @default("CAMPAIGN") @db.VarChar(30)
+  default_value Json?
+  required      Boolean   @default(false)
+  active        Boolean   @default(true)
+  created_at    DateTime  @default(now()) @db.DateTime(0)
+  updated_at    DateTime  @default(now()) @db.DateTime(0)
+  deleted_at    DateTime? @db.DateTime(0)
+
+  @@index([active], map: "idx_setting_definitions_active")
+  @@index([scope], map: "idx_setting_definitions_scope")
 }

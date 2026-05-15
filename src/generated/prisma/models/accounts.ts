@@ -29,62 +29,79 @@ export type AggregateAccounts = {
 export type AccountsAvgAggregateOutputType = {
   id: number | null
   role_id: number | null
+  campaign_id: number | null
   session_version: number | null
   manager_order: number | null
-  campaign_id: number | null
+  active_unique_key: number | null
 }
 
 export type AccountsSumAggregateOutputType = {
   id: number | null
   role_id: number | null
+  campaign_id: number | null
   session_version: number | null
   manager_order: number | null
-  campaign_id: number | null
+  active_unique_key: number | null
 }
 
 export type AccountsMinAggregateOutputType = {
   id: number | null
   username: string | null
   password_hash: string | null
+  title: string | null
   full_name: string | null
   email: string | null
+  profile_image_url: string | null
+  profile_image_key: string | null
   active: boolean | null
   role_id: number | null
+  campaign_id: number | null
   session_version: number | null
   manager_order: number | null
-  title: string | null
-  delete_at: Date | null
-  campaign_id: number | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
+  active_unique_key: number | null
 }
 
 export type AccountsMaxAggregateOutputType = {
   id: number | null
   username: string | null
   password_hash: string | null
+  title: string | null
   full_name: string | null
   email: string | null
+  profile_image_url: string | null
+  profile_image_key: string | null
   active: boolean | null
   role_id: number | null
+  campaign_id: number | null
   session_version: number | null
   manager_order: number | null
-  title: string | null
-  delete_at: Date | null
-  campaign_id: number | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
+  active_unique_key: number | null
 }
 
 export type AccountsCountAggregateOutputType = {
   id: number
   username: number
   password_hash: number
+  title: number
   full_name: number
   email: number
+  profile_image_url: number
+  profile_image_key: number
   active: number
   role_id: number
+  campaign_id: number
   session_version: number
   manager_order: number
-  title: number
-  delete_at: number
-  campaign_id: number
+  created_at: number
+  updated_at: number
+  deleted_at: number
+  active_unique_key: number
   _all: number
 }
 
@@ -92,62 +109,79 @@ export type AccountsCountAggregateOutputType = {
 export type AccountsAvgAggregateInputType = {
   id?: true
   role_id?: true
+  campaign_id?: true
   session_version?: true
   manager_order?: true
-  campaign_id?: true
+  active_unique_key?: true
 }
 
 export type AccountsSumAggregateInputType = {
   id?: true
   role_id?: true
+  campaign_id?: true
   session_version?: true
   manager_order?: true
-  campaign_id?: true
+  active_unique_key?: true
 }
 
 export type AccountsMinAggregateInputType = {
   id?: true
   username?: true
   password_hash?: true
+  title?: true
   full_name?: true
   email?: true
+  profile_image_url?: true
+  profile_image_key?: true
   active?: true
   role_id?: true
+  campaign_id?: true
   session_version?: true
   manager_order?: true
-  title?: true
-  delete_at?: true
-  campaign_id?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
+  active_unique_key?: true
 }
 
 export type AccountsMaxAggregateInputType = {
   id?: true
   username?: true
   password_hash?: true
+  title?: true
   full_name?: true
   email?: true
+  profile_image_url?: true
+  profile_image_key?: true
   active?: true
   role_id?: true
+  campaign_id?: true
   session_version?: true
   manager_order?: true
-  title?: true
-  delete_at?: true
-  campaign_id?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
+  active_unique_key?: true
 }
 
 export type AccountsCountAggregateInputType = {
   id?: true
   username?: true
   password_hash?: true
+  title?: true
   full_name?: true
   email?: true
+  profile_image_url?: true
+  profile_image_key?: true
   active?: true
   role_id?: true
+  campaign_id?: true
   session_version?: true
   manager_order?: true
-  title?: true
-  delete_at?: true
-  campaign_id?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
+  active_unique_key?: true
   _all?: true
 }
 
@@ -241,15 +275,20 @@ export type AccountsGroupByOutputType = {
   id: number
   username: string
   password_hash: string
+  title: string | null
   full_name: string
   email: string | null
+  profile_image_url: string | null
+  profile_image_key: string | null
   active: boolean
   role_id: number
+  campaign_id: number | null
   session_version: number
   manager_order: number | null
-  title: string | null
-  delete_at: Date | null
-  campaign_id: number | null
+  created_at: Date
+  updated_at: Date
+  deleted_at: Date | null
+  active_unique_key: number | null
   _count: AccountsCountAggregateOutputType | null
   _avg: AccountsAvgAggregateOutputType | null
   _sum: AccountsSumAggregateOutputType | null
@@ -279,82 +318,151 @@ export type accountsWhereInput = {
   id?: Prisma.IntFilter<"accounts"> | number
   username?: Prisma.StringFilter<"accounts"> | string
   password_hash?: Prisma.StringFilter<"accounts"> | string
+  title?: Prisma.StringNullableFilter<"accounts"> | string | null
   full_name?: Prisma.StringFilter<"accounts"> | string
   email?: Prisma.StringNullableFilter<"accounts"> | string | null
+  profile_image_url?: Prisma.StringNullableFilter<"accounts"> | string | null
+  profile_image_key?: Prisma.StringNullableFilter<"accounts"> | string | null
   active?: Prisma.BoolFilter<"accounts"> | boolean
   role_id?: Prisma.IntFilter<"accounts"> | number
+  campaign_id?: Prisma.IntNullableFilter<"accounts"> | number | null
   session_version?: Prisma.IntFilter<"accounts"> | number
   manager_order?: Prisma.IntNullableFilter<"accounts"> | number | null
-  title?: Prisma.StringNullableFilter<"accounts"> | string | null
-  delete_at?: Prisma.DateTimeNullableFilter<"accounts"> | Date | string | null
-  campaign_id?: Prisma.IntNullableFilter<"accounts"> | number | null
+  created_at?: Prisma.DateTimeFilter<"accounts"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"accounts"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"accounts"> | Date | string | null
+  active_unique_key?: Prisma.IntNullableFilter<"accounts"> | number | null
+  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsNullableScalarRelationFilter, Prisma.exam_campaignsWhereInput> | null
   roles?: Prisma.XOR<Prisma.RolesScalarRelationFilter, Prisma.rolesWhereInput>
   activity_logs?: Prisma.Activity_logsListRelationFilter
   auth_sessions?: Prisma.Auth_sessionsListRelationFilter
+  bags?: Prisma.BagsListRelationFilter
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.Booklet_question_notesListRelationFilter
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.Booklet_question_notesListRelationFilter
   campaign_keys?: Prisma.Campaign_keysListRelationFilter
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.Campaign_settingsListRelationFilter
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.Campaign_settingsListRelationFilter
+  grader_work_locks?: Prisma.Grader_work_locksListRelationFilter
   graders?: Prisma.GradersListRelationFilter
   grading_score_logs?: Prisma.Grading_score_logsListRelationFilter
+  incident_attachments?: Prisma.Incident_attachmentsListRelationFilter
+  notification_messages?: Prisma.Notification_messagesListRelationFilter
+  notification_preferences?: Prisma.Notification_preferencesListRelationFilter
+  notification_recipients?: Prisma.Notification_recipientsListRelationFilter
+  qr_scan_logs?: Prisma.Qr_scan_logsListRelationFilter
+  twofactor_sessions?: Prisma.Twofactor_sessionsListRelationFilter
 }
 
 export type accountsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   full_name?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_image_key?: Prisma.SortOrderInput | Prisma.SortOrder
   active?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrderInput | Prisma.SortOrder
   session_version?: Prisma.SortOrder
   manager_order?: Prisma.SortOrderInput | Prisma.SortOrder
-  title?: Prisma.SortOrderInput | Prisma.SortOrder
-  delete_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  campaign_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrderInput | Prisma.SortOrder
+  exam_campaigns?: Prisma.exam_campaignsOrderByWithRelationInput
   roles?: Prisma.rolesOrderByWithRelationInput
   activity_logs?: Prisma.activity_logsOrderByRelationAggregateInput
   auth_sessions?: Prisma.auth_sessionsOrderByRelationAggregateInput
+  bags?: Prisma.bagsOrderByRelationAggregateInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsOrderByRelationAggregateInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsOrderByRelationAggregateInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsOrderByRelationAggregateInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesOrderByRelationAggregateInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesOrderByRelationAggregateInput
   campaign_keys?: Prisma.campaign_keysOrderByRelationAggregateInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsOrderByRelationAggregateInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsOrderByRelationAggregateInput
+  grader_work_locks?: Prisma.grader_work_locksOrderByRelationAggregateInput
   graders?: Prisma.gradersOrderByRelationAggregateInput
   grading_score_logs?: Prisma.grading_score_logsOrderByRelationAggregateInput
+  incident_attachments?: Prisma.incident_attachmentsOrderByRelationAggregateInput
+  notification_messages?: Prisma.notification_messagesOrderByRelationAggregateInput
+  notification_preferences?: Prisma.notification_preferencesOrderByRelationAggregateInput
+  notification_recipients?: Prisma.notification_recipientsOrderByRelationAggregateInput
+  qr_scan_logs?: Prisma.qr_scan_logsOrderByRelationAggregateInput
+  twofactor_sessions?: Prisma.twofactor_sessionsOrderByRelationAggregateInput
   _relevance?: Prisma.accountsOrderByRelevanceInput
 }
 
 export type accountsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  username?: string
+  username_active_unique_key?: Prisma.accountsUsernameActive_unique_keyCompoundUniqueInput
   AND?: Prisma.accountsWhereInput | Prisma.accountsWhereInput[]
   OR?: Prisma.accountsWhereInput[]
   NOT?: Prisma.accountsWhereInput | Prisma.accountsWhereInput[]
+  username?: Prisma.StringFilter<"accounts"> | string
   password_hash?: Prisma.StringFilter<"accounts"> | string
+  title?: Prisma.StringNullableFilter<"accounts"> | string | null
   full_name?: Prisma.StringFilter<"accounts"> | string
   email?: Prisma.StringNullableFilter<"accounts"> | string | null
+  profile_image_url?: Prisma.StringNullableFilter<"accounts"> | string | null
+  profile_image_key?: Prisma.StringNullableFilter<"accounts"> | string | null
   active?: Prisma.BoolFilter<"accounts"> | boolean
   role_id?: Prisma.IntFilter<"accounts"> | number
+  campaign_id?: Prisma.IntNullableFilter<"accounts"> | number | null
   session_version?: Prisma.IntFilter<"accounts"> | number
   manager_order?: Prisma.IntNullableFilter<"accounts"> | number | null
-  title?: Prisma.StringNullableFilter<"accounts"> | string | null
-  delete_at?: Prisma.DateTimeNullableFilter<"accounts"> | Date | string | null
-  campaign_id?: Prisma.IntNullableFilter<"accounts"> | number | null
+  created_at?: Prisma.DateTimeFilter<"accounts"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"accounts"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"accounts"> | Date | string | null
+  active_unique_key?: Prisma.IntNullableFilter<"accounts"> | number | null
+  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsNullableScalarRelationFilter, Prisma.exam_campaignsWhereInput> | null
   roles?: Prisma.XOR<Prisma.RolesScalarRelationFilter, Prisma.rolesWhereInput>
   activity_logs?: Prisma.Activity_logsListRelationFilter
   auth_sessions?: Prisma.Auth_sessionsListRelationFilter
+  bags?: Prisma.BagsListRelationFilter
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.Booklet_question_notesListRelationFilter
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.Booklet_question_notesListRelationFilter
   campaign_keys?: Prisma.Campaign_keysListRelationFilter
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.Campaign_settingsListRelationFilter
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.Campaign_settingsListRelationFilter
+  grader_work_locks?: Prisma.Grader_work_locksListRelationFilter
   graders?: Prisma.GradersListRelationFilter
   grading_score_logs?: Prisma.Grading_score_logsListRelationFilter
-}, "id" | "username">
+  incident_attachments?: Prisma.Incident_attachmentsListRelationFilter
+  notification_messages?: Prisma.Notification_messagesListRelationFilter
+  notification_preferences?: Prisma.Notification_preferencesListRelationFilter
+  notification_recipients?: Prisma.Notification_recipientsListRelationFilter
+  qr_scan_logs?: Prisma.Qr_scan_logsListRelationFilter
+  twofactor_sessions?: Prisma.Twofactor_sessionsListRelationFilter
+}, "id" | "username_active_unique_key">
 
 export type accountsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   full_name?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_image_key?: Prisma.SortOrderInput | Prisma.SortOrder
   active?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrderInput | Prisma.SortOrder
   session_version?: Prisma.SortOrder
   manager_order?: Prisma.SortOrderInput | Prisma.SortOrder
-  title?: Prisma.SortOrderInput | Prisma.SortOrder
-  delete_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  campaign_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.accountsCountOrderByAggregateInput
   _avg?: Prisma.accountsAvgOrderByAggregateInput
   _max?: Prisma.accountsMaxOrderByAggregateInput
@@ -369,136 +477,235 @@ export type accountsScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"accounts"> | number
   username?: Prisma.StringWithAggregatesFilter<"accounts"> | string
   password_hash?: Prisma.StringWithAggregatesFilter<"accounts"> | string
+  title?: Prisma.StringNullableWithAggregatesFilter<"accounts"> | string | null
   full_name?: Prisma.StringWithAggregatesFilter<"accounts"> | string
   email?: Prisma.StringNullableWithAggregatesFilter<"accounts"> | string | null
+  profile_image_url?: Prisma.StringNullableWithAggregatesFilter<"accounts"> | string | null
+  profile_image_key?: Prisma.StringNullableWithAggregatesFilter<"accounts"> | string | null
   active?: Prisma.BoolWithAggregatesFilter<"accounts"> | boolean
   role_id?: Prisma.IntWithAggregatesFilter<"accounts"> | number
+  campaign_id?: Prisma.IntNullableWithAggregatesFilter<"accounts"> | number | null
   session_version?: Prisma.IntWithAggregatesFilter<"accounts"> | number
   manager_order?: Prisma.IntNullableWithAggregatesFilter<"accounts"> | number | null
-  title?: Prisma.StringNullableWithAggregatesFilter<"accounts"> | string | null
-  delete_at?: Prisma.DateTimeNullableWithAggregatesFilter<"accounts"> | Date | string | null
-  campaign_id?: Prisma.IntNullableWithAggregatesFilter<"accounts"> | number | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"accounts"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"accounts"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"accounts"> | Date | string | null
+  active_unique_key?: Prisma.IntNullableWithAggregatesFilter<"accounts"> | number | null
 }
 
 export type accountsCreateInput = {
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
   roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsUncheckedCreateInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   role_id: number
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
   roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
   activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsCreateManyInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   role_id: number
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
 }
 
 export type accountsUpdateManyMutationInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type accountsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type accountsOrderByRelevanceInput = {
@@ -507,75 +714,92 @@ export type accountsOrderByRelevanceInput = {
   search: string
 }
 
+export type accountsUsernameActive_unique_keyCompoundUniqueInput = {
+  username: string
+  active_unique_key: number
+}
+
 export type accountsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   full_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrder
+  profile_image_key?: Prisma.SortOrder
   active?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
   session_version?: Prisma.SortOrder
   manager_order?: Prisma.SortOrder
-  title?: Prisma.SortOrder
-  delete_at?: Prisma.SortOrder
-  campaign_id?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type accountsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
   session_version?: Prisma.SortOrder
   manager_order?: Prisma.SortOrder
-  campaign_id?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type accountsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   full_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrder
+  profile_image_key?: Prisma.SortOrder
   active?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
   session_version?: Prisma.SortOrder
   manager_order?: Prisma.SortOrder
-  title?: Prisma.SortOrder
-  delete_at?: Prisma.SortOrder
-  campaign_id?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type accountsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   username?: Prisma.SortOrder
   password_hash?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   full_name?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  profile_image_url?: Prisma.SortOrder
+  profile_image_key?: Prisma.SortOrder
   active?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
   session_version?: Prisma.SortOrder
   manager_order?: Prisma.SortOrder
-  title?: Prisma.SortOrder
-  delete_at?: Prisma.SortOrder
-  campaign_id?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type accountsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   role_id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
   session_version?: Prisma.SortOrder
   manager_order?: Prisma.SortOrder
-  campaign_id?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type AccountsNullableScalarRelationFilter = {
   is?: Prisma.accountsWhereInput | null
   isNot?: Prisma.accountsWhereInput | null
-}
-
-export type AccountsScalarRelationFilter = {
-  is?: Prisma.accountsWhereInput
-  isNot?: Prisma.accountsWhereInput
 }
 
 export type AccountsListRelationFilter = {
@@ -586,6 +810,11 @@ export type AccountsListRelationFilter = {
 
 export type accountsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type AccountsScalarRelationFilter = {
+  is?: Prisma.accountsWhereInput
+  isNot?: Prisma.accountsWhereInput
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -614,6 +843,10 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -652,6 +885,22 @@ export type accountsUpdateOneWithoutAuth_sessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutAuth_sessionsInput, Prisma.accountsUpdateWithoutAuth_sessionsInput>, Prisma.accountsUncheckedUpdateWithoutAuth_sessionsInput>
 }
 
+export type accountsCreateNestedOneWithoutBagsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBagsInput, Prisma.accountsUncheckedCreateWithoutBagsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBagsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutBagsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBagsInput, Prisma.accountsUncheckedCreateWithoutBagsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBagsInput
+  upsert?: Prisma.accountsUpsertWithoutBagsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutBagsInput, Prisma.accountsUpdateWithoutBagsInput>, Prisma.accountsUncheckedUpdateWithoutBagsInput>
+}
+
 export type accountsCreateNestedOneWithoutCampaign_keysInput = {
   create?: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_keysInput, Prisma.accountsUncheckedCreateWithoutCampaign_keysInput>
   connectOrCreate?: Prisma.accountsCreateOrConnectWithoutCampaign_keysInput
@@ -666,6 +915,64 @@ export type accountsUpdateOneWithoutCampaign_keysNestedInput = {
   delete?: Prisma.accountsWhereInput | boolean
   connect?: Prisma.accountsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutCampaign_keysInput, Prisma.accountsUpdateWithoutCampaign_keysInput>, Prisma.accountsUncheckedUpdateWithoutCampaign_keysInput>
+}
+
+export type accountsCreateNestedManyWithoutExam_campaignsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutExam_campaignsInput, Prisma.accountsUncheckedCreateWithoutExam_campaignsInput> | Prisma.accountsCreateWithoutExam_campaignsInput[] | Prisma.accountsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutExam_campaignsInput | Prisma.accountsCreateOrConnectWithoutExam_campaignsInput[]
+  createMany?: Prisma.accountsCreateManyExam_campaignsInputEnvelope
+  connect?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+}
+
+export type accountsUncheckedCreateNestedManyWithoutExam_campaignsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutExam_campaignsInput, Prisma.accountsUncheckedCreateWithoutExam_campaignsInput> | Prisma.accountsCreateWithoutExam_campaignsInput[] | Prisma.accountsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutExam_campaignsInput | Prisma.accountsCreateOrConnectWithoutExam_campaignsInput[]
+  createMany?: Prisma.accountsCreateManyExam_campaignsInputEnvelope
+  connect?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+}
+
+export type accountsUpdateManyWithoutExam_campaignsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutExam_campaignsInput, Prisma.accountsUncheckedCreateWithoutExam_campaignsInput> | Prisma.accountsCreateWithoutExam_campaignsInput[] | Prisma.accountsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutExam_campaignsInput | Prisma.accountsCreateOrConnectWithoutExam_campaignsInput[]
+  upsert?: Prisma.accountsUpsertWithWhereUniqueWithoutExam_campaignsInput | Prisma.accountsUpsertWithWhereUniqueWithoutExam_campaignsInput[]
+  createMany?: Prisma.accountsCreateManyExam_campaignsInputEnvelope
+  set?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+  disconnect?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+  delete?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+  connect?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+  update?: Prisma.accountsUpdateWithWhereUniqueWithoutExam_campaignsInput | Prisma.accountsUpdateWithWhereUniqueWithoutExam_campaignsInput[]
+  updateMany?: Prisma.accountsUpdateManyWithWhereWithoutExam_campaignsInput | Prisma.accountsUpdateManyWithWhereWithoutExam_campaignsInput[]
+  deleteMany?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
+}
+
+export type accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutExam_campaignsInput, Prisma.accountsUncheckedCreateWithoutExam_campaignsInput> | Prisma.accountsCreateWithoutExam_campaignsInput[] | Prisma.accountsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutExam_campaignsInput | Prisma.accountsCreateOrConnectWithoutExam_campaignsInput[]
+  upsert?: Prisma.accountsUpsertWithWhereUniqueWithoutExam_campaignsInput | Prisma.accountsUpsertWithWhereUniqueWithoutExam_campaignsInput[]
+  createMany?: Prisma.accountsCreateManyExam_campaignsInputEnvelope
+  set?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+  disconnect?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+  delete?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+  connect?: Prisma.accountsWhereUniqueInput | Prisma.accountsWhereUniqueInput[]
+  update?: Prisma.accountsUpdateWithWhereUniqueWithoutExam_campaignsInput | Prisma.accountsUpdateWithWhereUniqueWithoutExam_campaignsInput[]
+  updateMany?: Prisma.accountsUpdateManyWithWhereWithoutExam_campaignsInput | Prisma.accountsUpdateManyWithWhereWithoutExam_campaignsInput[]
+  deleteMany?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
+}
+
+export type accountsCreateNestedOneWithoutGrader_work_locksInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutGrader_work_locksInput, Prisma.accountsUncheckedCreateWithoutGrader_work_locksInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutGrader_work_locksInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutGrader_work_locksNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutGrader_work_locksInput, Prisma.accountsUncheckedCreateWithoutGrader_work_locksInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutGrader_work_locksInput
+  upsert?: Prisma.accountsUpsertWithoutGrader_work_locksInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutGrader_work_locksInput, Prisma.accountsUpdateWithoutGrader_work_locksInput>, Prisma.accountsUncheckedUpdateWithoutGrader_work_locksInput>
 }
 
 export type accountsCreateNestedOneWithoutGradersInput = {
@@ -740,41 +1047,285 @@ export type accountsUncheckedUpdateManyWithoutRolesNestedInput = {
   deleteMany?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
 }
 
+export type accountsCreateNestedOneWithoutTwofactor_sessionsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutTwofactor_sessionsInput, Prisma.accountsUncheckedCreateWithoutTwofactor_sessionsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutTwofactor_sessionsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneRequiredWithoutTwofactor_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutTwofactor_sessionsInput, Prisma.accountsUncheckedCreateWithoutTwofactor_sessionsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutTwofactor_sessionsInput
+  upsert?: Prisma.accountsUpsertWithoutTwofactor_sessionsInput
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutTwofactor_sessionsInput, Prisma.accountsUpdateWithoutTwofactor_sessionsInput>, Prisma.accountsUncheckedUpdateWithoutTwofactor_sessionsInput>
+}
+
+export type accountsCreateNestedOneWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsCreateNestedOneWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsCreateNestedOneWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  upsert?: Prisma.accountsUpsertWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput, Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput>, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput>
+}
+
+export type accountsUpdateOneWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput
+  upsert?: Prisma.accountsUpsertWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput, Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput>, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateOneWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  upsert?: Prisma.accountsUpsertWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput, Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput>, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput>
+}
+
+export type accountsCreateNestedOneWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsCreateNestedOneWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput
+  upsert?: Prisma.accountsUpsertWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput, Prisma.accountsUpdateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput>, Prisma.accountsUncheckedUpdateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateOneWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  upsert?: Prisma.accountsUpsertWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput, Prisma.accountsUpdateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput>, Prisma.accountsUncheckedUpdateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput>
+}
+
+export type accountsCreateNestedOneWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsCreateNestedOneWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput
+  upsert?: Prisma.accountsUpsertWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput, Prisma.accountsUpdateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput>, Prisma.accountsUncheckedUpdateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateOneWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput
+  upsert?: Prisma.accountsUpsertWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput, Prisma.accountsUpdateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput>, Prisma.accountsUncheckedUpdateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput>
+}
+
+export type accountsCreateNestedOneWithoutIncident_attachmentsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutIncident_attachmentsInput, Prisma.accountsUncheckedCreateWithoutIncident_attachmentsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutIncident_attachmentsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutIncident_attachmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutIncident_attachmentsInput, Prisma.accountsUncheckedCreateWithoutIncident_attachmentsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutIncident_attachmentsInput
+  upsert?: Prisma.accountsUpsertWithoutIncident_attachmentsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutIncident_attachmentsInput, Prisma.accountsUpdateWithoutIncident_attachmentsInput>, Prisma.accountsUncheckedUpdateWithoutIncident_attachmentsInput>
+}
+
+export type accountsCreateNestedOneWithoutNotification_messagesInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutNotification_messagesInput, Prisma.accountsUncheckedCreateWithoutNotification_messagesInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutNotification_messagesInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutNotification_messagesNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutNotification_messagesInput, Prisma.accountsUncheckedCreateWithoutNotification_messagesInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutNotification_messagesInput
+  upsert?: Prisma.accountsUpsertWithoutNotification_messagesInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutNotification_messagesInput, Prisma.accountsUpdateWithoutNotification_messagesInput>, Prisma.accountsUncheckedUpdateWithoutNotification_messagesInput>
+}
+
+export type accountsCreateNestedOneWithoutNotification_preferencesInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutNotification_preferencesInput, Prisma.accountsUncheckedCreateWithoutNotification_preferencesInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutNotification_preferencesInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneRequiredWithoutNotification_preferencesNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutNotification_preferencesInput, Prisma.accountsUncheckedCreateWithoutNotification_preferencesInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutNotification_preferencesInput
+  upsert?: Prisma.accountsUpsertWithoutNotification_preferencesInput
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutNotification_preferencesInput, Prisma.accountsUpdateWithoutNotification_preferencesInput>, Prisma.accountsUncheckedUpdateWithoutNotification_preferencesInput>
+}
+
+export type accountsCreateNestedOneWithoutNotification_recipientsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutNotification_recipientsInput, Prisma.accountsUncheckedCreateWithoutNotification_recipientsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutNotification_recipientsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutNotification_recipientsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutNotification_recipientsInput, Prisma.accountsUncheckedCreateWithoutNotification_recipientsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutNotification_recipientsInput
+  upsert?: Prisma.accountsUpsertWithoutNotification_recipientsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutNotification_recipientsInput, Prisma.accountsUpdateWithoutNotification_recipientsInput>, Prisma.accountsUncheckedUpdateWithoutNotification_recipientsInput>
+}
+
+export type accountsCreateNestedOneWithoutQr_scan_logsInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutQr_scan_logsInput, Prisma.accountsUncheckedCreateWithoutQr_scan_logsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutQr_scan_logsInput
+  connect?: Prisma.accountsWhereUniqueInput
+}
+
+export type accountsUpdateOneWithoutQr_scan_logsNestedInput = {
+  create?: Prisma.XOR<Prisma.accountsCreateWithoutQr_scan_logsInput, Prisma.accountsUncheckedCreateWithoutQr_scan_logsInput>
+  connectOrCreate?: Prisma.accountsCreateOrConnectWithoutQr_scan_logsInput
+  upsert?: Prisma.accountsUpsertWithoutQr_scan_logsInput
+  disconnect?: Prisma.accountsWhereInput | boolean
+  delete?: Prisma.accountsWhereInput | boolean
+  connect?: Prisma.accountsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.accountsUpdateToOneWithWhereWithoutQr_scan_logsInput, Prisma.accountsUpdateWithoutQr_scan_logsInput>, Prisma.accountsUncheckedUpdateWithoutQr_scan_logsInput>
+}
+
 export type accountsCreateWithoutActivity_logsInput = {
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
   roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsUncheckedCreateWithoutActivity_logsInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   role_id: number
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
   auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsCreateOrConnectWithoutActivity_logsInput = {
@@ -796,75 +1347,155 @@ export type accountsUpdateToOneWithWhereWithoutActivity_logsInput = {
 export type accountsUpdateWithoutActivity_logsInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
   roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsUncheckedUpdateWithoutActivity_logsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsCreateWithoutAuth_sessionsInput = {
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
   roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsUncheckedCreateWithoutAuth_sessionsInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   role_id: number
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsCreateOrConnectWithoutAuth_sessionsInput = {
@@ -886,75 +1517,325 @@ export type accountsUpdateToOneWithWhereWithoutAuth_sessionsInput = {
 export type accountsUpdateWithoutAuth_sessionsInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
   roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
   activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsUncheckedUpdateWithoutAuth_sessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutBagsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutBagsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutBagsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBagsInput, Prisma.accountsUncheckedCreateWithoutBagsInput>
+}
+
+export type accountsUpsertWithoutBagsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutBagsInput, Prisma.accountsUncheckedUpdateWithoutBagsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBagsInput, Prisma.accountsUncheckedCreateWithoutBagsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutBagsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutBagsInput, Prisma.accountsUncheckedUpdateWithoutBagsInput>
+}
+
+export type accountsUpdateWithoutBagsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutBagsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsCreateWithoutCampaign_keysInput = {
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
   roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsUncheckedCreateWithoutCampaign_keysInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   role_id: number
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsCreateOrConnectWithoutCampaign_keysInput = {
@@ -976,75 +1857,451 @@ export type accountsUpdateToOneWithWhereWithoutCampaign_keysInput = {
 export type accountsUpdateWithoutCampaign_keysInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
   roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
   activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsUncheckedUpdateWithoutCampaign_keysInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutExam_campaignsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutExam_campaignsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutExam_campaignsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutExam_campaignsInput, Prisma.accountsUncheckedCreateWithoutExam_campaignsInput>
+}
+
+export type accountsCreateManyExam_campaignsInputEnvelope = {
+  data: Prisma.accountsCreateManyExam_campaignsInput | Prisma.accountsCreateManyExam_campaignsInput[]
+  skipDuplicates?: boolean
+}
+
+export type accountsUpsertWithWhereUniqueWithoutExam_campaignsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutExam_campaignsInput, Prisma.accountsUncheckedUpdateWithoutExam_campaignsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutExam_campaignsInput, Prisma.accountsUncheckedCreateWithoutExam_campaignsInput>
+}
+
+export type accountsUpdateWithWhereUniqueWithoutExam_campaignsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutExam_campaignsInput, Prisma.accountsUncheckedUpdateWithoutExam_campaignsInput>
+}
+
+export type accountsUpdateManyWithWhereWithoutExam_campaignsInput = {
+  where: Prisma.accountsScalarWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateManyMutationInput, Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsInput>
+}
+
+export type accountsScalarWhereInput = {
+  AND?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
+  OR?: Prisma.accountsScalarWhereInput[]
+  NOT?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
+  id?: Prisma.IntFilter<"accounts"> | number
+  username?: Prisma.StringFilter<"accounts"> | string
+  password_hash?: Prisma.StringFilter<"accounts"> | string
+  title?: Prisma.StringNullableFilter<"accounts"> | string | null
+  full_name?: Prisma.StringFilter<"accounts"> | string
+  email?: Prisma.StringNullableFilter<"accounts"> | string | null
+  profile_image_url?: Prisma.StringNullableFilter<"accounts"> | string | null
+  profile_image_key?: Prisma.StringNullableFilter<"accounts"> | string | null
+  active?: Prisma.BoolFilter<"accounts"> | boolean
+  role_id?: Prisma.IntFilter<"accounts"> | number
+  campaign_id?: Prisma.IntNullableFilter<"accounts"> | number | null
+  session_version?: Prisma.IntFilter<"accounts"> | number
+  manager_order?: Prisma.IntNullableFilter<"accounts"> | number | null
+  created_at?: Prisma.DateTimeFilter<"accounts"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"accounts"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"accounts"> | Date | string | null
+  active_unique_key?: Prisma.IntNullableFilter<"accounts"> | number | null
+}
+
+export type accountsCreateWithoutGrader_work_locksInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutGrader_work_locksInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutGrader_work_locksInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutGrader_work_locksInput, Prisma.accountsUncheckedCreateWithoutGrader_work_locksInput>
+}
+
+export type accountsUpsertWithoutGrader_work_locksInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutGrader_work_locksInput, Prisma.accountsUncheckedUpdateWithoutGrader_work_locksInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutGrader_work_locksInput, Prisma.accountsUncheckedCreateWithoutGrader_work_locksInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutGrader_work_locksInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutGrader_work_locksInput, Prisma.accountsUncheckedUpdateWithoutGrader_work_locksInput>
+}
+
+export type accountsUpdateWithoutGrader_work_locksInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutGrader_work_locksInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsCreateWithoutGradersInput = {
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
   roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsUncheckedCreateWithoutGradersInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   role_id: number
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsCreateOrConnectWithoutGradersInput = {
@@ -1066,75 +2323,155 @@ export type accountsUpdateToOneWithWhereWithoutGradersInput = {
 export type accountsUpdateWithoutGradersInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
   roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
   activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsUncheckedUpdateWithoutGradersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsCreateWithoutGrading_score_logsInput = {
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
   roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsUncheckedCreateWithoutGrading_score_logsInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   role_id: number
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsCreateOrConnectWithoutGrading_score_logsInput = {
@@ -1156,75 +2493,155 @@ export type accountsUpdateToOneWithWhereWithoutGrading_score_logsInput = {
 export type accountsUpdateWithoutGrading_score_logsInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
   roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
   activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsUncheckedUpdateWithoutGrading_score_logsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsCreateWithoutRolesInput = {
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
   activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsUncheckedCreateWithoutRolesInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
   activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
   auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
   campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
   graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
 }
 
 export type accountsCreateOrConnectWithoutRolesInput = {
@@ -1253,87 +2670,2444 @@ export type accountsUpdateManyWithWhereWithoutRolesInput = {
   data: Prisma.XOR<Prisma.accountsUpdateManyMutationInput, Prisma.accountsUncheckedUpdateManyWithoutRolesInput>
 }
 
-export type accountsScalarWhereInput = {
-  AND?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
-  OR?: Prisma.accountsScalarWhereInput[]
-  NOT?: Prisma.accountsScalarWhereInput | Prisma.accountsScalarWhereInput[]
-  id?: Prisma.IntFilter<"accounts"> | number
-  username?: Prisma.StringFilter<"accounts"> | string
-  password_hash?: Prisma.StringFilter<"accounts"> | string
-  full_name?: Prisma.StringFilter<"accounts"> | string
-  email?: Prisma.StringNullableFilter<"accounts"> | string | null
-  active?: Prisma.BoolFilter<"accounts"> | boolean
-  role_id?: Prisma.IntFilter<"accounts"> | number
-  session_version?: Prisma.IntFilter<"accounts"> | number
-  manager_order?: Prisma.IntNullableFilter<"accounts"> | number | null
-  title?: Prisma.StringNullableFilter<"accounts"> | string | null
-  delete_at?: Prisma.DateTimeNullableFilter<"accounts"> | Date | string | null
-  campaign_id?: Prisma.IntNullableFilter<"accounts"> | number | null
+export type accountsCreateWithoutTwofactor_sessionsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutTwofactor_sessionsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutTwofactor_sessionsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutTwofactor_sessionsInput, Prisma.accountsUncheckedCreateWithoutTwofactor_sessionsInput>
+}
+
+export type accountsUpsertWithoutTwofactor_sessionsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutTwofactor_sessionsInput, Prisma.accountsUncheckedUpdateWithoutTwofactor_sessionsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutTwofactor_sessionsInput, Prisma.accountsUncheckedCreateWithoutTwofactor_sessionsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutTwofactor_sessionsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutTwofactor_sessionsInput, Prisma.accountsUncheckedUpdateWithoutTwofactor_sessionsInput>
+}
+
+export type accountsUpdateWithoutTwofactor_sessionsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutTwofactor_sessionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput>
+}
+
+export type accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput>
+}
+
+export type accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput>
+}
+
+export type accountsUpsertWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput>
+}
+
+export type accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUpsertWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUpsertWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput>
+}
+
+export type accountsCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput>
+}
+
+export type accountsUpsertWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUpsertWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput>
+}
+
+export type accountsCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput>
+}
+
+export type accountsUpsertWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutCampaign_settings_campaign_settings_created_by_account_idToaccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUpsertWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput, Prisma.accountsUncheckedCreateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput, Prisma.accountsUncheckedUpdateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput>
+}
+
+export type accountsUpdateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutCampaign_settings_campaign_settings_updated_by_account_idToaccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutIncident_attachmentsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutIncident_attachmentsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutIncident_attachmentsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutIncident_attachmentsInput, Prisma.accountsUncheckedCreateWithoutIncident_attachmentsInput>
+}
+
+export type accountsUpsertWithoutIncident_attachmentsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutIncident_attachmentsInput, Prisma.accountsUncheckedUpdateWithoutIncident_attachmentsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutIncident_attachmentsInput, Prisma.accountsUncheckedCreateWithoutIncident_attachmentsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutIncident_attachmentsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutIncident_attachmentsInput, Prisma.accountsUncheckedUpdateWithoutIncident_attachmentsInput>
+}
+
+export type accountsUpdateWithoutIncident_attachmentsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutIncident_attachmentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutNotification_messagesInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutNotification_messagesInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutNotification_messagesInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutNotification_messagesInput, Prisma.accountsUncheckedCreateWithoutNotification_messagesInput>
+}
+
+export type accountsUpsertWithoutNotification_messagesInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutNotification_messagesInput, Prisma.accountsUncheckedUpdateWithoutNotification_messagesInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutNotification_messagesInput, Prisma.accountsUncheckedCreateWithoutNotification_messagesInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutNotification_messagesInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutNotification_messagesInput, Prisma.accountsUncheckedUpdateWithoutNotification_messagesInput>
+}
+
+export type accountsUpdateWithoutNotification_messagesInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutNotification_messagesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutNotification_preferencesInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutNotification_preferencesInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutNotification_preferencesInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutNotification_preferencesInput, Prisma.accountsUncheckedCreateWithoutNotification_preferencesInput>
+}
+
+export type accountsUpsertWithoutNotification_preferencesInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutNotification_preferencesInput, Prisma.accountsUncheckedUpdateWithoutNotification_preferencesInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutNotification_preferencesInput, Prisma.accountsUncheckedCreateWithoutNotification_preferencesInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutNotification_preferencesInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutNotification_preferencesInput, Prisma.accountsUncheckedUpdateWithoutNotification_preferencesInput>
+}
+
+export type accountsUpdateWithoutNotification_preferencesInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutNotification_preferencesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutNotification_recipientsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutNotification_recipientsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutNotification_recipientsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutNotification_recipientsInput, Prisma.accountsUncheckedCreateWithoutNotification_recipientsInput>
+}
+
+export type accountsUpsertWithoutNotification_recipientsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutNotification_recipientsInput, Prisma.accountsUncheckedUpdateWithoutNotification_recipientsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutNotification_recipientsInput, Prisma.accountsUncheckedCreateWithoutNotification_recipientsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutNotification_recipientsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutNotification_recipientsInput, Prisma.accountsUncheckedUpdateWithoutNotification_recipientsInput>
+}
+
+export type accountsUpdateWithoutNotification_recipientsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutNotification_recipientsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateWithoutQr_scan_logsInput = {
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutAccountsInput
+  roles: Prisma.rolesCreateNestedOneWithoutAccountsInput
+  activity_logs?: Prisma.activity_logsCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsUncheckedCreateWithoutQr_scan_logsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  campaign_id?: number | null
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+  activity_logs?: Prisma.activity_logsUncheckedCreateNestedManyWithoutAccountsInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+  bags?: Prisma.bagsUncheckedCreateNestedManyWithoutAccountsInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsInput
+  campaign_keys?: Prisma.campaign_keysUncheckedCreateNestedManyWithoutAccountsInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedCreateNestedManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput
+  graders?: Prisma.gradersUncheckedCreateNestedManyWithoutAccountsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutAccountsInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedCreateNestedManyWithoutAccountsInput
+  notification_messages?: Prisma.notification_messagesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedCreateNestedManyWithoutAccountsInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedCreateNestedManyWithoutAccountsInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput
+}
+
+export type accountsCreateOrConnectWithoutQr_scan_logsInput = {
+  where: Prisma.accountsWhereUniqueInput
+  create: Prisma.XOR<Prisma.accountsCreateWithoutQr_scan_logsInput, Prisma.accountsUncheckedCreateWithoutQr_scan_logsInput>
+}
+
+export type accountsUpsertWithoutQr_scan_logsInput = {
+  update: Prisma.XOR<Prisma.accountsUpdateWithoutQr_scan_logsInput, Prisma.accountsUncheckedUpdateWithoutQr_scan_logsInput>
+  create: Prisma.XOR<Prisma.accountsCreateWithoutQr_scan_logsInput, Prisma.accountsUncheckedCreateWithoutQr_scan_logsInput>
+  where?: Prisma.accountsWhereInput
+}
+
+export type accountsUpdateToOneWithWhereWithoutQr_scan_logsInput = {
+  where?: Prisma.accountsWhereInput
+  data: Prisma.XOR<Prisma.accountsUpdateWithoutQr_scan_logsInput, Prisma.accountsUncheckedUpdateWithoutQr_scan_logsInput>
+}
+
+export type accountsUpdateWithoutQr_scan_logsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutQr_scan_logsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsCreateManyExam_campaignsInput = {
+  id?: number
+  username: string
+  password_hash: string
+  title?: string | null
+  full_name: string
+  email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
+  active?: boolean
+  role_id: number
+  session_version?: number
+  manager_order?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
+}
+
+export type accountsUpdateWithoutExam_campaignsInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  roles?: Prisma.rolesUpdateOneRequiredWithoutAccountsNestedInput
+  activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateWithoutExam_campaignsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
+  campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
+  graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+}
+
+export type accountsUncheckedUpdateManyWithoutExam_campaignsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  role_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_version?: Prisma.IntFieldUpdateOperationsInput | number
+  manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type accountsCreateManyRolesInput = {
   id?: number
   username: string
   password_hash: string
+  title?: string | null
   full_name: string
   email?: string | null
+  profile_image_url?: string | null
+  profile_image_key?: string | null
   active?: boolean
+  campaign_id?: number | null
   session_version?: number
   manager_order?: number | null
-  title?: string | null
-  delete_at?: Date | string | null
-  campaign_id?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  active_unique_key?: number | null
 }
 
 export type accountsUpdateWithoutRolesInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutAccountsNestedInput
   activity_logs?: Prisma.activity_logsUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsUncheckedUpdateWithoutRolesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_logs?: Prisma.activity_logsUncheckedUpdateManyWithoutAccountsNestedInput
   auth_sessions?: Prisma.auth_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
+  bags?: Prisma.bagsUncheckedUpdateManyWithoutAccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_assigned_to_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_reported_by_account_idToaccountsNestedInput
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutAccounts_booklet_incident_reports_resolved_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_created_by_account_idToaccountsNestedInput
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutAccounts_booklet_question_notes_reviewed_by_account_idToaccountsNestedInput
   campaign_keys?: Prisma.campaign_keysUncheckedUpdateManyWithoutAccountsNestedInput
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_created_by_account_idToaccountsNestedInput
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: Prisma.campaign_settingsUncheckedUpdateManyWithoutAccounts_campaign_settings_updated_by_account_idToaccountsNestedInput
+  grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput
   graders?: Prisma.gradersUncheckedUpdateManyWithoutAccountsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  incident_attachments?: Prisma.incident_attachmentsUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_messages?: Prisma.notification_messagesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_preferences?: Prisma.notification_preferencesUncheckedUpdateManyWithoutAccountsNestedInput
+  notification_recipients?: Prisma.notification_recipientsUncheckedUpdateManyWithoutAccountsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutAccountsNestedInput
+  twofactor_sessions?: Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput
 }
 
 export type accountsUncheckedUpdateManyWithoutRolesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_image_key?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   session_version?: Prisma.IntFieldUpdateOperationsInput | number
   manager_order?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  delete_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -1344,17 +5118,47 @@ export type accountsUncheckedUpdateManyWithoutRolesInput = {
 export type AccountsCountOutputType = {
   activity_logs: number
   auth_sessions: number
+  bags: number
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts: number
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts: number
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts: number
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts: number
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts: number
   campaign_keys: number
+  campaign_settings_campaign_settings_created_by_account_idToaccounts: number
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts: number
+  grader_work_locks: number
   graders: number
   grading_score_logs: number
+  incident_attachments: number
+  notification_messages: number
+  notification_preferences: number
+  notification_recipients: number
+  qr_scan_logs: number
+  twofactor_sessions: number
 }
 
 export type AccountsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   activity_logs?: boolean | AccountsCountOutputTypeCountActivity_logsArgs
   auth_sessions?: boolean | AccountsCountOutputTypeCountAuth_sessionsArgs
+  bags?: boolean | AccountsCountOutputTypeCountBagsArgs
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: boolean | AccountsCountOutputTypeCountBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsArgs
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: boolean | AccountsCountOutputTypeCountBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsArgs
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: boolean | AccountsCountOutputTypeCountBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsArgs
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: boolean | AccountsCountOutputTypeCountBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsArgs
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: boolean | AccountsCountOutputTypeCountBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsArgs
   campaign_keys?: boolean | AccountsCountOutputTypeCountCampaign_keysArgs
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: boolean | AccountsCountOutputTypeCountCampaign_settings_campaign_settings_created_by_account_idToaccountsArgs
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: boolean | AccountsCountOutputTypeCountCampaign_settings_campaign_settings_updated_by_account_idToaccountsArgs
+  grader_work_locks?: boolean | AccountsCountOutputTypeCountGrader_work_locksArgs
   graders?: boolean | AccountsCountOutputTypeCountGradersArgs
   grading_score_logs?: boolean | AccountsCountOutputTypeCountGrading_score_logsArgs
+  incident_attachments?: boolean | AccountsCountOutputTypeCountIncident_attachmentsArgs
+  notification_messages?: boolean | AccountsCountOutputTypeCountNotification_messagesArgs
+  notification_preferences?: boolean | AccountsCountOutputTypeCountNotification_preferencesArgs
+  notification_recipients?: boolean | AccountsCountOutputTypeCountNotification_recipientsArgs
+  qr_scan_logs?: boolean | AccountsCountOutputTypeCountQr_scan_logsArgs
+  twofactor_sessions?: boolean | AccountsCountOutputTypeCountTwofactor_sessionsArgs
 }
 
 /**
@@ -1384,8 +5188,71 @@ export type AccountsCountOutputTypeCountAuth_sessionsArgs<ExtArgs extends runtim
 /**
  * AccountsCountOutputType without action
  */
+export type AccountsCountOutputTypeCountBagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.bagsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountBooklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_incident_reportsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountBooklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_incident_reportsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountBooklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_incident_reportsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountBooklet_question_notes_booklet_question_notes_created_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_question_notesWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountBooklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_question_notesWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
 export type AccountsCountOutputTypeCountCampaign_keysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.campaign_keysWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountCampaign_settings_campaign_settings_created_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.campaign_settingsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountCampaign_settings_campaign_settings_updated_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.campaign_settingsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountGrader_work_locksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.grader_work_locksWhereInput
 }
 
 /**
@@ -1402,26 +5269,89 @@ export type AccountsCountOutputTypeCountGrading_score_logsArgs<ExtArgs extends r
   where?: Prisma.grading_score_logsWhereInput
 }
 
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountIncident_attachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.incident_attachmentsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountNotification_messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.notification_messagesWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountNotification_preferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.notification_preferencesWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountNotification_recipientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.notification_recipientsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountQr_scan_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.qr_scan_logsWhereInput
+}
+
+/**
+ * AccountsCountOutputType without action
+ */
+export type AccountsCountOutputTypeCountTwofactor_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.twofactor_sessionsWhereInput
+}
+
 
 export type accountsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   username?: boolean
   password_hash?: boolean
+  title?: boolean
   full_name?: boolean
   email?: boolean
+  profile_image_url?: boolean
+  profile_image_key?: boolean
   active?: boolean
   role_id?: boolean
+  campaign_id?: boolean
   session_version?: boolean
   manager_order?: boolean
-  title?: boolean
-  delete_at?: boolean
-  campaign_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  active_unique_key?: boolean
+  exam_campaigns?: boolean | Prisma.accounts$exam_campaignsArgs<ExtArgs>
   roles?: boolean | Prisma.rolesDefaultArgs<ExtArgs>
   activity_logs?: boolean | Prisma.accounts$activity_logsArgs<ExtArgs>
   auth_sessions?: boolean | Prisma.accounts$auth_sessionsArgs<ExtArgs>
+  bags?: boolean | Prisma.accounts$bagsArgs<ExtArgs>
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: boolean | Prisma.accounts$booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsArgs<ExtArgs>
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: boolean | Prisma.accounts$booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsArgs<ExtArgs>
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: boolean | Prisma.accounts$booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsArgs<ExtArgs>
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: boolean | Prisma.accounts$booklet_question_notes_booklet_question_notes_created_by_account_idToaccountsArgs<ExtArgs>
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: boolean | Prisma.accounts$booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsArgs<ExtArgs>
   campaign_keys?: boolean | Prisma.accounts$campaign_keysArgs<ExtArgs>
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: boolean | Prisma.accounts$campaign_settings_campaign_settings_created_by_account_idToaccountsArgs<ExtArgs>
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: boolean | Prisma.accounts$campaign_settings_campaign_settings_updated_by_account_idToaccountsArgs<ExtArgs>
+  grader_work_locks?: boolean | Prisma.accounts$grader_work_locksArgs<ExtArgs>
   graders?: boolean | Prisma.accounts$gradersArgs<ExtArgs>
   grading_score_logs?: boolean | Prisma.accounts$grading_score_logsArgs<ExtArgs>
+  incident_attachments?: boolean | Prisma.accounts$incident_attachmentsArgs<ExtArgs>
+  notification_messages?: boolean | Prisma.accounts$notification_messagesArgs<ExtArgs>
+  notification_preferences?: boolean | Prisma.accounts$notification_preferencesArgs<ExtArgs>
+  notification_recipients?: boolean | Prisma.accounts$notification_recipientsArgs<ExtArgs>
+  qr_scan_logs?: boolean | Prisma.accounts$qr_scan_logsArgs<ExtArgs>
+  twofactor_sessions?: boolean | Prisma.accounts$twofactor_sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.AccountsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["accounts"]>
 
@@ -1431,51 +5361,93 @@ export type accountsSelectScalar = {
   id?: boolean
   username?: boolean
   password_hash?: boolean
+  title?: boolean
   full_name?: boolean
   email?: boolean
+  profile_image_url?: boolean
+  profile_image_key?: boolean
   active?: boolean
   role_id?: boolean
+  campaign_id?: boolean
   session_version?: boolean
   manager_order?: boolean
-  title?: boolean
-  delete_at?: boolean
-  campaign_id?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  active_unique_key?: boolean
 }
 
-export type accountsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "password_hash" | "full_name" | "email" | "active" | "role_id" | "session_version" | "manager_order" | "title" | "delete_at" | "campaign_id", ExtArgs["result"]["accounts"]>
+export type accountsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "username" | "password_hash" | "title" | "full_name" | "email" | "profile_image_url" | "profile_image_key" | "active" | "role_id" | "campaign_id" | "session_version" | "manager_order" | "created_at" | "updated_at" | "deleted_at" | "active_unique_key", ExtArgs["result"]["accounts"]>
 export type accountsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  exam_campaigns?: boolean | Prisma.accounts$exam_campaignsArgs<ExtArgs>
   roles?: boolean | Prisma.rolesDefaultArgs<ExtArgs>
   activity_logs?: boolean | Prisma.accounts$activity_logsArgs<ExtArgs>
   auth_sessions?: boolean | Prisma.accounts$auth_sessionsArgs<ExtArgs>
+  bags?: boolean | Prisma.accounts$bagsArgs<ExtArgs>
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts?: boolean | Prisma.accounts$booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsArgs<ExtArgs>
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts?: boolean | Prisma.accounts$booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsArgs<ExtArgs>
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts?: boolean | Prisma.accounts$booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsArgs<ExtArgs>
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts?: boolean | Prisma.accounts$booklet_question_notes_booklet_question_notes_created_by_account_idToaccountsArgs<ExtArgs>
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts?: boolean | Prisma.accounts$booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsArgs<ExtArgs>
   campaign_keys?: boolean | Prisma.accounts$campaign_keysArgs<ExtArgs>
+  campaign_settings_campaign_settings_created_by_account_idToaccounts?: boolean | Prisma.accounts$campaign_settings_campaign_settings_created_by_account_idToaccountsArgs<ExtArgs>
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts?: boolean | Prisma.accounts$campaign_settings_campaign_settings_updated_by_account_idToaccountsArgs<ExtArgs>
+  grader_work_locks?: boolean | Prisma.accounts$grader_work_locksArgs<ExtArgs>
   graders?: boolean | Prisma.accounts$gradersArgs<ExtArgs>
   grading_score_logs?: boolean | Prisma.accounts$grading_score_logsArgs<ExtArgs>
+  incident_attachments?: boolean | Prisma.accounts$incident_attachmentsArgs<ExtArgs>
+  notification_messages?: boolean | Prisma.accounts$notification_messagesArgs<ExtArgs>
+  notification_preferences?: boolean | Prisma.accounts$notification_preferencesArgs<ExtArgs>
+  notification_recipients?: boolean | Prisma.accounts$notification_recipientsArgs<ExtArgs>
+  qr_scan_logs?: boolean | Prisma.accounts$qr_scan_logsArgs<ExtArgs>
+  twofactor_sessions?: boolean | Prisma.accounts$twofactor_sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.AccountsCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $accountsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "accounts"
   objects: {
+    exam_campaigns: Prisma.$exam_campaignsPayload<ExtArgs> | null
     roles: Prisma.$rolesPayload<ExtArgs>
     activity_logs: Prisma.$activity_logsPayload<ExtArgs>[]
     auth_sessions: Prisma.$auth_sessionsPayload<ExtArgs>[]
+    bags: Prisma.$bagsPayload<ExtArgs>[]
+    booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts: Prisma.$booklet_incident_reportsPayload<ExtArgs>[]
+    booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts: Prisma.$booklet_incident_reportsPayload<ExtArgs>[]
+    booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts: Prisma.$booklet_incident_reportsPayload<ExtArgs>[]
+    booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts: Prisma.$booklet_question_notesPayload<ExtArgs>[]
+    booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts: Prisma.$booklet_question_notesPayload<ExtArgs>[]
     campaign_keys: Prisma.$campaign_keysPayload<ExtArgs>[]
+    campaign_settings_campaign_settings_created_by_account_idToaccounts: Prisma.$campaign_settingsPayload<ExtArgs>[]
+    campaign_settings_campaign_settings_updated_by_account_idToaccounts: Prisma.$campaign_settingsPayload<ExtArgs>[]
+    grader_work_locks: Prisma.$grader_work_locksPayload<ExtArgs>[]
     graders: Prisma.$gradersPayload<ExtArgs>[]
     grading_score_logs: Prisma.$grading_score_logsPayload<ExtArgs>[]
+    incident_attachments: Prisma.$incident_attachmentsPayload<ExtArgs>[]
+    notification_messages: Prisma.$notification_messagesPayload<ExtArgs>[]
+    notification_preferences: Prisma.$notification_preferencesPayload<ExtArgs>[]
+    notification_recipients: Prisma.$notification_recipientsPayload<ExtArgs>[]
+    qr_scan_logs: Prisma.$qr_scan_logsPayload<ExtArgs>[]
+    twofactor_sessions: Prisma.$twofactor_sessionsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     username: string
     password_hash: string
+    title: string | null
     full_name: string
     email: string | null
+    profile_image_url: string | null
+    profile_image_key: string | null
     active: boolean
     role_id: number
+    campaign_id: number | null
     session_version: number
     manager_order: number | null
-    title: string | null
-    delete_at: Date | null
-    campaign_id: number | null
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+    active_unique_key: number | null
   }, ExtArgs["result"]["accounts"]>
   composites: {}
 }
@@ -1816,12 +5788,28 @@ readonly fields: accountsFieldRefs;
  */
 export interface Prisma__accountsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  exam_campaigns<T extends Prisma.accounts$exam_campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$exam_campaignsArgs<ExtArgs>>): Prisma.Prisma__exam_campaignsClient<runtime.Types.Result.GetResult<Prisma.$exam_campaignsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   roles<T extends Prisma.rolesDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.rolesDefaultArgs<ExtArgs>>): Prisma.Prisma__rolesClient<runtime.Types.Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   activity_logs<T extends Prisma.accounts$activity_logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$activity_logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$activity_logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   auth_sessions<T extends Prisma.accounts$auth_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$auth_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$auth_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bags<T extends Prisma.accounts$bagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$bagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$bagsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts<T extends Prisma.accounts$booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_incident_reportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts<T extends Prisma.accounts$booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_incident_reportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts<T extends Prisma.accounts$booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_incident_reportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts<T extends Prisma.accounts$booklet_question_notes_booklet_question_notes_created_by_account_idToaccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$booklet_question_notes_booklet_question_notes_created_by_account_idToaccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_question_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts<T extends Prisma.accounts$booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_question_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   campaign_keys<T extends Prisma.accounts$campaign_keysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$campaign_keysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_keysPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaign_settings_campaign_settings_created_by_account_idToaccounts<T extends Prisma.accounts$campaign_settings_campaign_settings_created_by_account_idToaccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$campaign_settings_campaign_settings_created_by_account_idToaccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_settingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaign_settings_campaign_settings_updated_by_account_idToaccounts<T extends Prisma.accounts$campaign_settings_campaign_settings_updated_by_account_idToaccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$campaign_settings_campaign_settings_updated_by_account_idToaccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_settingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  grader_work_locks<T extends Prisma.accounts$grader_work_locksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$grader_work_locksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grader_work_locksPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   graders<T extends Prisma.accounts$gradersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$gradersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$gradersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   grading_score_logs<T extends Prisma.accounts$grading_score_logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$grading_score_logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grading_score_logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  incident_attachments<T extends Prisma.accounts$incident_attachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$incident_attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$incident_attachmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notification_messages<T extends Prisma.accounts$notification_messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$notification_messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$notification_messagesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notification_preferences<T extends Prisma.accounts$notification_preferencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$notification_preferencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$notification_preferencesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  notification_recipients<T extends Prisma.accounts$notification_recipientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$notification_recipientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$notification_recipientsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qr_scan_logs<T extends Prisma.accounts$qr_scan_logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$qr_scan_logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$qr_scan_logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  twofactor_sessions<T extends Prisma.accounts$twofactor_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accounts$twofactor_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$twofactor_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1854,15 +5842,20 @@ export interface accountsFieldRefs {
   readonly id: Prisma.FieldRef<"accounts", 'Int'>
   readonly username: Prisma.FieldRef<"accounts", 'String'>
   readonly password_hash: Prisma.FieldRef<"accounts", 'String'>
+  readonly title: Prisma.FieldRef<"accounts", 'String'>
   readonly full_name: Prisma.FieldRef<"accounts", 'String'>
   readonly email: Prisma.FieldRef<"accounts", 'String'>
+  readonly profile_image_url: Prisma.FieldRef<"accounts", 'String'>
+  readonly profile_image_key: Prisma.FieldRef<"accounts", 'String'>
   readonly active: Prisma.FieldRef<"accounts", 'Boolean'>
   readonly role_id: Prisma.FieldRef<"accounts", 'Int'>
+  readonly campaign_id: Prisma.FieldRef<"accounts", 'Int'>
   readonly session_version: Prisma.FieldRef<"accounts", 'Int'>
   readonly manager_order: Prisma.FieldRef<"accounts", 'Int'>
-  readonly title: Prisma.FieldRef<"accounts", 'String'>
-  readonly delete_at: Prisma.FieldRef<"accounts", 'DateTime'>
-  readonly campaign_id: Prisma.FieldRef<"accounts", 'Int'>
+  readonly created_at: Prisma.FieldRef<"accounts", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"accounts", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"accounts", 'DateTime'>
+  readonly active_unique_key: Prisma.FieldRef<"accounts", 'Int'>
 }
     
 
@@ -2211,6 +6204,25 @@ export type accountsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * accounts.exam_campaigns
+ */
+export type accounts$exam_campaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the exam_campaigns
+   */
+  select?: Prisma.exam_campaignsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the exam_campaigns
+   */
+  omit?: Prisma.exam_campaignsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.exam_campaignsInclude<ExtArgs> | null
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+/**
  * accounts.activity_logs
  */
 export type accounts$activity_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2259,6 +6271,150 @@ export type accounts$auth_sessionsArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
+ * accounts.bags
+ */
+export type accounts$bagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the bags
+   */
+  select?: Prisma.bagsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the bags
+   */
+  omit?: Prisma.bagsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.bagsInclude<ExtArgs> | null
+  where?: Prisma.bagsWhereInput
+  orderBy?: Prisma.bagsOrderByWithRelationInput | Prisma.bagsOrderByWithRelationInput[]
+  cursor?: Prisma.bagsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BagsScalarFieldEnum | Prisma.BagsScalarFieldEnum[]
+}
+
+/**
+ * accounts.booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccounts
+ */
+export type accounts$booklet_incident_reports_booklet_incident_reports_assigned_to_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_incident_reports
+   */
+  select?: Prisma.booklet_incident_reportsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_incident_reports
+   */
+  omit?: Prisma.booklet_incident_reportsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_incident_reportsInclude<ExtArgs> | null
+  where?: Prisma.booklet_incident_reportsWhereInput
+  orderBy?: Prisma.booklet_incident_reportsOrderByWithRelationInput | Prisma.booklet_incident_reportsOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_incident_reportsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_incident_reportsScalarFieldEnum | Prisma.Booklet_incident_reportsScalarFieldEnum[]
+}
+
+/**
+ * accounts.booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccounts
+ */
+export type accounts$booklet_incident_reports_booklet_incident_reports_reported_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_incident_reports
+   */
+  select?: Prisma.booklet_incident_reportsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_incident_reports
+   */
+  omit?: Prisma.booklet_incident_reportsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_incident_reportsInclude<ExtArgs> | null
+  where?: Prisma.booklet_incident_reportsWhereInput
+  orderBy?: Prisma.booklet_incident_reportsOrderByWithRelationInput | Prisma.booklet_incident_reportsOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_incident_reportsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_incident_reportsScalarFieldEnum | Prisma.Booklet_incident_reportsScalarFieldEnum[]
+}
+
+/**
+ * accounts.booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccounts
+ */
+export type accounts$booklet_incident_reports_booklet_incident_reports_resolved_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_incident_reports
+   */
+  select?: Prisma.booklet_incident_reportsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_incident_reports
+   */
+  omit?: Prisma.booklet_incident_reportsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_incident_reportsInclude<ExtArgs> | null
+  where?: Prisma.booklet_incident_reportsWhereInput
+  orderBy?: Prisma.booklet_incident_reportsOrderByWithRelationInput | Prisma.booklet_incident_reportsOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_incident_reportsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_incident_reportsScalarFieldEnum | Prisma.Booklet_incident_reportsScalarFieldEnum[]
+}
+
+/**
+ * accounts.booklet_question_notes_booklet_question_notes_created_by_account_idToaccounts
+ */
+export type accounts$booklet_question_notes_booklet_question_notes_created_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_question_notes
+   */
+  select?: Prisma.booklet_question_notesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_question_notes
+   */
+  omit?: Prisma.booklet_question_notesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_question_notesInclude<ExtArgs> | null
+  where?: Prisma.booklet_question_notesWhereInput
+  orderBy?: Prisma.booklet_question_notesOrderByWithRelationInput | Prisma.booklet_question_notesOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_question_notesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_question_notesScalarFieldEnum | Prisma.Booklet_question_notesScalarFieldEnum[]
+}
+
+/**
+ * accounts.booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccounts
+ */
+export type accounts$booklet_question_notes_booklet_question_notes_reviewed_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_question_notes
+   */
+  select?: Prisma.booklet_question_notesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_question_notes
+   */
+  omit?: Prisma.booklet_question_notesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_question_notesInclude<ExtArgs> | null
+  where?: Prisma.booklet_question_notesWhereInput
+  orderBy?: Prisma.booklet_question_notesOrderByWithRelationInput | Prisma.booklet_question_notesOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_question_notesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_question_notesScalarFieldEnum | Prisma.Booklet_question_notesScalarFieldEnum[]
+}
+
+/**
  * accounts.campaign_keys
  */
 export type accounts$campaign_keysArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2280,6 +6436,78 @@ export type accounts$campaign_keysArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.Campaign_keysScalarFieldEnum | Prisma.Campaign_keysScalarFieldEnum[]
+}
+
+/**
+ * accounts.campaign_settings_campaign_settings_created_by_account_idToaccounts
+ */
+export type accounts$campaign_settings_campaign_settings_created_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the campaign_settings
+   */
+  select?: Prisma.campaign_settingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the campaign_settings
+   */
+  omit?: Prisma.campaign_settingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.campaign_settingsInclude<ExtArgs> | null
+  where?: Prisma.campaign_settingsWhereInput
+  orderBy?: Prisma.campaign_settingsOrderByWithRelationInput | Prisma.campaign_settingsOrderByWithRelationInput[]
+  cursor?: Prisma.campaign_settingsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Campaign_settingsScalarFieldEnum | Prisma.Campaign_settingsScalarFieldEnum[]
+}
+
+/**
+ * accounts.campaign_settings_campaign_settings_updated_by_account_idToaccounts
+ */
+export type accounts$campaign_settings_campaign_settings_updated_by_account_idToaccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the campaign_settings
+   */
+  select?: Prisma.campaign_settingsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the campaign_settings
+   */
+  omit?: Prisma.campaign_settingsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.campaign_settingsInclude<ExtArgs> | null
+  where?: Prisma.campaign_settingsWhereInput
+  orderBy?: Prisma.campaign_settingsOrderByWithRelationInput | Prisma.campaign_settingsOrderByWithRelationInput[]
+  cursor?: Prisma.campaign_settingsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Campaign_settingsScalarFieldEnum | Prisma.Campaign_settingsScalarFieldEnum[]
+}
+
+/**
+ * accounts.grader_work_locks
+ */
+export type accounts$grader_work_locksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the grader_work_locks
+   */
+  select?: Prisma.grader_work_locksSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the grader_work_locks
+   */
+  omit?: Prisma.grader_work_locksOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.grader_work_locksInclude<ExtArgs> | null
+  where?: Prisma.grader_work_locksWhereInput
+  orderBy?: Prisma.grader_work_locksOrderByWithRelationInput | Prisma.grader_work_locksOrderByWithRelationInput[]
+  cursor?: Prisma.grader_work_locksWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Grader_work_locksScalarFieldEnum | Prisma.Grader_work_locksScalarFieldEnum[]
 }
 
 /**
@@ -2328,6 +6556,150 @@ export type accounts$grading_score_logsArgs<ExtArgs extends runtime.Types.Extens
   take?: number
   skip?: number
   distinct?: Prisma.Grading_score_logsScalarFieldEnum | Prisma.Grading_score_logsScalarFieldEnum[]
+}
+
+/**
+ * accounts.incident_attachments
+ */
+export type accounts$incident_attachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the incident_attachments
+   */
+  select?: Prisma.incident_attachmentsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the incident_attachments
+   */
+  omit?: Prisma.incident_attachmentsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.incident_attachmentsInclude<ExtArgs> | null
+  where?: Prisma.incident_attachmentsWhereInput
+  orderBy?: Prisma.incident_attachmentsOrderByWithRelationInput | Prisma.incident_attachmentsOrderByWithRelationInput[]
+  cursor?: Prisma.incident_attachmentsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Incident_attachmentsScalarFieldEnum | Prisma.Incident_attachmentsScalarFieldEnum[]
+}
+
+/**
+ * accounts.notification_messages
+ */
+export type accounts$notification_messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the notification_messages
+   */
+  select?: Prisma.notification_messagesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the notification_messages
+   */
+  omit?: Prisma.notification_messagesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.notification_messagesInclude<ExtArgs> | null
+  where?: Prisma.notification_messagesWhereInput
+  orderBy?: Prisma.notification_messagesOrderByWithRelationInput | Prisma.notification_messagesOrderByWithRelationInput[]
+  cursor?: Prisma.notification_messagesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Notification_messagesScalarFieldEnum | Prisma.Notification_messagesScalarFieldEnum[]
+}
+
+/**
+ * accounts.notification_preferences
+ */
+export type accounts$notification_preferencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the notification_preferences
+   */
+  select?: Prisma.notification_preferencesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the notification_preferences
+   */
+  omit?: Prisma.notification_preferencesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.notification_preferencesInclude<ExtArgs> | null
+  where?: Prisma.notification_preferencesWhereInput
+  orderBy?: Prisma.notification_preferencesOrderByWithRelationInput | Prisma.notification_preferencesOrderByWithRelationInput[]
+  cursor?: Prisma.notification_preferencesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Notification_preferencesScalarFieldEnum | Prisma.Notification_preferencesScalarFieldEnum[]
+}
+
+/**
+ * accounts.notification_recipients
+ */
+export type accounts$notification_recipientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the notification_recipients
+   */
+  select?: Prisma.notification_recipientsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the notification_recipients
+   */
+  omit?: Prisma.notification_recipientsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.notification_recipientsInclude<ExtArgs> | null
+  where?: Prisma.notification_recipientsWhereInput
+  orderBy?: Prisma.notification_recipientsOrderByWithRelationInput | Prisma.notification_recipientsOrderByWithRelationInput[]
+  cursor?: Prisma.notification_recipientsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Notification_recipientsScalarFieldEnum | Prisma.Notification_recipientsScalarFieldEnum[]
+}
+
+/**
+ * accounts.qr_scan_logs
+ */
+export type accounts$qr_scan_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the qr_scan_logs
+   */
+  select?: Prisma.qr_scan_logsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the qr_scan_logs
+   */
+  omit?: Prisma.qr_scan_logsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.qr_scan_logsInclude<ExtArgs> | null
+  where?: Prisma.qr_scan_logsWhereInput
+  orderBy?: Prisma.qr_scan_logsOrderByWithRelationInput | Prisma.qr_scan_logsOrderByWithRelationInput[]
+  cursor?: Prisma.qr_scan_logsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Qr_scan_logsScalarFieldEnum | Prisma.Qr_scan_logsScalarFieldEnum[]
+}
+
+/**
+ * accounts.twofactor_sessions
+ */
+export type accounts$twofactor_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the twofactor_sessions
+   */
+  select?: Prisma.twofactor_sessionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the twofactor_sessions
+   */
+  omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
+  where?: Prisma.twofactor_sessionsWhereInput
+  orderBy?: Prisma.twofactor_sessionsOrderByWithRelationInput | Prisma.twofactor_sessionsOrderByWithRelationInput[]
+  cursor?: Prisma.twofactor_sessionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Twofactor_sessionsScalarFieldEnum | Prisma.Twofactor_sessionsScalarFieldEnum[]
 }
 
 /**

@@ -553,10 +553,6 @@ export type activity_logsUncheckedUpdateManyWithoutAccountsNestedInput = {
   deleteMany?: Prisma.activity_logsScalarWhereInput | Prisma.activity_logsScalarWhereInput[]
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
 export type activity_logsCreateNestedManyWithoutGradersInput = {
   create?: Prisma.XOR<Prisma.activity_logsCreateWithoutGradersInput, Prisma.activity_logsUncheckedCreateWithoutGradersInput> | Prisma.activity_logsCreateWithoutGradersInput[] | Prisma.activity_logsUncheckedCreateWithoutGradersInput[]
   connectOrCreate?: Prisma.activity_logsCreateOrConnectWithoutGradersInput | Prisma.activity_logsCreateOrConnectWithoutGradersInput[]

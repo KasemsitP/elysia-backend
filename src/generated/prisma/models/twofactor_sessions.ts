@@ -31,6 +31,7 @@ export type Twofactor_sessionsAvgAggregateOutputType = {
   account_id: number | null
   campaign_id: number | null
   attempts: number | null
+  max_attempts: number | null
 }
 
 export type Twofactor_sessionsSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type Twofactor_sessionsSumAggregateOutputType = {
   account_id: number | null
   campaign_id: number | null
   attempts: number | null
+  max_attempts: number | null
 }
 
 export type Twofactor_sessionsMinAggregateOutputType = {
@@ -45,12 +47,18 @@ export type Twofactor_sessionsMinAggregateOutputType = {
   account_id: number | null
   campaign_id: number | null
   purpose: string | null
+  channel: string | null
+  target: string | null
   otp_hash: string | null
+  otp_token: string | null
+  attempts: number | null
+  max_attempts: number | null
+  status: string | null
   created_at: Date | null
   expires_at: Date | null
   used_at: Date | null
-  attempts: number | null
-  otp_token: string | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Twofactor_sessionsMaxAggregateOutputType = {
@@ -58,12 +66,18 @@ export type Twofactor_sessionsMaxAggregateOutputType = {
   account_id: number | null
   campaign_id: number | null
   purpose: string | null
+  channel: string | null
+  target: string | null
   otp_hash: string | null
+  otp_token: string | null
+  attempts: number | null
+  max_attempts: number | null
+  status: string | null
   created_at: Date | null
   expires_at: Date | null
   used_at: Date | null
-  attempts: number | null
-  otp_token: string | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Twofactor_sessionsCountAggregateOutputType = {
@@ -71,12 +85,18 @@ export type Twofactor_sessionsCountAggregateOutputType = {
   account_id: number
   campaign_id: number
   purpose: number
+  channel: number
+  target: number
   otp_hash: number
+  otp_token: number
+  attempts: number
+  max_attempts: number
+  status: number
   created_at: number
   expires_at: number
   used_at: number
-  attempts: number
-  otp_token: number
+  updated_at: number
+  deleted_at: number
   _all: number
 }
 
@@ -86,6 +106,7 @@ export type Twofactor_sessionsAvgAggregateInputType = {
   account_id?: true
   campaign_id?: true
   attempts?: true
+  max_attempts?: true
 }
 
 export type Twofactor_sessionsSumAggregateInputType = {
@@ -93,6 +114,7 @@ export type Twofactor_sessionsSumAggregateInputType = {
   account_id?: true
   campaign_id?: true
   attempts?: true
+  max_attempts?: true
 }
 
 export type Twofactor_sessionsMinAggregateInputType = {
@@ -100,12 +122,18 @@ export type Twofactor_sessionsMinAggregateInputType = {
   account_id?: true
   campaign_id?: true
   purpose?: true
+  channel?: true
+  target?: true
   otp_hash?: true
+  otp_token?: true
+  attempts?: true
+  max_attempts?: true
+  status?: true
   created_at?: true
   expires_at?: true
   used_at?: true
-  attempts?: true
-  otp_token?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type Twofactor_sessionsMaxAggregateInputType = {
@@ -113,12 +141,18 @@ export type Twofactor_sessionsMaxAggregateInputType = {
   account_id?: true
   campaign_id?: true
   purpose?: true
+  channel?: true
+  target?: true
   otp_hash?: true
+  otp_token?: true
+  attempts?: true
+  max_attempts?: true
+  status?: true
   created_at?: true
   expires_at?: true
   used_at?: true
-  attempts?: true
-  otp_token?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type Twofactor_sessionsCountAggregateInputType = {
@@ -126,12 +160,18 @@ export type Twofactor_sessionsCountAggregateInputType = {
   account_id?: true
   campaign_id?: true
   purpose?: true
+  channel?: true
+  target?: true
   otp_hash?: true
+  otp_token?: true
+  attempts?: true
+  max_attempts?: true
+  status?: true
   created_at?: true
   expires_at?: true
   used_at?: true
-  attempts?: true
-  otp_token?: true
+  updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -226,12 +266,18 @@ export type Twofactor_sessionsGroupByOutputType = {
   account_id: number
   campaign_id: number | null
   purpose: string
+  channel: string
+  target: string | null
   otp_hash: string
+  otp_token: string
+  attempts: number
+  max_attempts: number
+  status: string
   created_at: Date
   expires_at: Date
   used_at: Date | null
-  attempts: number
-  otp_token: string
+  updated_at: Date
+  deleted_at: Date | null
   _count: Twofactor_sessionsCountAggregateOutputType | null
   _avg: Twofactor_sessionsAvgAggregateOutputType | null
   _sum: Twofactor_sessionsSumAggregateOutputType | null
@@ -262,12 +308,20 @@ export type twofactor_sessionsWhereInput = {
   account_id?: Prisma.IntFilter<"twofactor_sessions"> | number
   campaign_id?: Prisma.IntNullableFilter<"twofactor_sessions"> | number | null
   purpose?: Prisma.StringFilter<"twofactor_sessions"> | string
+  channel?: Prisma.StringFilter<"twofactor_sessions"> | string
+  target?: Prisma.StringNullableFilter<"twofactor_sessions"> | string | null
   otp_hash?: Prisma.StringFilter<"twofactor_sessions"> | string
+  otp_token?: Prisma.StringFilter<"twofactor_sessions"> | string
+  attempts?: Prisma.IntFilter<"twofactor_sessions"> | number
+  max_attempts?: Prisma.IntFilter<"twofactor_sessions"> | number
+  status?: Prisma.StringFilter<"twofactor_sessions"> | string
   created_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
   expires_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
   used_at?: Prisma.DateTimeNullableFilter<"twofactor_sessions"> | Date | string | null
-  attempts?: Prisma.IntFilter<"twofactor_sessions"> | number
-  otp_token?: Prisma.StringFilter<"twofactor_sessions"> | string
+  updated_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"twofactor_sessions"> | Date | string | null
+  accounts?: Prisma.XOR<Prisma.AccountsScalarRelationFilter, Prisma.accountsWhereInput>
+  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsNullableScalarRelationFilter, Prisma.exam_campaignsWhereInput> | null
 }
 
 export type twofactor_sessionsOrderByWithRelationInput = {
@@ -275,12 +329,20 @@ export type twofactor_sessionsOrderByWithRelationInput = {
   account_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrderInput | Prisma.SortOrder
   purpose?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
+  target?: Prisma.SortOrderInput | Prisma.SortOrder
   otp_hash?: Prisma.SortOrder
+  otp_token?: Prisma.SortOrder
+  attempts?: Prisma.SortOrder
+  max_attempts?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   expires_at?: Prisma.SortOrder
   used_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  attempts?: Prisma.SortOrder
-  otp_token?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  accounts?: Prisma.accountsOrderByWithRelationInput
+  exam_campaigns?: Prisma.exam_campaignsOrderByWithRelationInput
   _relevance?: Prisma.twofactor_sessionsOrderByRelevanceInput
 }
 
@@ -292,12 +354,20 @@ export type twofactor_sessionsWhereUniqueInput = Prisma.AtLeast<{
   account_id?: Prisma.IntFilter<"twofactor_sessions"> | number
   campaign_id?: Prisma.IntNullableFilter<"twofactor_sessions"> | number | null
   purpose?: Prisma.StringFilter<"twofactor_sessions"> | string
+  channel?: Prisma.StringFilter<"twofactor_sessions"> | string
+  target?: Prisma.StringNullableFilter<"twofactor_sessions"> | string | null
   otp_hash?: Prisma.StringFilter<"twofactor_sessions"> | string
+  otp_token?: Prisma.StringFilter<"twofactor_sessions"> | string
+  attempts?: Prisma.IntFilter<"twofactor_sessions"> | number
+  max_attempts?: Prisma.IntFilter<"twofactor_sessions"> | number
+  status?: Prisma.StringFilter<"twofactor_sessions"> | string
   created_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
   expires_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
   used_at?: Prisma.DateTimeNullableFilter<"twofactor_sessions"> | Date | string | null
-  attempts?: Prisma.IntFilter<"twofactor_sessions"> | number
-  otp_token?: Prisma.StringFilter<"twofactor_sessions"> | string
+  updated_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"twofactor_sessions"> | Date | string | null
+  accounts?: Prisma.XOR<Prisma.AccountsScalarRelationFilter, Prisma.accountsWhereInput>
+  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsNullableScalarRelationFilter, Prisma.exam_campaignsWhereInput> | null
 }, "id">
 
 export type twofactor_sessionsOrderByWithAggregationInput = {
@@ -305,12 +375,18 @@ export type twofactor_sessionsOrderByWithAggregationInput = {
   account_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrderInput | Prisma.SortOrder
   purpose?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
+  target?: Prisma.SortOrderInput | Prisma.SortOrder
   otp_hash?: Prisma.SortOrder
+  otp_token?: Prisma.SortOrder
+  attempts?: Prisma.SortOrder
+  max_attempts?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   expires_at?: Prisma.SortOrder
   used_at?: Prisma.SortOrderInput | Prisma.SortOrder
-  attempts?: Prisma.SortOrder
-  otp_token?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.twofactor_sessionsCountOrderByAggregateInput
   _avg?: Prisma.twofactor_sessionsAvgOrderByAggregateInput
   _max?: Prisma.twofactor_sessionsMaxOrderByAggregateInput
@@ -326,24 +402,36 @@ export type twofactor_sessionsScalarWhereWithAggregatesInput = {
   account_id?: Prisma.IntWithAggregatesFilter<"twofactor_sessions"> | number
   campaign_id?: Prisma.IntNullableWithAggregatesFilter<"twofactor_sessions"> | number | null
   purpose?: Prisma.StringWithAggregatesFilter<"twofactor_sessions"> | string
+  channel?: Prisma.StringWithAggregatesFilter<"twofactor_sessions"> | string
+  target?: Prisma.StringNullableWithAggregatesFilter<"twofactor_sessions"> | string | null
   otp_hash?: Prisma.StringWithAggregatesFilter<"twofactor_sessions"> | string
+  otp_token?: Prisma.StringWithAggregatesFilter<"twofactor_sessions"> | string
+  attempts?: Prisma.IntWithAggregatesFilter<"twofactor_sessions"> | number
+  max_attempts?: Prisma.IntWithAggregatesFilter<"twofactor_sessions"> | number
+  status?: Prisma.StringWithAggregatesFilter<"twofactor_sessions"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"twofactor_sessions"> | Date | string
   expires_at?: Prisma.DateTimeWithAggregatesFilter<"twofactor_sessions"> | Date | string
   used_at?: Prisma.DateTimeNullableWithAggregatesFilter<"twofactor_sessions"> | Date | string | null
-  attempts?: Prisma.IntWithAggregatesFilter<"twofactor_sessions"> | number
-  otp_token?: Prisma.StringWithAggregatesFilter<"twofactor_sessions"> | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"twofactor_sessions"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"twofactor_sessions"> | Date | string | null
 }
 
 export type twofactor_sessionsCreateInput = {
-  account_id: number
-  campaign_id?: number | null
   purpose: string
+  channel?: string
+  target?: string | null
   otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
   created_at?: Date | string
   expires_at: Date | string
   used_at?: Date | string | null
-  attempts?: number
-  otp_token: string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts: Prisma.accountsCreateNestedOneWithoutTwofactor_sessionsInput
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutTwofactor_sessionsInput
 }
 
 export type twofactor_sessionsUncheckedCreateInput = {
@@ -351,24 +439,36 @@ export type twofactor_sessionsUncheckedCreateInput = {
   account_id: number
   campaign_id?: number | null
   purpose: string
+  channel?: string
+  target?: string | null
   otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
   created_at?: Date | string
   expires_at: Date | string
   used_at?: Date | string | null
-  attempts?: number
-  otp_token: string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type twofactor_sessionsUpdateInput = {
-  account_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  attempts?: Prisma.IntFieldUpdateOperationsInput | number
-  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateOneRequiredWithoutTwofactor_sessionsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutTwofactor_sessionsNestedInput
 }
 
 export type twofactor_sessionsUncheckedUpdateInput = {
@@ -376,12 +476,18 @@ export type twofactor_sessionsUncheckedUpdateInput = {
   account_id?: Prisma.IntFieldUpdateOperationsInput | number
   campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  attempts?: Prisma.IntFieldUpdateOperationsInput | number
-  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type twofactor_sessionsCreateManyInput = {
@@ -389,24 +495,34 @@ export type twofactor_sessionsCreateManyInput = {
   account_id: number
   campaign_id?: number | null
   purpose: string
+  channel?: string
+  target?: string | null
   otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
   created_at?: Date | string
   expires_at: Date | string
   used_at?: Date | string | null
-  attempts?: number
-  otp_token: string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type twofactor_sessionsUpdateManyMutationInput = {
-  account_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  attempts?: Prisma.IntFieldUpdateOperationsInput | number
-  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type twofactor_sessionsUncheckedUpdateManyInput = {
@@ -414,12 +530,28 @@ export type twofactor_sessionsUncheckedUpdateManyInput = {
   account_id?: Prisma.IntFieldUpdateOperationsInput | number
   campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  attempts?: Prisma.IntFieldUpdateOperationsInput | number
-  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type Twofactor_sessionsListRelationFilter = {
+  every?: Prisma.twofactor_sessionsWhereInput
+  some?: Prisma.twofactor_sessionsWhereInput
+  none?: Prisma.twofactor_sessionsWhereInput
+}
+
+export type twofactor_sessionsOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type twofactor_sessionsOrderByRelevanceInput = {
@@ -433,12 +565,18 @@ export type twofactor_sessionsCountOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
+  target?: Prisma.SortOrder
   otp_hash?: Prisma.SortOrder
+  otp_token?: Prisma.SortOrder
+  attempts?: Prisma.SortOrder
+  max_attempts?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   expires_at?: Prisma.SortOrder
   used_at?: Prisma.SortOrder
-  attempts?: Prisma.SortOrder
-  otp_token?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type twofactor_sessionsAvgOrderByAggregateInput = {
@@ -446,6 +584,7 @@ export type twofactor_sessionsAvgOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
   attempts?: Prisma.SortOrder
+  max_attempts?: Prisma.SortOrder
 }
 
 export type twofactor_sessionsMaxOrderByAggregateInput = {
@@ -453,12 +592,18 @@ export type twofactor_sessionsMaxOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
+  target?: Prisma.SortOrder
   otp_hash?: Prisma.SortOrder
+  otp_token?: Prisma.SortOrder
+  attempts?: Prisma.SortOrder
+  max_attempts?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   expires_at?: Prisma.SortOrder
   used_at?: Prisma.SortOrder
-  attempts?: Prisma.SortOrder
-  otp_token?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type twofactor_sessionsMinOrderByAggregateInput = {
@@ -466,12 +611,18 @@ export type twofactor_sessionsMinOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
   purpose?: Prisma.SortOrder
+  channel?: Prisma.SortOrder
+  target?: Prisma.SortOrder
   otp_hash?: Prisma.SortOrder
+  otp_token?: Prisma.SortOrder
+  attempts?: Prisma.SortOrder
+  max_attempts?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   expires_at?: Prisma.SortOrder
   used_at?: Prisma.SortOrder
-  attempts?: Prisma.SortOrder
-  otp_token?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type twofactor_sessionsSumOrderByAggregateInput = {
@@ -479,6 +630,377 @@ export type twofactor_sessionsSumOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
   attempts?: Prisma.SortOrder
+  max_attempts?: Prisma.SortOrder
+}
+
+export type twofactor_sessionsCreateNestedManyWithoutAccountsInput = {
+  create?: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutAccountsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput> | Prisma.twofactor_sessionsCreateWithoutAccountsInput[] | Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput[]
+  connectOrCreate?: Prisma.twofactor_sessionsCreateOrConnectWithoutAccountsInput | Prisma.twofactor_sessionsCreateOrConnectWithoutAccountsInput[]
+  createMany?: Prisma.twofactor_sessionsCreateManyAccountsInputEnvelope
+  connect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+}
+
+export type twofactor_sessionsUncheckedCreateNestedManyWithoutAccountsInput = {
+  create?: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutAccountsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput> | Prisma.twofactor_sessionsCreateWithoutAccountsInput[] | Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput[]
+  connectOrCreate?: Prisma.twofactor_sessionsCreateOrConnectWithoutAccountsInput | Prisma.twofactor_sessionsCreateOrConnectWithoutAccountsInput[]
+  createMany?: Prisma.twofactor_sessionsCreateManyAccountsInputEnvelope
+  connect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+}
+
+export type twofactor_sessionsUpdateManyWithoutAccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutAccountsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput> | Prisma.twofactor_sessionsCreateWithoutAccountsInput[] | Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput[]
+  connectOrCreate?: Prisma.twofactor_sessionsCreateOrConnectWithoutAccountsInput | Prisma.twofactor_sessionsCreateOrConnectWithoutAccountsInput[]
+  upsert?: Prisma.twofactor_sessionsUpsertWithWhereUniqueWithoutAccountsInput | Prisma.twofactor_sessionsUpsertWithWhereUniqueWithoutAccountsInput[]
+  createMany?: Prisma.twofactor_sessionsCreateManyAccountsInputEnvelope
+  set?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  disconnect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  delete?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  connect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  update?: Prisma.twofactor_sessionsUpdateWithWhereUniqueWithoutAccountsInput | Prisma.twofactor_sessionsUpdateWithWhereUniqueWithoutAccountsInput[]
+  updateMany?: Prisma.twofactor_sessionsUpdateManyWithWhereWithoutAccountsInput | Prisma.twofactor_sessionsUpdateManyWithWhereWithoutAccountsInput[]
+  deleteMany?: Prisma.twofactor_sessionsScalarWhereInput | Prisma.twofactor_sessionsScalarWhereInput[]
+}
+
+export type twofactor_sessionsUncheckedUpdateManyWithoutAccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutAccountsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput> | Prisma.twofactor_sessionsCreateWithoutAccountsInput[] | Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput[]
+  connectOrCreate?: Prisma.twofactor_sessionsCreateOrConnectWithoutAccountsInput | Prisma.twofactor_sessionsCreateOrConnectWithoutAccountsInput[]
+  upsert?: Prisma.twofactor_sessionsUpsertWithWhereUniqueWithoutAccountsInput | Prisma.twofactor_sessionsUpsertWithWhereUniqueWithoutAccountsInput[]
+  createMany?: Prisma.twofactor_sessionsCreateManyAccountsInputEnvelope
+  set?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  disconnect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  delete?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  connect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  update?: Prisma.twofactor_sessionsUpdateWithWhereUniqueWithoutAccountsInput | Prisma.twofactor_sessionsUpdateWithWhereUniqueWithoutAccountsInput[]
+  updateMany?: Prisma.twofactor_sessionsUpdateManyWithWhereWithoutAccountsInput | Prisma.twofactor_sessionsUpdateManyWithWhereWithoutAccountsInput[]
+  deleteMany?: Prisma.twofactor_sessionsScalarWhereInput | Prisma.twofactor_sessionsScalarWhereInput[]
+}
+
+export type twofactor_sessionsCreateNestedManyWithoutExam_campaignsInput = {
+  create?: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput> | Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput[] | Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput | Prisma.twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput[]
+  createMany?: Prisma.twofactor_sessionsCreateManyExam_campaignsInputEnvelope
+  connect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+}
+
+export type twofactor_sessionsUncheckedCreateNestedManyWithoutExam_campaignsInput = {
+  create?: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput> | Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput[] | Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput | Prisma.twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput[]
+  createMany?: Prisma.twofactor_sessionsCreateManyExam_campaignsInputEnvelope
+  connect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+}
+
+export type twofactor_sessionsUpdateManyWithoutExam_campaignsNestedInput = {
+  create?: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput> | Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput[] | Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput | Prisma.twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput[]
+  upsert?: Prisma.twofactor_sessionsUpsertWithWhereUniqueWithoutExam_campaignsInput | Prisma.twofactor_sessionsUpsertWithWhereUniqueWithoutExam_campaignsInput[]
+  createMany?: Prisma.twofactor_sessionsCreateManyExam_campaignsInputEnvelope
+  set?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  disconnect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  delete?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  connect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  update?: Prisma.twofactor_sessionsUpdateWithWhereUniqueWithoutExam_campaignsInput | Prisma.twofactor_sessionsUpdateWithWhereUniqueWithoutExam_campaignsInput[]
+  updateMany?: Prisma.twofactor_sessionsUpdateManyWithWhereWithoutExam_campaignsInput | Prisma.twofactor_sessionsUpdateManyWithWhereWithoutExam_campaignsInput[]
+  deleteMany?: Prisma.twofactor_sessionsScalarWhereInput | Prisma.twofactor_sessionsScalarWhereInput[]
+}
+
+export type twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsNestedInput = {
+  create?: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput> | Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput[] | Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput | Prisma.twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput[]
+  upsert?: Prisma.twofactor_sessionsUpsertWithWhereUniqueWithoutExam_campaignsInput | Prisma.twofactor_sessionsUpsertWithWhereUniqueWithoutExam_campaignsInput[]
+  createMany?: Prisma.twofactor_sessionsCreateManyExam_campaignsInputEnvelope
+  set?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  disconnect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  delete?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  connect?: Prisma.twofactor_sessionsWhereUniqueInput | Prisma.twofactor_sessionsWhereUniqueInput[]
+  update?: Prisma.twofactor_sessionsUpdateWithWhereUniqueWithoutExam_campaignsInput | Prisma.twofactor_sessionsUpdateWithWhereUniqueWithoutExam_campaignsInput[]
+  updateMany?: Prisma.twofactor_sessionsUpdateManyWithWhereWithoutExam_campaignsInput | Prisma.twofactor_sessionsUpdateManyWithWhereWithoutExam_campaignsInput[]
+  deleteMany?: Prisma.twofactor_sessionsScalarWhereInput | Prisma.twofactor_sessionsScalarWhereInput[]
+}
+
+export type twofactor_sessionsCreateWithoutAccountsInput = {
+  purpose: string
+  channel?: string
+  target?: string | null
+  otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
+  created_at?: Date | string
+  expires_at: Date | string
+  used_at?: Date | string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  exam_campaigns?: Prisma.exam_campaignsCreateNestedOneWithoutTwofactor_sessionsInput
+}
+
+export type twofactor_sessionsUncheckedCreateWithoutAccountsInput = {
+  id?: number
+  campaign_id?: number | null
+  purpose: string
+  channel?: string
+  target?: string | null
+  otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
+  created_at?: Date | string
+  expires_at: Date | string
+  used_at?: Date | string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type twofactor_sessionsCreateOrConnectWithoutAccountsInput = {
+  where: Prisma.twofactor_sessionsWhereUniqueInput
+  create: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutAccountsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput>
+}
+
+export type twofactor_sessionsCreateManyAccountsInputEnvelope = {
+  data: Prisma.twofactor_sessionsCreateManyAccountsInput | Prisma.twofactor_sessionsCreateManyAccountsInput[]
+  skipDuplicates?: boolean
+}
+
+export type twofactor_sessionsUpsertWithWhereUniqueWithoutAccountsInput = {
+  where: Prisma.twofactor_sessionsWhereUniqueInput
+  update: Prisma.XOR<Prisma.twofactor_sessionsUpdateWithoutAccountsInput, Prisma.twofactor_sessionsUncheckedUpdateWithoutAccountsInput>
+  create: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutAccountsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutAccountsInput>
+}
+
+export type twofactor_sessionsUpdateWithWhereUniqueWithoutAccountsInput = {
+  where: Prisma.twofactor_sessionsWhereUniqueInput
+  data: Prisma.XOR<Prisma.twofactor_sessionsUpdateWithoutAccountsInput, Prisma.twofactor_sessionsUncheckedUpdateWithoutAccountsInput>
+}
+
+export type twofactor_sessionsUpdateManyWithWhereWithoutAccountsInput = {
+  where: Prisma.twofactor_sessionsScalarWhereInput
+  data: Prisma.XOR<Prisma.twofactor_sessionsUpdateManyMutationInput, Prisma.twofactor_sessionsUncheckedUpdateManyWithoutAccountsInput>
+}
+
+export type twofactor_sessionsScalarWhereInput = {
+  AND?: Prisma.twofactor_sessionsScalarWhereInput | Prisma.twofactor_sessionsScalarWhereInput[]
+  OR?: Prisma.twofactor_sessionsScalarWhereInput[]
+  NOT?: Prisma.twofactor_sessionsScalarWhereInput | Prisma.twofactor_sessionsScalarWhereInput[]
+  id?: Prisma.IntFilter<"twofactor_sessions"> | number
+  account_id?: Prisma.IntFilter<"twofactor_sessions"> | number
+  campaign_id?: Prisma.IntNullableFilter<"twofactor_sessions"> | number | null
+  purpose?: Prisma.StringFilter<"twofactor_sessions"> | string
+  channel?: Prisma.StringFilter<"twofactor_sessions"> | string
+  target?: Prisma.StringNullableFilter<"twofactor_sessions"> | string | null
+  otp_hash?: Prisma.StringFilter<"twofactor_sessions"> | string
+  otp_token?: Prisma.StringFilter<"twofactor_sessions"> | string
+  attempts?: Prisma.IntFilter<"twofactor_sessions"> | number
+  max_attempts?: Prisma.IntFilter<"twofactor_sessions"> | number
+  status?: Prisma.StringFilter<"twofactor_sessions"> | string
+  created_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
+  expires_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
+  used_at?: Prisma.DateTimeNullableFilter<"twofactor_sessions"> | Date | string | null
+  updated_at?: Prisma.DateTimeFilter<"twofactor_sessions"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"twofactor_sessions"> | Date | string | null
+}
+
+export type twofactor_sessionsCreateWithoutExam_campaignsInput = {
+  purpose: string
+  channel?: string
+  target?: string | null
+  otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
+  created_at?: Date | string
+  expires_at: Date | string
+  used_at?: Date | string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  accounts: Prisma.accountsCreateNestedOneWithoutTwofactor_sessionsInput
+}
+
+export type twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput = {
+  id?: number
+  account_id: number
+  purpose: string
+  channel?: string
+  target?: string | null
+  otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
+  created_at?: Date | string
+  expires_at: Date | string
+  used_at?: Date | string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type twofactor_sessionsCreateOrConnectWithoutExam_campaignsInput = {
+  where: Prisma.twofactor_sessionsWhereUniqueInput
+  create: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput>
+}
+
+export type twofactor_sessionsCreateManyExam_campaignsInputEnvelope = {
+  data: Prisma.twofactor_sessionsCreateManyExam_campaignsInput | Prisma.twofactor_sessionsCreateManyExam_campaignsInput[]
+  skipDuplicates?: boolean
+}
+
+export type twofactor_sessionsUpsertWithWhereUniqueWithoutExam_campaignsInput = {
+  where: Prisma.twofactor_sessionsWhereUniqueInput
+  update: Prisma.XOR<Prisma.twofactor_sessionsUpdateWithoutExam_campaignsInput, Prisma.twofactor_sessionsUncheckedUpdateWithoutExam_campaignsInput>
+  create: Prisma.XOR<Prisma.twofactor_sessionsCreateWithoutExam_campaignsInput, Prisma.twofactor_sessionsUncheckedCreateWithoutExam_campaignsInput>
+}
+
+export type twofactor_sessionsUpdateWithWhereUniqueWithoutExam_campaignsInput = {
+  where: Prisma.twofactor_sessionsWhereUniqueInput
+  data: Prisma.XOR<Prisma.twofactor_sessionsUpdateWithoutExam_campaignsInput, Prisma.twofactor_sessionsUncheckedUpdateWithoutExam_campaignsInput>
+}
+
+export type twofactor_sessionsUpdateManyWithWhereWithoutExam_campaignsInput = {
+  where: Prisma.twofactor_sessionsScalarWhereInput
+  data: Prisma.XOR<Prisma.twofactor_sessionsUpdateManyMutationInput, Prisma.twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsInput>
+}
+
+export type twofactor_sessionsCreateManyAccountsInput = {
+  id?: number
+  campaign_id?: number | null
+  purpose: string
+  channel?: string
+  target?: string | null
+  otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
+  created_at?: Date | string
+  expires_at: Date | string
+  used_at?: Date | string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type twofactor_sessionsUpdateWithoutAccountsInput = {
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneWithoutTwofactor_sessionsNestedInput
+}
+
+export type twofactor_sessionsUncheckedUpdateWithoutAccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type twofactor_sessionsUncheckedUpdateManyWithoutAccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type twofactor_sessionsCreateManyExam_campaignsInput = {
+  id?: number
+  account_id: number
+  purpose: string
+  channel?: string
+  target?: string | null
+  otp_hash: string
+  otp_token: string
+  attempts?: number
+  max_attempts?: number
+  status?: string
+  created_at?: Date | string
+  expires_at: Date | string
+  used_at?: Date | string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type twofactor_sessionsUpdateWithoutExam_campaignsInput = {
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  accounts?: Prisma.accountsUpdateOneRequiredWithoutTwofactor_sessionsNestedInput
+}
+
+export type twofactor_sessionsUncheckedUpdateWithoutExam_campaignsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  account_id?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type twofactor_sessionsUncheckedUpdateManyWithoutExam_campaignsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  account_id?: Prisma.IntFieldUpdateOperationsInput | number
+  purpose?: Prisma.StringFieldUpdateOperationsInput | string
+  channel?: Prisma.StringFieldUpdateOperationsInput | string
+  target?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  otp_hash?: Prisma.StringFieldUpdateOperationsInput | string
+  otp_token?: Prisma.StringFieldUpdateOperationsInput | string
+  attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  max_attempts?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  expires_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  used_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -488,12 +1010,20 @@ export type twofactor_sessionsSelect<ExtArgs extends runtime.Types.Extensions.In
   account_id?: boolean
   campaign_id?: boolean
   purpose?: boolean
+  channel?: boolean
+  target?: boolean
   otp_hash?: boolean
+  otp_token?: boolean
+  attempts?: boolean
+  max_attempts?: boolean
+  status?: boolean
   created_at?: boolean
   expires_at?: boolean
   used_at?: boolean
-  attempts?: boolean
-  otp_token?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  accounts?: boolean | Prisma.accountsDefaultArgs<ExtArgs>
+  exam_campaigns?: boolean | Prisma.twofactor_sessions$exam_campaignsArgs<ExtArgs>
 }, ExtArgs["result"]["twofactor_sessions"]>
 
 
@@ -503,30 +1033,49 @@ export type twofactor_sessionsSelectScalar = {
   account_id?: boolean
   campaign_id?: boolean
   purpose?: boolean
+  channel?: boolean
+  target?: boolean
   otp_hash?: boolean
+  otp_token?: boolean
+  attempts?: boolean
+  max_attempts?: boolean
+  status?: boolean
   created_at?: boolean
   expires_at?: boolean
   used_at?: boolean
-  attempts?: boolean
-  otp_token?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type twofactor_sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account_id" | "campaign_id" | "purpose" | "otp_hash" | "created_at" | "expires_at" | "used_at" | "attempts" | "otp_token", ExtArgs["result"]["twofactor_sessions"]>
+export type twofactor_sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "account_id" | "campaign_id" | "purpose" | "channel" | "target" | "otp_hash" | "otp_token" | "attempts" | "max_attempts" | "status" | "created_at" | "expires_at" | "used_at" | "updated_at" | "deleted_at", ExtArgs["result"]["twofactor_sessions"]>
+export type twofactor_sessionsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  accounts?: boolean | Prisma.accountsDefaultArgs<ExtArgs>
+  exam_campaigns?: boolean | Prisma.twofactor_sessions$exam_campaignsArgs<ExtArgs>
+}
 
 export type $twofactor_sessionsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "twofactor_sessions"
-  objects: {}
+  objects: {
+    accounts: Prisma.$accountsPayload<ExtArgs>
+    exam_campaigns: Prisma.$exam_campaignsPayload<ExtArgs> | null
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     account_id: number
     campaign_id: number | null
     purpose: string
+    channel: string
+    target: string | null
     otp_hash: string
+    otp_token: string
+    attempts: number
+    max_attempts: number
+    status: string
     created_at: Date
     expires_at: Date
     used_at: Date | null
-    attempts: number
-    otp_token: string
+    updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["twofactor_sessions"]>
   composites: {}
 }
@@ -867,6 +1416,8 @@ readonly fields: twofactor_sessionsFieldRefs;
  */
 export interface Prisma__twofactor_sessionsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  accounts<T extends Prisma.accountsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accountsDefaultArgs<ExtArgs>>): Prisma.Prisma__accountsClient<runtime.Types.Result.GetResult<Prisma.$accountsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  exam_campaigns<T extends Prisma.twofactor_sessions$exam_campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.twofactor_sessions$exam_campaignsArgs<ExtArgs>>): Prisma.Prisma__exam_campaignsClient<runtime.Types.Result.GetResult<Prisma.$exam_campaignsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -900,12 +1451,18 @@ export interface twofactor_sessionsFieldRefs {
   readonly account_id: Prisma.FieldRef<"twofactor_sessions", 'Int'>
   readonly campaign_id: Prisma.FieldRef<"twofactor_sessions", 'Int'>
   readonly purpose: Prisma.FieldRef<"twofactor_sessions", 'String'>
+  readonly channel: Prisma.FieldRef<"twofactor_sessions", 'String'>
+  readonly target: Prisma.FieldRef<"twofactor_sessions", 'String'>
   readonly otp_hash: Prisma.FieldRef<"twofactor_sessions", 'String'>
+  readonly otp_token: Prisma.FieldRef<"twofactor_sessions", 'String'>
+  readonly attempts: Prisma.FieldRef<"twofactor_sessions", 'Int'>
+  readonly max_attempts: Prisma.FieldRef<"twofactor_sessions", 'Int'>
+  readonly status: Prisma.FieldRef<"twofactor_sessions", 'String'>
   readonly created_at: Prisma.FieldRef<"twofactor_sessions", 'DateTime'>
   readonly expires_at: Prisma.FieldRef<"twofactor_sessions", 'DateTime'>
   readonly used_at: Prisma.FieldRef<"twofactor_sessions", 'DateTime'>
-  readonly attempts: Prisma.FieldRef<"twofactor_sessions", 'Int'>
-  readonly otp_token: Prisma.FieldRef<"twofactor_sessions", 'String'>
+  readonly updated_at: Prisma.FieldRef<"twofactor_sessions", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"twofactor_sessions", 'DateTime'>
 }
     
 
@@ -922,6 +1479,10 @@ export type twofactor_sessionsFindUniqueArgs<ExtArgs extends runtime.Types.Exten
    * Omit specific fields from the twofactor_sessions
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
   /**
    * Filter, which twofactor_sessions to fetch.
    */
@@ -941,6 +1502,10 @@ export type twofactor_sessionsFindUniqueOrThrowArgs<ExtArgs extends runtime.Type
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
+  /**
    * Filter, which twofactor_sessions to fetch.
    */
   where: Prisma.twofactor_sessionsWhereUniqueInput
@@ -958,6 +1523,10 @@ export type twofactor_sessionsFindFirstArgs<ExtArgs extends runtime.Types.Extens
    * Omit specific fields from the twofactor_sessions
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
   /**
    * Filter, which twofactor_sessions to fetch.
    */
@@ -1007,6 +1576,10 @@ export type twofactor_sessionsFindFirstOrThrowArgs<ExtArgs extends runtime.Types
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
+  /**
    * Filter, which twofactor_sessions to fetch.
    */
   where?: Prisma.twofactor_sessionsWhereInput
@@ -1054,6 +1627,10 @@ export type twofactor_sessionsFindManyArgs<ExtArgs extends runtime.Types.Extensi
    * Omit specific fields from the twofactor_sessions
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
   /**
    * Filter, which twofactor_sessions to fetch.
    */
@@ -1103,6 +1680,10 @@ export type twofactor_sessionsCreateArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
+  /**
    * The data needed to create a twofactor_sessions.
    */
   data: Prisma.XOR<Prisma.twofactor_sessionsCreateInput, Prisma.twofactor_sessionsUncheckedCreateInput>
@@ -1131,6 +1712,10 @@ export type twofactor_sessionsUpdateArgs<ExtArgs extends runtime.Types.Extension
    * Omit specific fields from the twofactor_sessions
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
   /**
    * The data needed to update a twofactor_sessions.
    */
@@ -1172,6 +1757,10 @@ export type twofactor_sessionsUpsertArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
+  /**
    * The filter to search for the twofactor_sessions to update in case it exists.
    */
   where: Prisma.twofactor_sessionsWhereUniqueInput
@@ -1198,6 +1787,10 @@ export type twofactor_sessionsDeleteArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
+  /**
    * Filter which twofactor_sessions to delete.
    */
   where: Prisma.twofactor_sessionsWhereUniqueInput
@@ -1218,6 +1811,25 @@ export type twofactor_sessionsDeleteManyArgs<ExtArgs extends runtime.Types.Exten
 }
 
 /**
+ * twofactor_sessions.exam_campaigns
+ */
+export type twofactor_sessions$exam_campaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the exam_campaigns
+   */
+  select?: Prisma.exam_campaignsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the exam_campaigns
+   */
+  omit?: Prisma.exam_campaignsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.exam_campaignsInclude<ExtArgs> | null
+  where?: Prisma.exam_campaignsWhereInput
+}
+
+/**
  * twofactor_sessions without action
  */
 export type twofactor_sessionsDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1229,4 +1841,8 @@ export type twofactor_sessionsDefaultArgs<ExtArgs extends runtime.Types.Extensio
    * Omit specific fields from the twofactor_sessions
    */
   omit?: Prisma.twofactor_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.twofactor_sessionsInclude<ExtArgs> | null
 }

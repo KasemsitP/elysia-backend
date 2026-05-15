@@ -28,9 +28,13 @@ export type AggregateGrading_score_drafts = {
 
 export type Grading_score_draftsAvgAggregateOutputType = {
   id: number | null
+  campaign_id: number | null
+  session_id: number | null
   bag_id: number | null
   booklet_id: number | null
-  subject_id: number | null
+  campaign_subject_id: number | null
+  session_subject_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   slot_id: number | null
   grader_id: number | null
@@ -39,9 +43,13 @@ export type Grading_score_draftsAvgAggregateOutputType = {
 
 export type Grading_score_draftsSumAggregateOutputType = {
   id: number | null
+  campaign_id: number | null
+  session_id: number | null
   bag_id: number | null
   booklet_id: number | null
-  subject_id: number | null
+  campaign_subject_id: number | null
+  session_subject_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   slot_id: number | null
   grader_id: number | null
@@ -50,9 +58,13 @@ export type Grading_score_draftsSumAggregateOutputType = {
 
 export type Grading_score_draftsMinAggregateOutputType = {
   id: number | null
+  campaign_id: number | null
+  session_id: number | null
   bag_id: number | null
   booklet_id: number | null
-  subject_id: number | null
+  campaign_subject_id: number | null
+  session_subject_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   slot_id: number | null
   grader_id: number | null
@@ -60,13 +72,18 @@ export type Grading_score_draftsMinAggregateOutputType = {
   status: string | null
   created_at: Date | null
   updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Grading_score_draftsMaxAggregateOutputType = {
   id: number | null
+  campaign_id: number | null
+  session_id: number | null
   bag_id: number | null
   booklet_id: number | null
-  subject_id: number | null
+  campaign_subject_id: number | null
+  session_subject_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   slot_id: number | null
   grader_id: number | null
@@ -74,13 +91,18 @@ export type Grading_score_draftsMaxAggregateOutputType = {
   status: string | null
   created_at: Date | null
   updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type Grading_score_draftsCountAggregateOutputType = {
   id: number
+  campaign_id: number
+  session_id: number
   bag_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -88,15 +110,20 @@ export type Grading_score_draftsCountAggregateOutputType = {
   status: number
   created_at: number
   updated_at: number
+  deleted_at: number
   _all: number
 }
 
 
 export type Grading_score_draftsAvgAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   bag_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id?: true
   grader_id?: true
@@ -105,9 +132,13 @@ export type Grading_score_draftsAvgAggregateInputType = {
 
 export type Grading_score_draftsSumAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   bag_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id?: true
   grader_id?: true
@@ -116,9 +147,13 @@ export type Grading_score_draftsSumAggregateInputType = {
 
 export type Grading_score_draftsMinAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   bag_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id?: true
   grader_id?: true
@@ -126,13 +161,18 @@ export type Grading_score_draftsMinAggregateInputType = {
   status?: true
   created_at?: true
   updated_at?: true
+  deleted_at?: true
 }
 
 export type Grading_score_draftsMaxAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   bag_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id?: true
   grader_id?: true
@@ -140,13 +180,18 @@ export type Grading_score_draftsMaxAggregateInputType = {
   status?: true
   created_at?: true
   updated_at?: true
+  deleted_at?: true
 }
 
 export type Grading_score_draftsCountAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   bag_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id?: true
   grader_id?: true
@@ -154,6 +199,7 @@ export type Grading_score_draftsCountAggregateInputType = {
   status?: true
   created_at?: true
   updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -245,9 +291,13 @@ export type grading_score_draftsGroupByArgs<ExtArgs extends runtime.Types.Extens
 
 export type Grading_score_draftsGroupByOutputType = {
   id: number
+  campaign_id: number
+  session_id: number
   bag_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -255,6 +305,7 @@ export type Grading_score_draftsGroupByOutputType = {
   status: string
   created_at: Date
   updated_at: Date
+  deleted_at: Date | null
   _count: Grading_score_draftsCountAggregateOutputType | null
   _avg: Grading_score_draftsAvgAggregateOutputType | null
   _sum: Grading_score_draftsSumAggregateOutputType | null
@@ -282,9 +333,13 @@ export type grading_score_draftsWhereInput = {
   OR?: Prisma.grading_score_draftsWhereInput[]
   NOT?: Prisma.grading_score_draftsWhereInput | Prisma.grading_score_draftsWhereInput[]
   id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  campaign_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   bag_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   booklet_id?: Prisma.IntFilter<"grading_score_drafts"> | number
-  subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  campaign_subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   question_no?: Prisma.IntFilter<"grading_score_drafts"> | number
   slot_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   grader_id?: Prisma.IntFilter<"grading_score_drafts"> | number
@@ -292,18 +347,25 @@ export type grading_score_draftsWhereInput = {
   status?: Prisma.StringFilter<"grading_score_drafts"> | string
   created_at?: Prisma.DateTimeFilter<"grading_score_drafts"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"grading_score_drafts"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"grading_score_drafts"> | Date | string | null
   bags?: Prisma.XOR<Prisma.BagsScalarRelationFilter, Prisma.bagsWhereInput>
   booklets?: Prisma.XOR<Prisma.BookletsScalarRelationFilter, Prisma.bookletsWhereInput>
+  campaign_subjects?: Prisma.XOR<Prisma.Campaign_subjectsScalarRelationFilter, Prisma.campaign_subjectsWhereInput>
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
+  session_subjects?: Prisma.XOR<Prisma.Session_subjectsScalarRelationFilter, Prisma.session_subjectsWhereInput>
   grading_slots?: Prisma.XOR<Prisma.Grading_slotsScalarRelationFilter, Prisma.grading_slotsWhereInput>
-  subjects?: Prisma.XOR<Prisma.SubjectsScalarRelationFilter, Prisma.subjectsWhereInput>
+  session_subject_questions?: Prisma.XOR<Prisma.Session_subject_questionsScalarRelationFilter, Prisma.session_subject_questionsWhereInput>
 }
 
 export type grading_score_draftsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
@@ -311,41 +373,56 @@ export type grading_score_draftsOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   bags?: Prisma.bagsOrderByWithRelationInput
   booklets?: Prisma.bookletsOrderByWithRelationInput
+  campaign_subjects?: Prisma.campaign_subjectsOrderByWithRelationInput
   graders?: Prisma.gradersOrderByWithRelationInput
+  session_subjects?: Prisma.session_subjectsOrderByWithRelationInput
   grading_slots?: Prisma.grading_slotsOrderByWithRelationInput
-  subjects?: Prisma.subjectsOrderByWithRelationInput
+  session_subject_questions?: Prisma.session_subject_questionsOrderByWithRelationInput
   _relevance?: Prisma.grading_score_draftsOrderByRelevanceInput
 }
 
 export type grading_score_draftsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   slot_id?: number
+  slot_id_grader_id?: Prisma.grading_score_draftsSlot_idGrader_idCompoundUniqueInput
   AND?: Prisma.grading_score_draftsWhereInput | Prisma.grading_score_draftsWhereInput[]
   OR?: Prisma.grading_score_draftsWhereInput[]
   NOT?: Prisma.grading_score_draftsWhereInput | Prisma.grading_score_draftsWhereInput[]
+  campaign_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   bag_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   booklet_id?: Prisma.IntFilter<"grading_score_drafts"> | number
-  subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  campaign_subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   question_no?: Prisma.IntFilter<"grading_score_drafts"> | number
   grader_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   score?: Prisma.IntFilter<"grading_score_drafts"> | number
   status?: Prisma.StringFilter<"grading_score_drafts"> | string
   created_at?: Prisma.DateTimeFilter<"grading_score_drafts"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"grading_score_drafts"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"grading_score_drafts"> | Date | string | null
   bags?: Prisma.XOR<Prisma.BagsScalarRelationFilter, Prisma.bagsWhereInput>
   booklets?: Prisma.XOR<Prisma.BookletsScalarRelationFilter, Prisma.bookletsWhereInput>
+  campaign_subjects?: Prisma.XOR<Prisma.Campaign_subjectsScalarRelationFilter, Prisma.campaign_subjectsWhereInput>
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
+  session_subjects?: Prisma.XOR<Prisma.Session_subjectsScalarRelationFilter, Prisma.session_subjectsWhereInput>
   grading_slots?: Prisma.XOR<Prisma.Grading_slotsScalarRelationFilter, Prisma.grading_slotsWhereInput>
-  subjects?: Prisma.XOR<Prisma.SubjectsScalarRelationFilter, Prisma.subjectsWhereInput>
-}, "id" | "slot_id">
+  session_subject_questions?: Prisma.XOR<Prisma.Session_subject_questionsScalarRelationFilter, Prisma.session_subject_questionsWhereInput>
+}, "id" | "slot_id" | "slot_id_grader_id">
 
 export type grading_score_draftsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
@@ -353,6 +430,7 @@ export type grading_score_draftsOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.grading_score_draftsCountOrderByAggregateInput
   _avg?: Prisma.grading_score_draftsAvgOrderByAggregateInput
   _max?: Prisma.grading_score_draftsMaxOrderByAggregateInput
@@ -365,9 +443,13 @@ export type grading_score_draftsScalarWhereWithAggregatesInput = {
   OR?: Prisma.grading_score_draftsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.grading_score_draftsScalarWhereWithAggregatesInput | Prisma.grading_score_draftsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
+  campaign_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
+  session_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
   bag_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
   booklet_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
-  subject_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
+  campaign_subject_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
+  session_subject_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
+  session_subject_question_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
   question_no?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
   slot_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
   grader_id?: Prisma.IntWithAggregatesFilter<"grading_score_drafts"> | number
@@ -375,6 +457,7 @@ export type grading_score_draftsScalarWhereWithAggregatesInput = {
   status?: Prisma.StringWithAggregatesFilter<"grading_score_drafts"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"grading_score_drafts"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"grading_score_drafts"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"grading_score_drafts"> | Date | string | null
 }
 
 export type grading_score_draftsCreateInput = {
@@ -383,18 +466,25 @@ export type grading_score_draftsCreateInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
   bags: Prisma.bagsCreateNestedOneWithoutGrading_score_draftsInput
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_draftsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   graders: Prisma.gradersCreateNestedOneWithoutGrading_score_draftsInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_draftsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_draftsInput
 }
 
 export type grading_score_draftsUncheckedCreateInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   bag_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -402,6 +492,7 @@ export type grading_score_draftsUncheckedCreateInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsUpdateInput = {
@@ -410,18 +501,25 @@ export type grading_score_draftsUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
 }
 
 export type grading_score_draftsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -429,13 +527,18 @@ export type grading_score_draftsUncheckedUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type grading_score_draftsCreateManyInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   bag_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -443,6 +546,7 @@ export type grading_score_draftsCreateManyInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsUpdateManyMutationInput = {
@@ -451,13 +555,18 @@ export type grading_score_draftsUpdateManyMutationInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type grading_score_draftsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -465,6 +574,7 @@ export type grading_score_draftsUncheckedUpdateManyInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type Grading_score_draftsListRelationFilter = {
@@ -483,11 +593,20 @@ export type grading_score_draftsOrderByRelevanceInput = {
   search: string
 }
 
+export type grading_score_draftsSlot_idGrader_idCompoundUniqueInput = {
+  slot_id: number
+  grader_id: number
+}
+
 export type grading_score_draftsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
@@ -495,13 +614,18 @@ export type grading_score_draftsCountOrderByAggregateInput = {
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type grading_score_draftsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
@@ -510,9 +634,13 @@ export type grading_score_draftsAvgOrderByAggregateInput = {
 
 export type grading_score_draftsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
@@ -520,13 +648,18 @@ export type grading_score_draftsMaxOrderByAggregateInput = {
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type grading_score_draftsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
@@ -534,13 +667,18 @@ export type grading_score_draftsMinOrderByAggregateInput = {
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type grading_score_draftsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
@@ -710,45 +848,129 @@ export type grading_score_draftsUncheckedUpdateOneWithoutGrading_slotsNestedInpu
   update?: Prisma.XOR<Prisma.XOR<Prisma.grading_score_draftsUpdateToOneWithWhereWithoutGrading_slotsInput, Prisma.grading_score_draftsUpdateWithoutGrading_slotsInput>, Prisma.grading_score_draftsUncheckedUpdateWithoutGrading_slotsInput>
 }
 
-export type grading_score_draftsCreateNestedManyWithoutSubjectsInput = {
-  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSubjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput> | Prisma.grading_score_draftsCreateWithoutSubjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput[]
-  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSubjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSubjectsInput[]
-  createMany?: Prisma.grading_score_draftsCreateManySubjectsInputEnvelope
+export type grading_score_draftsCreateNestedManyWithoutSession_subjectsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput> | Prisma.grading_score_draftsCreateWithoutSession_subjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSession_subjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSession_subjectsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManySession_subjectsInputEnvelope
   connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
 }
 
-export type grading_score_draftsUncheckedCreateNestedManyWithoutSubjectsInput = {
-  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSubjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput> | Prisma.grading_score_draftsCreateWithoutSubjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput[]
-  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSubjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSubjectsInput[]
-  createMany?: Prisma.grading_score_draftsCreateManySubjectsInputEnvelope
+export type grading_score_draftsUncheckedCreateNestedManyWithoutSession_subjectsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput> | Prisma.grading_score_draftsCreateWithoutSession_subjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSession_subjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSession_subjectsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManySession_subjectsInputEnvelope
   connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
 }
 
-export type grading_score_draftsUpdateManyWithoutSubjectsNestedInput = {
-  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSubjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput> | Prisma.grading_score_draftsCreateWithoutSubjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput[]
-  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSubjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSubjectsInput[]
-  upsert?: Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSubjectsInput | Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSubjectsInput[]
-  createMany?: Prisma.grading_score_draftsCreateManySubjectsInputEnvelope
+export type grading_score_draftsUpdateManyWithoutSession_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput> | Prisma.grading_score_draftsCreateWithoutSession_subjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSession_subjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSession_subjectsInput[]
+  upsert?: Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSession_subjectsInput | Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSession_subjectsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManySession_subjectsInputEnvelope
   set?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
   disconnect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
   delete?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
   connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
-  update?: Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSubjectsInput | Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSubjectsInput[]
-  updateMany?: Prisma.grading_score_draftsUpdateManyWithWhereWithoutSubjectsInput | Prisma.grading_score_draftsUpdateManyWithWhereWithoutSubjectsInput[]
+  update?: Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSession_subjectsInput | Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSession_subjectsInput[]
+  updateMany?: Prisma.grading_score_draftsUpdateManyWithWhereWithoutSession_subjectsInput | Prisma.grading_score_draftsUpdateManyWithWhereWithoutSession_subjectsInput[]
   deleteMany?: Prisma.grading_score_draftsScalarWhereInput | Prisma.grading_score_draftsScalarWhereInput[]
 }
 
-export type grading_score_draftsUncheckedUpdateManyWithoutSubjectsNestedInput = {
-  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSubjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput> | Prisma.grading_score_draftsCreateWithoutSubjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput[]
-  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSubjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSubjectsInput[]
-  upsert?: Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSubjectsInput | Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSubjectsInput[]
-  createMany?: Prisma.grading_score_draftsCreateManySubjectsInputEnvelope
+export type grading_score_draftsUncheckedUpdateManyWithoutSession_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput> | Prisma.grading_score_draftsCreateWithoutSession_subjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSession_subjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSession_subjectsInput[]
+  upsert?: Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSession_subjectsInput | Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSession_subjectsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManySession_subjectsInputEnvelope
   set?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
   disconnect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
   delete?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
   connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
-  update?: Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSubjectsInput | Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSubjectsInput[]
-  updateMany?: Prisma.grading_score_draftsUpdateManyWithWhereWithoutSubjectsInput | Prisma.grading_score_draftsUpdateManyWithWhereWithoutSubjectsInput[]
+  update?: Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSession_subjectsInput | Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSession_subjectsInput[]
+  updateMany?: Prisma.grading_score_draftsUpdateManyWithWhereWithoutSession_subjectsInput | Prisma.grading_score_draftsUpdateManyWithWhereWithoutSession_subjectsInput[]
+  deleteMany?: Prisma.grading_score_draftsScalarWhereInput | Prisma.grading_score_draftsScalarWhereInput[]
+}
+
+export type grading_score_draftsCreateNestedManyWithoutCampaign_subjectsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput> | Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManyCampaign_subjectsInputEnvelope
+  connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+}
+
+export type grading_score_draftsUncheckedCreateNestedManyWithoutCampaign_subjectsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput> | Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManyCampaign_subjectsInputEnvelope
+  connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+}
+
+export type grading_score_draftsUpdateManyWithoutCampaign_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput> | Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput[]
+  upsert?: Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutCampaign_subjectsInput | Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutCampaign_subjectsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManyCampaign_subjectsInputEnvelope
+  set?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  disconnect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  delete?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  update?: Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutCampaign_subjectsInput | Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutCampaign_subjectsInput[]
+  updateMany?: Prisma.grading_score_draftsUpdateManyWithWhereWithoutCampaign_subjectsInput | Prisma.grading_score_draftsUpdateManyWithWhereWithoutCampaign_subjectsInput[]
+  deleteMany?: Prisma.grading_score_draftsScalarWhereInput | Prisma.grading_score_draftsScalarWhereInput[]
+}
+
+export type grading_score_draftsUncheckedUpdateManyWithoutCampaign_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput> | Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput | Prisma.grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput[]
+  upsert?: Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutCampaign_subjectsInput | Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutCampaign_subjectsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManyCampaign_subjectsInputEnvelope
+  set?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  disconnect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  delete?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  update?: Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutCampaign_subjectsInput | Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutCampaign_subjectsInput[]
+  updateMany?: Prisma.grading_score_draftsUpdateManyWithWhereWithoutCampaign_subjectsInput | Prisma.grading_score_draftsUpdateManyWithWhereWithoutCampaign_subjectsInput[]
+  deleteMany?: Prisma.grading_score_draftsScalarWhereInput | Prisma.grading_score_draftsScalarWhereInput[]
+}
+
+export type grading_score_draftsCreateNestedManyWithoutSession_subject_questionsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManySession_subject_questionsInputEnvelope
+  connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+}
+
+export type grading_score_draftsUncheckedCreateNestedManyWithoutSession_subject_questionsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManySession_subject_questionsInputEnvelope
+  connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+}
+
+export type grading_score_draftsUpdateManyWithoutSession_subject_questionsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput[]
+  upsert?: Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManySession_subject_questionsInputEnvelope
+  set?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  disconnect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  delete?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  update?: Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSession_subject_questionsInput[]
+  updateMany?: Prisma.grading_score_draftsUpdateManyWithWhereWithoutSession_subject_questionsInput | Prisma.grading_score_draftsUpdateManyWithWhereWithoutSession_subject_questionsInput[]
+  deleteMany?: Prisma.grading_score_draftsScalarWhereInput | Prisma.grading_score_draftsScalarWhereInput[]
+}
+
+export type grading_score_draftsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput[] | Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput[]
+  upsert?: Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grading_score_draftsUpsertWithWhereUniqueWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grading_score_draftsCreateManySession_subject_questionsInputEnvelope
+  set?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  disconnect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  delete?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  connect?: Prisma.grading_score_draftsWhereUniqueInput | Prisma.grading_score_draftsWhereUniqueInput[]
+  update?: Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grading_score_draftsUpdateWithWhereUniqueWithoutSession_subject_questionsInput[]
+  updateMany?: Prisma.grading_score_draftsUpdateManyWithWhereWithoutSession_subject_questionsInput | Prisma.grading_score_draftsUpdateManyWithWhereWithoutSession_subject_questionsInput[]
   deleteMany?: Prisma.grading_score_draftsScalarWhereInput | Prisma.grading_score_draftsScalarWhereInput[]
 }
 
@@ -758,16 +980,21 @@ export type grading_score_draftsCreateWithoutBagsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_draftsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   graders: Prisma.gradersCreateNestedOneWithoutGrading_score_draftsInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_draftsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_draftsInput
 }
 
 export type grading_score_draftsUncheckedCreateWithoutBagsInput = {
   id?: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -775,6 +1002,7 @@ export type grading_score_draftsUncheckedCreateWithoutBagsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsCreateOrConnectWithoutBagsInput = {
@@ -808,9 +1036,13 @@ export type grading_score_draftsScalarWhereInput = {
   OR?: Prisma.grading_score_draftsScalarWhereInput[]
   NOT?: Prisma.grading_score_draftsScalarWhereInput | Prisma.grading_score_draftsScalarWhereInput[]
   id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  campaign_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   bag_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   booklet_id?: Prisma.IntFilter<"grading_score_drafts"> | number
-  subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  campaign_subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_subject_id?: Prisma.IntFilter<"grading_score_drafts"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   question_no?: Prisma.IntFilter<"grading_score_drafts"> | number
   slot_id?: Prisma.IntFilter<"grading_score_drafts"> | number
   grader_id?: Prisma.IntFilter<"grading_score_drafts"> | number
@@ -818,6 +1050,7 @@ export type grading_score_draftsScalarWhereInput = {
   status?: Prisma.StringFilter<"grading_score_drafts"> | string
   created_at?: Prisma.DateTimeFilter<"grading_score_drafts"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"grading_score_drafts"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"grading_score_drafts"> | Date | string | null
 }
 
 export type grading_score_draftsCreateWithoutBookletsInput = {
@@ -826,16 +1059,23 @@ export type grading_score_draftsCreateWithoutBookletsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
   bags: Prisma.bagsCreateNestedOneWithoutGrading_score_draftsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   graders: Prisma.gradersCreateNestedOneWithoutGrading_score_draftsInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_draftsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_draftsInput
 }
 
 export type grading_score_draftsUncheckedCreateWithoutBookletsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   bag_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -843,6 +1083,7 @@ export type grading_score_draftsUncheckedCreateWithoutBookletsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsCreateOrConnectWithoutBookletsInput = {
@@ -877,23 +1118,31 @@ export type grading_score_draftsCreateWithoutGradersInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
   bags: Prisma.bagsCreateNestedOneWithoutGrading_score_draftsInput
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_draftsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_draftsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_draftsInput
 }
 
 export type grading_score_draftsUncheckedCreateWithoutGradersInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   bag_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   score: number
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsCreateOrConnectWithoutGradersInput = {
@@ -928,23 +1177,30 @@ export type grading_score_draftsCreateWithoutGrading_slotsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
   bags: Prisma.bagsCreateNestedOneWithoutGrading_score_draftsInput
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_draftsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   graders: Prisma.gradersCreateNestedOneWithoutGrading_score_draftsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_draftsInput
 }
 
 export type grading_score_draftsUncheckedCreateWithoutGrading_slotsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   bag_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
-  grader_id: number
   score: number
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsCreateOrConnectWithoutGrading_slotsInput = {
@@ -969,41 +1225,53 @@ export type grading_score_draftsUpdateWithoutGrading_slotsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrading_score_draftsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
 }
 
 export type grading_score_draftsUncheckedUpdateWithoutGrading_slotsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type grading_score_draftsCreateWithoutSubjectsInput = {
+export type grading_score_draftsCreateWithoutSession_subjectsInput = {
   question_no: number
   score: number
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
   bags: Prisma.bagsCreateNestedOneWithoutGrading_score_draftsInput
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_draftsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_draftsInput
   graders: Prisma.gradersCreateNestedOneWithoutGrading_score_draftsInput
   grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_draftsInput
 }
 
-export type grading_score_draftsUncheckedCreateWithoutSubjectsInput = {
+export type grading_score_draftsUncheckedCreateWithoutSession_subjectsInput = {
   id?: number
   bag_id: number
   booklet_id: number
+  campaign_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -1011,38 +1279,156 @@ export type grading_score_draftsUncheckedCreateWithoutSubjectsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
-export type grading_score_draftsCreateOrConnectWithoutSubjectsInput = {
+export type grading_score_draftsCreateOrConnectWithoutSession_subjectsInput = {
   where: Prisma.grading_score_draftsWhereUniqueInput
-  create: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSubjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput>
+  create: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput>
 }
 
-export type grading_score_draftsCreateManySubjectsInputEnvelope = {
-  data: Prisma.grading_score_draftsCreateManySubjectsInput | Prisma.grading_score_draftsCreateManySubjectsInput[]
+export type grading_score_draftsCreateManySession_subjectsInputEnvelope = {
+  data: Prisma.grading_score_draftsCreateManySession_subjectsInput | Prisma.grading_score_draftsCreateManySession_subjectsInput[]
   skipDuplicates?: boolean
 }
 
-export type grading_score_draftsUpsertWithWhereUniqueWithoutSubjectsInput = {
+export type grading_score_draftsUpsertWithWhereUniqueWithoutSession_subjectsInput = {
   where: Prisma.grading_score_draftsWhereUniqueInput
-  update: Prisma.XOR<Prisma.grading_score_draftsUpdateWithoutSubjectsInput, Prisma.grading_score_draftsUncheckedUpdateWithoutSubjectsInput>
-  create: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSubjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSubjectsInput>
+  update: Prisma.XOR<Prisma.grading_score_draftsUpdateWithoutSession_subjectsInput, Prisma.grading_score_draftsUncheckedUpdateWithoutSession_subjectsInput>
+  create: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subjectsInput>
 }
 
-export type grading_score_draftsUpdateWithWhereUniqueWithoutSubjectsInput = {
+export type grading_score_draftsUpdateWithWhereUniqueWithoutSession_subjectsInput = {
   where: Prisma.grading_score_draftsWhereUniqueInput
-  data: Prisma.XOR<Prisma.grading_score_draftsUpdateWithoutSubjectsInput, Prisma.grading_score_draftsUncheckedUpdateWithoutSubjectsInput>
+  data: Prisma.XOR<Prisma.grading_score_draftsUpdateWithoutSession_subjectsInput, Prisma.grading_score_draftsUncheckedUpdateWithoutSession_subjectsInput>
 }
 
-export type grading_score_draftsUpdateManyWithWhereWithoutSubjectsInput = {
+export type grading_score_draftsUpdateManyWithWhereWithoutSession_subjectsInput = {
   where: Prisma.grading_score_draftsScalarWhereInput
-  data: Prisma.XOR<Prisma.grading_score_draftsUpdateManyMutationInput, Prisma.grading_score_draftsUncheckedUpdateManyWithoutSubjectsInput>
+  data: Prisma.XOR<Prisma.grading_score_draftsUpdateManyMutationInput, Prisma.grading_score_draftsUncheckedUpdateManyWithoutSession_subjectsInput>
+}
+
+export type grading_score_draftsCreateWithoutCampaign_subjectsInput = {
+  question_no: number
+  score: number
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  bags: Prisma.bagsCreateNestedOneWithoutGrading_score_draftsInput
+  booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_draftsInput
+  graders: Prisma.gradersCreateNestedOneWithoutGrading_score_draftsInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_draftsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_draftsInput
+}
+
+export type grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput = {
+  id?: number
+  session_id: number
+  bag_id: number
+  booklet_id: number
+  session_subject_id: number
+  session_subject_question_id: number
+  question_no: number
+  slot_id: number
+  grader_id: number
+  score: number
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type grading_score_draftsCreateOrConnectWithoutCampaign_subjectsInput = {
+  where: Prisma.grading_score_draftsWhereUniqueInput
+  create: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput>
+}
+
+export type grading_score_draftsCreateManyCampaign_subjectsInputEnvelope = {
+  data: Prisma.grading_score_draftsCreateManyCampaign_subjectsInput | Prisma.grading_score_draftsCreateManyCampaign_subjectsInput[]
+  skipDuplicates?: boolean
+}
+
+export type grading_score_draftsUpsertWithWhereUniqueWithoutCampaign_subjectsInput = {
+  where: Prisma.grading_score_draftsWhereUniqueInput
+  update: Prisma.XOR<Prisma.grading_score_draftsUpdateWithoutCampaign_subjectsInput, Prisma.grading_score_draftsUncheckedUpdateWithoutCampaign_subjectsInput>
+  create: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_draftsUncheckedCreateWithoutCampaign_subjectsInput>
+}
+
+export type grading_score_draftsUpdateWithWhereUniqueWithoutCampaign_subjectsInput = {
+  where: Prisma.grading_score_draftsWhereUniqueInput
+  data: Prisma.XOR<Prisma.grading_score_draftsUpdateWithoutCampaign_subjectsInput, Prisma.grading_score_draftsUncheckedUpdateWithoutCampaign_subjectsInput>
+}
+
+export type grading_score_draftsUpdateManyWithWhereWithoutCampaign_subjectsInput = {
+  where: Prisma.grading_score_draftsScalarWhereInput
+  data: Prisma.XOR<Prisma.grading_score_draftsUpdateManyMutationInput, Prisma.grading_score_draftsUncheckedUpdateManyWithoutCampaign_subjectsInput>
+}
+
+export type grading_score_draftsCreateWithoutSession_subject_questionsInput = {
+  question_no: number
+  score: number
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  bags: Prisma.bagsCreateNestedOneWithoutGrading_score_draftsInput
+  booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_draftsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  graders: Prisma.gradersCreateNestedOneWithoutGrading_score_draftsInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_draftsInput
+  grading_slots: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_draftsInput
+}
+
+export type grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput = {
+  id?: number
+  bag_id: number
+  booklet_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  question_no: number
+  slot_id: number
+  grader_id: number
+  score: number
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type grading_score_draftsCreateOrConnectWithoutSession_subject_questionsInput = {
+  where: Prisma.grading_score_draftsWhereUniqueInput
+  create: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput>
+}
+
+export type grading_score_draftsCreateManySession_subject_questionsInputEnvelope = {
+  data: Prisma.grading_score_draftsCreateManySession_subject_questionsInput | Prisma.grading_score_draftsCreateManySession_subject_questionsInput[]
+  skipDuplicates?: boolean
+}
+
+export type grading_score_draftsUpsertWithWhereUniqueWithoutSession_subject_questionsInput = {
+  where: Prisma.grading_score_draftsWhereUniqueInput
+  update: Prisma.XOR<Prisma.grading_score_draftsUpdateWithoutSession_subject_questionsInput, Prisma.grading_score_draftsUncheckedUpdateWithoutSession_subject_questionsInput>
+  create: Prisma.XOR<Prisma.grading_score_draftsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_draftsUncheckedCreateWithoutSession_subject_questionsInput>
+}
+
+export type grading_score_draftsUpdateWithWhereUniqueWithoutSession_subject_questionsInput = {
+  where: Prisma.grading_score_draftsWhereUniqueInput
+  data: Prisma.XOR<Prisma.grading_score_draftsUpdateWithoutSession_subject_questionsInput, Prisma.grading_score_draftsUncheckedUpdateWithoutSession_subject_questionsInput>
+}
+
+export type grading_score_draftsUpdateManyWithWhereWithoutSession_subject_questionsInput = {
+  where: Prisma.grading_score_draftsScalarWhereInput
+  data: Prisma.XOR<Prisma.grading_score_draftsUpdateManyMutationInput, Prisma.grading_score_draftsUncheckedUpdateManyWithoutSession_subject_questionsInput>
 }
 
 export type grading_score_draftsCreateManyBagsInput = {
   id?: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -1050,6 +1436,7 @@ export type grading_score_draftsCreateManyBagsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsUpdateWithoutBagsInput = {
@@ -1058,16 +1445,21 @@ export type grading_score_draftsUpdateWithoutBagsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
 }
 
 export type grading_score_draftsUncheckedUpdateWithoutBagsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1075,12 +1467,15 @@ export type grading_score_draftsUncheckedUpdateWithoutBagsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type grading_score_draftsUncheckedUpdateManyWithoutBagsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1088,12 +1483,17 @@ export type grading_score_draftsUncheckedUpdateManyWithoutBagsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type grading_score_draftsCreateManyBookletsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   bag_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -1101,6 +1501,7 @@ export type grading_score_draftsCreateManyBookletsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsUpdateWithoutBookletsInput = {
@@ -1109,16 +1510,23 @@ export type grading_score_draftsUpdateWithoutBookletsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
 }
 
 export type grading_score_draftsUncheckedUpdateWithoutBookletsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1126,12 +1534,17 @@ export type grading_score_draftsUncheckedUpdateWithoutBookletsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type grading_score_draftsUncheckedUpdateManyWithoutBookletsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1139,19 +1552,25 @@ export type grading_score_draftsUncheckedUpdateManyWithoutBookletsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type grading_score_draftsCreateManyGradersInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   bag_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   score: number
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type grading_score_draftsUpdateWithoutGradersInput = {
@@ -1160,42 +1579,57 @@ export type grading_score_draftsUpdateWithoutGradersInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
 }
 
 export type grading_score_draftsUncheckedUpdateWithoutGradersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type grading_score_draftsUncheckedUpdateManyWithoutGradersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type grading_score_draftsCreateManySubjectsInput = {
+export type grading_score_draftsCreateManySession_subjectsInput = {
   id?: number
   bag_id: number
   booklet_id: number
+  campaign_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id: number
   grader_id: number
@@ -1203,24 +1637,159 @@ export type grading_score_draftsCreateManySubjectsInput = {
   status?: string
   created_at?: Date | string
   updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
-export type grading_score_draftsUpdateWithoutSubjectsInput = {
+export type grading_score_draftsUpdateWithoutSession_subjectsInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bags?: Prisma.bagsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  graders?: Prisma.gradersUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+}
+
+export type grading_score_draftsUncheckedUpdateWithoutSession_subjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type grading_score_draftsUncheckedUpdateManyWithoutSession_subjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type grading_score_draftsCreateManyCampaign_subjectsInput = {
+  id?: number
+  session_id: number
+  bag_id: number
+  booklet_id: number
+  session_subject_id: number
+  session_subject_question_id: number
+  question_no: number
+  slot_id: number
+  grader_id: number
+  score: number
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type grading_score_draftsUpdateWithoutCampaign_subjectsInput = {
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+}
+
+export type grading_score_draftsUncheckedUpdateWithoutCampaign_subjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type grading_score_draftsUncheckedUpdateManyWithoutCampaign_subjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type grading_score_draftsCreateManySession_subject_questionsInput = {
+  id?: number
+  bag_id: number
+  booklet_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  question_no: number
+  slot_id: number
+  grader_id: number
+  score: number
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type grading_score_draftsUpdateWithoutSession_subject_questionsInput = {
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  score?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bags?: Prisma.bagsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  graders?: Prisma.gradersUpdateOneRequiredWithoutGrading_score_draftsNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateOneRequiredWithoutGrading_score_draftsNestedInput
 }
 
-export type grading_score_draftsUncheckedUpdateWithoutSubjectsInput = {
+export type grading_score_draftsUncheckedUpdateWithoutSession_subject_questionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1228,12 +1797,15 @@ export type grading_score_draftsUncheckedUpdateWithoutSubjectsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
-export type grading_score_draftsUncheckedUpdateManyWithoutSubjectsInput = {
+export type grading_score_draftsUncheckedUpdateManyWithoutSession_subject_questionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1241,15 +1813,20 @@ export type grading_score_draftsUncheckedUpdateManyWithoutSubjectsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
 
 export type grading_score_draftsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  campaign_id?: boolean
+  session_id?: boolean
   bag_id?: boolean
   booklet_id?: boolean
-  subject_id?: boolean
+  campaign_subject_id?: boolean
+  session_subject_id?: boolean
+  session_subject_question_id?: boolean
   question_no?: boolean
   slot_id?: boolean
   grader_id?: boolean
@@ -1257,20 +1834,27 @@ export type grading_score_draftsSelect<ExtArgs extends runtime.Types.Extensions.
   status?: boolean
   created_at?: boolean
   updated_at?: boolean
+  deleted_at?: boolean
   bags?: boolean | Prisma.bagsDefaultArgs<ExtArgs>
   booklets?: boolean | Prisma.bookletsDefaultArgs<ExtArgs>
+  campaign_subjects?: boolean | Prisma.campaign_subjectsDefaultArgs<ExtArgs>
   graders?: boolean | Prisma.gradersDefaultArgs<ExtArgs>
+  session_subjects?: boolean | Prisma.session_subjectsDefaultArgs<ExtArgs>
   grading_slots?: boolean | Prisma.grading_slotsDefaultArgs<ExtArgs>
-  subjects?: boolean | Prisma.subjectsDefaultArgs<ExtArgs>
+  session_subject_questions?: boolean | Prisma.session_subject_questionsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["grading_score_drafts"]>
 
 
 
 export type grading_score_draftsSelectScalar = {
   id?: boolean
+  campaign_id?: boolean
+  session_id?: boolean
   bag_id?: boolean
   booklet_id?: boolean
-  subject_id?: boolean
+  campaign_subject_id?: boolean
+  session_subject_id?: boolean
+  session_subject_question_id?: boolean
   question_no?: boolean
   slot_id?: boolean
   grader_id?: boolean
@@ -1278,15 +1862,18 @@ export type grading_score_draftsSelectScalar = {
   status?: boolean
   created_at?: boolean
   updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type grading_score_draftsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "bag_id" | "booklet_id" | "subject_id" | "question_no" | "slot_id" | "grader_id" | "score" | "status" | "created_at" | "updated_at", ExtArgs["result"]["grading_score_drafts"]>
+export type grading_score_draftsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_id" | "bag_id" | "booklet_id" | "campaign_subject_id" | "session_subject_id" | "session_subject_question_id" | "question_no" | "slot_id" | "grader_id" | "score" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["grading_score_drafts"]>
 export type grading_score_draftsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bags?: boolean | Prisma.bagsDefaultArgs<ExtArgs>
   booklets?: boolean | Prisma.bookletsDefaultArgs<ExtArgs>
+  campaign_subjects?: boolean | Prisma.campaign_subjectsDefaultArgs<ExtArgs>
   graders?: boolean | Prisma.gradersDefaultArgs<ExtArgs>
+  session_subjects?: boolean | Prisma.session_subjectsDefaultArgs<ExtArgs>
   grading_slots?: boolean | Prisma.grading_slotsDefaultArgs<ExtArgs>
-  subjects?: boolean | Prisma.subjectsDefaultArgs<ExtArgs>
+  session_subject_questions?: boolean | Prisma.session_subject_questionsDefaultArgs<ExtArgs>
 }
 
 export type $grading_score_draftsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1294,15 +1881,21 @@ export type $grading_score_draftsPayload<ExtArgs extends runtime.Types.Extension
   objects: {
     bags: Prisma.$bagsPayload<ExtArgs>
     booklets: Prisma.$bookletsPayload<ExtArgs>
+    campaign_subjects: Prisma.$campaign_subjectsPayload<ExtArgs>
     graders: Prisma.$gradersPayload<ExtArgs>
+    session_subjects: Prisma.$session_subjectsPayload<ExtArgs>
     grading_slots: Prisma.$grading_slotsPayload<ExtArgs>
-    subjects: Prisma.$subjectsPayload<ExtArgs>
+    session_subject_questions: Prisma.$session_subject_questionsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    campaign_id: number
+    session_id: number
     bag_id: number
     booklet_id: number
-    subject_id: number
+    campaign_subject_id: number
+    session_subject_id: number
+    session_subject_question_id: number
     question_no: number
     slot_id: number
     grader_id: number
@@ -1310,6 +1903,7 @@ export type $grading_score_draftsPayload<ExtArgs extends runtime.Types.Extension
     status: string
     created_at: Date
     updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["grading_score_drafts"]>
   composites: {}
 }
@@ -1652,9 +2246,11 @@ export interface Prisma__grading_score_draftsClient<T, Null = never, ExtArgs ext
   readonly [Symbol.toStringTag]: "PrismaPromise"
   bags<T extends Prisma.bagsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bagsDefaultArgs<ExtArgs>>): Prisma.Prisma__bagsClient<runtime.Types.Result.GetResult<Prisma.$bagsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   booklets<T extends Prisma.bookletsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookletsDefaultArgs<ExtArgs>>): Prisma.Prisma__bookletsClient<runtime.Types.Result.GetResult<Prisma.$bookletsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  campaign_subjects<T extends Prisma.campaign_subjectsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.campaign_subjectsDefaultArgs<ExtArgs>>): Prisma.Prisma__campaign_subjectsClient<runtime.Types.Result.GetResult<Prisma.$campaign_subjectsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   graders<T extends Prisma.gradersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.gradersDefaultArgs<ExtArgs>>): Prisma.Prisma__gradersClient<runtime.Types.Result.GetResult<Prisma.$gradersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  session_subjects<T extends Prisma.session_subjectsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.session_subjectsDefaultArgs<ExtArgs>>): Prisma.Prisma__session_subjectsClient<runtime.Types.Result.GetResult<Prisma.$session_subjectsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   grading_slots<T extends Prisma.grading_slotsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.grading_slotsDefaultArgs<ExtArgs>>): Prisma.Prisma__grading_slotsClient<runtime.Types.Result.GetResult<Prisma.$grading_slotsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  subjects<T extends Prisma.subjectsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjectsDefaultArgs<ExtArgs>>): Prisma.Prisma__subjectsClient<runtime.Types.Result.GetResult<Prisma.$subjectsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  session_subject_questions<T extends Prisma.session_subject_questionsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.session_subject_questionsDefaultArgs<ExtArgs>>): Prisma.Prisma__session_subject_questionsClient<runtime.Types.Result.GetResult<Prisma.$session_subject_questionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1685,9 +2281,13 @@ export interface Prisma__grading_score_draftsClient<T, Null = never, ExtArgs ext
  */
 export interface grading_score_draftsFieldRefs {
   readonly id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
+  readonly campaign_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
+  readonly session_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
   readonly bag_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
   readonly booklet_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
-  readonly subject_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
+  readonly campaign_subject_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
+  readonly session_subject_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
+  readonly session_subject_question_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
   readonly question_no: Prisma.FieldRef<"grading_score_drafts", 'Int'>
   readonly slot_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
   readonly grader_id: Prisma.FieldRef<"grading_score_drafts", 'Int'>
@@ -1695,6 +2295,7 @@ export interface grading_score_draftsFieldRefs {
   readonly status: Prisma.FieldRef<"grading_score_drafts", 'String'>
   readonly created_at: Prisma.FieldRef<"grading_score_drafts", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"grading_score_drafts", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"grading_score_drafts", 'DateTime'>
 }
     
 

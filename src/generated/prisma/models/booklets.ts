@@ -28,114 +28,126 @@ export type AggregateBooklets = {
 
 export type BookletsAvgAggregateOutputType = {
   id: number | null
-  session_id: number | null
   campaign_id: number | null
-  seq_in_bag: number | null
+  session_id: number | null
   bag_id: number | null
+  seq_in_bag: number | null
 }
 
 export type BookletsSumAggregateOutputType = {
   id: number | null
-  session_id: number | null
   campaign_id: number | null
-  seq_in_bag: number | null
+  session_id: number | null
   bag_id: number | null
+  seq_in_bag: number | null
 }
 
 export type BookletsMinAggregateOutputType = {
   id: number | null
-  session_id: number | null
   campaign_id: number | null
+  session_id: number | null
   user_code: string | null
   qr_payload: string | null
+  bag_id: number | null
   seq_in_bag: number | null
+  random_num: string | null
   status: string | null
   created_at: Date | null
-  bag_id: number | null
-  random_num: string | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type BookletsMaxAggregateOutputType = {
   id: number | null
-  session_id: number | null
   campaign_id: number | null
+  session_id: number | null
   user_code: string | null
   qr_payload: string | null
+  bag_id: number | null
   seq_in_bag: number | null
+  random_num: string | null
   status: string | null
   created_at: Date | null
-  bag_id: number | null
-  random_num: string | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type BookletsCountAggregateOutputType = {
   id: number
-  session_id: number
   campaign_id: number
+  session_id: number
   user_code: number
   qr_payload: number
+  bag_id: number
   seq_in_bag: number
+  random_num: number
   status: number
   created_at: number
-  bag_id: number
-  random_num: number
+  updated_at: number
+  deleted_at: number
   _all: number
 }
 
 
 export type BookletsAvgAggregateInputType = {
   id?: true
-  session_id?: true
   campaign_id?: true
-  seq_in_bag?: true
+  session_id?: true
   bag_id?: true
+  seq_in_bag?: true
 }
 
 export type BookletsSumAggregateInputType = {
   id?: true
-  session_id?: true
   campaign_id?: true
-  seq_in_bag?: true
+  session_id?: true
   bag_id?: true
+  seq_in_bag?: true
 }
 
 export type BookletsMinAggregateInputType = {
   id?: true
-  session_id?: true
   campaign_id?: true
+  session_id?: true
   user_code?: true
   qr_payload?: true
+  bag_id?: true
   seq_in_bag?: true
+  random_num?: true
   status?: true
   created_at?: true
-  bag_id?: true
-  random_num?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type BookletsMaxAggregateInputType = {
   id?: true
-  session_id?: true
   campaign_id?: true
+  session_id?: true
   user_code?: true
   qr_payload?: true
+  bag_id?: true
   seq_in_bag?: true
+  random_num?: true
   status?: true
   created_at?: true
-  bag_id?: true
-  random_num?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type BookletsCountAggregateInputType = {
   id?: true
-  session_id?: true
   campaign_id?: true
+  session_id?: true
   user_code?: true
   qr_payload?: true
+  bag_id?: true
   seq_in_bag?: true
+  random_num?: true
   status?: true
   created_at?: true
-  bag_id?: true
-  random_num?: true
+  updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -227,15 +239,17 @@ export type bookletsGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type BookletsGroupByOutputType = {
   id: number
+  campaign_id: number
   session_id: number
-  campaign_id: number | null
   user_code: string | null
   qr_payload: string
+  bag_id: number | null
   seq_in_bag: number | null
+  random_num: string | null
   status: string
   created_at: Date
-  bag_id: number | null
-  random_num: string | null
+  updated_at: Date
+  deleted_at: Date | null
   _count: BookletsCountAggregateOutputType | null
   _avg: BookletsAvgAggregateOutputType | null
   _sum: BookletsSumAggregateOutputType | null
@@ -263,38 +277,52 @@ export type bookletsWhereInput = {
   OR?: Prisma.bookletsWhereInput[]
   NOT?: Prisma.bookletsWhereInput | Prisma.bookletsWhereInput[]
   id?: Prisma.IntFilter<"booklets"> | number
+  campaign_id?: Prisma.IntFilter<"booklets"> | number
   session_id?: Prisma.IntFilter<"booklets"> | number
-  campaign_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   user_code?: Prisma.StringNullableFilter<"booklets"> | string | null
   qr_payload?: Prisma.StringFilter<"booklets"> | string
+  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
+  random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
   status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
-  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
-  random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
-  sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
+  updated_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"booklets"> | Date | string | null
+  booklet_incident_reports?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_question_choices?: Prisma.Booklet_question_choicesListRelationFilter
+  booklet_question_notes?: Prisma.Booklet_question_notesListRelationFilter
   bags?: Prisma.XOR<Prisma.BagsNullableScalarRelationFilter, Prisma.bagsWhereInput> | null
+  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
+  sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
   grading_score_drafts?: Prisma.Grading_score_draftsListRelationFilter
   grading_score_logs?: Prisma.Grading_score_logsListRelationFilter
   grading_slots?: Prisma.Grading_slotsListRelationFilter
+  qr_scan_logs?: Prisma.Qr_scan_logsListRelationFilter
 }
 
 export type bookletsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
   session_id?: Prisma.SortOrder
-  campaign_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_code?: Prisma.SortOrderInput | Prisma.SortOrder
   qr_payload?: Prisma.SortOrder
+  bag_id?: Prisma.SortOrderInput | Prisma.SortOrder
   seq_in_bag?: Prisma.SortOrderInput | Prisma.SortOrder
+  random_num?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  bag_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  random_num?: Prisma.SortOrderInput | Prisma.SortOrder
-  sessions?: Prisma.sessionsOrderByWithRelationInput
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  booklet_incident_reports?: Prisma.booklet_incident_reportsOrderByRelationAggregateInput
+  booklet_question_choices?: Prisma.booklet_question_choicesOrderByRelationAggregateInput
+  booklet_question_notes?: Prisma.booklet_question_notesOrderByRelationAggregateInput
   bags?: Prisma.bagsOrderByWithRelationInput
+  exam_campaigns?: Prisma.exam_campaignsOrderByWithRelationInput
+  sessions?: Prisma.sessionsOrderByWithRelationInput
   grading_score_drafts?: Prisma.grading_score_draftsOrderByRelationAggregateInput
   grading_score_logs?: Prisma.grading_score_logsOrderByRelationAggregateInput
   grading_slots?: Prisma.grading_slotsOrderByRelationAggregateInput
+  qr_scan_logs?: Prisma.qr_scan_logsOrderByRelationAggregateInput
   _relevance?: Prisma.bookletsOrderByRelevanceInput
 }
 
@@ -302,35 +330,45 @@ export type bookletsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   qr_payload?: string
   session_id_random_num?: Prisma.bookletsSession_idRandom_numCompoundUniqueInput
+  session_id_user_code?: Prisma.bookletsSession_idUser_codeCompoundUniqueInput
   AND?: Prisma.bookletsWhereInput | Prisma.bookletsWhereInput[]
   OR?: Prisma.bookletsWhereInput[]
   NOT?: Prisma.bookletsWhereInput | Prisma.bookletsWhereInput[]
+  campaign_id?: Prisma.IntFilter<"booklets"> | number
   session_id?: Prisma.IntFilter<"booklets"> | number
-  campaign_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   user_code?: Prisma.StringNullableFilter<"booklets"> | string | null
+  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
+  random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
   status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
-  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
-  random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
-  sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
+  updated_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"booklets"> | Date | string | null
+  booklet_incident_reports?: Prisma.Booklet_incident_reportsListRelationFilter
+  booklet_question_choices?: Prisma.Booklet_question_choicesListRelationFilter
+  booklet_question_notes?: Prisma.Booklet_question_notesListRelationFilter
   bags?: Prisma.XOR<Prisma.BagsNullableScalarRelationFilter, Prisma.bagsWhereInput> | null
+  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
+  sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
   grading_score_drafts?: Prisma.Grading_score_draftsListRelationFilter
   grading_score_logs?: Prisma.Grading_score_logsListRelationFilter
   grading_slots?: Prisma.Grading_slotsListRelationFilter
-}, "id" | "qr_payload" | "session_id_random_num">
+  qr_scan_logs?: Prisma.Qr_scan_logsListRelationFilter
+}, "id" | "qr_payload" | "session_id_random_num" | "session_id_random_num" | "session_id_user_code">
 
 export type bookletsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
   session_id?: Prisma.SortOrder
-  campaign_id?: Prisma.SortOrderInput | Prisma.SortOrder
   user_code?: Prisma.SortOrderInput | Prisma.SortOrder
   qr_payload?: Prisma.SortOrder
+  bag_id?: Prisma.SortOrderInput | Prisma.SortOrder
   seq_in_bag?: Prisma.SortOrderInput | Prisma.SortOrder
+  random_num?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  bag_id?: Prisma.SortOrderInput | Prisma.SortOrder
-  random_num?: Prisma.SortOrderInput | Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.bookletsCountOrderByAggregateInput
   _avg?: Prisma.bookletsAvgOrderByAggregateInput
   _max?: Prisma.bookletsMaxOrderByAggregateInput
@@ -343,113 +381,144 @@ export type bookletsScalarWhereWithAggregatesInput = {
   OR?: Prisma.bookletsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.bookletsScalarWhereWithAggregatesInput | Prisma.bookletsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"booklets"> | number
+  campaign_id?: Prisma.IntWithAggregatesFilter<"booklets"> | number
   session_id?: Prisma.IntWithAggregatesFilter<"booklets"> | number
-  campaign_id?: Prisma.IntNullableWithAggregatesFilter<"booklets"> | number | null
   user_code?: Prisma.StringNullableWithAggregatesFilter<"booklets"> | string | null
   qr_payload?: Prisma.StringWithAggregatesFilter<"booklets"> | string
+  bag_id?: Prisma.IntNullableWithAggregatesFilter<"booklets"> | number | null
   seq_in_bag?: Prisma.IntNullableWithAggregatesFilter<"booklets"> | number | null
+  random_num?: Prisma.StringNullableWithAggregatesFilter<"booklets"> | string | null
   status?: Prisma.StringWithAggregatesFilter<"booklets"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"booklets"> | Date | string
-  bag_id?: Prisma.IntNullableWithAggregatesFilter<"booklets"> | number | null
-  random_num?: Prisma.StringNullableWithAggregatesFilter<"booklets"> | string | null
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"booklets"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"booklets"> | Date | string | null
 }
 
 export type bookletsCreateInput = {
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  random_num?: string | null
-  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
   bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsUncheckedCreateInput = {
   id?: number
+  campaign_id: number
   session_id: number
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
+  bag_id?: number | null
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  bag_id?: number | null
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsUpdateInput = {
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
   bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsCreateManyInput = {
   id?: number
+  campaign_id: number
   session_id: number
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
+  bag_id?: number | null
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  bag_id?: number | null
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type bookletsUpdateManyMutationInput = {
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type bookletsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type BookletsListRelationFilter = {
@@ -473,64 +542,80 @@ export type bookletsSession_idRandom_numCompoundUniqueInput = {
   random_num: string
 }
 
+export type bookletsSession_idUser_codeCompoundUniqueInput = {
+  session_id: number
+  user_code: string
+}
+
 export type bookletsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  session_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   user_code?: Prisma.SortOrder
   qr_payload?: Prisma.SortOrder
+  bag_id?: Prisma.SortOrder
   seq_in_bag?: Prisma.SortOrder
+  random_num?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  bag_id?: Prisma.SortOrder
-  random_num?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type bookletsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  session_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  seq_in_bag?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  seq_in_bag?: Prisma.SortOrder
 }
 
 export type bookletsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  session_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   user_code?: Prisma.SortOrder
   qr_payload?: Prisma.SortOrder
+  bag_id?: Prisma.SortOrder
   seq_in_bag?: Prisma.SortOrder
+  random_num?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  bag_id?: Prisma.SortOrder
-  random_num?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type bookletsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  session_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   user_code?: Prisma.SortOrder
   qr_payload?: Prisma.SortOrder
+  bag_id?: Prisma.SortOrder
   seq_in_bag?: Prisma.SortOrder
+  random_num?: Prisma.SortOrder
   status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
-  bag_id?: Prisma.SortOrder
-  random_num?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type bookletsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  session_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
-  seq_in_bag?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  seq_in_bag?: Prisma.SortOrder
 }
 
 export type BookletsScalarRelationFilter = {
   is?: Prisma.bookletsWhereInput
   isNot?: Prisma.bookletsWhereInput
+}
+
+export type BookletsNullableScalarRelationFilter = {
+  is?: Prisma.bookletsWhereInput | null
+  isNot?: Prisma.bookletsWhereInput | null
 }
 
 export type bookletsCreateNestedManyWithoutBagsInput = {
@@ -572,6 +657,48 @@ export type bookletsUncheckedUpdateManyWithoutBagsNestedInput = {
   connect?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
   update?: Prisma.bookletsUpdateWithWhereUniqueWithoutBagsInput | Prisma.bookletsUpdateWithWhereUniqueWithoutBagsInput[]
   updateMany?: Prisma.bookletsUpdateManyWithWhereWithoutBagsInput | Prisma.bookletsUpdateManyWithWhereWithoutBagsInput[]
+  deleteMany?: Prisma.bookletsScalarWhereInput | Prisma.bookletsScalarWhereInput[]
+}
+
+export type bookletsCreateNestedManyWithoutExam_campaignsInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutExam_campaignsInput, Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput> | Prisma.bookletsCreateWithoutExam_campaignsInput[] | Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutExam_campaignsInput | Prisma.bookletsCreateOrConnectWithoutExam_campaignsInput[]
+  createMany?: Prisma.bookletsCreateManyExam_campaignsInputEnvelope
+  connect?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+}
+
+export type bookletsUncheckedCreateNestedManyWithoutExam_campaignsInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutExam_campaignsInput, Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput> | Prisma.bookletsCreateWithoutExam_campaignsInput[] | Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutExam_campaignsInput | Prisma.bookletsCreateOrConnectWithoutExam_campaignsInput[]
+  createMany?: Prisma.bookletsCreateManyExam_campaignsInputEnvelope
+  connect?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+}
+
+export type bookletsUpdateManyWithoutExam_campaignsNestedInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutExam_campaignsInput, Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput> | Prisma.bookletsCreateWithoutExam_campaignsInput[] | Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutExam_campaignsInput | Prisma.bookletsCreateOrConnectWithoutExam_campaignsInput[]
+  upsert?: Prisma.bookletsUpsertWithWhereUniqueWithoutExam_campaignsInput | Prisma.bookletsUpsertWithWhereUniqueWithoutExam_campaignsInput[]
+  createMany?: Prisma.bookletsCreateManyExam_campaignsInputEnvelope
+  set?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+  disconnect?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+  delete?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+  connect?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+  update?: Prisma.bookletsUpdateWithWhereUniqueWithoutExam_campaignsInput | Prisma.bookletsUpdateWithWhereUniqueWithoutExam_campaignsInput[]
+  updateMany?: Prisma.bookletsUpdateManyWithWhereWithoutExam_campaignsInput | Prisma.bookletsUpdateManyWithWhereWithoutExam_campaignsInput[]
+  deleteMany?: Prisma.bookletsScalarWhereInput | Prisma.bookletsScalarWhereInput[]
+}
+
+export type bookletsUncheckedUpdateManyWithoutExam_campaignsNestedInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutExam_campaignsInput, Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput> | Prisma.bookletsCreateWithoutExam_campaignsInput[] | Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput[]
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutExam_campaignsInput | Prisma.bookletsCreateOrConnectWithoutExam_campaignsInput[]
+  upsert?: Prisma.bookletsUpsertWithWhereUniqueWithoutExam_campaignsInput | Prisma.bookletsUpsertWithWhereUniqueWithoutExam_campaignsInput[]
+  createMany?: Prisma.bookletsCreateManyExam_campaignsInputEnvelope
+  set?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+  disconnect?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+  delete?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+  connect?: Prisma.bookletsWhereUniqueInput | Prisma.bookletsWhereUniqueInput[]
+  update?: Prisma.bookletsUpdateWithWhereUniqueWithoutExam_campaignsInput | Prisma.bookletsUpdateWithWhereUniqueWithoutExam_campaignsInput[]
+  updateMany?: Prisma.bookletsUpdateManyWithWhereWithoutExam_campaignsInput | Prisma.bookletsUpdateManyWithWhereWithoutExam_campaignsInput[]
   deleteMany?: Prisma.bookletsScalarWhereInput | Prisma.bookletsScalarWhereInput[]
 }
 
@@ -659,33 +786,103 @@ export type bookletsUncheckedUpdateManyWithoutSessionsNestedInput = {
   deleteMany?: Prisma.bookletsScalarWhereInput | Prisma.bookletsScalarWhereInput[]
 }
 
+export type bookletsCreateNestedOneWithoutBooklet_incident_reportsInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_incident_reportsInput, Prisma.bookletsUncheckedCreateWithoutBooklet_incident_reportsInput>
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutBooklet_incident_reportsInput
+  connect?: Prisma.bookletsWhereUniqueInput
+}
+
+export type bookletsUpdateOneWithoutBooklet_incident_reportsNestedInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_incident_reportsInput, Prisma.bookletsUncheckedCreateWithoutBooklet_incident_reportsInput>
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutBooklet_incident_reportsInput
+  upsert?: Prisma.bookletsUpsertWithoutBooklet_incident_reportsInput
+  disconnect?: Prisma.bookletsWhereInput | boolean
+  delete?: Prisma.bookletsWhereInput | boolean
+  connect?: Prisma.bookletsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.bookletsUpdateToOneWithWhereWithoutBooklet_incident_reportsInput, Prisma.bookletsUpdateWithoutBooklet_incident_reportsInput>, Prisma.bookletsUncheckedUpdateWithoutBooklet_incident_reportsInput>
+}
+
+export type bookletsCreateNestedOneWithoutBooklet_question_choicesInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_question_choicesInput, Prisma.bookletsUncheckedCreateWithoutBooklet_question_choicesInput>
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutBooklet_question_choicesInput
+  connect?: Prisma.bookletsWhereUniqueInput
+}
+
+export type bookletsUpdateOneRequiredWithoutBooklet_question_choicesNestedInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_question_choicesInput, Prisma.bookletsUncheckedCreateWithoutBooklet_question_choicesInput>
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutBooklet_question_choicesInput
+  upsert?: Prisma.bookletsUpsertWithoutBooklet_question_choicesInput
+  connect?: Prisma.bookletsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.bookletsUpdateToOneWithWhereWithoutBooklet_question_choicesInput, Prisma.bookletsUpdateWithoutBooklet_question_choicesInput>, Prisma.bookletsUncheckedUpdateWithoutBooklet_question_choicesInput>
+}
+
+export type bookletsCreateNestedOneWithoutBooklet_question_notesInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_question_notesInput, Prisma.bookletsUncheckedCreateWithoutBooklet_question_notesInput>
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutBooklet_question_notesInput
+  connect?: Prisma.bookletsWhereUniqueInput
+}
+
+export type bookletsUpdateOneRequiredWithoutBooklet_question_notesNestedInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_question_notesInput, Prisma.bookletsUncheckedCreateWithoutBooklet_question_notesInput>
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutBooklet_question_notesInput
+  upsert?: Prisma.bookletsUpsertWithoutBooklet_question_notesInput
+  connect?: Prisma.bookletsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.bookletsUpdateToOneWithWhereWithoutBooklet_question_notesInput, Prisma.bookletsUpdateWithoutBooklet_question_notesInput>, Prisma.bookletsUncheckedUpdateWithoutBooklet_question_notesInput>
+}
+
+export type bookletsCreateNestedOneWithoutQr_scan_logsInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutQr_scan_logsInput, Prisma.bookletsUncheckedCreateWithoutQr_scan_logsInput>
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutQr_scan_logsInput
+  connect?: Prisma.bookletsWhereUniqueInput
+}
+
+export type bookletsUpdateOneWithoutQr_scan_logsNestedInput = {
+  create?: Prisma.XOR<Prisma.bookletsCreateWithoutQr_scan_logsInput, Prisma.bookletsUncheckedCreateWithoutQr_scan_logsInput>
+  connectOrCreate?: Prisma.bookletsCreateOrConnectWithoutQr_scan_logsInput
+  upsert?: Prisma.bookletsUpsertWithoutQr_scan_logsInput
+  disconnect?: Prisma.bookletsWhereInput | boolean
+  delete?: Prisma.bookletsWhereInput | boolean
+  connect?: Prisma.bookletsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.bookletsUpdateToOneWithWhereWithoutQr_scan_logsInput, Prisma.bookletsUpdateWithoutQr_scan_logsInput>, Prisma.bookletsUncheckedUpdateWithoutQr_scan_logsInput>
+}
+
 export type bookletsCreateWithoutBagsInput = {
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
   sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsUncheckedCreateWithoutBagsInput = {
   id?: number
-  session_id: number
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsCreateOrConnectWithoutBagsInput = {
@@ -719,44 +916,125 @@ export type bookletsScalarWhereInput = {
   OR?: Prisma.bookletsScalarWhereInput[]
   NOT?: Prisma.bookletsScalarWhereInput | Prisma.bookletsScalarWhereInput[]
   id?: Prisma.IntFilter<"booklets"> | number
+  campaign_id?: Prisma.IntFilter<"booklets"> | number
   session_id?: Prisma.IntFilter<"booklets"> | number
-  campaign_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   user_code?: Prisma.StringNullableFilter<"booklets"> | string | null
   qr_payload?: Prisma.StringFilter<"booklets"> | string
+  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
+  random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
   status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
-  bag_id?: Prisma.IntNullableFilter<"booklets"> | number | null
-  random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
+  updated_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"booklets"> | Date | string | null
 }
 
-export type bookletsCreateWithoutGrading_score_draftsInput = {
-  campaign_id?: number | null
+export type bookletsCreateWithoutExam_campaignsInput = {
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  random_num?: string | null
-  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
   bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsUncheckedCreateWithoutExam_campaignsInput = {
+  id?: number
+  session_id: number
+  user_code?: string | null
+  qr_payload: string
+  bag_id?: number | null
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsCreateOrConnectWithoutExam_campaignsInput = {
+  where: Prisma.bookletsWhereUniqueInput
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutExam_campaignsInput, Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput>
+}
+
+export type bookletsCreateManyExam_campaignsInputEnvelope = {
+  data: Prisma.bookletsCreateManyExam_campaignsInput | Prisma.bookletsCreateManyExam_campaignsInput[]
+  skipDuplicates?: boolean
+}
+
+export type bookletsUpsertWithWhereUniqueWithoutExam_campaignsInput = {
+  where: Prisma.bookletsWhereUniqueInput
+  update: Prisma.XOR<Prisma.bookletsUpdateWithoutExam_campaignsInput, Prisma.bookletsUncheckedUpdateWithoutExam_campaignsInput>
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutExam_campaignsInput, Prisma.bookletsUncheckedCreateWithoutExam_campaignsInput>
+}
+
+export type bookletsUpdateWithWhereUniqueWithoutExam_campaignsInput = {
+  where: Prisma.bookletsWhereUniqueInput
+  data: Prisma.XOR<Prisma.bookletsUpdateWithoutExam_campaignsInput, Prisma.bookletsUncheckedUpdateWithoutExam_campaignsInput>
+}
+
+export type bookletsUpdateManyWithWhereWithoutExam_campaignsInput = {
+  where: Prisma.bookletsScalarWhereInput
+  data: Prisma.XOR<Prisma.bookletsUpdateManyMutationInput, Prisma.bookletsUncheckedUpdateManyWithoutExam_campaignsInput>
+}
+
+export type bookletsCreateWithoutGrading_score_draftsInput = {
+  user_code?: string | null
+  qr_payload: string
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
+  bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsUncheckedCreateWithoutGrading_score_draftsInput = {
   id?: number
+  campaign_id: number
   session_id: number
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
+  bag_id?: number | null
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  bag_id?: number | null
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsCreateOrConnectWithoutGrading_score_draftsInput = {
@@ -776,61 +1054,85 @@ export type bookletsUpdateToOneWithWhereWithoutGrading_score_draftsInput = {
 }
 
 export type bookletsUpdateWithoutGrading_score_draftsInput = {
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
   bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsUncheckedUpdateWithoutGrading_score_draftsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsCreateWithoutGrading_score_logsInput = {
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  random_num?: string | null
-  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
   bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsUncheckedCreateWithoutGrading_score_logsInput = {
   id?: number
+  campaign_id: number
   session_id: number
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
+  bag_id?: number | null
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  bag_id?: number | null
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsCreateOrConnectWithoutGrading_score_logsInput = {
@@ -850,61 +1152,85 @@ export type bookletsUpdateToOneWithWhereWithoutGrading_score_logsInput = {
 }
 
 export type bookletsUpdateWithoutGrading_score_logsInput = {
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
   bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsUncheckedUpdateWithoutGrading_score_logsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsCreateWithoutGrading_slotsInput = {
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  random_num?: string | null
-  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
   bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsUncheckedCreateWithoutGrading_slotsInput = {
   id?: number
+  campaign_id: number
   session_id: number
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
+  bag_id?: number | null
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  bag_id?: number | null
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsCreateOrConnectWithoutGrading_slotsInput = {
@@ -924,61 +1250,84 @@ export type bookletsUpdateToOneWithWhereWithoutGrading_slotsInput = {
 }
 
 export type bookletsUpdateWithoutGrading_slotsInput = {
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
   bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsUncheckedUpdateWithoutGrading_slotsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsCreateWithoutSessionsInput = {
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
   bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsUncheckedCreateWithoutSessionsInput = {
   id?: number
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
+  bag_id?: number | null
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  bag_id?: number | null
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
   grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
 }
 
 export type bookletsCreateOrConnectWithoutSessionsInput = {
@@ -1007,110 +1356,594 @@ export type bookletsUpdateManyWithWhereWithoutSessionsInput = {
   data: Prisma.XOR<Prisma.bookletsUpdateManyMutationInput, Prisma.bookletsUncheckedUpdateManyWithoutSessionsInput>
 }
 
-export type bookletsCreateManyBagsInput = {
-  id?: number
-  session_id: number
-  campaign_id?: number | null
+export type bookletsCreateWithoutBooklet_incident_reportsInput = {
   user_code?: string | null
   qr_payload: string
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
+  bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
 }
 
-export type bookletsUpdateWithoutBagsInput = {
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+export type bookletsUncheckedCreateWithoutBooklet_incident_reportsInput = {
+  id?: number
+  campaign_id: number
+  session_id: number
+  user_code?: string | null
+  qr_payload: string
+  bag_id?: number | null
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsCreateOrConnectWithoutBooklet_incident_reportsInput = {
+  where: Prisma.bookletsWhereUniqueInput
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_incident_reportsInput, Prisma.bookletsUncheckedCreateWithoutBooklet_incident_reportsInput>
+}
+
+export type bookletsUpsertWithoutBooklet_incident_reportsInput = {
+  update: Prisma.XOR<Prisma.bookletsUpdateWithoutBooklet_incident_reportsInput, Prisma.bookletsUncheckedUpdateWithoutBooklet_incident_reportsInput>
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_incident_reportsInput, Prisma.bookletsUncheckedCreateWithoutBooklet_incident_reportsInput>
+  where?: Prisma.bookletsWhereInput
+}
+
+export type bookletsUpdateToOneWithWhereWithoutBooklet_incident_reportsInput = {
+  where?: Prisma.bookletsWhereInput
+  data: Prisma.XOR<Prisma.bookletsUpdateWithoutBooklet_incident_reportsInput, Prisma.bookletsUncheckedUpdateWithoutBooklet_incident_reportsInput>
+}
+
+export type bookletsUpdateWithoutBooklet_incident_reportsInput = {
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
+  bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsUncheckedUpdateWithoutBooklet_incident_reportsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsCreateWithoutBooklet_question_choicesInput = {
+  user_code?: string | null
+  qr_payload: string
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
+  bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsUncheckedCreateWithoutBooklet_question_choicesInput = {
+  id?: number
+  campaign_id: number
+  session_id: number
+  user_code?: string | null
+  qr_payload: string
+  bag_id?: number | null
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsCreateOrConnectWithoutBooklet_question_choicesInput = {
+  where: Prisma.bookletsWhereUniqueInput
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_question_choicesInput, Prisma.bookletsUncheckedCreateWithoutBooklet_question_choicesInput>
+}
+
+export type bookletsUpsertWithoutBooklet_question_choicesInput = {
+  update: Prisma.XOR<Prisma.bookletsUpdateWithoutBooklet_question_choicesInput, Prisma.bookletsUncheckedUpdateWithoutBooklet_question_choicesInput>
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_question_choicesInput, Prisma.bookletsUncheckedCreateWithoutBooklet_question_choicesInput>
+  where?: Prisma.bookletsWhereInput
+}
+
+export type bookletsUpdateToOneWithWhereWithoutBooklet_question_choicesInput = {
+  where?: Prisma.bookletsWhereInput
+  data: Prisma.XOR<Prisma.bookletsUpdateWithoutBooklet_question_choicesInput, Prisma.bookletsUncheckedUpdateWithoutBooklet_question_choicesInput>
+}
+
+export type bookletsUpdateWithoutBooklet_question_choicesInput = {
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
+  bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsUncheckedUpdateWithoutBooklet_question_choicesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsCreateWithoutBooklet_question_notesInput = {
+  user_code?: string | null
+  qr_payload: string
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsUncheckedCreateWithoutBooklet_question_notesInput = {
+  id?: number
+  campaign_id: number
+  session_id: number
+  user_code?: string | null
+  qr_payload: string
+  bag_id?: number | null
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsCreateOrConnectWithoutBooklet_question_notesInput = {
+  where: Prisma.bookletsWhereUniqueInput
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_question_notesInput, Prisma.bookletsUncheckedCreateWithoutBooklet_question_notesInput>
+}
+
+export type bookletsUpsertWithoutBooklet_question_notesInput = {
+  update: Prisma.XOR<Prisma.bookletsUpdateWithoutBooklet_question_notesInput, Prisma.bookletsUncheckedUpdateWithoutBooklet_question_notesInput>
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutBooklet_question_notesInput, Prisma.bookletsUncheckedCreateWithoutBooklet_question_notesInput>
+  where?: Prisma.bookletsWhereInput
+}
+
+export type bookletsUpdateToOneWithWhereWithoutBooklet_question_notesInput = {
+  where?: Prisma.bookletsWhereInput
+  data: Prisma.XOR<Prisma.bookletsUpdateWithoutBooklet_question_notesInput, Prisma.bookletsUncheckedUpdateWithoutBooklet_question_notesInput>
+}
+
+export type bookletsUpdateWithoutBooklet_question_notesInput = {
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsUncheckedUpdateWithoutBooklet_question_notesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsCreateWithoutQr_scan_logsInput = {
+  user_code?: string | null
+  qr_payload: string
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutBookletsInput
+  bags?: Prisma.bagsCreateNestedOneWithoutBookletsInput
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutBookletsInput
+  sessions: Prisma.sessionsCreateNestedOneWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsUncheckedCreateWithoutQr_scan_logsInput = {
+  id?: number
+  campaign_id: number
+  session_id: number
+  user_code?: string | null
+  qr_payload: string
+  bag_id?: number | null
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutBookletsInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutBookletsInput
+  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutBookletsInput
+}
+
+export type bookletsCreateOrConnectWithoutQr_scan_logsInput = {
+  where: Prisma.bookletsWhereUniqueInput
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutQr_scan_logsInput, Prisma.bookletsUncheckedCreateWithoutQr_scan_logsInput>
+}
+
+export type bookletsUpsertWithoutQr_scan_logsInput = {
+  update: Prisma.XOR<Prisma.bookletsUpdateWithoutQr_scan_logsInput, Prisma.bookletsUncheckedUpdateWithoutQr_scan_logsInput>
+  create: Prisma.XOR<Prisma.bookletsCreateWithoutQr_scan_logsInput, Prisma.bookletsUncheckedCreateWithoutQr_scan_logsInput>
+  where?: Prisma.bookletsWhereInput
+}
+
+export type bookletsUpdateToOneWithWhereWithoutQr_scan_logsInput = {
+  where?: Prisma.bookletsWhereInput
+  data: Prisma.XOR<Prisma.bookletsUpdateWithoutQr_scan_logsInput, Prisma.bookletsUncheckedUpdateWithoutQr_scan_logsInput>
+}
+
+export type bookletsUpdateWithoutQr_scan_logsInput = {
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
+  bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
   sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
 }
 
-export type bookletsUncheckedUpdateWithoutBagsInput = {
+export type bookletsUncheckedUpdateWithoutQr_scan_logsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsCreateManyBagsInput = {
+  id?: number
+  user_code?: string | null
+  qr_payload: string
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type bookletsUpdateWithoutBagsInput = {
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsUncheckedUpdateWithoutBagsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsUncheckedUpdateManyWithoutBagsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  session_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+}
+
+export type bookletsCreateManyExam_campaignsInput = {
+  id?: number
+  session_id: number
+  user_code?: string | null
+  qr_payload: string
+  bag_id?: number | null
+  seq_in_bag?: number | null
+  random_num?: string | null
+  status?: string
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+}
+
+export type bookletsUpdateWithoutExam_campaignsInput = {
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
+  bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  sessions?: Prisma.sessionsUpdateOneRequiredWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsUncheckedUpdateWithoutExam_campaignsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
+  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
+}
+
+export type bookletsUncheckedUpdateManyWithoutExam_campaignsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type bookletsCreateManySessionsInput = {
   id?: number
-  campaign_id?: number | null
   user_code?: string | null
   qr_payload: string
+  bag_id?: number | null
   seq_in_bag?: number | null
+  random_num?: string | null
   status?: string
   created_at?: Date | string
-  bag_id?: number | null
-  random_num?: string | null
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type bookletsUpdateWithoutSessionsInput = {
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutBookletsNestedInput
   bags?: Prisma.bagsUpdateOneWithoutBookletsNestedInput
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsUncheckedUpdateWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutBookletsNestedInput
+  booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutBookletsNestedInput
   grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutBookletsNestedInput
+  qr_scan_logs?: Prisma.qr_scan_logsUncheckedUpdateManyWithoutBookletsNestedInput
 }
 
 export type bookletsUncheckedUpdateManyWithoutSessionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   qr_payload?: Prisma.StringFieldUpdateOperationsInput | string
+  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bag_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -1119,15 +1952,23 @@ export type bookletsUncheckedUpdateManyWithoutSessionsInput = {
  */
 
 export type BookletsCountOutputType = {
+  booklet_incident_reports: number
+  booklet_question_choices: number
+  booklet_question_notes: number
   grading_score_drafts: number
   grading_score_logs: number
   grading_slots: number
+  qr_scan_logs: number
 }
 
 export type BookletsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  booklet_incident_reports?: boolean | BookletsCountOutputTypeCountBooklet_incident_reportsArgs
+  booklet_question_choices?: boolean | BookletsCountOutputTypeCountBooklet_question_choicesArgs
+  booklet_question_notes?: boolean | BookletsCountOutputTypeCountBooklet_question_notesArgs
   grading_score_drafts?: boolean | BookletsCountOutputTypeCountGrading_score_draftsArgs
   grading_score_logs?: boolean | BookletsCountOutputTypeCountGrading_score_logsArgs
   grading_slots?: boolean | BookletsCountOutputTypeCountGrading_slotsArgs
+  qr_scan_logs?: boolean | BookletsCountOutputTypeCountQr_scan_logsArgs
 }
 
 /**
@@ -1138,6 +1979,27 @@ export type BookletsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
    * Select specific fields to fetch from the BookletsCountOutputType
    */
   select?: Prisma.BookletsCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * BookletsCountOutputType without action
+ */
+export type BookletsCountOutputTypeCountBooklet_incident_reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_incident_reportsWhereInput
+}
+
+/**
+ * BookletsCountOutputType without action
+ */
+export type BookletsCountOutputTypeCountBooklet_question_choicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_question_choicesWhereInput
+}
+
+/**
+ * BookletsCountOutputType without action
+ */
+export type BookletsCountOutputTypeCountBooklet_question_notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booklet_question_notesWhereInput
 }
 
 /**
@@ -1161,23 +2023,37 @@ export type BookletsCountOutputTypeCountGrading_slotsArgs<ExtArgs extends runtim
   where?: Prisma.grading_slotsWhereInput
 }
 
+/**
+ * BookletsCountOutputType without action
+ */
+export type BookletsCountOutputTypeCountQr_scan_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.qr_scan_logsWhereInput
+}
+
 
 export type bookletsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  session_id?: boolean
   campaign_id?: boolean
+  session_id?: boolean
   user_code?: boolean
   qr_payload?: boolean
+  bag_id?: boolean
   seq_in_bag?: boolean
+  random_num?: boolean
   status?: boolean
   created_at?: boolean
-  bag_id?: boolean
-  random_num?: boolean
-  sessions?: boolean | Prisma.sessionsDefaultArgs<ExtArgs>
+  updated_at?: boolean
+  deleted_at?: boolean
+  booklet_incident_reports?: boolean | Prisma.booklets$booklet_incident_reportsArgs<ExtArgs>
+  booklet_question_choices?: boolean | Prisma.booklets$booklet_question_choicesArgs<ExtArgs>
+  booklet_question_notes?: boolean | Prisma.booklets$booklet_question_notesArgs<ExtArgs>
   bags?: boolean | Prisma.booklets$bagsArgs<ExtArgs>
+  exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
+  sessions?: boolean | Prisma.sessionsDefaultArgs<ExtArgs>
   grading_score_drafts?: boolean | Prisma.booklets$grading_score_draftsArgs<ExtArgs>
   grading_score_logs?: boolean | Prisma.booklets$grading_score_logsArgs<ExtArgs>
   grading_slots?: boolean | Prisma.booklets$grading_slotsArgs<ExtArgs>
+  qr_scan_logs?: boolean | Prisma.booklets$qr_scan_logsArgs<ExtArgs>
   _count?: boolean | Prisma.BookletsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["booklets"]>
 
@@ -1185,47 +2061,61 @@ export type bookletsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type bookletsSelectScalar = {
   id?: boolean
-  session_id?: boolean
   campaign_id?: boolean
+  session_id?: boolean
   user_code?: boolean
   qr_payload?: boolean
+  bag_id?: boolean
   seq_in_bag?: boolean
+  random_num?: boolean
   status?: boolean
   created_at?: boolean
-  bag_id?: boolean
-  random_num?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type bookletsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "session_id" | "campaign_id" | "user_code" | "qr_payload" | "seq_in_bag" | "status" | "created_at" | "bag_id" | "random_num", ExtArgs["result"]["booklets"]>
+export type bookletsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_id" | "user_code" | "qr_payload" | "bag_id" | "seq_in_bag" | "random_num" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["booklets"]>
 export type bookletsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  sessions?: boolean | Prisma.sessionsDefaultArgs<ExtArgs>
+  booklet_incident_reports?: boolean | Prisma.booklets$booklet_incident_reportsArgs<ExtArgs>
+  booklet_question_choices?: boolean | Prisma.booklets$booklet_question_choicesArgs<ExtArgs>
+  booklet_question_notes?: boolean | Prisma.booklets$booklet_question_notesArgs<ExtArgs>
   bags?: boolean | Prisma.booklets$bagsArgs<ExtArgs>
+  exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
+  sessions?: boolean | Prisma.sessionsDefaultArgs<ExtArgs>
   grading_score_drafts?: boolean | Prisma.booklets$grading_score_draftsArgs<ExtArgs>
   grading_score_logs?: boolean | Prisma.booklets$grading_score_logsArgs<ExtArgs>
   grading_slots?: boolean | Prisma.booklets$grading_slotsArgs<ExtArgs>
+  qr_scan_logs?: boolean | Prisma.booklets$qr_scan_logsArgs<ExtArgs>
   _count?: boolean | Prisma.BookletsCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $bookletsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "booklets"
   objects: {
-    sessions: Prisma.$sessionsPayload<ExtArgs>
+    booklet_incident_reports: Prisma.$booklet_incident_reportsPayload<ExtArgs>[]
+    booklet_question_choices: Prisma.$booklet_question_choicesPayload<ExtArgs>[]
+    booklet_question_notes: Prisma.$booklet_question_notesPayload<ExtArgs>[]
     bags: Prisma.$bagsPayload<ExtArgs> | null
+    exam_campaigns: Prisma.$exam_campaignsPayload<ExtArgs>
+    sessions: Prisma.$sessionsPayload<ExtArgs>
     grading_score_drafts: Prisma.$grading_score_draftsPayload<ExtArgs>[]
     grading_score_logs: Prisma.$grading_score_logsPayload<ExtArgs>[]
     grading_slots: Prisma.$grading_slotsPayload<ExtArgs>[]
+    qr_scan_logs: Prisma.$qr_scan_logsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    campaign_id: number
     session_id: number
-    campaign_id: number | null
     user_code: string | null
     qr_payload: string
+    bag_id: number | null
     seq_in_bag: number | null
+    random_num: string | null
     status: string
     created_at: Date
-    bag_id: number | null
-    random_num: string | null
+    updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["booklets"]>
   composites: {}
 }
@@ -1566,11 +2456,16 @@ readonly fields: bookletsFieldRefs;
  */
 export interface Prisma__bookletsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  sessions<T extends Prisma.sessionsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sessionsDefaultArgs<ExtArgs>>): Prisma.Prisma__sessionsClient<runtime.Types.Result.GetResult<Prisma.$sessionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  booklet_incident_reports<T extends Prisma.booklets$booklet_incident_reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.booklets$booklet_incident_reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_incident_reportsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_question_choices<T extends Prisma.booklets$booklet_question_choicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.booklets$booklet_question_choicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_question_choicesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  booklet_question_notes<T extends Prisma.booklets$booklet_question_notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.booklets$booklet_question_notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booklet_question_notesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bags<T extends Prisma.booklets$bagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.booklets$bagsArgs<ExtArgs>>): Prisma.Prisma__bagsClient<runtime.Types.Result.GetResult<Prisma.$bagsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  exam_campaigns<T extends Prisma.exam_campaignsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaignsDefaultArgs<ExtArgs>>): Prisma.Prisma__exam_campaignsClient<runtime.Types.Result.GetResult<Prisma.$exam_campaignsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  sessions<T extends Prisma.sessionsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.sessionsDefaultArgs<ExtArgs>>): Prisma.Prisma__sessionsClient<runtime.Types.Result.GetResult<Prisma.$sessionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   grading_score_drafts<T extends Prisma.booklets$grading_score_draftsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.booklets$grading_score_draftsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grading_score_draftsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   grading_score_logs<T extends Prisma.booklets$grading_score_logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.booklets$grading_score_logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grading_score_logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   grading_slots<T extends Prisma.booklets$grading_slotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.booklets$grading_slotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grading_slotsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  qr_scan_logs<T extends Prisma.booklets$qr_scan_logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.booklets$qr_scan_logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$qr_scan_logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1601,15 +2496,17 @@ export interface Prisma__bookletsClient<T, Null = never, ExtArgs extends runtime
  */
 export interface bookletsFieldRefs {
   readonly id: Prisma.FieldRef<"booklets", 'Int'>
-  readonly session_id: Prisma.FieldRef<"booklets", 'Int'>
   readonly campaign_id: Prisma.FieldRef<"booklets", 'Int'>
+  readonly session_id: Prisma.FieldRef<"booklets", 'Int'>
   readonly user_code: Prisma.FieldRef<"booklets", 'String'>
   readonly qr_payload: Prisma.FieldRef<"booklets", 'String'>
+  readonly bag_id: Prisma.FieldRef<"booklets", 'Int'>
   readonly seq_in_bag: Prisma.FieldRef<"booklets", 'Int'>
+  readonly random_num: Prisma.FieldRef<"booklets", 'String'>
   readonly status: Prisma.FieldRef<"booklets", 'String'>
   readonly created_at: Prisma.FieldRef<"booklets", 'DateTime'>
-  readonly bag_id: Prisma.FieldRef<"booklets", 'Int'>
-  readonly random_num: Prisma.FieldRef<"booklets", 'String'>
+  readonly updated_at: Prisma.FieldRef<"booklets", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"booklets", 'DateTime'>
 }
     
 
@@ -1958,6 +2855,78 @@ export type bookletsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
+ * booklets.booklet_incident_reports
+ */
+export type booklets$booklet_incident_reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_incident_reports
+   */
+  select?: Prisma.booklet_incident_reportsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_incident_reports
+   */
+  omit?: Prisma.booklet_incident_reportsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_incident_reportsInclude<ExtArgs> | null
+  where?: Prisma.booklet_incident_reportsWhereInput
+  orderBy?: Prisma.booklet_incident_reportsOrderByWithRelationInput | Prisma.booklet_incident_reportsOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_incident_reportsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_incident_reportsScalarFieldEnum | Prisma.Booklet_incident_reportsScalarFieldEnum[]
+}
+
+/**
+ * booklets.booklet_question_choices
+ */
+export type booklets$booklet_question_choicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_question_choices
+   */
+  select?: Prisma.booklet_question_choicesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_question_choices
+   */
+  omit?: Prisma.booklet_question_choicesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_question_choicesInclude<ExtArgs> | null
+  where?: Prisma.booklet_question_choicesWhereInput
+  orderBy?: Prisma.booklet_question_choicesOrderByWithRelationInput | Prisma.booklet_question_choicesOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_question_choicesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_question_choicesScalarFieldEnum | Prisma.Booklet_question_choicesScalarFieldEnum[]
+}
+
+/**
+ * booklets.booklet_question_notes
+ */
+export type booklets$booklet_question_notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booklet_question_notes
+   */
+  select?: Prisma.booklet_question_notesSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booklet_question_notes
+   */
+  omit?: Prisma.booklet_question_notesOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booklet_question_notesInclude<ExtArgs> | null
+  where?: Prisma.booklet_question_notesWhereInput
+  orderBy?: Prisma.booklet_question_notesOrderByWithRelationInput | Prisma.booklet_question_notesOrderByWithRelationInput[]
+  cursor?: Prisma.booklet_question_notesWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booklet_question_notesScalarFieldEnum | Prisma.Booklet_question_notesScalarFieldEnum[]
+}
+
+/**
  * booklets.bags
  */
 export type booklets$bagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2046,6 +3015,30 @@ export type booklets$grading_slotsArgs<ExtArgs extends runtime.Types.Extensions.
   take?: number
   skip?: number
   distinct?: Prisma.Grading_slotsScalarFieldEnum | Prisma.Grading_slotsScalarFieldEnum[]
+}
+
+/**
+ * booklets.qr_scan_logs
+ */
+export type booklets$qr_scan_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the qr_scan_logs
+   */
+  select?: Prisma.qr_scan_logsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the qr_scan_logs
+   */
+  omit?: Prisma.qr_scan_logsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.qr_scan_logsInclude<ExtArgs> | null
+  where?: Prisma.qr_scan_logsWhereInput
+  orderBy?: Prisma.qr_scan_logsOrderByWithRelationInput | Prisma.qr_scan_logsOrderByWithRelationInput[]
+  cursor?: Prisma.qr_scan_logsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Qr_scan_logsScalarFieldEnum | Prisma.Qr_scan_logsScalarFieldEnum[]
 }
 
 /**

@@ -30,7 +30,9 @@ export type Grader_work_locksAvgAggregateOutputType = {
   id: number | null
   grader_id: number | null
   campaign_id: number | null
+  session_id: number | null
   bag_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   created_by: number | null
 }
@@ -39,7 +41,9 @@ export type Grader_work_locksSumAggregateOutputType = {
   id: number | null
   grader_id: number | null
   campaign_id: number | null
+  session_id: number | null
   bag_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   created_by: number | null
 }
@@ -48,36 +52,48 @@ export type Grader_work_locksMinAggregateOutputType = {
   id: number | null
   grader_id: number | null
   campaign_id: number | null
+  session_id: number | null
   bag_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   status: string | null
   locked_at: Date | null
   released_at: Date | null
   created_by: number | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type Grader_work_locksMaxAggregateOutputType = {
   id: number | null
   grader_id: number | null
   campaign_id: number | null
+  session_id: number | null
   bag_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   status: string | null
   locked_at: Date | null
   released_at: Date | null
   created_by: number | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type Grader_work_locksCountAggregateOutputType = {
   id: number
   grader_id: number
   campaign_id: number
+  session_id: number
   bag_id: number
+  session_subject_question_id: number
   question_no: number
   status: number
   locked_at: number
   released_at: number
   created_by: number
+  created_at: number
+  updated_at: number
   _all: number
 }
 
@@ -86,7 +102,9 @@ export type Grader_work_locksAvgAggregateInputType = {
   id?: true
   grader_id?: true
   campaign_id?: true
+  session_id?: true
   bag_id?: true
+  session_subject_question_id?: true
   question_no?: true
   created_by?: true
 }
@@ -95,7 +113,9 @@ export type Grader_work_locksSumAggregateInputType = {
   id?: true
   grader_id?: true
   campaign_id?: true
+  session_id?: true
   bag_id?: true
+  session_subject_question_id?: true
   question_no?: true
   created_by?: true
 }
@@ -104,36 +124,48 @@ export type Grader_work_locksMinAggregateInputType = {
   id?: true
   grader_id?: true
   campaign_id?: true
+  session_id?: true
   bag_id?: true
+  session_subject_question_id?: true
   question_no?: true
   status?: true
   locked_at?: true
   released_at?: true
   created_by?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type Grader_work_locksMaxAggregateInputType = {
   id?: true
   grader_id?: true
   campaign_id?: true
+  session_id?: true
   bag_id?: true
+  session_subject_question_id?: true
   question_no?: true
   status?: true
   locked_at?: true
   released_at?: true
   created_by?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type Grader_work_locksCountAggregateInputType = {
   id?: true
   grader_id?: true
   campaign_id?: true
+  session_id?: true
   bag_id?: true
+  session_subject_question_id?: true
   question_no?: true
   status?: true
   locked_at?: true
   released_at?: true
   created_by?: true
+  created_at?: true
+  updated_at?: true
   _all?: true
 }
 
@@ -227,12 +259,16 @@ export type Grader_work_locksGroupByOutputType = {
   id: number
   grader_id: number
   campaign_id: number
+  session_id: number
   bag_id: number
+  session_subject_question_id: number
   question_no: number
   status: string
   locked_at: Date
   released_at: Date | null
   created_by: number | null
+  created_at: Date
+  updated_at: Date
   _count: Grader_work_locksCountAggregateOutputType | null
   _avg: Grader_work_locksAvgAggregateOutputType | null
   _sum: Grader_work_locksSumAggregateOutputType | null
@@ -262,30 +298,40 @@ export type grader_work_locksWhereInput = {
   id?: Prisma.IntFilter<"grader_work_locks"> | number
   grader_id?: Prisma.IntFilter<"grader_work_locks"> | number
   campaign_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  session_id?: Prisma.IntFilter<"grader_work_locks"> | number
   bag_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grader_work_locks"> | number
   question_no?: Prisma.IntFilter<"grader_work_locks"> | number
   status?: Prisma.StringFilter<"grader_work_locks"> | string
   locked_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
   released_at?: Prisma.DateTimeNullableFilter<"grader_work_locks"> | Date | string | null
   created_by?: Prisma.IntNullableFilter<"grader_work_locks"> | number | null
+  created_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
   bags?: Prisma.XOR<Prisma.BagsScalarRelationFilter, Prisma.bagsWhereInput>
-  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
+  accounts?: Prisma.XOR<Prisma.AccountsNullableScalarRelationFilter, Prisma.accountsWhereInput> | null
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
+  session_subject_questions?: Prisma.XOR<Prisma.Session_subject_questionsScalarRelationFilter, Prisma.session_subject_questionsWhereInput>
 }
 
 export type grader_work_locksOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   status?: Prisma.SortOrder
   locked_at?: Prisma.SortOrder
   released_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   bags?: Prisma.bagsOrderByWithRelationInput
-  exam_campaigns?: Prisma.exam_campaignsOrderByWithRelationInput
+  accounts?: Prisma.accountsOrderByWithRelationInput
   graders?: Prisma.gradersOrderByWithRelationInput
+  session_subject_questions?: Prisma.session_subject_questionsOrderByWithRelationInput
   _relevance?: Prisma.grader_work_locksOrderByRelevanceInput
 }
 
@@ -296,27 +342,36 @@ export type grader_work_locksWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.grader_work_locksWhereInput | Prisma.grader_work_locksWhereInput[]
   grader_id?: Prisma.IntFilter<"grader_work_locks"> | number
   campaign_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  session_id?: Prisma.IntFilter<"grader_work_locks"> | number
   bag_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grader_work_locks"> | number
   question_no?: Prisma.IntFilter<"grader_work_locks"> | number
   status?: Prisma.StringFilter<"grader_work_locks"> | string
   locked_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
   released_at?: Prisma.DateTimeNullableFilter<"grader_work_locks"> | Date | string | null
   created_by?: Prisma.IntNullableFilter<"grader_work_locks"> | number | null
+  created_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
   bags?: Prisma.XOR<Prisma.BagsScalarRelationFilter, Prisma.bagsWhereInput>
-  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
+  accounts?: Prisma.XOR<Prisma.AccountsNullableScalarRelationFilter, Prisma.accountsWhereInput> | null
   graders?: Prisma.XOR<Prisma.GradersScalarRelationFilter, Prisma.gradersWhereInput>
+  session_subject_questions?: Prisma.XOR<Prisma.Session_subject_questionsScalarRelationFilter, Prisma.session_subject_questionsWhereInput>
 }, "id">
 
 export type grader_work_locksOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   status?: Prisma.SortOrder
   locked_at?: Prisma.SortOrder
   released_at?: Prisma.SortOrderInput | Prisma.SortOrder
   created_by?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   _count?: Prisma.grader_work_locksCountOrderByAggregateInput
   _avg?: Prisma.grader_work_locksAvgOrderByAggregateInput
   _max?: Prisma.grader_work_locksMaxOrderByAggregateInput
@@ -331,12 +386,16 @@ export type grader_work_locksScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
   grader_id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
   campaign_id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
+  session_id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
   bag_id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
+  session_subject_question_id?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
   question_no?: Prisma.IntWithAggregatesFilter<"grader_work_locks"> | number
   status?: Prisma.StringWithAggregatesFilter<"grader_work_locks"> | string
   locked_at?: Prisma.DateTimeWithAggregatesFilter<"grader_work_locks"> | Date | string
   released_at?: Prisma.DateTimeNullableWithAggregatesFilter<"grader_work_locks"> | Date | string | null
   created_by?: Prisma.IntNullableWithAggregatesFilter<"grader_work_locks"> | number | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"grader_work_locks"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"grader_work_locks"> | Date | string
 }
 
 export type grader_work_locksCreateInput = {
@@ -344,22 +403,28 @@ export type grader_work_locksCreateInput = {
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
   bags: Prisma.bagsCreateNestedOneWithoutGrader_work_locksInput
-  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutGrader_work_locksInput
+  accounts?: Prisma.accountsCreateNestedOneWithoutGrader_work_locksInput
   graders: Prisma.gradersCreateNestedOneWithoutGrader_work_locksInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrader_work_locksInput
 }
 
 export type grader_work_locksUncheckedCreateInput = {
   id?: number
   grader_id: number
   campaign_id: number
+  session_id: number
   bag_id: number
+  session_subject_question_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
   created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type grader_work_locksUpdateInput = {
@@ -367,34 +432,44 @@ export type grader_work_locksUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrader_work_locksNestedInput
-  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutGrader_work_locksNestedInput
+  accounts?: Prisma.accountsUpdateOneWithoutGrader_work_locksNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrader_work_locksNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrader_work_locksNestedInput
 }
 
 export type grader_work_locksUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grader_work_locksCreateManyInput = {
   id?: number
   grader_id: number
   campaign_id: number
+  session_id: number
   bag_id: number
+  session_subject_question_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
   created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type grader_work_locksUpdateManyMutationInput = {
@@ -402,19 +477,24 @@ export type grader_work_locksUpdateManyMutationInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grader_work_locksUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type Grader_work_locksListRelationFilter = {
@@ -437,19 +517,25 @@ export type grader_work_locksCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   status?: Prisma.SortOrder
   locked_at?: Prisma.SortOrder
   released_at?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type grader_work_locksAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
 }
@@ -458,33 +544,85 @@ export type grader_work_locksMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   status?: Prisma.SortOrder
   locked_at?: Prisma.SortOrder
   released_at?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type grader_work_locksMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   status?: Prisma.SortOrder
   locked_at?: Prisma.SortOrder
   released_at?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type grader_work_locksSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   grader_id?: Prisma.SortOrder
   campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   bag_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   created_by?: Prisma.SortOrder
+}
+
+export type grader_work_locksCreateNestedManyWithoutAccountsInput = {
+  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutAccountsInput, Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput> | Prisma.grader_work_locksCreateWithoutAccountsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput[]
+  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutAccountsInput | Prisma.grader_work_locksCreateOrConnectWithoutAccountsInput[]
+  createMany?: Prisma.grader_work_locksCreateManyAccountsInputEnvelope
+  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+}
+
+export type grader_work_locksUncheckedCreateNestedManyWithoutAccountsInput = {
+  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutAccountsInput, Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput> | Prisma.grader_work_locksCreateWithoutAccountsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput[]
+  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutAccountsInput | Prisma.grader_work_locksCreateOrConnectWithoutAccountsInput[]
+  createMany?: Prisma.grader_work_locksCreateManyAccountsInputEnvelope
+  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+}
+
+export type grader_work_locksUpdateManyWithoutAccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutAccountsInput, Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput> | Prisma.grader_work_locksCreateWithoutAccountsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput[]
+  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutAccountsInput | Prisma.grader_work_locksCreateOrConnectWithoutAccountsInput[]
+  upsert?: Prisma.grader_work_locksUpsertWithWhereUniqueWithoutAccountsInput | Prisma.grader_work_locksUpsertWithWhereUniqueWithoutAccountsInput[]
+  createMany?: Prisma.grader_work_locksCreateManyAccountsInputEnvelope
+  set?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  disconnect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  delete?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  update?: Prisma.grader_work_locksUpdateWithWhereUniqueWithoutAccountsInput | Prisma.grader_work_locksUpdateWithWhereUniqueWithoutAccountsInput[]
+  updateMany?: Prisma.grader_work_locksUpdateManyWithWhereWithoutAccountsInput | Prisma.grader_work_locksUpdateManyWithWhereWithoutAccountsInput[]
+  deleteMany?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
+}
+
+export type grader_work_locksUncheckedUpdateManyWithoutAccountsNestedInput = {
+  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutAccountsInput, Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput> | Prisma.grader_work_locksCreateWithoutAccountsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput[]
+  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutAccountsInput | Prisma.grader_work_locksCreateOrConnectWithoutAccountsInput[]
+  upsert?: Prisma.grader_work_locksUpsertWithWhereUniqueWithoutAccountsInput | Prisma.grader_work_locksUpsertWithWhereUniqueWithoutAccountsInput[]
+  createMany?: Prisma.grader_work_locksCreateManyAccountsInputEnvelope
+  set?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  disconnect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  delete?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  update?: Prisma.grader_work_locksUpdateWithWhereUniqueWithoutAccountsInput | Prisma.grader_work_locksUpdateWithWhereUniqueWithoutAccountsInput[]
+  updateMany?: Prisma.grader_work_locksUpdateManyWithWhereWithoutAccountsInput | Prisma.grader_work_locksUpdateManyWithWhereWithoutAccountsInput[]
+  deleteMany?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
 }
 
 export type grader_work_locksCreateNestedManyWithoutBagsInput = {
@@ -526,48 +664,6 @@ export type grader_work_locksUncheckedUpdateManyWithoutBagsNestedInput = {
   connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
   update?: Prisma.grader_work_locksUpdateWithWhereUniqueWithoutBagsInput | Prisma.grader_work_locksUpdateWithWhereUniqueWithoutBagsInput[]
   updateMany?: Prisma.grader_work_locksUpdateManyWithWhereWithoutBagsInput | Prisma.grader_work_locksUpdateManyWithWhereWithoutBagsInput[]
-  deleteMany?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
-}
-
-export type grader_work_locksCreateNestedManyWithoutExam_campaignsInput = {
-  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutExam_campaignsInput, Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput> | Prisma.grader_work_locksCreateWithoutExam_campaignsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput[]
-  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutExam_campaignsInput | Prisma.grader_work_locksCreateOrConnectWithoutExam_campaignsInput[]
-  createMany?: Prisma.grader_work_locksCreateManyExam_campaignsInputEnvelope
-  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-}
-
-export type grader_work_locksUncheckedCreateNestedManyWithoutExam_campaignsInput = {
-  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutExam_campaignsInput, Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput> | Prisma.grader_work_locksCreateWithoutExam_campaignsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput[]
-  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutExam_campaignsInput | Prisma.grader_work_locksCreateOrConnectWithoutExam_campaignsInput[]
-  createMany?: Prisma.grader_work_locksCreateManyExam_campaignsInputEnvelope
-  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-}
-
-export type grader_work_locksUpdateManyWithoutExam_campaignsNestedInput = {
-  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutExam_campaignsInput, Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput> | Prisma.grader_work_locksCreateWithoutExam_campaignsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput[]
-  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutExam_campaignsInput | Prisma.grader_work_locksCreateOrConnectWithoutExam_campaignsInput[]
-  upsert?: Prisma.grader_work_locksUpsertWithWhereUniqueWithoutExam_campaignsInput | Prisma.grader_work_locksUpsertWithWhereUniqueWithoutExam_campaignsInput[]
-  createMany?: Prisma.grader_work_locksCreateManyExam_campaignsInputEnvelope
-  set?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-  disconnect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-  delete?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-  update?: Prisma.grader_work_locksUpdateWithWhereUniqueWithoutExam_campaignsInput | Prisma.grader_work_locksUpdateWithWhereUniqueWithoutExam_campaignsInput[]
-  updateMany?: Prisma.grader_work_locksUpdateManyWithWhereWithoutExam_campaignsInput | Prisma.grader_work_locksUpdateManyWithWhereWithoutExam_campaignsInput[]
-  deleteMany?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
-}
-
-export type grader_work_locksUncheckedUpdateManyWithoutExam_campaignsNestedInput = {
-  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutExam_campaignsInput, Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput> | Prisma.grader_work_locksCreateWithoutExam_campaignsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput[]
-  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutExam_campaignsInput | Prisma.grader_work_locksCreateOrConnectWithoutExam_campaignsInput[]
-  upsert?: Prisma.grader_work_locksUpsertWithWhereUniqueWithoutExam_campaignsInput | Prisma.grader_work_locksUpsertWithWhereUniqueWithoutExam_campaignsInput[]
-  createMany?: Prisma.grader_work_locksCreateManyExam_campaignsInputEnvelope
-  set?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-  disconnect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-  delete?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
-  update?: Prisma.grader_work_locksUpdateWithWhereUniqueWithoutExam_campaignsInput | Prisma.grader_work_locksUpdateWithWhereUniqueWithoutExam_campaignsInput[]
-  updateMany?: Prisma.grader_work_locksUpdateManyWithWhereWithoutExam_campaignsInput | Prisma.grader_work_locksUpdateManyWithWhereWithoutExam_campaignsInput[]
   deleteMany?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
 }
 
@@ -613,25 +709,143 @@ export type grader_work_locksUncheckedUpdateManyWithoutGradersNestedInput = {
   deleteMany?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
 }
 
+export type grader_work_locksCreateNestedManyWithoutSession_subject_questionsInput = {
+  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput, Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grader_work_locksCreateManySession_subject_questionsInputEnvelope
+  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+}
+
+export type grader_work_locksUncheckedCreateNestedManyWithoutSession_subject_questionsInput = {
+  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput, Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grader_work_locksCreateManySession_subject_questionsInputEnvelope
+  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+}
+
+export type grader_work_locksUpdateManyWithoutSession_subject_questionsNestedInput = {
+  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput, Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput[]
+  upsert?: Prisma.grader_work_locksUpsertWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grader_work_locksUpsertWithWhereUniqueWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grader_work_locksCreateManySession_subject_questionsInputEnvelope
+  set?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  disconnect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  delete?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  update?: Prisma.grader_work_locksUpdateWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grader_work_locksUpdateWithWhereUniqueWithoutSession_subject_questionsInput[]
+  updateMany?: Prisma.grader_work_locksUpdateManyWithWhereWithoutSession_subject_questionsInput | Prisma.grader_work_locksUpdateManyWithWhereWithoutSession_subject_questionsInput[]
+  deleteMany?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
+}
+
+export type grader_work_locksUncheckedUpdateManyWithoutSession_subject_questionsNestedInput = {
+  create?: Prisma.XOR<Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput, Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput[] | Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput[]
+  upsert?: Prisma.grader_work_locksUpsertWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grader_work_locksUpsertWithWhereUniqueWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grader_work_locksCreateManySession_subject_questionsInputEnvelope
+  set?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  disconnect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  delete?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  connect?: Prisma.grader_work_locksWhereUniqueInput | Prisma.grader_work_locksWhereUniqueInput[]
+  update?: Prisma.grader_work_locksUpdateWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grader_work_locksUpdateWithWhereUniqueWithoutSession_subject_questionsInput[]
+  updateMany?: Prisma.grader_work_locksUpdateManyWithWhereWithoutSession_subject_questionsInput | Prisma.grader_work_locksUpdateManyWithWhereWithoutSession_subject_questionsInput[]
+  deleteMany?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
+}
+
+export type grader_work_locksCreateWithoutAccountsInput = {
+  question_no: number
+  status?: string
+  locked_at?: Date | string
+  released_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  bags: Prisma.bagsCreateNestedOneWithoutGrader_work_locksInput
+  graders: Prisma.gradersCreateNestedOneWithoutGrader_work_locksInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrader_work_locksInput
+}
+
+export type grader_work_locksUncheckedCreateWithoutAccountsInput = {
+  id?: number
+  grader_id: number
+  campaign_id: number
+  session_id: number
+  bag_id: number
+  session_subject_question_id: number
+  question_no: number
+  status?: string
+  locked_at?: Date | string
+  released_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type grader_work_locksCreateOrConnectWithoutAccountsInput = {
+  where: Prisma.grader_work_locksWhereUniqueInput
+  create: Prisma.XOR<Prisma.grader_work_locksCreateWithoutAccountsInput, Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput>
+}
+
+export type grader_work_locksCreateManyAccountsInputEnvelope = {
+  data: Prisma.grader_work_locksCreateManyAccountsInput | Prisma.grader_work_locksCreateManyAccountsInput[]
+  skipDuplicates?: boolean
+}
+
+export type grader_work_locksUpsertWithWhereUniqueWithoutAccountsInput = {
+  where: Prisma.grader_work_locksWhereUniqueInput
+  update: Prisma.XOR<Prisma.grader_work_locksUpdateWithoutAccountsInput, Prisma.grader_work_locksUncheckedUpdateWithoutAccountsInput>
+  create: Prisma.XOR<Prisma.grader_work_locksCreateWithoutAccountsInput, Prisma.grader_work_locksUncheckedCreateWithoutAccountsInput>
+}
+
+export type grader_work_locksUpdateWithWhereUniqueWithoutAccountsInput = {
+  where: Prisma.grader_work_locksWhereUniqueInput
+  data: Prisma.XOR<Prisma.grader_work_locksUpdateWithoutAccountsInput, Prisma.grader_work_locksUncheckedUpdateWithoutAccountsInput>
+}
+
+export type grader_work_locksUpdateManyWithWhereWithoutAccountsInput = {
+  where: Prisma.grader_work_locksScalarWhereInput
+  data: Prisma.XOR<Prisma.grader_work_locksUpdateManyMutationInput, Prisma.grader_work_locksUncheckedUpdateManyWithoutAccountsInput>
+}
+
+export type grader_work_locksScalarWhereInput = {
+  AND?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
+  OR?: Prisma.grader_work_locksScalarWhereInput[]
+  NOT?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
+  id?: Prisma.IntFilter<"grader_work_locks"> | number
+  grader_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  campaign_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  session_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  bag_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grader_work_locks"> | number
+  question_no?: Prisma.IntFilter<"grader_work_locks"> | number
+  status?: Prisma.StringFilter<"grader_work_locks"> | string
+  locked_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
+  released_at?: Prisma.DateTimeNullableFilter<"grader_work_locks"> | Date | string | null
+  created_by?: Prisma.IntNullableFilter<"grader_work_locks"> | number | null
+  created_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
+}
+
 export type grader_work_locksCreateWithoutBagsInput = {
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: number | null
-  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutGrader_work_locksInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  accounts?: Prisma.accountsCreateNestedOneWithoutGrader_work_locksInput
   graders: Prisma.gradersCreateNestedOneWithoutGrader_work_locksInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrader_work_locksInput
 }
 
 export type grader_work_locksUncheckedCreateWithoutBagsInput = {
   id?: number
   grader_id: number
-  campaign_id: number
+  session_subject_question_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
   created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type grader_work_locksCreateOrConnectWithoutBagsInput = {
@@ -660,87 +874,30 @@ export type grader_work_locksUpdateManyWithWhereWithoutBagsInput = {
   data: Prisma.XOR<Prisma.grader_work_locksUpdateManyMutationInput, Prisma.grader_work_locksUncheckedUpdateManyWithoutBagsInput>
 }
 
-export type grader_work_locksScalarWhereInput = {
-  AND?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
-  OR?: Prisma.grader_work_locksScalarWhereInput[]
-  NOT?: Prisma.grader_work_locksScalarWhereInput | Prisma.grader_work_locksScalarWhereInput[]
-  id?: Prisma.IntFilter<"grader_work_locks"> | number
-  grader_id?: Prisma.IntFilter<"grader_work_locks"> | number
-  campaign_id?: Prisma.IntFilter<"grader_work_locks"> | number
-  bag_id?: Prisma.IntFilter<"grader_work_locks"> | number
-  question_no?: Prisma.IntFilter<"grader_work_locks"> | number
-  status?: Prisma.StringFilter<"grader_work_locks"> | string
-  locked_at?: Prisma.DateTimeFilter<"grader_work_locks"> | Date | string
-  released_at?: Prisma.DateTimeNullableFilter<"grader_work_locks"> | Date | string | null
-  created_by?: Prisma.IntNullableFilter<"grader_work_locks"> | number | null
-}
-
-export type grader_work_locksCreateWithoutExam_campaignsInput = {
-  question_no: number
-  status?: string
-  locked_at?: Date | string
-  released_at?: Date | string | null
-  created_by?: number | null
-  bags: Prisma.bagsCreateNestedOneWithoutGrader_work_locksInput
-  graders: Prisma.gradersCreateNestedOneWithoutGrader_work_locksInput
-}
-
-export type grader_work_locksUncheckedCreateWithoutExam_campaignsInput = {
-  id?: number
-  grader_id: number
-  bag_id: number
-  question_no: number
-  status?: string
-  locked_at?: Date | string
-  released_at?: Date | string | null
-  created_by?: number | null
-}
-
-export type grader_work_locksCreateOrConnectWithoutExam_campaignsInput = {
-  where: Prisma.grader_work_locksWhereUniqueInput
-  create: Prisma.XOR<Prisma.grader_work_locksCreateWithoutExam_campaignsInput, Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput>
-}
-
-export type grader_work_locksCreateManyExam_campaignsInputEnvelope = {
-  data: Prisma.grader_work_locksCreateManyExam_campaignsInput | Prisma.grader_work_locksCreateManyExam_campaignsInput[]
-  skipDuplicates?: boolean
-}
-
-export type grader_work_locksUpsertWithWhereUniqueWithoutExam_campaignsInput = {
-  where: Prisma.grader_work_locksWhereUniqueInput
-  update: Prisma.XOR<Prisma.grader_work_locksUpdateWithoutExam_campaignsInput, Prisma.grader_work_locksUncheckedUpdateWithoutExam_campaignsInput>
-  create: Prisma.XOR<Prisma.grader_work_locksCreateWithoutExam_campaignsInput, Prisma.grader_work_locksUncheckedCreateWithoutExam_campaignsInput>
-}
-
-export type grader_work_locksUpdateWithWhereUniqueWithoutExam_campaignsInput = {
-  where: Prisma.grader_work_locksWhereUniqueInput
-  data: Prisma.XOR<Prisma.grader_work_locksUpdateWithoutExam_campaignsInput, Prisma.grader_work_locksUncheckedUpdateWithoutExam_campaignsInput>
-}
-
-export type grader_work_locksUpdateManyWithWhereWithoutExam_campaignsInput = {
-  where: Prisma.grader_work_locksScalarWhereInput
-  data: Prisma.XOR<Prisma.grader_work_locksUpdateManyMutationInput, Prisma.grader_work_locksUncheckedUpdateManyWithoutExam_campaignsInput>
-}
-
 export type grader_work_locksCreateWithoutGradersInput = {
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
-  created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
   bags: Prisma.bagsCreateNestedOneWithoutGrader_work_locksInput
-  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutGrader_work_locksInput
+  accounts?: Prisma.accountsCreateNestedOneWithoutGrader_work_locksInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrader_work_locksInput
 }
 
 export type grader_work_locksUncheckedCreateWithoutGradersInput = {
   id?: number
-  campaign_id: number
+  session_id: number
   bag_id: number
+  session_subject_question_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
   created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type grader_work_locksCreateOrConnectWithoutGradersInput = {
@@ -769,15 +926,125 @@ export type grader_work_locksUpdateManyWithWhereWithoutGradersInput = {
   data: Prisma.XOR<Prisma.grader_work_locksUpdateManyMutationInput, Prisma.grader_work_locksUncheckedUpdateManyWithoutGradersInput>
 }
 
-export type grader_work_locksCreateManyBagsInput = {
+export type grader_work_locksCreateWithoutSession_subject_questionsInput = {
+  question_no: number
+  status?: string
+  locked_at?: Date | string
+  released_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  bags: Prisma.bagsCreateNestedOneWithoutGrader_work_locksInput
+  accounts?: Prisma.accountsCreateNestedOneWithoutGrader_work_locksInput
+  graders: Prisma.gradersCreateNestedOneWithoutGrader_work_locksInput
+}
+
+export type grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput = {
   id?: number
   grader_id: number
-  campaign_id: number
+  bag_id: number
   question_no: number
   status?: string
   locked_at?: Date | string
   released_at?: Date | string | null
   created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type grader_work_locksCreateOrConnectWithoutSession_subject_questionsInput = {
+  where: Prisma.grader_work_locksWhereUniqueInput
+  create: Prisma.XOR<Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput, Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput>
+}
+
+export type grader_work_locksCreateManySession_subject_questionsInputEnvelope = {
+  data: Prisma.grader_work_locksCreateManySession_subject_questionsInput | Prisma.grader_work_locksCreateManySession_subject_questionsInput[]
+  skipDuplicates?: boolean
+}
+
+export type grader_work_locksUpsertWithWhereUniqueWithoutSession_subject_questionsInput = {
+  where: Prisma.grader_work_locksWhereUniqueInput
+  update: Prisma.XOR<Prisma.grader_work_locksUpdateWithoutSession_subject_questionsInput, Prisma.grader_work_locksUncheckedUpdateWithoutSession_subject_questionsInput>
+  create: Prisma.XOR<Prisma.grader_work_locksCreateWithoutSession_subject_questionsInput, Prisma.grader_work_locksUncheckedCreateWithoutSession_subject_questionsInput>
+}
+
+export type grader_work_locksUpdateWithWhereUniqueWithoutSession_subject_questionsInput = {
+  where: Prisma.grader_work_locksWhereUniqueInput
+  data: Prisma.XOR<Prisma.grader_work_locksUpdateWithoutSession_subject_questionsInput, Prisma.grader_work_locksUncheckedUpdateWithoutSession_subject_questionsInput>
+}
+
+export type grader_work_locksUpdateManyWithWhereWithoutSession_subject_questionsInput = {
+  where: Prisma.grader_work_locksScalarWhereInput
+  data: Prisma.XOR<Prisma.grader_work_locksUpdateManyMutationInput, Prisma.grader_work_locksUncheckedUpdateManyWithoutSession_subject_questionsInput>
+}
+
+export type grader_work_locksCreateManyAccountsInput = {
+  id?: number
+  grader_id: number
+  campaign_id: number
+  session_id: number
+  bag_id: number
+  session_subject_question_id: number
+  question_no: number
+  status?: string
+  locked_at?: Date | string
+  released_at?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type grader_work_locksUpdateWithoutAccountsInput = {
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bags?: Prisma.bagsUpdateOneRequiredWithoutGrader_work_locksNestedInput
+  graders?: Prisma.gradersUpdateOneRequiredWithoutGrader_work_locksNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrader_work_locksNestedInput
+}
+
+export type grader_work_locksUncheckedUpdateWithoutAccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type grader_work_locksUncheckedUpdateManyWithoutAccountsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type grader_work_locksCreateManyBagsInput = {
+  id?: number
+  grader_id: number
+  session_subject_question_id: number
+  question_no: number
+  status?: string
+  locked_at?: Date | string
+  released_at?: Date | string | null
+  created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type grader_work_locksUpdateWithoutBagsInput = {
@@ -785,34 +1052,94 @@ export type grader_work_locksUpdateWithoutBagsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutGrader_work_locksNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.accountsUpdateOneWithoutGrader_work_locksNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrader_work_locksNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrader_work_locksNestedInput
 }
 
 export type grader_work_locksUncheckedUpdateWithoutBagsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grader_work_locksUncheckedUpdateManyWithoutBagsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type grader_work_locksCreateManyExam_campaignsInput = {
+export type grader_work_locksCreateManyGradersInput = {
+  id?: number
+  session_id: number
+  bag_id: number
+  session_subject_question_id: number
+  question_no: number
+  status?: string
+  locked_at?: Date | string
+  released_at?: Date | string | null
+  created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+}
+
+export type grader_work_locksUpdateWithoutGradersInput = {
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bags?: Prisma.bagsUpdateOneRequiredWithoutGrader_work_locksNestedInput
+  accounts?: Prisma.accountsUpdateOneWithoutGrader_work_locksNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrader_work_locksNestedInput
+}
+
+export type grader_work_locksUncheckedUpdateWithoutGradersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type grader_work_locksUncheckedUpdateManyWithoutGradersInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type grader_work_locksCreateManySession_subject_questionsInput = {
   id?: number
   grader_id: number
   bag_id: number
@@ -821,19 +1148,23 @@ export type grader_work_locksCreateManyExam_campaignsInput = {
   locked_at?: Date | string
   released_at?: Date | string | null
   created_by?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
-export type grader_work_locksUpdateWithoutExam_campaignsInput = {
+export type grader_work_locksUpdateWithoutSession_subject_questionsInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bags?: Prisma.bagsUpdateOneRequiredWithoutGrader_work_locksNestedInput
+  accounts?: Prisma.accountsUpdateOneWithoutGrader_work_locksNestedInput
   graders?: Prisma.gradersUpdateOneRequiredWithoutGrader_work_locksNestedInput
 }
 
-export type grader_work_locksUncheckedUpdateWithoutExam_campaignsInput = {
+export type grader_work_locksUncheckedUpdateWithoutSession_subject_questionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -842,9 +1173,11 @@ export type grader_work_locksUncheckedUpdateWithoutExam_campaignsInput = {
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type grader_work_locksUncheckedUpdateManyWithoutExam_campaignsInput = {
+export type grader_work_locksUncheckedUpdateManyWithoutSession_subject_questionsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   bag_id?: Prisma.IntFieldUpdateOperationsInput | number
@@ -853,49 +1186,8 @@ export type grader_work_locksUncheckedUpdateManyWithoutExam_campaignsInput = {
   locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-}
-
-export type grader_work_locksCreateManyGradersInput = {
-  id?: number
-  campaign_id: number
-  bag_id: number
-  question_no: number
-  status?: string
-  locked_at?: Date | string
-  released_at?: Date | string | null
-  created_by?: number | null
-}
-
-export type grader_work_locksUpdateWithoutGradersInput = {
-  question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  bags?: Prisma.bagsUpdateOneRequiredWithoutGrader_work_locksNestedInput
-  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutGrader_work_locksNestedInput
-}
-
-export type grader_work_locksUncheckedUpdateWithoutGradersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
-  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
-  question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-}
-
-export type grader_work_locksUncheckedUpdateManyWithoutGradersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
-  bag_id?: Prisma.IntFieldUpdateOperationsInput | number
-  question_no?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  locked_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  released_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  created_by?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -904,15 +1196,20 @@ export type grader_work_locksSelect<ExtArgs extends runtime.Types.Extensions.Int
   id?: boolean
   grader_id?: boolean
   campaign_id?: boolean
+  session_id?: boolean
   bag_id?: boolean
+  session_subject_question_id?: boolean
   question_no?: boolean
   status?: boolean
   locked_at?: boolean
   released_at?: boolean
   created_by?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   bags?: boolean | Prisma.bagsDefaultArgs<ExtArgs>
-  exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
+  accounts?: boolean | Prisma.grader_work_locks$accountsArgs<ExtArgs>
   graders?: boolean | Prisma.gradersDefaultArgs<ExtArgs>
+  session_subject_questions?: boolean | Prisma.session_subject_questionsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["grader_work_locks"]>
 
 
@@ -921,38 +1218,48 @@ export type grader_work_locksSelectScalar = {
   id?: boolean
   grader_id?: boolean
   campaign_id?: boolean
+  session_id?: boolean
   bag_id?: boolean
+  session_subject_question_id?: boolean
   question_no?: boolean
   status?: boolean
   locked_at?: boolean
   released_at?: boolean
   created_by?: boolean
+  created_at?: boolean
+  updated_at?: boolean
 }
 
-export type grader_work_locksOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "grader_id" | "campaign_id" | "bag_id" | "question_no" | "status" | "locked_at" | "released_at" | "created_by", ExtArgs["result"]["grader_work_locks"]>
+export type grader_work_locksOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "grader_id" | "campaign_id" | "session_id" | "bag_id" | "session_subject_question_id" | "question_no" | "status" | "locked_at" | "released_at" | "created_by" | "created_at" | "updated_at", ExtArgs["result"]["grader_work_locks"]>
 export type grader_work_locksInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bags?: boolean | Prisma.bagsDefaultArgs<ExtArgs>
-  exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
+  accounts?: boolean | Prisma.grader_work_locks$accountsArgs<ExtArgs>
   graders?: boolean | Prisma.gradersDefaultArgs<ExtArgs>
+  session_subject_questions?: boolean | Prisma.session_subject_questionsDefaultArgs<ExtArgs>
 }
 
 export type $grader_work_locksPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "grader_work_locks"
   objects: {
     bags: Prisma.$bagsPayload<ExtArgs>
-    exam_campaigns: Prisma.$exam_campaignsPayload<ExtArgs>
+    accounts: Prisma.$accountsPayload<ExtArgs> | null
     graders: Prisma.$gradersPayload<ExtArgs>
+    session_subject_questions: Prisma.$session_subject_questionsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     grader_id: number
     campaign_id: number
+    session_id: number
     bag_id: number
+    session_subject_question_id: number
     question_no: number
     status: string
     locked_at: Date
     released_at: Date | null
     created_by: number | null
+    created_at: Date
+    updated_at: Date
   }, ExtArgs["result"]["grader_work_locks"]>
   composites: {}
 }
@@ -1294,8 +1601,9 @@ readonly fields: grader_work_locksFieldRefs;
 export interface Prisma__grader_work_locksClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   bags<T extends Prisma.bagsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bagsDefaultArgs<ExtArgs>>): Prisma.Prisma__bagsClient<runtime.Types.Result.GetResult<Prisma.$bagsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  exam_campaigns<T extends Prisma.exam_campaignsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaignsDefaultArgs<ExtArgs>>): Prisma.Prisma__exam_campaignsClient<runtime.Types.Result.GetResult<Prisma.$exam_campaignsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  accounts<T extends Prisma.grader_work_locks$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.grader_work_locks$accountsArgs<ExtArgs>>): Prisma.Prisma__accountsClient<runtime.Types.Result.GetResult<Prisma.$accountsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   graders<T extends Prisma.gradersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.gradersDefaultArgs<ExtArgs>>): Prisma.Prisma__gradersClient<runtime.Types.Result.GetResult<Prisma.$gradersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  session_subject_questions<T extends Prisma.session_subject_questionsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.session_subject_questionsDefaultArgs<ExtArgs>>): Prisma.Prisma__session_subject_questionsClient<runtime.Types.Result.GetResult<Prisma.$session_subject_questionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1328,12 +1636,16 @@ export interface grader_work_locksFieldRefs {
   readonly id: Prisma.FieldRef<"grader_work_locks", 'Int'>
   readonly grader_id: Prisma.FieldRef<"grader_work_locks", 'Int'>
   readonly campaign_id: Prisma.FieldRef<"grader_work_locks", 'Int'>
+  readonly session_id: Prisma.FieldRef<"grader_work_locks", 'Int'>
   readonly bag_id: Prisma.FieldRef<"grader_work_locks", 'Int'>
+  readonly session_subject_question_id: Prisma.FieldRef<"grader_work_locks", 'Int'>
   readonly question_no: Prisma.FieldRef<"grader_work_locks", 'Int'>
   readonly status: Prisma.FieldRef<"grader_work_locks", 'String'>
   readonly locked_at: Prisma.FieldRef<"grader_work_locks", 'DateTime'>
   readonly released_at: Prisma.FieldRef<"grader_work_locks", 'DateTime'>
   readonly created_by: Prisma.FieldRef<"grader_work_locks", 'Int'>
+  readonly created_at: Prisma.FieldRef<"grader_work_locks", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"grader_work_locks", 'DateTime'>
 }
     
 
@@ -1679,6 +1991,25 @@ export type grader_work_locksDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many grader_work_locks to delete.
    */
   limit?: number
+}
+
+/**
+ * grader_work_locks.accounts
+ */
+export type grader_work_locks$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the accounts
+   */
+  select?: Prisma.accountsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the accounts
+   */
+  omit?: Prisma.accountsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.accountsInclude<ExtArgs> | null
+  where?: Prisma.accountsWhereInput
 }
 
 /**

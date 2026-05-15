@@ -2,7 +2,12 @@ import { prisma, type Tx } from "../../cores/prisma";
 
 export const authRepo = {
     async findAccountByUsername(username: string) {
-        const account = await prisma.accounts.findUnique({ where: { username } });
+        const account = await prisma.accounts.findFirst({
+            where: {
+                username,
+                deleted_at: null,
+            }
+        });
         return account ? account : null;
     },
 

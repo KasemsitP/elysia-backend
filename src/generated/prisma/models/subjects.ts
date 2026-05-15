@@ -41,6 +41,10 @@ export type SubjectsMinAggregateOutputType = {
   code: string | null
   name: string | null
   full_score: number | null
+  active: boolean | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type SubjectsMaxAggregateOutputType = {
@@ -48,6 +52,10 @@ export type SubjectsMaxAggregateOutputType = {
   code: string | null
   name: string | null
   full_score: number | null
+  active: boolean | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type SubjectsCountAggregateOutputType = {
@@ -55,6 +63,10 @@ export type SubjectsCountAggregateOutputType = {
   code: number
   name: number
   full_score: number
+  active: number
+  created_at: number
+  updated_at: number
+  deleted_at: number
   _all: number
 }
 
@@ -74,6 +86,10 @@ export type SubjectsMinAggregateInputType = {
   code?: true
   name?: true
   full_score?: true
+  active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type SubjectsMaxAggregateInputType = {
@@ -81,6 +97,10 @@ export type SubjectsMaxAggregateInputType = {
   code?: true
   name?: true
   full_score?: true
+  active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type SubjectsCountAggregateInputType = {
@@ -88,6 +108,10 @@ export type SubjectsCountAggregateInputType = {
   code?: true
   name?: true
   full_score?: true
+  active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -182,6 +206,10 @@ export type SubjectsGroupByOutputType = {
   code: string
   name: string
   full_score: number
+  active: boolean
+  created_at: Date
+  updated_at: Date
+  deleted_at: Date | null
   _count: SubjectsCountAggregateOutputType | null
   _avg: SubjectsAvgAggregateOutputType | null
   _sum: SubjectsSumAggregateOutputType | null
@@ -212,11 +240,11 @@ export type subjectsWhereInput = {
   code?: Prisma.StringFilter<"subjects"> | string
   name?: Prisma.StringFilter<"subjects"> | string
   full_score?: Prisma.IntFilter<"subjects"> | number
-  grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
-  grading_score_drafts?: Prisma.Grading_score_draftsListRelationFilter
-  grading_score_logs?: Prisma.Grading_score_logsListRelationFilter
-  grading_slots?: Prisma.Grading_slotsListRelationFilter
-  session_subjects?: Prisma.Session_subjectsListRelationFilter
+  active?: Prisma.BoolFilter<"subjects"> | boolean
+  created_at?: Prisma.DateTimeFilter<"subjects"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"subjects"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"subjects"> | Date | string | null
+  campaign_subjects?: Prisma.Campaign_subjectsListRelationFilter
   subject_questions?: Prisma.Subject_questionsListRelationFilter
 }
 
@@ -225,11 +253,11 @@ export type subjectsOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   full_score?: Prisma.SortOrder
-  grader_assignments?: Prisma.grader_assignmentsOrderByRelationAggregateInput
-  grading_score_drafts?: Prisma.grading_score_draftsOrderByRelationAggregateInput
-  grading_score_logs?: Prisma.grading_score_logsOrderByRelationAggregateInput
-  grading_slots?: Prisma.grading_slotsOrderByRelationAggregateInput
-  session_subjects?: Prisma.session_subjectsOrderByRelationAggregateInput
+  active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  campaign_subjects?: Prisma.campaign_subjectsOrderByRelationAggregateInput
   subject_questions?: Prisma.subject_questionsOrderByRelationAggregateInput
   _relevance?: Prisma.subjectsOrderByRelevanceInput
 }
@@ -242,11 +270,11 @@ export type subjectsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.subjectsWhereInput | Prisma.subjectsWhereInput[]
   name?: Prisma.StringFilter<"subjects"> | string
   full_score?: Prisma.IntFilter<"subjects"> | number
-  grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
-  grading_score_drafts?: Prisma.Grading_score_draftsListRelationFilter
-  grading_score_logs?: Prisma.Grading_score_logsListRelationFilter
-  grading_slots?: Prisma.Grading_slotsListRelationFilter
-  session_subjects?: Prisma.Session_subjectsListRelationFilter
+  active?: Prisma.BoolFilter<"subjects"> | boolean
+  created_at?: Prisma.DateTimeFilter<"subjects"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"subjects"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"subjects"> | Date | string | null
+  campaign_subjects?: Prisma.Campaign_subjectsListRelationFilter
   subject_questions?: Prisma.Subject_questionsListRelationFilter
 }, "id" | "code">
 
@@ -255,6 +283,10 @@ export type subjectsOrderByWithAggregationInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   full_score?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.subjectsCountOrderByAggregateInput
   _avg?: Prisma.subjectsAvgOrderByAggregateInput
   _max?: Prisma.subjectsMaxOrderByAggregateInput
@@ -270,17 +302,21 @@ export type subjectsScalarWhereWithAggregatesInput = {
   code?: Prisma.StringWithAggregatesFilter<"subjects"> | string
   name?: Prisma.StringWithAggregatesFilter<"subjects"> | string
   full_score?: Prisma.IntWithAggregatesFilter<"subjects"> | number
+  active?: Prisma.BoolWithAggregatesFilter<"subjects"> | boolean
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"subjects"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"subjects"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"subjects"> | Date | string | null
 }
 
 export type subjectsCreateInput = {
   code: string
   name: string
   full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsCreateNestedManyWithoutSubjectsInput
+  active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutSubjectsInput
   subject_questions?: Prisma.subject_questionsCreateNestedManyWithoutSubjectsInput
 }
 
@@ -289,11 +325,11 @@ export type subjectsUncheckedCreateInput = {
   code: string
   name: string
   full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsUncheckedCreateNestedManyWithoutSubjectsInput
+  active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutSubjectsInput
   subject_questions?: Prisma.subject_questionsUncheckedCreateNestedManyWithoutSubjectsInput
 }
 
@@ -301,11 +337,11 @@ export type subjectsUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUpdateManyWithoutSubjectsNestedInput
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutSubjectsNestedInput
   subject_questions?: Prisma.subject_questionsUpdateManyWithoutSubjectsNestedInput
 }
 
@@ -314,11 +350,11 @@ export type subjectsUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUncheckedUpdateManyWithoutSubjectsNestedInput
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutSubjectsNestedInput
   subject_questions?: Prisma.subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput
 }
 
@@ -327,12 +363,20 @@ export type subjectsCreateManyInput = {
   code: string
   name: string
   full_score?: number
+  active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type subjectsUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type subjectsUncheckedUpdateManyInput = {
@@ -340,6 +384,10 @@ export type subjectsUncheckedUpdateManyInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type SubjectsScalarRelationFilter = {
@@ -358,6 +406,10 @@ export type subjectsCountOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   full_score?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type subjectsAvgOrderByAggregateInput = {
@@ -370,6 +422,10 @@ export type subjectsMaxOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   full_score?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type subjectsMinOrderByAggregateInput = {
@@ -377,81 +433,15 @@ export type subjectsMinOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   full_score?: Prisma.SortOrder
+  active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type subjectsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   full_score?: Prisma.SortOrder
-}
-
-export type subjectsCreateNestedOneWithoutGrader_assignmentsInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutGrader_assignmentsInput, Prisma.subjectsUncheckedCreateWithoutGrader_assignmentsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutGrader_assignmentsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-}
-
-export type subjectsUpdateOneRequiredWithoutGrader_assignmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutGrader_assignmentsInput, Prisma.subjectsUncheckedCreateWithoutGrader_assignmentsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutGrader_assignmentsInput
-  upsert?: Prisma.subjectsUpsertWithoutGrader_assignmentsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.subjectsUpdateToOneWithWhereWithoutGrader_assignmentsInput, Prisma.subjectsUpdateWithoutGrader_assignmentsInput>, Prisma.subjectsUncheckedUpdateWithoutGrader_assignmentsInput>
-}
-
-export type subjectsCreateNestedOneWithoutGrading_score_draftsInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_score_draftsInput, Prisma.subjectsUncheckedCreateWithoutGrading_score_draftsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutGrading_score_draftsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-}
-
-export type subjectsUpdateOneRequiredWithoutGrading_score_draftsNestedInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_score_draftsInput, Prisma.subjectsUncheckedCreateWithoutGrading_score_draftsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutGrading_score_draftsInput
-  upsert?: Prisma.subjectsUpsertWithoutGrading_score_draftsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.subjectsUpdateToOneWithWhereWithoutGrading_score_draftsInput, Prisma.subjectsUpdateWithoutGrading_score_draftsInput>, Prisma.subjectsUncheckedUpdateWithoutGrading_score_draftsInput>
-}
-
-export type subjectsCreateNestedOneWithoutGrading_score_logsInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_score_logsInput, Prisma.subjectsUncheckedCreateWithoutGrading_score_logsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutGrading_score_logsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-}
-
-export type subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_score_logsInput, Prisma.subjectsUncheckedCreateWithoutGrading_score_logsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutGrading_score_logsInput
-  upsert?: Prisma.subjectsUpsertWithoutGrading_score_logsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.subjectsUpdateToOneWithWhereWithoutGrading_score_logsInput, Prisma.subjectsUpdateWithoutGrading_score_logsInput>, Prisma.subjectsUncheckedUpdateWithoutGrading_score_logsInput>
-}
-
-export type subjectsCreateNestedOneWithoutGrading_slotsInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_slotsInput, Prisma.subjectsUncheckedCreateWithoutGrading_slotsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutGrading_slotsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-}
-
-export type subjectsUpdateOneRequiredWithoutGrading_slotsNestedInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_slotsInput, Prisma.subjectsUncheckedCreateWithoutGrading_slotsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutGrading_slotsInput
-  upsert?: Prisma.subjectsUpsertWithoutGrading_slotsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.subjectsUpdateToOneWithWhereWithoutGrading_slotsInput, Prisma.subjectsUpdateWithoutGrading_slotsInput>, Prisma.subjectsUncheckedUpdateWithoutGrading_slotsInput>
-}
-
-export type subjectsCreateNestedOneWithoutSession_subjectsInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutSession_subjectsInput, Prisma.subjectsUncheckedCreateWithoutSession_subjectsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutSession_subjectsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-}
-
-export type subjectsUpdateOneRequiredWithoutSession_subjectsNestedInput = {
-  create?: Prisma.XOR<Prisma.subjectsCreateWithoutSession_subjectsInput, Prisma.subjectsUncheckedCreateWithoutSession_subjectsInput>
-  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutSession_subjectsInput
-  upsert?: Prisma.subjectsUpsertWithoutSession_subjectsInput
-  connect?: Prisma.subjectsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.subjectsUpdateToOneWithWhereWithoutSession_subjectsInput, Prisma.subjectsUpdateWithoutSession_subjectsInput>, Prisma.subjectsUncheckedUpdateWithoutSession_subjectsInput>
 }
 
 export type subjectsCreateNestedOneWithoutSubject_questionsInput = {
@@ -468,325 +458,29 @@ export type subjectsUpdateOneRequiredWithoutSubject_questionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.subjectsUpdateToOneWithWhereWithoutSubject_questionsInput, Prisma.subjectsUpdateWithoutSubject_questionsInput>, Prisma.subjectsUncheckedUpdateWithoutSubject_questionsInput>
 }
 
-export type subjectsCreateWithoutGrader_assignmentsInput = {
-  code: string
-  name: string
-  full_score?: number
-  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsCreateNestedManyWithoutSubjectsInput
+export type subjectsCreateNestedOneWithoutCampaign_subjectsInput = {
+  create?: Prisma.XOR<Prisma.subjectsCreateWithoutCampaign_subjectsInput, Prisma.subjectsUncheckedCreateWithoutCampaign_subjectsInput>
+  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutCampaign_subjectsInput
+  connect?: Prisma.subjectsWhereUniqueInput
 }
 
-export type subjectsUncheckedCreateWithoutGrader_assignmentsInput = {
-  id?: number
-  code: string
-  name: string
-  full_score?: number
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsUncheckedCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsUncheckedCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsCreateOrConnectWithoutGrader_assignmentsInput = {
-  where: Prisma.subjectsWhereUniqueInput
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutGrader_assignmentsInput, Prisma.subjectsUncheckedCreateWithoutGrader_assignmentsInput>
-}
-
-export type subjectsUpsertWithoutGrader_assignmentsInput = {
-  update: Prisma.XOR<Prisma.subjectsUpdateWithoutGrader_assignmentsInput, Prisma.subjectsUncheckedUpdateWithoutGrader_assignmentsInput>
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutGrader_assignmentsInput, Prisma.subjectsUncheckedCreateWithoutGrader_assignmentsInput>
-  where?: Prisma.subjectsWhereInput
-}
-
-export type subjectsUpdateToOneWithWhereWithoutGrader_assignmentsInput = {
-  where?: Prisma.subjectsWhereInput
-  data: Prisma.XOR<Prisma.subjectsUpdateWithoutGrader_assignmentsInput, Prisma.subjectsUncheckedUpdateWithoutGrader_assignmentsInput>
-}
-
-export type subjectsUpdateWithoutGrader_assignmentsInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsUncheckedUpdateWithoutGrader_assignmentsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUncheckedUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsCreateWithoutGrading_score_draftsInput = {
-  code: string
-  name: string
-  full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsUncheckedCreateWithoutGrading_score_draftsInput = {
-  id?: number
-  code: string
-  name: string
-  full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsUncheckedCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsUncheckedCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsCreateOrConnectWithoutGrading_score_draftsInput = {
-  where: Prisma.subjectsWhereUniqueInput
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_score_draftsInput, Prisma.subjectsUncheckedCreateWithoutGrading_score_draftsInput>
-}
-
-export type subjectsUpsertWithoutGrading_score_draftsInput = {
-  update: Prisma.XOR<Prisma.subjectsUpdateWithoutGrading_score_draftsInput, Prisma.subjectsUncheckedUpdateWithoutGrading_score_draftsInput>
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_score_draftsInput, Prisma.subjectsUncheckedCreateWithoutGrading_score_draftsInput>
-  where?: Prisma.subjectsWhereInput
-}
-
-export type subjectsUpdateToOneWithWhereWithoutGrading_score_draftsInput = {
-  where?: Prisma.subjectsWhereInput
-  data: Prisma.XOR<Prisma.subjectsUpdateWithoutGrading_score_draftsInput, Prisma.subjectsUncheckedUpdateWithoutGrading_score_draftsInput>
-}
-
-export type subjectsUpdateWithoutGrading_score_draftsInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsUncheckedUpdateWithoutGrading_score_draftsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUncheckedUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsCreateWithoutGrading_score_logsInput = {
-  code: string
-  name: string
-  full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsUncheckedCreateWithoutGrading_score_logsInput = {
-  id?: number
-  code: string
-  name: string
-  full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsUncheckedCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsUncheckedCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsCreateOrConnectWithoutGrading_score_logsInput = {
-  where: Prisma.subjectsWhereUniqueInput
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_score_logsInput, Prisma.subjectsUncheckedCreateWithoutGrading_score_logsInput>
-}
-
-export type subjectsUpsertWithoutGrading_score_logsInput = {
-  update: Prisma.XOR<Prisma.subjectsUpdateWithoutGrading_score_logsInput, Prisma.subjectsUncheckedUpdateWithoutGrading_score_logsInput>
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_score_logsInput, Prisma.subjectsUncheckedCreateWithoutGrading_score_logsInput>
-  where?: Prisma.subjectsWhereInput
-}
-
-export type subjectsUpdateToOneWithWhereWithoutGrading_score_logsInput = {
-  where?: Prisma.subjectsWhereInput
-  data: Prisma.XOR<Prisma.subjectsUpdateWithoutGrading_score_logsInput, Prisma.subjectsUncheckedUpdateWithoutGrading_score_logsInput>
-}
-
-export type subjectsUpdateWithoutGrading_score_logsInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsUncheckedUpdateWithoutGrading_score_logsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUncheckedUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsCreateWithoutGrading_slotsInput = {
-  code: string
-  name: string
-  full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsUncheckedCreateWithoutGrading_slotsInput = {
-  id?: number
-  code: string
-  name: string
-  full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsUncheckedCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsUncheckedCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsCreateOrConnectWithoutGrading_slotsInput = {
-  where: Prisma.subjectsWhereUniqueInput
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_slotsInput, Prisma.subjectsUncheckedCreateWithoutGrading_slotsInput>
-}
-
-export type subjectsUpsertWithoutGrading_slotsInput = {
-  update: Prisma.XOR<Prisma.subjectsUpdateWithoutGrading_slotsInput, Prisma.subjectsUncheckedUpdateWithoutGrading_slotsInput>
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutGrading_slotsInput, Prisma.subjectsUncheckedCreateWithoutGrading_slotsInput>
-  where?: Prisma.subjectsWhereInput
-}
-
-export type subjectsUpdateToOneWithWhereWithoutGrading_slotsInput = {
-  where?: Prisma.subjectsWhereInput
-  data: Prisma.XOR<Prisma.subjectsUpdateWithoutGrading_slotsInput, Prisma.subjectsUncheckedUpdateWithoutGrading_slotsInput>
-}
-
-export type subjectsUpdateWithoutGrading_slotsInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsUncheckedUpdateWithoutGrading_slotsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUncheckedUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsCreateWithoutSession_subjectsInput = {
-  code: string
-  name: string
-  full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsUncheckedCreateWithoutSession_subjectsInput = {
-  id?: number
-  code: string
-  name: string
-  full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutSubjectsInput
-  subject_questions?: Prisma.subject_questionsUncheckedCreateNestedManyWithoutSubjectsInput
-}
-
-export type subjectsCreateOrConnectWithoutSession_subjectsInput = {
-  where: Prisma.subjectsWhereUniqueInput
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutSession_subjectsInput, Prisma.subjectsUncheckedCreateWithoutSession_subjectsInput>
-}
-
-export type subjectsUpsertWithoutSession_subjectsInput = {
-  update: Prisma.XOR<Prisma.subjectsUpdateWithoutSession_subjectsInput, Prisma.subjectsUncheckedUpdateWithoutSession_subjectsInput>
-  create: Prisma.XOR<Prisma.subjectsCreateWithoutSession_subjectsInput, Prisma.subjectsUncheckedCreateWithoutSession_subjectsInput>
-  where?: Prisma.subjectsWhereInput
-}
-
-export type subjectsUpdateToOneWithWhereWithoutSession_subjectsInput = {
-  where?: Prisma.subjectsWhereInput
-  data: Prisma.XOR<Prisma.subjectsUpdateWithoutSession_subjectsInput, Prisma.subjectsUncheckedUpdateWithoutSession_subjectsInput>
-}
-
-export type subjectsUpdateWithoutSession_subjectsInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUpdateManyWithoutSubjectsNestedInput
-}
-
-export type subjectsUncheckedUpdateWithoutSession_subjectsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutSubjectsNestedInput
-  subject_questions?: Prisma.subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput
+export type subjectsUpdateOneRequiredWithoutCampaign_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.subjectsCreateWithoutCampaign_subjectsInput, Prisma.subjectsUncheckedCreateWithoutCampaign_subjectsInput>
+  connectOrCreate?: Prisma.subjectsCreateOrConnectWithoutCampaign_subjectsInput
+  upsert?: Prisma.subjectsUpsertWithoutCampaign_subjectsInput
+  connect?: Prisma.subjectsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.subjectsUpdateToOneWithWhereWithoutCampaign_subjectsInput, Prisma.subjectsUpdateWithoutCampaign_subjectsInput>, Prisma.subjectsUncheckedUpdateWithoutCampaign_subjectsInput>
 }
 
 export type subjectsCreateWithoutSubject_questionsInput = {
   code: string
   name: string
   full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsCreateNestedManyWithoutSubjectsInput
+  active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  campaign_subjects?: Prisma.campaign_subjectsCreateNestedManyWithoutSubjectsInput
 }
 
 export type subjectsUncheckedCreateWithoutSubject_questionsInput = {
@@ -794,11 +488,11 @@ export type subjectsUncheckedCreateWithoutSubject_questionsInput = {
   code: string
   name: string
   full_score?: number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedCreateNestedManyWithoutSubjectsInput
-  grading_slots?: Prisma.grading_slotsUncheckedCreateNestedManyWithoutSubjectsInput
-  session_subjects?: Prisma.session_subjectsUncheckedCreateNestedManyWithoutSubjectsInput
+  active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedCreateNestedManyWithoutSubjectsInput
 }
 
 export type subjectsCreateOrConnectWithoutSubject_questionsInput = {
@@ -821,11 +515,11 @@ export type subjectsUpdateWithoutSubject_questionsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUpdateManyWithoutSubjectsNestedInput
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  campaign_subjects?: Prisma.campaign_subjectsUpdateManyWithoutSubjectsNestedInput
 }
 
 export type subjectsUncheckedUpdateWithoutSubject_questionsInput = {
@@ -833,11 +527,73 @@ export type subjectsUncheckedUpdateWithoutSubject_questionsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   full_score?: Prisma.IntFieldUpdateOperationsInput | number
-  grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_drafts?: Prisma.grading_score_draftsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_score_logs?: Prisma.grading_score_logsUncheckedUpdateManyWithoutSubjectsNestedInput
-  grading_slots?: Prisma.grading_slotsUncheckedUpdateManyWithoutSubjectsNestedInput
-  session_subjects?: Prisma.session_subjectsUncheckedUpdateManyWithoutSubjectsNestedInput
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  campaign_subjects?: Prisma.campaign_subjectsUncheckedUpdateManyWithoutSubjectsNestedInput
+}
+
+export type subjectsCreateWithoutCampaign_subjectsInput = {
+  code: string
+  name: string
+  full_score?: number
+  active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  subject_questions?: Prisma.subject_questionsCreateNestedManyWithoutSubjectsInput
+}
+
+export type subjectsUncheckedCreateWithoutCampaign_subjectsInput = {
+  id?: number
+  code: string
+  name: string
+  full_score?: number
+  active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  subject_questions?: Prisma.subject_questionsUncheckedCreateNestedManyWithoutSubjectsInput
+}
+
+export type subjectsCreateOrConnectWithoutCampaign_subjectsInput = {
+  where: Prisma.subjectsWhereUniqueInput
+  create: Prisma.XOR<Prisma.subjectsCreateWithoutCampaign_subjectsInput, Prisma.subjectsUncheckedCreateWithoutCampaign_subjectsInput>
+}
+
+export type subjectsUpsertWithoutCampaign_subjectsInput = {
+  update: Prisma.XOR<Prisma.subjectsUpdateWithoutCampaign_subjectsInput, Prisma.subjectsUncheckedUpdateWithoutCampaign_subjectsInput>
+  create: Prisma.XOR<Prisma.subjectsCreateWithoutCampaign_subjectsInput, Prisma.subjectsUncheckedCreateWithoutCampaign_subjectsInput>
+  where?: Prisma.subjectsWhereInput
+}
+
+export type subjectsUpdateToOneWithWhereWithoutCampaign_subjectsInput = {
+  where?: Prisma.subjectsWhereInput
+  data: Prisma.XOR<Prisma.subjectsUpdateWithoutCampaign_subjectsInput, Prisma.subjectsUncheckedUpdateWithoutCampaign_subjectsInput>
+}
+
+export type subjectsUpdateWithoutCampaign_subjectsInput = {
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  full_score?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subject_questions?: Prisma.subject_questionsUpdateManyWithoutSubjectsNestedInput
+}
+
+export type subjectsUncheckedUpdateWithoutCampaign_subjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  full_score?: Prisma.IntFieldUpdateOperationsInput | number
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  subject_questions?: Prisma.subject_questionsUncheckedUpdateManyWithoutSubjectsNestedInput
 }
 
 
@@ -846,20 +602,12 @@ export type subjectsUncheckedUpdateWithoutSubject_questionsInput = {
  */
 
 export type SubjectsCountOutputType = {
-  grader_assignments: number
-  grading_score_drafts: number
-  grading_score_logs: number
-  grading_slots: number
-  session_subjects: number
+  campaign_subjects: number
   subject_questions: number
 }
 
 export type SubjectsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  grader_assignments?: boolean | SubjectsCountOutputTypeCountGrader_assignmentsArgs
-  grading_score_drafts?: boolean | SubjectsCountOutputTypeCountGrading_score_draftsArgs
-  grading_score_logs?: boolean | SubjectsCountOutputTypeCountGrading_score_logsArgs
-  grading_slots?: boolean | SubjectsCountOutputTypeCountGrading_slotsArgs
-  session_subjects?: boolean | SubjectsCountOutputTypeCountSession_subjectsArgs
+  campaign_subjects?: boolean | SubjectsCountOutputTypeCountCampaign_subjectsArgs
   subject_questions?: boolean | SubjectsCountOutputTypeCountSubject_questionsArgs
 }
 
@@ -876,36 +624,8 @@ export type SubjectsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * SubjectsCountOutputType without action
  */
-export type SubjectsCountOutputTypeCountGrader_assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.grader_assignmentsWhereInput
-}
-
-/**
- * SubjectsCountOutputType without action
- */
-export type SubjectsCountOutputTypeCountGrading_score_draftsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.grading_score_draftsWhereInput
-}
-
-/**
- * SubjectsCountOutputType without action
- */
-export type SubjectsCountOutputTypeCountGrading_score_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.grading_score_logsWhereInput
-}
-
-/**
- * SubjectsCountOutputType without action
- */
-export type SubjectsCountOutputTypeCountGrading_slotsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.grading_slotsWhereInput
-}
-
-/**
- * SubjectsCountOutputType without action
- */
-export type SubjectsCountOutputTypeCountSession_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.session_subjectsWhereInput
+export type SubjectsCountOutputTypeCountCampaign_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.campaign_subjectsWhereInput
 }
 
 /**
@@ -921,11 +641,11 @@ export type subjectsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   code?: boolean
   name?: boolean
   full_score?: boolean
-  grader_assignments?: boolean | Prisma.subjects$grader_assignmentsArgs<ExtArgs>
-  grading_score_drafts?: boolean | Prisma.subjects$grading_score_draftsArgs<ExtArgs>
-  grading_score_logs?: boolean | Prisma.subjects$grading_score_logsArgs<ExtArgs>
-  grading_slots?: boolean | Prisma.subjects$grading_slotsArgs<ExtArgs>
-  session_subjects?: boolean | Prisma.subjects$session_subjectsArgs<ExtArgs>
+  active?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  campaign_subjects?: boolean | Prisma.subjects$campaign_subjectsArgs<ExtArgs>
   subject_questions?: boolean | Prisma.subjects$subject_questionsArgs<ExtArgs>
   _count?: boolean | Prisma.SubjectsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subjects"]>
@@ -937,15 +657,15 @@ export type subjectsSelectScalar = {
   code?: boolean
   name?: boolean
   full_score?: boolean
+  active?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type subjectsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "full_score", ExtArgs["result"]["subjects"]>
+export type subjectsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "full_score" | "active" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["subjects"]>
 export type subjectsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  grader_assignments?: boolean | Prisma.subjects$grader_assignmentsArgs<ExtArgs>
-  grading_score_drafts?: boolean | Prisma.subjects$grading_score_draftsArgs<ExtArgs>
-  grading_score_logs?: boolean | Prisma.subjects$grading_score_logsArgs<ExtArgs>
-  grading_slots?: boolean | Prisma.subjects$grading_slotsArgs<ExtArgs>
-  session_subjects?: boolean | Prisma.subjects$session_subjectsArgs<ExtArgs>
+  campaign_subjects?: boolean | Prisma.subjects$campaign_subjectsArgs<ExtArgs>
   subject_questions?: boolean | Prisma.subjects$subject_questionsArgs<ExtArgs>
   _count?: boolean | Prisma.SubjectsCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -953,11 +673,7 @@ export type subjectsInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type $subjectsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "subjects"
   objects: {
-    grader_assignments: Prisma.$grader_assignmentsPayload<ExtArgs>[]
-    grading_score_drafts: Prisma.$grading_score_draftsPayload<ExtArgs>[]
-    grading_score_logs: Prisma.$grading_score_logsPayload<ExtArgs>[]
-    grading_slots: Prisma.$grading_slotsPayload<ExtArgs>[]
-    session_subjects: Prisma.$session_subjectsPayload<ExtArgs>[]
+    campaign_subjects: Prisma.$campaign_subjectsPayload<ExtArgs>[]
     subject_questions: Prisma.$subject_questionsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -965,6 +681,10 @@ export type $subjectsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     code: string
     name: string
     full_score: number
+    active: boolean
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["subjects"]>
   composites: {}
 }
@@ -1305,11 +1025,7 @@ readonly fields: subjectsFieldRefs;
  */
 export interface Prisma__subjectsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  grader_assignments<T extends Prisma.subjects$grader_assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjects$grader_assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grader_assignmentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  grading_score_drafts<T extends Prisma.subjects$grading_score_draftsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjects$grading_score_draftsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grading_score_draftsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  grading_score_logs<T extends Prisma.subjects$grading_score_logsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjects$grading_score_logsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grading_score_logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  grading_slots<T extends Prisma.subjects$grading_slotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjects$grading_slotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$grading_slotsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  session_subjects<T extends Prisma.subjects$session_subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjects$session_subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$session_subjectsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  campaign_subjects<T extends Prisma.subjects$campaign_subjectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjects$campaign_subjectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$campaign_subjectsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   subject_questions<T extends Prisma.subjects$subject_questionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjects$subject_questionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$subject_questionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1344,6 +1060,10 @@ export interface subjectsFieldRefs {
   readonly code: Prisma.FieldRef<"subjects", 'String'>
   readonly name: Prisma.FieldRef<"subjects", 'String'>
   readonly full_score: Prisma.FieldRef<"subjects", 'Int'>
+  readonly active: Prisma.FieldRef<"subjects", 'Boolean'>
+  readonly created_at: Prisma.FieldRef<"subjects", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"subjects", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"subjects", 'DateTime'>
 }
     
 
@@ -1692,123 +1412,27 @@ export type subjectsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * subjects.grader_assignments
+ * subjects.campaign_subjects
  */
-export type subjects$grader_assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type subjects$campaign_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the grader_assignments
+   * Select specific fields to fetch from the campaign_subjects
    */
-  select?: Prisma.grader_assignmentsSelect<ExtArgs> | null
+  select?: Prisma.campaign_subjectsSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the grader_assignments
+   * Omit specific fields from the campaign_subjects
    */
-  omit?: Prisma.grader_assignmentsOmit<ExtArgs> | null
+  omit?: Prisma.campaign_subjectsOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.grader_assignmentsInclude<ExtArgs> | null
-  where?: Prisma.grader_assignmentsWhereInput
-  orderBy?: Prisma.grader_assignmentsOrderByWithRelationInput | Prisma.grader_assignmentsOrderByWithRelationInput[]
-  cursor?: Prisma.grader_assignmentsWhereUniqueInput
+  include?: Prisma.campaign_subjectsInclude<ExtArgs> | null
+  where?: Prisma.campaign_subjectsWhereInput
+  orderBy?: Prisma.campaign_subjectsOrderByWithRelationInput | Prisma.campaign_subjectsOrderByWithRelationInput[]
+  cursor?: Prisma.campaign_subjectsWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.Grader_assignmentsScalarFieldEnum | Prisma.Grader_assignmentsScalarFieldEnum[]
-}
-
-/**
- * subjects.grading_score_drafts
- */
-export type subjects$grading_score_draftsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the grading_score_drafts
-   */
-  select?: Prisma.grading_score_draftsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the grading_score_drafts
-   */
-  omit?: Prisma.grading_score_draftsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.grading_score_draftsInclude<ExtArgs> | null
-  where?: Prisma.grading_score_draftsWhereInput
-  orderBy?: Prisma.grading_score_draftsOrderByWithRelationInput | Prisma.grading_score_draftsOrderByWithRelationInput[]
-  cursor?: Prisma.grading_score_draftsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Grading_score_draftsScalarFieldEnum | Prisma.Grading_score_draftsScalarFieldEnum[]
-}
-
-/**
- * subjects.grading_score_logs
- */
-export type subjects$grading_score_logsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the grading_score_logs
-   */
-  select?: Prisma.grading_score_logsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the grading_score_logs
-   */
-  omit?: Prisma.grading_score_logsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.grading_score_logsInclude<ExtArgs> | null
-  where?: Prisma.grading_score_logsWhereInput
-  orderBy?: Prisma.grading_score_logsOrderByWithRelationInput | Prisma.grading_score_logsOrderByWithRelationInput[]
-  cursor?: Prisma.grading_score_logsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Grading_score_logsScalarFieldEnum | Prisma.Grading_score_logsScalarFieldEnum[]
-}
-
-/**
- * subjects.grading_slots
- */
-export type subjects$grading_slotsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the grading_slots
-   */
-  select?: Prisma.grading_slotsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the grading_slots
-   */
-  omit?: Prisma.grading_slotsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.grading_slotsInclude<ExtArgs> | null
-  where?: Prisma.grading_slotsWhereInput
-  orderBy?: Prisma.grading_slotsOrderByWithRelationInput | Prisma.grading_slotsOrderByWithRelationInput[]
-  cursor?: Prisma.grading_slotsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Grading_slotsScalarFieldEnum | Prisma.Grading_slotsScalarFieldEnum[]
-}
-
-/**
- * subjects.session_subjects
- */
-export type subjects$session_subjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the session_subjects
-   */
-  select?: Prisma.session_subjectsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the session_subjects
-   */
-  omit?: Prisma.session_subjectsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.session_subjectsInclude<ExtArgs> | null
-  where?: Prisma.session_subjectsWhereInput
-  orderBy?: Prisma.session_subjectsOrderByWithRelationInput | Prisma.session_subjectsOrderByWithRelationInput[]
-  cursor?: Prisma.session_subjectsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.Session_subjectsScalarFieldEnum | Prisma.Session_subjectsScalarFieldEnum[]
+  distinct?: Prisma.Campaign_subjectsScalarFieldEnum | Prisma.Campaign_subjectsScalarFieldEnum[]
 }
 
 /**

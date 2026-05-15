@@ -29,7 +29,11 @@ export const campaignRepo = {
                 sessions: {
                     include: {
                         session_subjects: {
-                            include: { subjects: true },
+                            include: {
+                                campaign_subjects: {
+                                    include: { subjects: true },
+                                },
+                            },
                         },
                     },
                     orderBy: { day_no: "asc" },
@@ -45,7 +49,11 @@ export const campaignRepo = {
                 sessions: {
                     include: {
                         session_subjects: {
-                            include: { subjects: true },
+                            include: {
+                                campaign_subjects: {
+                                    include: { subjects: true },
+                                },
+                            },
                         },
                     },
                     orderBy: { day_no: "asc" },
@@ -62,7 +70,7 @@ export const campaignRepo = {
         site: string,
         is_unlock: boolean,
         campaign_size: string,
-        qr_active: number,
+        qr_active: boolean,
     }, tx?: Tx) {
         const client = tx ?? prisma;
         return await client.exam_campaigns.create({ data });
@@ -88,7 +96,7 @@ export const campaignRepo = {
         });
     },
 
-    async updateQrActive(campaign_id: number, qr_active: number, tx?: Tx) {
+    async updateQrActive(campaign_id: number, qr_active: boolean, tx?: Tx) {
         const client = tx ?? prisma;
         return await client.exam_campaigns.update({
             where: { id: campaign_id },

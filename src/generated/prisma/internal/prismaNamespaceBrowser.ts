@@ -74,7 +74,25 @@ export const ModelName = {
   twofactor_sessions: 'twofactor_sessions',
   user_campaigns: 'user_campaigns',
   user_sessions: 'user_sessions',
-  users: 'users'
+  users: 'users',
+  booklet_incident_reports: 'booklet_incident_reports',
+  booklet_question_choices: 'booklet_question_choices',
+  booklet_question_notes: 'booklet_question_notes',
+  campaign_settings: 'campaign_settings',
+  campaign_subjects: 'campaign_subjects',
+  incident_attachments: 'incident_attachments',
+  notification_delivery_logs: 'notification_delivery_logs',
+  notification_messages: 'notification_messages',
+  notification_preferences: 'notification_preferences',
+  notification_recipients: 'notification_recipients',
+  notification_templates: 'notification_templates',
+  qr_scan_logs: 'qr_scan_logs',
+  question_choice_group_items: 'question_choice_group_items',
+  question_choice_groups: 'question_choice_groups',
+  service_outbox_events: 'service_outbox_events',
+  session_counters: 'session_counters',
+  session_subject_questions: 'session_subject_questions',
+  setting_definitions: 'setting_definitions'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -97,15 +115,20 @@ export const AccountsScalarFieldEnum = {
   id: 'id',
   username: 'username',
   password_hash: 'password_hash',
+  title: 'title',
   full_name: 'full_name',
   email: 'email',
+  profile_image_url: 'profile_image_url',
+  profile_image_key: 'profile_image_key',
   active: 'active',
   role_id: 'role_id',
+  campaign_id: 'campaign_id',
   session_version: 'session_version',
   manager_order: 'manager_order',
-  title: 'title',
-  delete_at: 'delete_at',
-  campaign_id: 'campaign_id'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  active_unique_key: 'active_unique_key'
 } as const
 
 export type AccountsScalarFieldEnum = (typeof AccountsScalarFieldEnum)[keyof typeof AccountsScalarFieldEnum]
@@ -132,7 +155,9 @@ export const Auth_sessionsScalarFieldEnum = {
   sid: 'sid',
   account_id: 'account_id',
   expires: 'expires',
-  data: 'data'
+  data: 'data',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type Auth_sessionsScalarFieldEnum = (typeof Auth_sessionsScalarFieldEnum)[keyof typeof Auth_sessionsScalarFieldEnum]
@@ -140,11 +165,15 @@ export type Auth_sessionsScalarFieldEnum = (typeof Auth_sessionsScalarFieldEnum)
 
 export const BagsScalarFieldEnum = {
   id: 'id',
+  campaign_id: 'campaign_id',
   session_id: 'session_id',
   bag_no: 'bag_no',
   count_items: 'count_items',
   status: 'status',
-  created_at: 'created_at'
+  created_by_account_id: 'created_by_account_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type BagsScalarFieldEnum = (typeof BagsScalarFieldEnum)[keyof typeof BagsScalarFieldEnum]
@@ -152,15 +181,17 @@ export type BagsScalarFieldEnum = (typeof BagsScalarFieldEnum)[keyof typeof Bags
 
 export const BookletsScalarFieldEnum = {
   id: 'id',
-  session_id: 'session_id',
   campaign_id: 'campaign_id',
+  session_id: 'session_id',
   user_code: 'user_code',
   qr_payload: 'qr_payload',
+  bag_id: 'bag_id',
   seq_in_bag: 'seq_in_bag',
+  random_num: 'random_num',
   status: 'status',
   created_at: 'created_at',
-  bag_id: 'bag_id',
-  random_num: 'random_num'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type BookletsScalarFieldEnum = (typeof BookletsScalarFieldEnum)[keyof typeof BookletsScalarFieldEnum]
@@ -170,9 +201,14 @@ export const Campaign_keysScalarFieldEnum = {
   id: 'id',
   campaign_id: 'campaign_id',
   account_id: 'account_id',
+  key_ciphertext: 'key_ciphertext',
+  algor: 'algor',
+  iv: 'iv',
+  order_num: 'order_num',
   active: 'active',
   created_at: 'created_at',
-  order_num: 'order_num'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Campaign_keysScalarFieldEnum = (typeof Campaign_keysScalarFieldEnum)[keyof typeof Campaign_keysScalarFieldEnum]
@@ -181,12 +217,15 @@ export type Campaign_keysScalarFieldEnum = (typeof Campaign_keysScalarFieldEnum)
 export const Exam_campaignsScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  is_active: 'is_active',
   year_be: 'year_be',
   site: 'site',
   campaign_size: 'campaign_size',
+  is_active: 'is_active',
   is_unlock: 'is_unlock',
-  qr_active: 'qr_active'
+  qr_active: 'qr_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Exam_campaignsScalarFieldEnum = (typeof Exam_campaignsScalarFieldEnum)[keyof typeof Exam_campaignsScalarFieldEnum]
@@ -195,17 +234,27 @@ export type Exam_campaignsScalarFieldEnum = (typeof Exam_campaignsScalarFieldEnu
 export const Exam_roomsScalarFieldEnum = {
   campaign_id: 'campaign_id',
   room_code: 'room_code',
-  capacity: 'capacity'
+  capacity: 'capacity',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Exam_roomsScalarFieldEnum = (typeof Exam_roomsScalarFieldEnum)[keyof typeof Exam_roomsScalarFieldEnum]
 
 
 export const Grader_assignmentsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
   grader_id: 'grader_id',
   session_id: 'session_id',
-  subject_id: 'subject_id',
-  subject_question_id: 'subject_question_id'
+  campaign_subject_id: 'campaign_subject_id',
+  session_subject_id: 'session_subject_id',
+  session_subject_question_id: 'session_subject_question_id',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Grader_assignmentsScalarFieldEnum = (typeof Grader_assignmentsScalarFieldEnum)[keyof typeof Grader_assignmentsScalarFieldEnum]
@@ -215,12 +264,16 @@ export const Grader_work_locksScalarFieldEnum = {
   id: 'id',
   grader_id: 'grader_id',
   campaign_id: 'campaign_id',
+  session_id: 'session_id',
   bag_id: 'bag_id',
+  session_subject_question_id: 'session_subject_question_id',
   question_no: 'question_no',
   status: 'status',
   locked_at: 'locked_at',
   released_at: 'released_at',
-  created_by: 'created_by'
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type Grader_work_locksScalarFieldEnum = (typeof Grader_work_locksScalarFieldEnum)[keyof typeof Grader_work_locksScalarFieldEnum]
@@ -229,7 +282,11 @@ export type Grader_work_locksScalarFieldEnum = (typeof Grader_work_locksScalarFi
 export const GradersScalarFieldEnum = {
   id: 'id',
   campaign_id: 'campaign_id',
-  account_id: 'account_id'
+  account_id: 'account_id',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type GradersScalarFieldEnum = (typeof GradersScalarFieldEnum)[keyof typeof GradersScalarFieldEnum]
@@ -237,16 +294,21 @@ export type GradersScalarFieldEnum = (typeof GradersScalarFieldEnum)[keyof typeo
 
 export const Grading_score_draftsScalarFieldEnum = {
   id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
   bag_id: 'bag_id',
   booklet_id: 'booklet_id',
-  subject_id: 'subject_id',
+  campaign_subject_id: 'campaign_subject_id',
+  session_subject_id: 'session_subject_id',
+  session_subject_question_id: 'session_subject_question_id',
   question_no: 'question_no',
   slot_id: 'slot_id',
   grader_id: 'grader_id',
   score: 'score',
   status: 'status',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Grading_score_draftsScalarFieldEnum = (typeof Grading_score_draftsScalarFieldEnum)[keyof typeof Grading_score_draftsScalarFieldEnum]
@@ -254,8 +316,12 @@ export type Grading_score_draftsScalarFieldEnum = (typeof Grading_score_draftsSc
 
 export const Grading_score_logsScalarFieldEnum = {
   id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
   booklet_id: 'booklet_id',
-  subject_id: 'subject_id',
+  campaign_subject_id: 'campaign_subject_id',
+  session_subject_id: 'session_subject_id',
+  session_subject_question_id: 'session_subject_question_id',
   question_no: 'question_no',
   slot_id1: 'slot_id1',
   slot_id2: 'slot_id2',
@@ -263,8 +329,12 @@ export const Grading_score_logsScalarFieldEnum = {
   grader2_id: 'grader2_id',
   old_score1: 'old_score1',
   old_score2: 'old_score2',
+  new_score1: 'new_score1',
+  new_score2: 'new_score2',
+  reason: 'reason',
   changed_by: 'changed_by',
-  changed_at: 'changed_at'
+  changed_at: 'changed_at',
+  created_at: 'created_at'
 } as const
 
 export type Grading_score_logsScalarFieldEnum = (typeof Grading_score_logsScalarFieldEnum)[keyof typeof Grading_score_logsScalarFieldEnum]
@@ -275,7 +345,9 @@ export const Grading_scoresScalarFieldEnum = {
   slot_id: 'slot_id',
   score: 'score',
   entered_by: 'entered_by',
-  entered_at: 'entered_at'
+  entered_at: 'entered_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type Grading_scoresScalarFieldEnum = (typeof Grading_scoresScalarFieldEnum)[keyof typeof Grading_scoresScalarFieldEnum]
@@ -283,12 +355,19 @@ export type Grading_scoresScalarFieldEnum = (typeof Grading_scoresScalarFieldEnu
 
 export const Grading_slotsScalarFieldEnum = {
   id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  booklet_id: 'booklet_id',
+  campaign_subject_id: 'campaign_subject_id',
+  session_subject_id: 'session_subject_id',
+  session_subject_question_id: 'session_subject_question_id',
   question_no: 'question_no',
   grader_order: 'grader_order',
-  status: 'status',
   grader_id: 'grader_id',
-  booklet_id: 'booklet_id',
-  subject_id: 'subject_id'
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Grading_slotsScalarFieldEnum = (typeof Grading_slotsScalarFieldEnum)[keyof typeof Grading_slotsScalarFieldEnum]
@@ -298,19 +377,27 @@ export const RolesScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
-  active: 'active'
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type RolesScalarFieldEnum = (typeof RolesScalarFieldEnum)[keyof typeof RolesScalarFieldEnum]
 
 
 export const Session_subjectsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
   session_id: 'session_id',
-  subject_id: 'subject_id',
+  campaign_subject_id: 'campaign_subject_id',
   start_at: 'start_at',
   end_at: 'end_at',
   question_count: 'question_count',
-  order_no: 'order_no'
+  order_no: 'order_no',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Session_subjectsScalarFieldEnum = (typeof Session_subjectsScalarFieldEnum)[keyof typeof Session_subjectsScalarFieldEnum]
@@ -318,11 +405,14 @@ export type Session_subjectsScalarFieldEnum = (typeof Session_subjectsScalarFiel
 
 export const SessionsScalarFieldEnum = {
   id: 'id',
-  session_code: 'session_code',
-  exam_date: 'exam_date',
   campaign_id: 'campaign_id',
+  session_code: 'session_code',
+  title: 'title',
+  exam_date: 'exam_date',
   day_no: 'day_no',
-  title: 'title'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type SessionsScalarFieldEnum = (typeof SessionsScalarFieldEnum)[keyof typeof SessionsScalarFieldEnum]
@@ -334,7 +424,10 @@ export const Subject_questionsScalarFieldEnum = {
   question_no: 'question_no',
   label: 'label',
   max_score: 'max_score',
-  note: 'note'
+  note: 'note',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Subject_questionsScalarFieldEnum = (typeof Subject_questionsScalarFieldEnum)[keyof typeof Subject_questionsScalarFieldEnum]
@@ -344,7 +437,11 @@ export const SubjectsScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
-  full_score: 'full_score'
+  full_score: 'full_score',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type SubjectsScalarFieldEnum = (typeof SubjectsScalarFieldEnum)[keyof typeof SubjectsScalarFieldEnum]
@@ -355,12 +452,18 @@ export const Twofactor_sessionsScalarFieldEnum = {
   account_id: 'account_id',
   campaign_id: 'campaign_id',
   purpose: 'purpose',
+  channel: 'channel',
+  target: 'target',
   otp_hash: 'otp_hash',
+  otp_token: 'otp_token',
+  attempts: 'attempts',
+  max_attempts: 'max_attempts',
+  status: 'status',
   created_at: 'created_at',
   expires_at: 'expires_at',
   used_at: 'used_at',
-  attempts: 'attempts',
-  otp_token: 'otp_token'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Twofactor_sessionsScalarFieldEnum = (typeof Twofactor_sessionsScalarFieldEnum)[keyof typeof Twofactor_sessionsScalarFieldEnum]
@@ -372,7 +475,10 @@ export const User_campaignsScalarFieldEnum = {
   campaign_id: 'campaign_id',
   room_code: 'room_code',
   row_no: 'row_no',
-  col_no: 'col_no'
+  col_no: 'col_no',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type User_campaignsScalarFieldEnum = (typeof User_campaignsScalarFieldEnum)[keyof typeof User_campaignsScalarFieldEnum]
@@ -382,7 +488,10 @@ export const User_sessionsScalarFieldEnum = {
   id: 'id',
   user_campaign_id: 'user_campaign_id',
   campaign_id: 'campaign_id',
-  session_id: 'session_id'
+  session_id: 'session_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type User_sessionsScalarFieldEnum = (typeof User_sessionsScalarFieldEnum)[keyof typeof User_sessionsScalarFieldEnum]
@@ -391,15 +500,364 @@ export type User_sessionsScalarFieldEnum = (typeof User_sessionsScalarFieldEnum)
 export const UsersScalarFieldEnum = {
   id: 'id',
   user_code: 'user_code',
+  title: 'title',
+  gender: 'gender',
   full_name: 'full_name',
   first_name: 'first_name',
   last_name: 'last_name',
-  title: 'title',
+  first_name_en: 'first_name_en',
+  last_name_en: 'last_name_en',
   national_id: 'national_id',
-  birth_date: 'birth_date'
+  birth_date: 'birth_date',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  ethnicity: 'ethnicity',
+  nationality_birth: 'nationality_birth',
+  nationality_current: 'nationality_current',
+  religion: 'religion',
+  phone: 'phone',
+  mobile: 'mobile',
+  email: 'email',
+  address: 'address',
+  study_degree: 'study_degree',
+  university: 'university'
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const Booklet_incident_reportsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  bag_id: 'bag_id',
+  booklet_id: 'booklet_id',
+  incident_type: 'incident_type',
+  severity: 'severity',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  reported_by_account_id: 'reported_by_account_id',
+  reported_by_grader_id: 'reported_by_grader_id',
+  assigned_to_account_id: 'assigned_to_account_id',
+  resolved_by_account_id: 'resolved_by_account_id',
+  resolved_at: 'resolved_at',
+  resolution_note: 'resolution_note',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Booklet_incident_reportsScalarFieldEnum = (typeof Booklet_incident_reportsScalarFieldEnum)[keyof typeof Booklet_incident_reportsScalarFieldEnum]
+
+
+export const Booklet_question_choicesScalarFieldEnum = {
+  id: 'id',
+  booklet_id: 'booklet_id',
+  choice_group_id: 'choice_group_id',
+  session_subject_question_id: 'session_subject_question_id',
+  selected_by: 'selected_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Booklet_question_choicesScalarFieldEnum = (typeof Booklet_question_choicesScalarFieldEnum)[keyof typeof Booklet_question_choicesScalarFieldEnum]
+
+
+export const Booklet_question_notesScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  bag_id: 'bag_id',
+  booklet_id: 'booklet_id',
+  session_subject_question_id: 'session_subject_question_id',
+  slot_id: 'slot_id',
+  note_type: 'note_type',
+  severity: 'severity',
+  note: 'note',
+  status: 'status',
+  created_by_account_id: 'created_by_account_id',
+  created_by_grader_id: 'created_by_grader_id',
+  reviewed_by_account_id: 'reviewed_by_account_id',
+  reviewed_at: 'reviewed_at',
+  resolution_note: 'resolution_note',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Booklet_question_notesScalarFieldEnum = (typeof Booklet_question_notesScalarFieldEnum)[keyof typeof Booklet_question_notesScalarFieldEnum]
+
+
+export const Campaign_settingsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  setting_key: 'setting_key',
+  setting_value: 'setting_value',
+  value_type: 'value_type',
+  description: 'description',
+  active: 'active',
+  created_by_account_id: 'created_by_account_id',
+  updated_by_account_id: 'updated_by_account_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Campaign_settingsScalarFieldEnum = (typeof Campaign_settingsScalarFieldEnum)[keyof typeof Campaign_settingsScalarFieldEnum]
+
+
+export const Campaign_subjectsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  subject_id: 'subject_id',
+  code: 'code',
+  name: 'name',
+  full_score: 'full_score',
+  order_no: 'order_no',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Campaign_subjectsScalarFieldEnum = (typeof Campaign_subjectsScalarFieldEnum)[keyof typeof Campaign_subjectsScalarFieldEnum]
+
+
+export const Incident_attachmentsScalarFieldEnum = {
+  id: 'id',
+  incident_id: 'incident_id',
+  booklet_question_note_id: 'booklet_question_note_id',
+  file_url: 'file_url',
+  file_key: 'file_key',
+  file_name: 'file_name',
+  mime_type: 'mime_type',
+  file_size_bytes: 'file_size_bytes',
+  uploaded_by_account_id: 'uploaded_by_account_id',
+  uploaded_by_grader_id: 'uploaded_by_grader_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Incident_attachmentsScalarFieldEnum = (typeof Incident_attachmentsScalarFieldEnum)[keyof typeof Incident_attachmentsScalarFieldEnum]
+
+
+export const Notification_delivery_logsScalarFieldEnum = {
+  id: 'id',
+  notification_id: 'notification_id',
+  recipient_id: 'recipient_id',
+  channel: 'channel',
+  provider: 'provider',
+  request_payload: 'request_payload',
+  response_payload: 'response_payload',
+  status: 'status',
+  error_message: 'error_message',
+  attempt_no: 'attempt_no',
+  created_at: 'created_at'
+} as const
+
+export type Notification_delivery_logsScalarFieldEnum = (typeof Notification_delivery_logsScalarFieldEnum)[keyof typeof Notification_delivery_logsScalarFieldEnum]
+
+
+export const Notification_messagesScalarFieldEnum = {
+  id: 'id',
+  template_id: 'template_id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  bag_id: 'bag_id',
+  type: 'type',
+  channel: 'channel',
+  title: 'title',
+  body: 'body',
+  payload: 'payload',
+  status: 'status',
+  scheduled_at: 'scheduled_at',
+  sent_at: 'sent_at',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Notification_messagesScalarFieldEnum = (typeof Notification_messagesScalarFieldEnum)[keyof typeof Notification_messagesScalarFieldEnum]
+
+
+export const Notification_preferencesScalarFieldEnum = {
+  id: 'id',
+  account_id: 'account_id',
+  notification_type: 'notification_type',
+  channel: 'channel',
+  enabled: 'enabled',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Notification_preferencesScalarFieldEnum = (typeof Notification_preferencesScalarFieldEnum)[keyof typeof Notification_preferencesScalarFieldEnum]
+
+
+export const Notification_recipientsScalarFieldEnum = {
+  id: 'id',
+  notification_id: 'notification_id',
+  account_id: 'account_id',
+  grader_id: 'grader_id',
+  recipient_type: 'recipient_type',
+  recipient_target: 'recipient_target',
+  read_at: 'read_at',
+  dismissed_at: 'dismissed_at',
+  delivery_status: 'delivery_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Notification_recipientsScalarFieldEnum = (typeof Notification_recipientsScalarFieldEnum)[keyof typeof Notification_recipientsScalarFieldEnum]
+
+
+export const Notification_templatesScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  channel: 'channel',
+  subject_template: 'subject_template',
+  body_template: 'body_template',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Notification_templatesScalarFieldEnum = (typeof Notification_templatesScalarFieldEnum)[keyof typeof Notification_templatesScalarFieldEnum]
+
+
+export const Qr_scan_logsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  bag_id: 'bag_id',
+  booklet_id: 'booklet_id',
+  scanned_by_account_id: 'scanned_by_account_id',
+  scanned_by_grader_id: 'scanned_by_grader_id',
+  scan_context: 'scan_context',
+  scan_result: 'scan_result',
+  qr_payload_masked: 'qr_payload_masked',
+  qr_payload_hash: 'qr_payload_hash',
+  error_code: 'error_code',
+  error_message: 'error_message',
+  ip_address: 'ip_address',
+  user_agent: 'user_agent',
+  device_info: 'device_info',
+  scanned_at: 'scanned_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Qr_scan_logsScalarFieldEnum = (typeof Qr_scan_logsScalarFieldEnum)[keyof typeof Qr_scan_logsScalarFieldEnum]
+
+
+export const Question_choice_group_itemsScalarFieldEnum = {
+  id: 'id',
+  choice_group_id: 'choice_group_id',
+  session_subject_question_id: 'session_subject_question_id',
+  order_no: 'order_no',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Question_choice_group_itemsScalarFieldEnum = (typeof Question_choice_group_itemsScalarFieldEnum)[keyof typeof Question_choice_group_itemsScalarFieldEnum]
+
+
+export const Question_choice_groupsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  session_subject_id: 'session_subject_id',
+  group_code: 'group_code',
+  title: 'title',
+  required_count: 'required_count',
+  max_select_count: 'max_select_count',
+  scoring_policy: 'scoring_policy',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Question_choice_groupsScalarFieldEnum = (typeof Question_choice_groupsScalarFieldEnum)[keyof typeof Question_choice_groupsScalarFieldEnum]
+
+
+export const Service_outbox_eventsScalarFieldEnum = {
+  id: 'id',
+  event_type: 'event_type',
+  aggregate_type: 'aggregate_type',
+  aggregate_id: 'aggregate_id',
+  payload: 'payload',
+  status: 'status',
+  attempts: 'attempts',
+  max_attempts: 'max_attempts',
+  available_at: 'available_at',
+  locked_at: 'locked_at',
+  locked_by: 'locked_by',
+  processed_at: 'processed_at',
+  error_message: 'error_message',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Service_outbox_eventsScalarFieldEnum = (typeof Service_outbox_eventsScalarFieldEnum)[keyof typeof Service_outbox_eventsScalarFieldEnum]
+
+
+export const Session_countersScalarFieldEnum = {
+  session_id: 'session_id',
+  next_bag_no: 'next_bag_no',
+  next_random_seq: 'next_random_seq',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Session_countersScalarFieldEnum = (typeof Session_countersScalarFieldEnum)[keyof typeof Session_countersScalarFieldEnum]
+
+
+export const Session_subject_questionsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  session_subject_id: 'session_subject_id',
+  question_no: 'question_no',
+  label: 'label',
+  max_score: 'max_score',
+  question_type: 'question_type',
+  note: 'note',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Session_subject_questionsScalarFieldEnum = (typeof Session_subject_questionsScalarFieldEnum)[keyof typeof Session_subject_questionsScalarFieldEnum]
+
+
+export const Setting_definitionsScalarFieldEnum = {
+  id: 'id',
+  setting_key: 'setting_key',
+  name: 'name',
+  description: 'description',
+  value_type: 'value_type',
+  scope: 'scope',
+  default_value: 'default_value',
+  required: 'required',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Setting_definitionsScalarFieldEnum = (typeof Setting_definitionsScalarFieldEnum)[keyof typeof Setting_definitionsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -418,6 +876,13 @@ export const NullableJsonNullValueInput = {
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
@@ -429,9 +894,11 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 export const accountsOrderByRelevanceFieldEnum = {
   username: 'username',
   password_hash: 'password_hash',
+  title: 'title',
   full_name: 'full_name',
   email: 'email',
-  title: 'title'
+  profile_image_url: 'profile_image_url',
+  profile_image_key: 'profile_image_key'
 } as const
 
 export type accountsOrderByRelevanceFieldEnum = (typeof accountsOrderByRelevanceFieldEnum)[keyof typeof accountsOrderByRelevanceFieldEnum]
@@ -483,11 +950,20 @@ export type bagsOrderByRelevanceFieldEnum = (typeof bagsOrderByRelevanceFieldEnu
 export const bookletsOrderByRelevanceFieldEnum = {
   user_code: 'user_code',
   qr_payload: 'qr_payload',
-  status: 'status',
-  random_num: 'random_num'
+  random_num: 'random_num',
+  status: 'status'
 } as const
 
 export type bookletsOrderByRelevanceFieldEnum = (typeof bookletsOrderByRelevanceFieldEnum)[keyof typeof bookletsOrderByRelevanceFieldEnum]
+
+
+export const campaign_keysOrderByRelevanceFieldEnum = {
+  key_ciphertext: 'key_ciphertext',
+  algor: 'algor',
+  iv: 'iv'
+} as const
+
+export type campaign_keysOrderByRelevanceFieldEnum = (typeof campaign_keysOrderByRelevanceFieldEnum)[keyof typeof campaign_keysOrderByRelevanceFieldEnum]
 
 
 export const exam_campaignsOrderByRelevanceFieldEnum = {
@@ -519,6 +995,13 @@ export const grading_score_draftsOrderByRelevanceFieldEnum = {
 } as const
 
 export type grading_score_draftsOrderByRelevanceFieldEnum = (typeof grading_score_draftsOrderByRelevanceFieldEnum)[keyof typeof grading_score_draftsOrderByRelevanceFieldEnum]
+
+
+export const grading_score_logsOrderByRelevanceFieldEnum = {
+  reason: 'reason'
+} as const
+
+export type grading_score_logsOrderByRelevanceFieldEnum = (typeof grading_score_logsOrderByRelevanceFieldEnum)[keyof typeof grading_score_logsOrderByRelevanceFieldEnum]
 
 
 export const grading_slotsOrderByRelevanceFieldEnum = {
@@ -562,8 +1045,11 @@ export type subjectsOrderByRelevanceFieldEnum = (typeof subjectsOrderByRelevance
 
 export const twofactor_sessionsOrderByRelevanceFieldEnum = {
   purpose: 'purpose',
+  channel: 'channel',
+  target: 'target',
   otp_hash: 'otp_hash',
-  otp_token: 'otp_token'
+  otp_token: 'otp_token',
+  status: 'status'
 } as const
 
 export type twofactor_sessionsOrderByRelevanceFieldEnum = (typeof twofactor_sessionsOrderByRelevanceFieldEnum)[keyof typeof twofactor_sessionsOrderByRelevanceFieldEnum]
@@ -578,12 +1064,185 @@ export type user_campaignsOrderByRelevanceFieldEnum = (typeof user_campaignsOrde
 
 export const usersOrderByRelevanceFieldEnum = {
   user_code: 'user_code',
+  title: 'title',
+  gender: 'gender',
   full_name: 'full_name',
   first_name: 'first_name',
   last_name: 'last_name',
-  title: 'title',
-  national_id: 'national_id'
+  first_name_en: 'first_name_en',
+  last_name_en: 'last_name_en',
+  national_id: 'national_id',
+  ethnicity: 'ethnicity',
+  nationality_birth: 'nationality_birth',
+  nationality_current: 'nationality_current',
+  religion: 'religion',
+  phone: 'phone',
+  mobile: 'mobile',
+  email: 'email',
+  address: 'address',
+  study_degree: 'study_degree',
+  university: 'university'
 } as const
 
 export type usersOrderByRelevanceFieldEnum = (typeof usersOrderByRelevanceFieldEnum)[keyof typeof usersOrderByRelevanceFieldEnum]
+
+
+export const booklet_incident_reportsOrderByRelevanceFieldEnum = {
+  incident_type: 'incident_type',
+  severity: 'severity',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  resolution_note: 'resolution_note'
+} as const
+
+export type booklet_incident_reportsOrderByRelevanceFieldEnum = (typeof booklet_incident_reportsOrderByRelevanceFieldEnum)[keyof typeof booklet_incident_reportsOrderByRelevanceFieldEnum]
+
+
+export const booklet_question_choicesOrderByRelevanceFieldEnum = {
+  selected_by: 'selected_by'
+} as const
+
+export type booklet_question_choicesOrderByRelevanceFieldEnum = (typeof booklet_question_choicesOrderByRelevanceFieldEnum)[keyof typeof booklet_question_choicesOrderByRelevanceFieldEnum]
+
+
+export const booklet_question_notesOrderByRelevanceFieldEnum = {
+  note_type: 'note_type',
+  severity: 'severity',
+  note: 'note',
+  status: 'status',
+  resolution_note: 'resolution_note'
+} as const
+
+export type booklet_question_notesOrderByRelevanceFieldEnum = (typeof booklet_question_notesOrderByRelevanceFieldEnum)[keyof typeof booklet_question_notesOrderByRelevanceFieldEnum]
+
+
+export const campaign_settingsOrderByRelevanceFieldEnum = {
+  setting_key: 'setting_key',
+  value_type: 'value_type',
+  description: 'description'
+} as const
+
+export type campaign_settingsOrderByRelevanceFieldEnum = (typeof campaign_settingsOrderByRelevanceFieldEnum)[keyof typeof campaign_settingsOrderByRelevanceFieldEnum]
+
+
+export const campaign_subjectsOrderByRelevanceFieldEnum = {
+  code: 'code',
+  name: 'name'
+} as const
+
+export type campaign_subjectsOrderByRelevanceFieldEnum = (typeof campaign_subjectsOrderByRelevanceFieldEnum)[keyof typeof campaign_subjectsOrderByRelevanceFieldEnum]
+
+
+export const incident_attachmentsOrderByRelevanceFieldEnum = {
+  file_url: 'file_url',
+  file_key: 'file_key',
+  file_name: 'file_name',
+  mime_type: 'mime_type'
+} as const
+
+export type incident_attachmentsOrderByRelevanceFieldEnum = (typeof incident_attachmentsOrderByRelevanceFieldEnum)[keyof typeof incident_attachmentsOrderByRelevanceFieldEnum]
+
+
+export const notification_delivery_logsOrderByRelevanceFieldEnum = {
+  channel: 'channel',
+  provider: 'provider',
+  status: 'status',
+  error_message: 'error_message'
+} as const
+
+export type notification_delivery_logsOrderByRelevanceFieldEnum = (typeof notification_delivery_logsOrderByRelevanceFieldEnum)[keyof typeof notification_delivery_logsOrderByRelevanceFieldEnum]
+
+
+export const notification_messagesOrderByRelevanceFieldEnum = {
+  type: 'type',
+  channel: 'channel',
+  title: 'title',
+  body: 'body',
+  status: 'status'
+} as const
+
+export type notification_messagesOrderByRelevanceFieldEnum = (typeof notification_messagesOrderByRelevanceFieldEnum)[keyof typeof notification_messagesOrderByRelevanceFieldEnum]
+
+
+export const notification_preferencesOrderByRelevanceFieldEnum = {
+  notification_type: 'notification_type',
+  channel: 'channel'
+} as const
+
+export type notification_preferencesOrderByRelevanceFieldEnum = (typeof notification_preferencesOrderByRelevanceFieldEnum)[keyof typeof notification_preferencesOrderByRelevanceFieldEnum]
+
+
+export const notification_recipientsOrderByRelevanceFieldEnum = {
+  recipient_type: 'recipient_type',
+  recipient_target: 'recipient_target',
+  delivery_status: 'delivery_status'
+} as const
+
+export type notification_recipientsOrderByRelevanceFieldEnum = (typeof notification_recipientsOrderByRelevanceFieldEnum)[keyof typeof notification_recipientsOrderByRelevanceFieldEnum]
+
+
+export const notification_templatesOrderByRelevanceFieldEnum = {
+  code: 'code',
+  name: 'name',
+  channel: 'channel',
+  subject_template: 'subject_template',
+  body_template: 'body_template'
+} as const
+
+export type notification_templatesOrderByRelevanceFieldEnum = (typeof notification_templatesOrderByRelevanceFieldEnum)[keyof typeof notification_templatesOrderByRelevanceFieldEnum]
+
+
+export const qr_scan_logsOrderByRelevanceFieldEnum = {
+  scan_context: 'scan_context',
+  scan_result: 'scan_result',
+  qr_payload_masked: 'qr_payload_masked',
+  qr_payload_hash: 'qr_payload_hash',
+  error_code: 'error_code',
+  error_message: 'error_message',
+  ip_address: 'ip_address',
+  user_agent: 'user_agent'
+} as const
+
+export type qr_scan_logsOrderByRelevanceFieldEnum = (typeof qr_scan_logsOrderByRelevanceFieldEnum)[keyof typeof qr_scan_logsOrderByRelevanceFieldEnum]
+
+
+export const question_choice_groupsOrderByRelevanceFieldEnum = {
+  group_code: 'group_code',
+  title: 'title',
+  scoring_policy: 'scoring_policy'
+} as const
+
+export type question_choice_groupsOrderByRelevanceFieldEnum = (typeof question_choice_groupsOrderByRelevanceFieldEnum)[keyof typeof question_choice_groupsOrderByRelevanceFieldEnum]
+
+
+export const service_outbox_eventsOrderByRelevanceFieldEnum = {
+  event_type: 'event_type',
+  aggregate_type: 'aggregate_type',
+  status: 'status',
+  locked_by: 'locked_by',
+  error_message: 'error_message'
+} as const
+
+export type service_outbox_eventsOrderByRelevanceFieldEnum = (typeof service_outbox_eventsOrderByRelevanceFieldEnum)[keyof typeof service_outbox_eventsOrderByRelevanceFieldEnum]
+
+
+export const session_subject_questionsOrderByRelevanceFieldEnum = {
+  label: 'label',
+  question_type: 'question_type',
+  note: 'note'
+} as const
+
+export type session_subject_questionsOrderByRelevanceFieldEnum = (typeof session_subject_questionsOrderByRelevanceFieldEnum)[keyof typeof session_subject_questionsOrderByRelevanceFieldEnum]
+
+
+export const setting_definitionsOrderByRelevanceFieldEnum = {
+  setting_key: 'setting_key',
+  name: 'name',
+  description: 'description',
+  value_type: 'value_type',
+  scope: 'scope'
+} as const
+
+export type setting_definitionsOrderByRelevanceFieldEnum = (typeof setting_definitionsOrderByRelevanceFieldEnum)[keyof typeof setting_definitionsOrderByRelevanceFieldEnum]
 

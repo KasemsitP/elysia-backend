@@ -37,34 +37,82 @@ export type UsersSumAggregateOutputType = {
 export type UsersMinAggregateOutputType = {
   id: number | null
   user_code: string | null
+  title: string | null
+  gender: string | null
   full_name: string | null
   first_name: string | null
   last_name: string | null
-  title: string | null
+  first_name_en: string | null
+  last_name_en: string | null
   national_id: string | null
   birth_date: Date | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
+  ethnicity: string | null
+  nationality_birth: string | null
+  nationality_current: string | null
+  religion: string | null
+  phone: string | null
+  mobile: string | null
+  email: string | null
+  address: string | null
+  study_degree: string | null
+  university: string | null
 }
 
 export type UsersMaxAggregateOutputType = {
   id: number | null
   user_code: string | null
+  title: string | null
+  gender: string | null
   full_name: string | null
   first_name: string | null
   last_name: string | null
-  title: string | null
+  first_name_en: string | null
+  last_name_en: string | null
   national_id: string | null
   birth_date: Date | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
+  ethnicity: string | null
+  nationality_birth: string | null
+  nationality_current: string | null
+  religion: string | null
+  phone: string | null
+  mobile: string | null
+  email: string | null
+  address: string | null
+  study_degree: string | null
+  university: string | null
 }
 
 export type UsersCountAggregateOutputType = {
   id: number
   user_code: number
+  title: number
+  gender: number
   full_name: number
   first_name: number
   last_name: number
-  title: number
+  first_name_en: number
+  last_name_en: number
   national_id: number
   birth_date: number
+  created_at: number
+  updated_at: number
+  deleted_at: number
+  ethnicity: number
+  nationality_birth: number
+  nationality_current: number
+  religion: number
+  phone: number
+  mobile: number
+  email: number
+  address: number
+  study_degree: number
+  university: number
   _all: number
 }
 
@@ -80,34 +128,82 @@ export type UsersSumAggregateInputType = {
 export type UsersMinAggregateInputType = {
   id?: true
   user_code?: true
+  title?: true
+  gender?: true
   full_name?: true
   first_name?: true
   last_name?: true
-  title?: true
+  first_name_en?: true
+  last_name_en?: true
   national_id?: true
   birth_date?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
+  ethnicity?: true
+  nationality_birth?: true
+  nationality_current?: true
+  religion?: true
+  phone?: true
+  mobile?: true
+  email?: true
+  address?: true
+  study_degree?: true
+  university?: true
 }
 
 export type UsersMaxAggregateInputType = {
   id?: true
   user_code?: true
+  title?: true
+  gender?: true
   full_name?: true
   first_name?: true
   last_name?: true
-  title?: true
+  first_name_en?: true
+  last_name_en?: true
   national_id?: true
   birth_date?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
+  ethnicity?: true
+  nationality_birth?: true
+  nationality_current?: true
+  religion?: true
+  phone?: true
+  mobile?: true
+  email?: true
+  address?: true
+  study_degree?: true
+  university?: true
 }
 
 export type UsersCountAggregateInputType = {
   id?: true
   user_code?: true
+  title?: true
+  gender?: true
   full_name?: true
   first_name?: true
   last_name?: true
-  title?: true
+  first_name_en?: true
+  last_name_en?: true
   national_id?: true
   birth_date?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
+  ethnicity?: true
+  nationality_birth?: true
+  nationality_current?: true
+  religion?: true
+  phone?: true
+  mobile?: true
+  email?: true
+  address?: true
+  study_degree?: true
+  university?: true
   _all?: true
 }
 
@@ -200,12 +296,28 @@ export type usersGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type UsersGroupByOutputType = {
   id: number
   user_code: string
+  title: string | null
+  gender: string | null
   full_name: string
   first_name: string | null
   last_name: string | null
-  title: string | null
+  first_name_en: string | null
+  last_name_en: string | null
   national_id: string | null
   birth_date: Date | null
+  created_at: Date
+  updated_at: Date
+  deleted_at: Date | null
+  ethnicity: string | null
+  nationality_birth: string | null
+  nationality_current: string | null
+  religion: string | null
+  phone: string | null
+  mobile: string | null
+  email: string | null
+  address: string | null
+  study_degree: string | null
+  university: string | null
   _count: UsersCountAggregateOutputType | null
   _avg: UsersAvgAggregateOutputType | null
   _sum: UsersSumAggregateOutputType | null
@@ -234,24 +346,56 @@ export type usersWhereInput = {
   NOT?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
   id?: Prisma.IntFilter<"users"> | number
   user_code?: Prisma.StringFilter<"users"> | string
+  title?: Prisma.StringNullableFilter<"users"> | string | null
+  gender?: Prisma.StringNullableFilter<"users"> | string | null
   full_name?: Prisma.StringFilter<"users"> | string
   first_name?: Prisma.StringNullableFilter<"users"> | string | null
   last_name?: Prisma.StringNullableFilter<"users"> | string | null
-  title?: Prisma.StringNullableFilter<"users"> | string | null
+  first_name_en?: Prisma.StringNullableFilter<"users"> | string | null
+  last_name_en?: Prisma.StringNullableFilter<"users"> | string | null
   national_id?: Prisma.StringNullableFilter<"users"> | string | null
   birth_date?: Prisma.DateTimeNullableFilter<"users"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"users"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"users"> | Date | string | null
+  ethnicity?: Prisma.StringNullableFilter<"users"> | string | null
+  nationality_birth?: Prisma.StringNullableFilter<"users"> | string | null
+  nationality_current?: Prisma.StringNullableFilter<"users"> | string | null
+  religion?: Prisma.StringNullableFilter<"users"> | string | null
+  phone?: Prisma.StringNullableFilter<"users"> | string | null
+  mobile?: Prisma.StringNullableFilter<"users"> | string | null
+  email?: Prisma.StringNullableFilter<"users"> | string | null
+  address?: Prisma.StringNullableFilter<"users"> | string | null
+  study_degree?: Prisma.StringNullableFilter<"users"> | string | null
+  university?: Prisma.StringNullableFilter<"users"> | string | null
   user_campaigns?: Prisma.User_campaignsListRelationFilter
 }
 
 export type usersOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   user_code?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
   full_name?: Prisma.SortOrder
   first_name?: Prisma.SortOrderInput | Prisma.SortOrder
   last_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  title?: Prisma.SortOrderInput | Prisma.SortOrder
+  first_name_en?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name_en?: Prisma.SortOrderInput | Prisma.SortOrder
   national_id?: Prisma.SortOrderInput | Prisma.SortOrder
   birth_date?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  ethnicity?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality_birth?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality_current?: Prisma.SortOrderInput | Prisma.SortOrder
+  religion?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  mobile?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  study_degree?: Prisma.SortOrderInput | Prisma.SortOrder
+  university?: Prisma.SortOrderInput | Prisma.SortOrder
   user_campaigns?: Prisma.user_campaignsOrderByRelationAggregateInput
   _relevance?: Prisma.usersOrderByRelevanceInput
 }
@@ -262,24 +406,56 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
   OR?: Prisma.usersWhereInput[]
   NOT?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
+  title?: Prisma.StringNullableFilter<"users"> | string | null
+  gender?: Prisma.StringNullableFilter<"users"> | string | null
   full_name?: Prisma.StringFilter<"users"> | string
   first_name?: Prisma.StringNullableFilter<"users"> | string | null
   last_name?: Prisma.StringNullableFilter<"users"> | string | null
-  title?: Prisma.StringNullableFilter<"users"> | string | null
+  first_name_en?: Prisma.StringNullableFilter<"users"> | string | null
+  last_name_en?: Prisma.StringNullableFilter<"users"> | string | null
   national_id?: Prisma.StringNullableFilter<"users"> | string | null
   birth_date?: Prisma.DateTimeNullableFilter<"users"> | Date | string | null
+  created_at?: Prisma.DateTimeFilter<"users"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"users"> | Date | string | null
+  ethnicity?: Prisma.StringNullableFilter<"users"> | string | null
+  nationality_birth?: Prisma.StringNullableFilter<"users"> | string | null
+  nationality_current?: Prisma.StringNullableFilter<"users"> | string | null
+  religion?: Prisma.StringNullableFilter<"users"> | string | null
+  phone?: Prisma.StringNullableFilter<"users"> | string | null
+  mobile?: Prisma.StringNullableFilter<"users"> | string | null
+  email?: Prisma.StringNullableFilter<"users"> | string | null
+  address?: Prisma.StringNullableFilter<"users"> | string | null
+  study_degree?: Prisma.StringNullableFilter<"users"> | string | null
+  university?: Prisma.StringNullableFilter<"users"> | string | null
   user_campaigns?: Prisma.User_campaignsListRelationFilter
 }, "id" | "user_code">
 
 export type usersOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   user_code?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
+  gender?: Prisma.SortOrderInput | Prisma.SortOrder
   full_name?: Prisma.SortOrder
   first_name?: Prisma.SortOrderInput | Prisma.SortOrder
   last_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  title?: Prisma.SortOrderInput | Prisma.SortOrder
+  first_name_en?: Prisma.SortOrderInput | Prisma.SortOrder
+  last_name_en?: Prisma.SortOrderInput | Prisma.SortOrder
   national_id?: Prisma.SortOrderInput | Prisma.SortOrder
   birth_date?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  ethnicity?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality_birth?: Prisma.SortOrderInput | Prisma.SortOrder
+  nationality_current?: Prisma.SortOrderInput | Prisma.SortOrder
+  religion?: Prisma.SortOrderInput | Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  mobile?: Prisma.SortOrderInput | Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
+  study_degree?: Prisma.SortOrderInput | Prisma.SortOrder
+  university?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.usersCountOrderByAggregateInput
   _avg?: Prisma.usersAvgOrderByAggregateInput
   _max?: Prisma.usersMaxOrderByAggregateInput
@@ -293,90 +469,218 @@ export type usersScalarWhereWithAggregatesInput = {
   NOT?: Prisma.usersScalarWhereWithAggregatesInput | Prisma.usersScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"users"> | number
   user_code?: Prisma.StringWithAggregatesFilter<"users"> | string
+  title?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  gender?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
   full_name?: Prisma.StringWithAggregatesFilter<"users"> | string
   first_name?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
   last_name?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
-  title?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  first_name_en?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  last_name_en?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
   national_id?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
   birth_date?: Prisma.DateTimeNullableWithAggregatesFilter<"users"> | Date | string | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"users"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"users"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"users"> | Date | string | null
+  ethnicity?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  nationality_birth?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  nationality_current?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  religion?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  phone?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  mobile?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  email?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  address?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  study_degree?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
+  university?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
 }
 
 export type usersCreateInput = {
   user_code: string
+  title?: string | null
+  gender?: string | null
   full_name: string
   first_name?: string | null
   last_name?: string | null
-  title?: string | null
+  first_name_en?: string | null
+  last_name_en?: string | null
   national_id?: string | null
   birth_date?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  ethnicity?: string | null
+  nationality_birth?: string | null
+  nationality_current?: string | null
+  religion?: string | null
+  phone?: string | null
+  mobile?: string | null
+  email?: string | null
+  address?: string | null
+  study_degree?: string | null
+  university?: string | null
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutUsersInput
 }
 
 export type usersUncheckedCreateInput = {
   id?: number
   user_code: string
+  title?: string | null
+  gender?: string | null
   full_name: string
   first_name?: string | null
   last_name?: string | null
-  title?: string | null
+  first_name_en?: string | null
+  last_name_en?: string | null
   national_id?: string | null
   birth_date?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  ethnicity?: string | null
+  nationality_birth?: string | null
+  nationality_current?: string | null
+  religion?: string | null
+  phone?: string | null
+  mobile?: string | null
+  email?: string | null
+  address?: string | null
+  study_degree?: string | null
+  university?: string | null
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutUsersInput
 }
 
 export type usersUpdateInput = {
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   national_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birth_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ethnicity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_birth?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_current?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  study_degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutUsersNestedInput
 }
 
 export type usersUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   national_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birth_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ethnicity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_birth?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_current?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  study_degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutUsersNestedInput
 }
 
 export type usersCreateManyInput = {
   id?: number
   user_code: string
+  title?: string | null
+  gender?: string | null
   full_name: string
   first_name?: string | null
   last_name?: string | null
-  title?: string | null
+  first_name_en?: string | null
+  last_name_en?: string | null
   national_id?: string | null
   birth_date?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  ethnicity?: string | null
+  nationality_birth?: string | null
+  nationality_current?: string | null
+  religion?: string | null
+  phone?: string | null
+  mobile?: string | null
+  email?: string | null
+  address?: string | null
+  study_degree?: string | null
+  university?: string | null
 }
 
 export type usersUpdateManyMutationInput = {
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   national_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birth_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ethnicity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_birth?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_current?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  study_degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type usersUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   national_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birth_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ethnicity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_birth?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_current?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  study_degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UsersScalarRelationFilter = {
@@ -393,12 +697,28 @@ export type usersOrderByRelevanceInput = {
 export type usersCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_code?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
   full_name?: Prisma.SortOrder
   first_name?: Prisma.SortOrder
   last_name?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  first_name_en?: Prisma.SortOrder
+  last_name_en?: Prisma.SortOrder
   national_id?: Prisma.SortOrder
   birth_date?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
+  ethnicity?: Prisma.SortOrder
+  nationality_birth?: Prisma.SortOrder
+  nationality_current?: Prisma.SortOrder
+  religion?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  mobile?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  study_degree?: Prisma.SortOrder
+  university?: Prisma.SortOrder
 }
 
 export type usersAvgOrderByAggregateInput = {
@@ -408,23 +728,55 @@ export type usersAvgOrderByAggregateInput = {
 export type usersMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_code?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
   full_name?: Prisma.SortOrder
   first_name?: Prisma.SortOrder
   last_name?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  first_name_en?: Prisma.SortOrder
+  last_name_en?: Prisma.SortOrder
   national_id?: Prisma.SortOrder
   birth_date?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
+  ethnicity?: Prisma.SortOrder
+  nationality_birth?: Prisma.SortOrder
+  nationality_current?: Prisma.SortOrder
+  religion?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  mobile?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  study_degree?: Prisma.SortOrder
+  university?: Prisma.SortOrder
 }
 
 export type usersMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   user_code?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  gender?: Prisma.SortOrder
   full_name?: Prisma.SortOrder
   first_name?: Prisma.SortOrder
   last_name?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  first_name_en?: Prisma.SortOrder
+  last_name_en?: Prisma.SortOrder
   national_id?: Prisma.SortOrder
   birth_date?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
+  ethnicity?: Prisma.SortOrder
+  nationality_birth?: Prisma.SortOrder
+  nationality_current?: Prisma.SortOrder
+  religion?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  mobile?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  address?: Prisma.SortOrder
+  study_degree?: Prisma.SortOrder
+  university?: Prisma.SortOrder
 }
 
 export type usersSumOrderByAggregateInput = {
@@ -447,23 +799,55 @@ export type usersUpdateOneRequiredWithoutUser_campaignsNestedInput = {
 
 export type usersCreateWithoutUser_campaignsInput = {
   user_code: string
+  title?: string | null
+  gender?: string | null
   full_name: string
   first_name?: string | null
   last_name?: string | null
-  title?: string | null
+  first_name_en?: string | null
+  last_name_en?: string | null
   national_id?: string | null
   birth_date?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  ethnicity?: string | null
+  nationality_birth?: string | null
+  nationality_current?: string | null
+  religion?: string | null
+  phone?: string | null
+  mobile?: string | null
+  email?: string | null
+  address?: string | null
+  study_degree?: string | null
+  university?: string | null
 }
 
 export type usersUncheckedCreateWithoutUser_campaignsInput = {
   id?: number
   user_code: string
+  title?: string | null
+  gender?: string | null
   full_name: string
   first_name?: string | null
   last_name?: string | null
-  title?: string | null
+  first_name_en?: string | null
+  last_name_en?: string | null
   national_id?: string | null
   birth_date?: Date | string | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  ethnicity?: string | null
+  nationality_birth?: string | null
+  nationality_current?: string | null
+  religion?: string | null
+  phone?: string | null
+  mobile?: string | null
+  email?: string | null
+  address?: string | null
+  study_degree?: string | null
+  university?: string | null
 }
 
 export type usersCreateOrConnectWithoutUser_campaignsInput = {
@@ -484,23 +868,55 @@ export type usersUpdateToOneWithWhereWithoutUser_campaignsInput = {
 
 export type usersUpdateWithoutUser_campaignsInput = {
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   national_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birth_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ethnicity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_birth?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_current?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  study_degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type usersUncheckedUpdateWithoutUser_campaignsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   user_code?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   full_name?: Prisma.StringFieldUpdateOperationsInput | string
   first_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   last_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  first_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  last_name_en?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   national_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   birth_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  ethnicity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_birth?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  nationality_current?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  religion?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mobile?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  study_degree?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -537,12 +953,28 @@ export type UsersCountOutputTypeCountUser_campaignsArgs<ExtArgs extends runtime.
 export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   user_code?: boolean
+  title?: boolean
+  gender?: boolean
   full_name?: boolean
   first_name?: boolean
   last_name?: boolean
-  title?: boolean
+  first_name_en?: boolean
+  last_name_en?: boolean
   national_id?: boolean
   birth_date?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  ethnicity?: boolean
+  nationality_birth?: boolean
+  nationality_current?: boolean
+  religion?: boolean
+  phone?: boolean
+  mobile?: boolean
+  email?: boolean
+  address?: boolean
+  study_degree?: boolean
+  university?: boolean
   user_campaigns?: boolean | Prisma.users$user_campaignsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["users"]>
@@ -552,15 +984,31 @@ export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type usersSelectScalar = {
   id?: boolean
   user_code?: boolean
+  title?: boolean
+  gender?: boolean
   full_name?: boolean
   first_name?: boolean
   last_name?: boolean
-  title?: boolean
+  first_name_en?: boolean
+  last_name_en?: boolean
   national_id?: boolean
   birth_date?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  ethnicity?: boolean
+  nationality_birth?: boolean
+  nationality_current?: boolean
+  religion?: boolean
+  phone?: boolean
+  mobile?: boolean
+  email?: boolean
+  address?: boolean
+  study_degree?: boolean
+  university?: boolean
 }
 
-export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_code" | "full_name" | "first_name" | "last_name" | "title" | "national_id" | "birth_date", ExtArgs["result"]["users"]>
+export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_code" | "title" | "gender" | "full_name" | "first_name" | "last_name" | "first_name_en" | "last_name_en" | "national_id" | "birth_date" | "created_at" | "updated_at" | "deleted_at" | "ethnicity" | "nationality_birth" | "nationality_current" | "religion" | "phone" | "mobile" | "email" | "address" | "study_degree" | "university", ExtArgs["result"]["users"]>
 export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user_campaigns?: boolean | Prisma.users$user_campaignsArgs<ExtArgs>
   _count?: boolean | Prisma.UsersCountOutputTypeDefaultArgs<ExtArgs>
@@ -574,12 +1022,28 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     user_code: string
+    title: string | null
+    gender: string | null
     full_name: string
     first_name: string | null
     last_name: string | null
-    title: string | null
+    first_name_en: string | null
+    last_name_en: string | null
     national_id: string | null
     birth_date: Date | null
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
+    ethnicity: string | null
+    nationality_birth: string | null
+    nationality_current: string | null
+    religion: string | null
+    phone: string | null
+    mobile: string | null
+    email: string | null
+    address: string | null
+    study_degree: string | null
+    university: string | null
   }, ExtArgs["result"]["users"]>
   composites: {}
 }
@@ -952,12 +1416,28 @@ export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface usersFieldRefs {
   readonly id: Prisma.FieldRef<"users", 'Int'>
   readonly user_code: Prisma.FieldRef<"users", 'String'>
+  readonly title: Prisma.FieldRef<"users", 'String'>
+  readonly gender: Prisma.FieldRef<"users", 'String'>
   readonly full_name: Prisma.FieldRef<"users", 'String'>
   readonly first_name: Prisma.FieldRef<"users", 'String'>
   readonly last_name: Prisma.FieldRef<"users", 'String'>
-  readonly title: Prisma.FieldRef<"users", 'String'>
+  readonly first_name_en: Prisma.FieldRef<"users", 'String'>
+  readonly last_name_en: Prisma.FieldRef<"users", 'String'>
   readonly national_id: Prisma.FieldRef<"users", 'String'>
   readonly birth_date: Prisma.FieldRef<"users", 'DateTime'>
+  readonly created_at: Prisma.FieldRef<"users", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"users", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"users", 'DateTime'>
+  readonly ethnicity: Prisma.FieldRef<"users", 'String'>
+  readonly nationality_birth: Prisma.FieldRef<"users", 'String'>
+  readonly nationality_current: Prisma.FieldRef<"users", 'String'>
+  readonly religion: Prisma.FieldRef<"users", 'String'>
+  readonly phone: Prisma.FieldRef<"users", 'String'>
+  readonly mobile: Prisma.FieldRef<"users", 'String'>
+  readonly email: Prisma.FieldRef<"users", 'String'>
+  readonly address: Prisma.FieldRef<"users", 'String'>
+  readonly study_degree: Prisma.FieldRef<"users", 'String'>
+  readonly university: Prisma.FieldRef<"users", 'String'>
 }
     
 

@@ -41,6 +41,8 @@ export type Auth_sessionsMinAggregateOutputType = {
   account_id: number | null
   expires: number | null
   data: string | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type Auth_sessionsMaxAggregateOutputType = {
@@ -48,6 +50,8 @@ export type Auth_sessionsMaxAggregateOutputType = {
   account_id: number | null
   expires: number | null
   data: string | null
+  created_at: Date | null
+  updated_at: Date | null
 }
 
 export type Auth_sessionsCountAggregateOutputType = {
@@ -55,6 +59,8 @@ export type Auth_sessionsCountAggregateOutputType = {
   account_id: number
   expires: number
   data: number
+  created_at: number
+  updated_at: number
   _all: number
 }
 
@@ -74,6 +80,8 @@ export type Auth_sessionsMinAggregateInputType = {
   account_id?: true
   expires?: true
   data?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type Auth_sessionsMaxAggregateInputType = {
@@ -81,6 +89,8 @@ export type Auth_sessionsMaxAggregateInputType = {
   account_id?: true
   expires?: true
   data?: true
+  created_at?: true
+  updated_at?: true
 }
 
 export type Auth_sessionsCountAggregateInputType = {
@@ -88,6 +98,8 @@ export type Auth_sessionsCountAggregateInputType = {
   account_id?: true
   expires?: true
   data?: true
+  created_at?: true
+  updated_at?: true
   _all?: true
 }
 
@@ -182,6 +194,8 @@ export type Auth_sessionsGroupByOutputType = {
   account_id: number | null
   expires: number
   data: string
+  created_at: Date
+  updated_at: Date
   _count: Auth_sessionsCountAggregateOutputType | null
   _avg: Auth_sessionsAvgAggregateOutputType | null
   _sum: Auth_sessionsSumAggregateOutputType | null
@@ -212,6 +226,8 @@ export type auth_sessionsWhereInput = {
   account_id?: Prisma.IntNullableFilter<"auth_sessions"> | number | null
   expires?: Prisma.IntFilter<"auth_sessions"> | number
   data?: Prisma.StringFilter<"auth_sessions"> | string
+  created_at?: Prisma.DateTimeFilter<"auth_sessions"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"auth_sessions"> | Date | string
   accounts?: Prisma.XOR<Prisma.AccountsNullableScalarRelationFilter, Prisma.accountsWhereInput> | null
 }
 
@@ -220,6 +236,8 @@ export type auth_sessionsOrderByWithRelationInput = {
   account_id?: Prisma.SortOrderInput | Prisma.SortOrder
   expires?: Prisma.SortOrder
   data?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   accounts?: Prisma.accountsOrderByWithRelationInput
   _relevance?: Prisma.auth_sessionsOrderByRelevanceInput
 }
@@ -232,6 +250,8 @@ export type auth_sessionsWhereUniqueInput = Prisma.AtLeast<{
   account_id?: Prisma.IntNullableFilter<"auth_sessions"> | number | null
   expires?: Prisma.IntFilter<"auth_sessions"> | number
   data?: Prisma.StringFilter<"auth_sessions"> | string
+  created_at?: Prisma.DateTimeFilter<"auth_sessions"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"auth_sessions"> | Date | string
   accounts?: Prisma.XOR<Prisma.AccountsNullableScalarRelationFilter, Prisma.accountsWhereInput> | null
 }, "sid">
 
@@ -240,6 +260,8 @@ export type auth_sessionsOrderByWithAggregationInput = {
   account_id?: Prisma.SortOrderInput | Prisma.SortOrder
   expires?: Prisma.SortOrder
   data?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
   _count?: Prisma.auth_sessionsCountOrderByAggregateInput
   _avg?: Prisma.auth_sessionsAvgOrderByAggregateInput
   _max?: Prisma.auth_sessionsMaxOrderByAggregateInput
@@ -255,12 +277,16 @@ export type auth_sessionsScalarWhereWithAggregatesInput = {
   account_id?: Prisma.IntNullableWithAggregatesFilter<"auth_sessions"> | number | null
   expires?: Prisma.IntWithAggregatesFilter<"auth_sessions"> | number
   data?: Prisma.StringWithAggregatesFilter<"auth_sessions"> | string
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"auth_sessions"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"auth_sessions"> | Date | string
 }
 
 export type auth_sessionsCreateInput = {
   sid: string
   expires: number
   data: string
+  created_at?: Date | string
+  updated_at?: Date | string
   accounts?: Prisma.accountsCreateNestedOneWithoutAuth_sessionsInput
 }
 
@@ -269,12 +295,16 @@ export type auth_sessionsUncheckedCreateInput = {
   account_id?: number | null
   expires: number
   data: string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type auth_sessionsUpdateInput = {
   sid?: Prisma.StringFieldUpdateOperationsInput | string
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   accounts?: Prisma.accountsUpdateOneWithoutAuth_sessionsNestedInput
 }
 
@@ -283,6 +313,8 @@ export type auth_sessionsUncheckedUpdateInput = {
   account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type auth_sessionsCreateManyInput = {
@@ -290,12 +322,16 @@ export type auth_sessionsCreateManyInput = {
   account_id?: number | null
   expires: number
   data: string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type auth_sessionsUpdateManyMutationInput = {
   sid?: Prisma.StringFieldUpdateOperationsInput | string
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type auth_sessionsUncheckedUpdateManyInput = {
@@ -303,6 +339,8 @@ export type auth_sessionsUncheckedUpdateManyInput = {
   account_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type Auth_sessionsListRelationFilter = {
@@ -326,6 +364,8 @@ export type auth_sessionsCountOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   expires?: Prisma.SortOrder
   data?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type auth_sessionsAvgOrderByAggregateInput = {
@@ -338,6 +378,8 @@ export type auth_sessionsMaxOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   expires?: Prisma.SortOrder
   data?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type auth_sessionsMinOrderByAggregateInput = {
@@ -345,6 +387,8 @@ export type auth_sessionsMinOrderByAggregateInput = {
   account_id?: Prisma.SortOrder
   expires?: Prisma.SortOrder
   data?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
 }
 
 export type auth_sessionsSumOrderByAggregateInput = {
@@ -398,12 +442,16 @@ export type auth_sessionsCreateWithoutAccountsInput = {
   sid: string
   expires: number
   data: string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type auth_sessionsUncheckedCreateWithoutAccountsInput = {
   sid: string
   expires: number
   data: string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type auth_sessionsCreateOrConnectWithoutAccountsInput = {
@@ -440,30 +488,40 @@ export type auth_sessionsScalarWhereInput = {
   account_id?: Prisma.IntNullableFilter<"auth_sessions"> | number | null
   expires?: Prisma.IntFilter<"auth_sessions"> | number
   data?: Prisma.StringFilter<"auth_sessions"> | string
+  created_at?: Prisma.DateTimeFilter<"auth_sessions"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"auth_sessions"> | Date | string
 }
 
 export type auth_sessionsCreateManyAccountsInput = {
   sid: string
   expires: number
   data: string
+  created_at?: Date | string
+  updated_at?: Date | string
 }
 
 export type auth_sessionsUpdateWithoutAccountsInput = {
   sid?: Prisma.StringFieldUpdateOperationsInput | string
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type auth_sessionsUncheckedUpdateWithoutAccountsInput = {
   sid?: Prisma.StringFieldUpdateOperationsInput | string
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type auth_sessionsUncheckedUpdateManyWithoutAccountsInput = {
   sid?: Prisma.StringFieldUpdateOperationsInput | string
   expires?: Prisma.IntFieldUpdateOperationsInput | number
   data?: Prisma.StringFieldUpdateOperationsInput | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -473,6 +531,8 @@ export type auth_sessionsSelect<ExtArgs extends runtime.Types.Extensions.Interna
   account_id?: boolean
   expires?: boolean
   data?: boolean
+  created_at?: boolean
+  updated_at?: boolean
   accounts?: boolean | Prisma.auth_sessions$accountsArgs<ExtArgs>
 }, ExtArgs["result"]["auth_sessions"]>
 
@@ -483,9 +543,11 @@ export type auth_sessionsSelectScalar = {
   account_id?: boolean
   expires?: boolean
   data?: boolean
+  created_at?: boolean
+  updated_at?: boolean
 }
 
-export type auth_sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"sid" | "account_id" | "expires" | "data", ExtArgs["result"]["auth_sessions"]>
+export type auth_sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"sid" | "account_id" | "expires" | "data" | "created_at" | "updated_at", ExtArgs["result"]["auth_sessions"]>
 export type auth_sessionsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.auth_sessions$accountsArgs<ExtArgs>
 }
@@ -500,6 +562,8 @@ export type $auth_sessionsPayload<ExtArgs extends runtime.Types.Extensions.Inter
     account_id: number | null
     expires: number
     data: string
+    created_at: Date
+    updated_at: Date
   }, ExtArgs["result"]["auth_sessions"]>
   composites: {}
 }
@@ -874,6 +938,8 @@ export interface auth_sessionsFieldRefs {
   readonly account_id: Prisma.FieldRef<"auth_sessions", 'Int'>
   readonly expires: Prisma.FieldRef<"auth_sessions", 'Int'>
   readonly data: Prisma.FieldRef<"auth_sessions", 'String'>
+  readonly created_at: Prisma.FieldRef<"auth_sessions", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"auth_sessions", 'DateTime'>
 }
     
 

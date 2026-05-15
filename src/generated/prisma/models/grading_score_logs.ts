@@ -28,8 +28,12 @@ export type AggregateGrading_score_logs = {
 
 export type Grading_score_logsAvgAggregateOutputType = {
   id: number | null
+  campaign_id: number | null
+  session_id: number | null
   booklet_id: number | null
-  subject_id: number | null
+  campaign_subject_id: number | null
+  session_subject_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   slot_id1: number | null
   slot_id2: number | null
@@ -37,13 +41,19 @@ export type Grading_score_logsAvgAggregateOutputType = {
   grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
+  new_score1: number | null
+  new_score2: number | null
   changed_by: number | null
 }
 
 export type Grading_score_logsSumAggregateOutputType = {
   id: number | null
+  campaign_id: number | null
+  session_id: number | null
   booklet_id: number | null
-  subject_id: number | null
+  campaign_subject_id: number | null
+  session_subject_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   slot_id1: number | null
   slot_id2: number | null
@@ -51,13 +61,19 @@ export type Grading_score_logsSumAggregateOutputType = {
   grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
+  new_score1: number | null
+  new_score2: number | null
   changed_by: number | null
 }
 
 export type Grading_score_logsMinAggregateOutputType = {
   id: number | null
+  campaign_id: number | null
+  session_id: number | null
   booklet_id: number | null
-  subject_id: number | null
+  campaign_subject_id: number | null
+  session_subject_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   slot_id1: number | null
   slot_id2: number | null
@@ -65,14 +81,22 @@ export type Grading_score_logsMinAggregateOutputType = {
   grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
+  new_score1: number | null
+  new_score2: number | null
+  reason: string | null
   changed_by: number | null
   changed_at: Date | null
+  created_at: Date | null
 }
 
 export type Grading_score_logsMaxAggregateOutputType = {
   id: number | null
+  campaign_id: number | null
+  session_id: number | null
   booklet_id: number | null
-  subject_id: number | null
+  campaign_subject_id: number | null
+  session_subject_id: number | null
+  session_subject_question_id: number | null
   question_no: number | null
   slot_id1: number | null
   slot_id2: number | null
@@ -80,14 +104,22 @@ export type Grading_score_logsMaxAggregateOutputType = {
   grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
+  new_score1: number | null
+  new_score2: number | null
+  reason: string | null
   changed_by: number | null
   changed_at: Date | null
+  created_at: Date | null
 }
 
 export type Grading_score_logsCountAggregateOutputType = {
   id: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1: number
   slot_id2: number
@@ -95,16 +127,24 @@ export type Grading_score_logsCountAggregateOutputType = {
   grader2_id: number
   old_score1: number
   old_score2: number
+  new_score1: number
+  new_score2: number
+  reason: number
   changed_by: number
   changed_at: number
+  created_at: number
   _all: number
 }
 
 
 export type Grading_score_logsAvgAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id1?: true
   slot_id2?: true
@@ -112,13 +152,19 @@ export type Grading_score_logsAvgAggregateInputType = {
   grader2_id?: true
   old_score1?: true
   old_score2?: true
+  new_score1?: true
+  new_score2?: true
   changed_by?: true
 }
 
 export type Grading_score_logsSumAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id1?: true
   slot_id2?: true
@@ -126,13 +172,19 @@ export type Grading_score_logsSumAggregateInputType = {
   grader2_id?: true
   old_score1?: true
   old_score2?: true
+  new_score1?: true
+  new_score2?: true
   changed_by?: true
 }
 
 export type Grading_score_logsMinAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id1?: true
   slot_id2?: true
@@ -140,14 +192,22 @@ export type Grading_score_logsMinAggregateInputType = {
   grader2_id?: true
   old_score1?: true
   old_score2?: true
+  new_score1?: true
+  new_score2?: true
+  reason?: true
   changed_by?: true
   changed_at?: true
+  created_at?: true
 }
 
 export type Grading_score_logsMaxAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id1?: true
   slot_id2?: true
@@ -155,14 +215,22 @@ export type Grading_score_logsMaxAggregateInputType = {
   grader2_id?: true
   old_score1?: true
   old_score2?: true
+  new_score1?: true
+  new_score2?: true
+  reason?: true
   changed_by?: true
   changed_at?: true
+  created_at?: true
 }
 
 export type Grading_score_logsCountAggregateInputType = {
   id?: true
+  campaign_id?: true
+  session_id?: true
   booklet_id?: true
-  subject_id?: true
+  campaign_subject_id?: true
+  session_subject_id?: true
+  session_subject_question_id?: true
   question_no?: true
   slot_id1?: true
   slot_id2?: true
@@ -170,8 +238,12 @@ export type Grading_score_logsCountAggregateInputType = {
   grader2_id?: true
   old_score1?: true
   old_score2?: true
+  new_score1?: true
+  new_score2?: true
+  reason?: true
   changed_by?: true
   changed_at?: true
+  created_at?: true
   _all?: true
 }
 
@@ -263,8 +335,12 @@ export type grading_score_logsGroupByArgs<ExtArgs extends runtime.Types.Extensio
 
 export type Grading_score_logsGroupByOutputType = {
   id: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1: number | null
   slot_id2: number | null
@@ -272,8 +348,12 @@ export type Grading_score_logsGroupByOutputType = {
   grader2_id: number | null
   old_score1: number | null
   old_score2: number | null
+  new_score1: number | null
+  new_score2: number | null
+  reason: string | null
   changed_by: number
   changed_at: Date
+  created_at: Date
   _count: Grading_score_logsCountAggregateOutputType | null
   _avg: Grading_score_logsAvgAggregateOutputType | null
   _sum: Grading_score_logsSumAggregateOutputType | null
@@ -301,8 +381,12 @@ export type grading_score_logsWhereInput = {
   OR?: Prisma.grading_score_logsWhereInput[]
   NOT?: Prisma.grading_score_logsWhereInput | Prisma.grading_score_logsWhereInput[]
   id?: Prisma.IntFilter<"grading_score_logs"> | number
+  campaign_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_id?: Prisma.IntFilter<"grading_score_logs"> | number
   booklet_id?: Prisma.IntFilter<"grading_score_logs"> | number
-  subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  campaign_subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grading_score_logs"> | number
   question_no?: Prisma.IntFilter<"grading_score_logs"> | number
   slot_id1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   slot_id2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
@@ -310,21 +394,31 @@ export type grading_score_logsWhereInput = {
   grader2_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  new_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  new_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  reason?: Prisma.StringNullableFilter<"grading_score_logs"> | string | null
   changed_by?: Prisma.IntFilter<"grading_score_logs"> | number
   changed_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
+  created_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
   booklets?: Prisma.XOR<Prisma.BookletsScalarRelationFilter, Prisma.bookletsWhereInput>
+  campaign_subjects?: Prisma.XOR<Prisma.Campaign_subjectsScalarRelationFilter, Prisma.campaign_subjectsWhereInput>
   accounts?: Prisma.XOR<Prisma.AccountsScalarRelationFilter, Prisma.accountsWhereInput>
   graders_grading_score_logs_grader1_idTograders?: Prisma.XOR<Prisma.GradersNullableScalarRelationFilter, Prisma.gradersWhereInput> | null
   graders_grading_score_logs_grader2_idTograders?: Prisma.XOR<Prisma.GradersNullableScalarRelationFilter, Prisma.gradersWhereInput> | null
+  session_subjects?: Prisma.XOR<Prisma.Session_subjectsScalarRelationFilter, Prisma.session_subjectsWhereInput>
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.XOR<Prisma.Grading_slotsNullableScalarRelationFilter, Prisma.grading_slotsWhereInput> | null
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.XOR<Prisma.Grading_slotsNullableScalarRelationFilter, Prisma.grading_slotsWhereInput> | null
-  subjects?: Prisma.XOR<Prisma.SubjectsScalarRelationFilter, Prisma.subjectsWhereInput>
+  session_subject_questions?: Prisma.XOR<Prisma.Session_subject_questionsScalarRelationFilter, Prisma.session_subject_questionsWhereInput>
 }
 
 export type grading_score_logsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id1?: Prisma.SortOrderInput | Prisma.SortOrder
   slot_id2?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -332,15 +426,22 @@ export type grading_score_logsOrderByWithRelationInput = {
   grader2_id?: Prisma.SortOrderInput | Prisma.SortOrder
   old_score1?: Prisma.SortOrderInput | Prisma.SortOrder
   old_score2?: Prisma.SortOrderInput | Prisma.SortOrder
+  new_score1?: Prisma.SortOrderInput | Prisma.SortOrder
+  new_score2?: Prisma.SortOrderInput | Prisma.SortOrder
+  reason?: Prisma.SortOrderInput | Prisma.SortOrder
   changed_by?: Prisma.SortOrder
   changed_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
   booklets?: Prisma.bookletsOrderByWithRelationInput
+  campaign_subjects?: Prisma.campaign_subjectsOrderByWithRelationInput
   accounts?: Prisma.accountsOrderByWithRelationInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersOrderByWithRelationInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersOrderByWithRelationInput
+  session_subjects?: Prisma.session_subjectsOrderByWithRelationInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsOrderByWithRelationInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsOrderByWithRelationInput
-  subjects?: Prisma.subjectsOrderByWithRelationInput
+  session_subject_questions?: Prisma.session_subject_questionsOrderByWithRelationInput
+  _relevance?: Prisma.grading_score_logsOrderByRelevanceInput
 }
 
 export type grading_score_logsWhereUniqueInput = Prisma.AtLeast<{
@@ -348,8 +449,12 @@ export type grading_score_logsWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.grading_score_logsWhereInput | Prisma.grading_score_logsWhereInput[]
   OR?: Prisma.grading_score_logsWhereInput[]
   NOT?: Prisma.grading_score_logsWhereInput | Prisma.grading_score_logsWhereInput[]
+  campaign_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_id?: Prisma.IntFilter<"grading_score_logs"> | number
   booklet_id?: Prisma.IntFilter<"grading_score_logs"> | number
-  subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  campaign_subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grading_score_logs"> | number
   question_no?: Prisma.IntFilter<"grading_score_logs"> | number
   slot_id1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   slot_id2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
@@ -357,21 +462,31 @@ export type grading_score_logsWhereUniqueInput = Prisma.AtLeast<{
   grader2_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  new_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  new_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  reason?: Prisma.StringNullableFilter<"grading_score_logs"> | string | null
   changed_by?: Prisma.IntFilter<"grading_score_logs"> | number
   changed_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
+  created_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
   booklets?: Prisma.XOR<Prisma.BookletsScalarRelationFilter, Prisma.bookletsWhereInput>
+  campaign_subjects?: Prisma.XOR<Prisma.Campaign_subjectsScalarRelationFilter, Prisma.campaign_subjectsWhereInput>
   accounts?: Prisma.XOR<Prisma.AccountsScalarRelationFilter, Prisma.accountsWhereInput>
   graders_grading_score_logs_grader1_idTograders?: Prisma.XOR<Prisma.GradersNullableScalarRelationFilter, Prisma.gradersWhereInput> | null
   graders_grading_score_logs_grader2_idTograders?: Prisma.XOR<Prisma.GradersNullableScalarRelationFilter, Prisma.gradersWhereInput> | null
+  session_subjects?: Prisma.XOR<Prisma.Session_subjectsScalarRelationFilter, Prisma.session_subjectsWhereInput>
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.XOR<Prisma.Grading_slotsNullableScalarRelationFilter, Prisma.grading_slotsWhereInput> | null
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.XOR<Prisma.Grading_slotsNullableScalarRelationFilter, Prisma.grading_slotsWhereInput> | null
-  subjects?: Prisma.XOR<Prisma.SubjectsScalarRelationFilter, Prisma.subjectsWhereInput>
+  session_subject_questions?: Prisma.XOR<Prisma.Session_subject_questionsScalarRelationFilter, Prisma.session_subject_questionsWhereInput>
 }, "id">
 
 export type grading_score_logsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id1?: Prisma.SortOrderInput | Prisma.SortOrder
   slot_id2?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -379,8 +494,12 @@ export type grading_score_logsOrderByWithAggregationInput = {
   grader2_id?: Prisma.SortOrderInput | Prisma.SortOrder
   old_score1?: Prisma.SortOrderInput | Prisma.SortOrder
   old_score2?: Prisma.SortOrderInput | Prisma.SortOrder
+  new_score1?: Prisma.SortOrderInput | Prisma.SortOrder
+  new_score2?: Prisma.SortOrderInput | Prisma.SortOrder
+  reason?: Prisma.SortOrderInput | Prisma.SortOrder
   changed_by?: Prisma.SortOrder
   changed_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
   _count?: Prisma.grading_score_logsCountOrderByAggregateInput
   _avg?: Prisma.grading_score_logsAvgOrderByAggregateInput
   _max?: Prisma.grading_score_logsMaxOrderByAggregateInput
@@ -393,8 +512,12 @@ export type grading_score_logsScalarWhereWithAggregatesInput = {
   OR?: Prisma.grading_score_logsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.grading_score_logsScalarWhereWithAggregatesInput | Prisma.grading_score_logsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
+  campaign_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
+  session_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
   booklet_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
-  subject_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
+  campaign_subject_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
+  session_subject_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
+  session_subject_question_id?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
   question_no?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
   slot_id1?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
   slot_id2?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
@@ -402,28 +525,42 @@ export type grading_score_logsScalarWhereWithAggregatesInput = {
   grader2_id?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
   old_score1?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
   old_score2?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
+  new_score1?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
+  new_score2?: Prisma.IntNullableWithAggregatesFilter<"grading_score_logs"> | number | null
+  reason?: Prisma.StringNullableWithAggregatesFilter<"grading_score_logs"> | string | null
   changed_by?: Prisma.IntWithAggregatesFilter<"grading_score_logs"> | number
   changed_at?: Prisma.DateTimeWithAggregatesFilter<"grading_score_logs"> | Date | string
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"grading_score_logs"> | Date | string
 }
 
 export type grading_score_logsCreateInput = {
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
   accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_logsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
 }
 
 export type grading_score_logsUncheckedCreateInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
@@ -431,28 +568,42 @@ export type grading_score_logsUncheckedCreateInput = {
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsUpdateInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
 }
 
 export type grading_score_logsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -460,14 +611,22 @@ export type grading_score_logsUncheckedUpdateInput = {
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManyInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
@@ -475,21 +634,33 @@ export type grading_score_logsCreateManyInput = {
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsUpdateManyMutationInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -497,8 +668,12 @@ export type grading_score_logsUncheckedUpdateManyInput = {
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type Grading_score_logsListRelationFilter = {
@@ -511,10 +686,20 @@ export type grading_score_logsOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type grading_score_logsOrderByRelevanceInput = {
+  fields: Prisma.grading_score_logsOrderByRelevanceFieldEnum | Prisma.grading_score_logsOrderByRelevanceFieldEnum[]
+  sort: Prisma.SortOrder
+  search: string
+}
+
 export type grading_score_logsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id1?: Prisma.SortOrder
   slot_id2?: Prisma.SortOrder
@@ -522,14 +707,22 @@ export type grading_score_logsCountOrderByAggregateInput = {
   grader2_id?: Prisma.SortOrder
   old_score1?: Prisma.SortOrder
   old_score2?: Prisma.SortOrder
+  new_score1?: Prisma.SortOrder
+  new_score2?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
   changed_by?: Prisma.SortOrder
   changed_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
 }
 
 export type grading_score_logsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id1?: Prisma.SortOrder
   slot_id2?: Prisma.SortOrder
@@ -537,13 +730,19 @@ export type grading_score_logsAvgOrderByAggregateInput = {
   grader2_id?: Prisma.SortOrder
   old_score1?: Prisma.SortOrder
   old_score2?: Prisma.SortOrder
+  new_score1?: Prisma.SortOrder
+  new_score2?: Prisma.SortOrder
   changed_by?: Prisma.SortOrder
 }
 
 export type grading_score_logsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id1?: Prisma.SortOrder
   slot_id2?: Prisma.SortOrder
@@ -551,14 +750,22 @@ export type grading_score_logsMaxOrderByAggregateInput = {
   grader2_id?: Prisma.SortOrder
   old_score1?: Prisma.SortOrder
   old_score2?: Prisma.SortOrder
+  new_score1?: Prisma.SortOrder
+  new_score2?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
   changed_by?: Prisma.SortOrder
   changed_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
 }
 
 export type grading_score_logsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id1?: Prisma.SortOrder
   slot_id2?: Prisma.SortOrder
@@ -566,14 +773,22 @@ export type grading_score_logsMinOrderByAggregateInput = {
   grader2_id?: Prisma.SortOrder
   old_score1?: Prisma.SortOrder
   old_score2?: Prisma.SortOrder
+  new_score1?: Prisma.SortOrder
+  new_score2?: Prisma.SortOrder
+  reason?: Prisma.SortOrder
   changed_by?: Prisma.SortOrder
   changed_at?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
 }
 
 export type grading_score_logsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  campaign_id?: Prisma.SortOrder
+  session_id?: Prisma.SortOrder
   booklet_id?: Prisma.SortOrder
-  subject_id?: Prisma.SortOrder
+  campaign_subject_id?: Prisma.SortOrder
+  session_subject_id?: Prisma.SortOrder
+  session_subject_question_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   slot_id1?: Prisma.SortOrder
   slot_id2?: Prisma.SortOrder
@@ -581,6 +796,8 @@ export type grading_score_logsSumOrderByAggregateInput = {
   grader2_id?: Prisma.SortOrder
   old_score1?: Prisma.SortOrder
   old_score2?: Prisma.SortOrder
+  new_score1?: Prisma.SortOrder
+  new_score2?: Prisma.SortOrder
   changed_by?: Prisma.SortOrder
 }
 
@@ -836,45 +1053,129 @@ export type grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_sc
   deleteMany?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
 }
 
-export type grading_score_logsCreateNestedManyWithoutSubjectsInput = {
-  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSubjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput> | Prisma.grading_score_logsCreateWithoutSubjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput[]
-  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSubjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutSubjectsInput[]
-  createMany?: Prisma.grading_score_logsCreateManySubjectsInputEnvelope
+export type grading_score_logsCreateNestedManyWithoutSession_subjectsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput> | Prisma.grading_score_logsCreateWithoutSession_subjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSession_subjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutSession_subjectsInput[]
+  createMany?: Prisma.grading_score_logsCreateManySession_subjectsInputEnvelope
   connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
 }
 
-export type grading_score_logsUncheckedCreateNestedManyWithoutSubjectsInput = {
-  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSubjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput> | Prisma.grading_score_logsCreateWithoutSubjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput[]
-  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSubjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutSubjectsInput[]
-  createMany?: Prisma.grading_score_logsCreateManySubjectsInputEnvelope
+export type grading_score_logsUncheckedCreateNestedManyWithoutSession_subjectsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput> | Prisma.grading_score_logsCreateWithoutSession_subjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSession_subjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutSession_subjectsInput[]
+  createMany?: Prisma.grading_score_logsCreateManySession_subjectsInputEnvelope
   connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
 }
 
-export type grading_score_logsUpdateManyWithoutSubjectsNestedInput = {
-  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSubjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput> | Prisma.grading_score_logsCreateWithoutSubjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput[]
-  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSubjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutSubjectsInput[]
-  upsert?: Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSubjectsInput | Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSubjectsInput[]
-  createMany?: Prisma.grading_score_logsCreateManySubjectsInputEnvelope
+export type grading_score_logsUpdateManyWithoutSession_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput> | Prisma.grading_score_logsCreateWithoutSession_subjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSession_subjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutSession_subjectsInput[]
+  upsert?: Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSession_subjectsInput | Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSession_subjectsInput[]
+  createMany?: Prisma.grading_score_logsCreateManySession_subjectsInputEnvelope
   set?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
   disconnect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
   delete?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
   connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
-  update?: Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSubjectsInput | Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSubjectsInput[]
-  updateMany?: Prisma.grading_score_logsUpdateManyWithWhereWithoutSubjectsInput | Prisma.grading_score_logsUpdateManyWithWhereWithoutSubjectsInput[]
+  update?: Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSession_subjectsInput | Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSession_subjectsInput[]
+  updateMany?: Prisma.grading_score_logsUpdateManyWithWhereWithoutSession_subjectsInput | Prisma.grading_score_logsUpdateManyWithWhereWithoutSession_subjectsInput[]
   deleteMany?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
 }
 
-export type grading_score_logsUncheckedUpdateManyWithoutSubjectsNestedInput = {
-  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSubjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput> | Prisma.grading_score_logsCreateWithoutSubjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput[]
-  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSubjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutSubjectsInput[]
-  upsert?: Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSubjectsInput | Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSubjectsInput[]
-  createMany?: Prisma.grading_score_logsCreateManySubjectsInputEnvelope
+export type grading_score_logsUncheckedUpdateManyWithoutSession_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput> | Prisma.grading_score_logsCreateWithoutSession_subjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSession_subjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutSession_subjectsInput[]
+  upsert?: Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSession_subjectsInput | Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSession_subjectsInput[]
+  createMany?: Prisma.grading_score_logsCreateManySession_subjectsInputEnvelope
   set?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
   disconnect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
   delete?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
   connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
-  update?: Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSubjectsInput | Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSubjectsInput[]
-  updateMany?: Prisma.grading_score_logsUpdateManyWithWhereWithoutSubjectsInput | Prisma.grading_score_logsUpdateManyWithWhereWithoutSubjectsInput[]
+  update?: Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSession_subjectsInput | Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSession_subjectsInput[]
+  updateMany?: Prisma.grading_score_logsUpdateManyWithWhereWithoutSession_subjectsInput | Prisma.grading_score_logsUpdateManyWithWhereWithoutSession_subjectsInput[]
+  deleteMany?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
+}
+
+export type grading_score_logsCreateNestedManyWithoutCampaign_subjectsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput> | Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput[]
+  createMany?: Prisma.grading_score_logsCreateManyCampaign_subjectsInputEnvelope
+  connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+}
+
+export type grading_score_logsUncheckedCreateNestedManyWithoutCampaign_subjectsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput> | Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput[]
+  createMany?: Prisma.grading_score_logsCreateManyCampaign_subjectsInputEnvelope
+  connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+}
+
+export type grading_score_logsUpdateManyWithoutCampaign_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput> | Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput[]
+  upsert?: Prisma.grading_score_logsUpsertWithWhereUniqueWithoutCampaign_subjectsInput | Prisma.grading_score_logsUpsertWithWhereUniqueWithoutCampaign_subjectsInput[]
+  createMany?: Prisma.grading_score_logsCreateManyCampaign_subjectsInputEnvelope
+  set?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  disconnect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  delete?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  update?: Prisma.grading_score_logsUpdateWithWhereUniqueWithoutCampaign_subjectsInput | Prisma.grading_score_logsUpdateWithWhereUniqueWithoutCampaign_subjectsInput[]
+  updateMany?: Prisma.grading_score_logsUpdateManyWithWhereWithoutCampaign_subjectsInput | Prisma.grading_score_logsUpdateManyWithWhereWithoutCampaign_subjectsInput[]
+  deleteMany?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
+}
+
+export type grading_score_logsUncheckedUpdateManyWithoutCampaign_subjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput> | Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput | Prisma.grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput[]
+  upsert?: Prisma.grading_score_logsUpsertWithWhereUniqueWithoutCampaign_subjectsInput | Prisma.grading_score_logsUpsertWithWhereUniqueWithoutCampaign_subjectsInput[]
+  createMany?: Prisma.grading_score_logsCreateManyCampaign_subjectsInputEnvelope
+  set?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  disconnect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  delete?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  update?: Prisma.grading_score_logsUpdateWithWhereUniqueWithoutCampaign_subjectsInput | Prisma.grading_score_logsUpdateWithWhereUniqueWithoutCampaign_subjectsInput[]
+  updateMany?: Prisma.grading_score_logsUpdateManyWithWhereWithoutCampaign_subjectsInput | Prisma.grading_score_logsUpdateManyWithWhereWithoutCampaign_subjectsInput[]
+  deleteMany?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
+}
+
+export type grading_score_logsCreateNestedManyWithoutSession_subject_questionsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grading_score_logsCreateManySession_subject_questionsInputEnvelope
+  connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+}
+
+export type grading_score_logsUncheckedCreateNestedManyWithoutSession_subject_questionsInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grading_score_logsCreateManySession_subject_questionsInputEnvelope
+  connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+}
+
+export type grading_score_logsUpdateManyWithoutSession_subject_questionsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput[]
+  upsert?: Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grading_score_logsCreateManySession_subject_questionsInputEnvelope
+  set?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  disconnect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  delete?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  update?: Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSession_subject_questionsInput[]
+  updateMany?: Prisma.grading_score_logsUpdateManyWithWhereWithoutSession_subject_questionsInput | Prisma.grading_score_logsUpdateManyWithWhereWithoutSession_subject_questionsInput[]
+  deleteMany?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
+}
+
+export type grading_score_logsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput = {
+  create?: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput> | Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput[] | Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput[]
+  connectOrCreate?: Prisma.grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput | Prisma.grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput[]
+  upsert?: Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grading_score_logsUpsertWithWhereUniqueWithoutSession_subject_questionsInput[]
+  createMany?: Prisma.grading_score_logsCreateManySession_subject_questionsInputEnvelope
+  set?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  disconnect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  delete?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  connect?: Prisma.grading_score_logsWhereUniqueInput | Prisma.grading_score_logsWhereUniqueInput[]
+  update?: Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSession_subject_questionsInput | Prisma.grading_score_logsUpdateWithWhereUniqueWithoutSession_subject_questionsInput[]
+  updateMany?: Prisma.grading_score_logsUpdateManyWithWhereWithoutSession_subject_questionsInput | Prisma.grading_score_logsUpdateManyWithWhereWithoutSession_subject_questionsInput[]
   deleteMany?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
 }
 
@@ -882,19 +1183,29 @@ export type grading_score_logsCreateWithoutAccountsInput = {
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_logsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
 }
 
 export type grading_score_logsUncheckedCreateWithoutAccountsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
@@ -902,7 +1213,11 @@ export type grading_score_logsUncheckedCreateWithoutAccountsInput = {
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsCreateOrConnectWithoutAccountsInput = {
@@ -936,8 +1251,12 @@ export type grading_score_logsScalarWhereInput = {
   OR?: Prisma.grading_score_logsScalarWhereInput[]
   NOT?: Prisma.grading_score_logsScalarWhereInput | Prisma.grading_score_logsScalarWhereInput[]
   id?: Prisma.IntFilter<"grading_score_logs"> | number
+  campaign_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_id?: Prisma.IntFilter<"grading_score_logs"> | number
   booklet_id?: Prisma.IntFilter<"grading_score_logs"> | number
-  subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  campaign_subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_subject_id?: Prisma.IntFilter<"grading_score_logs"> | number
+  session_subject_question_id?: Prisma.IntFilter<"grading_score_logs"> | number
   question_no?: Prisma.IntFilter<"grading_score_logs"> | number
   slot_id1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   slot_id2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
@@ -945,26 +1264,40 @@ export type grading_score_logsScalarWhereInput = {
   grader2_id?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
   old_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  new_score1?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  new_score2?: Prisma.IntNullableFilter<"grading_score_logs"> | number | null
+  reason?: Prisma.StringNullableFilter<"grading_score_logs"> | string | null
   changed_by?: Prisma.IntFilter<"grading_score_logs"> | number
   changed_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
+  created_at?: Prisma.DateTimeFilter<"grading_score_logs"> | Date | string
 }
 
 export type grading_score_logsCreateWithoutBookletsInput = {
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
   accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_logsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
 }
 
 export type grading_score_logsUncheckedCreateWithoutBookletsInput = {
   id?: number
-  subject_id: number
+  campaign_id: number
+  session_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
@@ -972,8 +1305,12 @@ export type grading_score_logsUncheckedCreateWithoutBookletsInput = {
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsCreateOrConnectWithoutBookletsInput = {
@@ -1006,27 +1343,41 @@ export type grading_score_logsCreateWithoutGraders_grading_score_logs_grader1_id
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
   accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_logsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
 }
 
 export type grading_score_logsUncheckedCreateWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsCreateOrConnectWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
@@ -1043,27 +1394,41 @@ export type grading_score_logsCreateWithoutGraders_grading_score_logs_grader2_id
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
   accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_logsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
 }
 
 export type grading_score_logsUncheckedCreateWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
   grader1_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsCreateOrConnectWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
@@ -1112,27 +1477,41 @@ export type grading_score_logsCreateWithoutGrading_slots_grading_score_logs_slot
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
   accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_logsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
 }
 
 export type grading_score_logsUncheckedCreateWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id2?: number | null
   grader1_id?: number | null
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsCreateOrConnectWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
@@ -1149,27 +1528,41 @@ export type grading_score_logsCreateWithoutGrading_slots_grading_score_logs_slot
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
   accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
-  subjects: Prisma.subjectsCreateNestedOneWithoutGrading_score_logsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
 }
 
 export type grading_score_logsUncheckedCreateWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   grader1_id?: number | null
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsCreateOrConnectWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
@@ -1214,22 +1607,30 @@ export type grading_score_logsUpdateManyWithWhereWithoutGrading_slots_grading_sc
   data: Prisma.XOR<Prisma.grading_score_logsUpdateManyMutationInput, Prisma.grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput>
 }
 
-export type grading_score_logsCreateWithoutSubjectsInput = {
+export type grading_score_logsCreateWithoutSession_subjectsInput = {
   question_no: number
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
   booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
   accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
 }
 
-export type grading_score_logsUncheckedCreateWithoutSubjectsInput = {
+export type grading_score_logsUncheckedCreateWithoutSession_subjectsInput = {
   id?: number
   booklet_id: number
+  campaign_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
@@ -1237,40 +1638,179 @@ export type grading_score_logsUncheckedCreateWithoutSubjectsInput = {
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
-export type grading_score_logsCreateOrConnectWithoutSubjectsInput = {
+export type grading_score_logsCreateOrConnectWithoutSession_subjectsInput = {
   where: Prisma.grading_score_logsWhereUniqueInput
-  create: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSubjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput>
+  create: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput>
 }
 
-export type grading_score_logsCreateManySubjectsInputEnvelope = {
-  data: Prisma.grading_score_logsCreateManySubjectsInput | Prisma.grading_score_logsCreateManySubjectsInput[]
+export type grading_score_logsCreateManySession_subjectsInputEnvelope = {
+  data: Prisma.grading_score_logsCreateManySession_subjectsInput | Prisma.grading_score_logsCreateManySession_subjectsInput[]
   skipDuplicates?: boolean
 }
 
-export type grading_score_logsUpsertWithWhereUniqueWithoutSubjectsInput = {
+export type grading_score_logsUpsertWithWhereUniqueWithoutSession_subjectsInput = {
   where: Prisma.grading_score_logsWhereUniqueInput
-  update: Prisma.XOR<Prisma.grading_score_logsUpdateWithoutSubjectsInput, Prisma.grading_score_logsUncheckedUpdateWithoutSubjectsInput>
-  create: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSubjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSubjectsInput>
+  update: Prisma.XOR<Prisma.grading_score_logsUpdateWithoutSession_subjectsInput, Prisma.grading_score_logsUncheckedUpdateWithoutSession_subjectsInput>
+  create: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subjectsInput>
 }
 
-export type grading_score_logsUpdateWithWhereUniqueWithoutSubjectsInput = {
+export type grading_score_logsUpdateWithWhereUniqueWithoutSession_subjectsInput = {
   where: Prisma.grading_score_logsWhereUniqueInput
-  data: Prisma.XOR<Prisma.grading_score_logsUpdateWithoutSubjectsInput, Prisma.grading_score_logsUncheckedUpdateWithoutSubjectsInput>
+  data: Prisma.XOR<Prisma.grading_score_logsUpdateWithoutSession_subjectsInput, Prisma.grading_score_logsUncheckedUpdateWithoutSession_subjectsInput>
 }
 
-export type grading_score_logsUpdateManyWithWhereWithoutSubjectsInput = {
+export type grading_score_logsUpdateManyWithWhereWithoutSession_subjectsInput = {
   where: Prisma.grading_score_logsScalarWhereInput
-  data: Prisma.XOR<Prisma.grading_score_logsUpdateManyMutationInput, Prisma.grading_score_logsUncheckedUpdateManyWithoutSubjectsInput>
+  data: Prisma.XOR<Prisma.grading_score_logsUpdateManyMutationInput, Prisma.grading_score_logsUncheckedUpdateManyWithoutSession_subjectsInput>
+}
+
+export type grading_score_logsCreateWithoutCampaign_subjectsInput = {
+  question_no: number
+  old_score1?: number | null
+  old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
+  changed_at?: Date | string
+  created_at?: Date | string
+  booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
+  graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
+  graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
+  grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
+  grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
+  session_subject_questions: Prisma.session_subject_questionsCreateNestedOneWithoutGrading_score_logsInput
+}
+
+export type grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput = {
+  id?: number
+  session_id: number
+  booklet_id: number
+  session_subject_id: number
+  session_subject_question_id: number
+  question_no: number
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
+  old_score1?: number | null
+  old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
+  changed_by: number
+  changed_at?: Date | string
+  created_at?: Date | string
+}
+
+export type grading_score_logsCreateOrConnectWithoutCampaign_subjectsInput = {
+  where: Prisma.grading_score_logsWhereUniqueInput
+  create: Prisma.XOR<Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput>
+}
+
+export type grading_score_logsCreateManyCampaign_subjectsInputEnvelope = {
+  data: Prisma.grading_score_logsCreateManyCampaign_subjectsInput | Prisma.grading_score_logsCreateManyCampaign_subjectsInput[]
+  skipDuplicates?: boolean
+}
+
+export type grading_score_logsUpsertWithWhereUniqueWithoutCampaign_subjectsInput = {
+  where: Prisma.grading_score_logsWhereUniqueInput
+  update: Prisma.XOR<Prisma.grading_score_logsUpdateWithoutCampaign_subjectsInput, Prisma.grading_score_logsUncheckedUpdateWithoutCampaign_subjectsInput>
+  create: Prisma.XOR<Prisma.grading_score_logsCreateWithoutCampaign_subjectsInput, Prisma.grading_score_logsUncheckedCreateWithoutCampaign_subjectsInput>
+}
+
+export type grading_score_logsUpdateWithWhereUniqueWithoutCampaign_subjectsInput = {
+  where: Prisma.grading_score_logsWhereUniqueInput
+  data: Prisma.XOR<Prisma.grading_score_logsUpdateWithoutCampaign_subjectsInput, Prisma.grading_score_logsUncheckedUpdateWithoutCampaign_subjectsInput>
+}
+
+export type grading_score_logsUpdateManyWithWhereWithoutCampaign_subjectsInput = {
+  where: Prisma.grading_score_logsScalarWhereInput
+  data: Prisma.XOR<Prisma.grading_score_logsUpdateManyMutationInput, Prisma.grading_score_logsUncheckedUpdateManyWithoutCampaign_subjectsInput>
+}
+
+export type grading_score_logsCreateWithoutSession_subject_questionsInput = {
+  question_no: number
+  old_score1?: number | null
+  old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
+  changed_at?: Date | string
+  created_at?: Date | string
+  booklets: Prisma.bookletsCreateNestedOneWithoutGrading_score_logsInput
+  campaign_subjects: Prisma.campaign_subjectsCreateNestedOneWithoutGrading_score_logsInput
+  accounts: Prisma.accountsCreateNestedOneWithoutGrading_score_logsInput
+  graders_grading_score_logs_grader1_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersInput
+  graders_grading_score_logs_grader2_idTograders?: Prisma.gradersCreateNestedOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersInput
+  session_subjects: Prisma.session_subjectsCreateNestedOneWithoutGrading_score_logsInput
+  grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsInput
+  grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsCreateNestedOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsInput
+}
+
+export type grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput = {
+  id?: number
+  booklet_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  question_no: number
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
+  old_score1?: number | null
+  old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
+  changed_by: number
+  changed_at?: Date | string
+  created_at?: Date | string
+}
+
+export type grading_score_logsCreateOrConnectWithoutSession_subject_questionsInput = {
+  where: Prisma.grading_score_logsWhereUniqueInput
+  create: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput>
+}
+
+export type grading_score_logsCreateManySession_subject_questionsInputEnvelope = {
+  data: Prisma.grading_score_logsCreateManySession_subject_questionsInput | Prisma.grading_score_logsCreateManySession_subject_questionsInput[]
+  skipDuplicates?: boolean
+}
+
+export type grading_score_logsUpsertWithWhereUniqueWithoutSession_subject_questionsInput = {
+  where: Prisma.grading_score_logsWhereUniqueInput
+  update: Prisma.XOR<Prisma.grading_score_logsUpdateWithoutSession_subject_questionsInput, Prisma.grading_score_logsUncheckedUpdateWithoutSession_subject_questionsInput>
+  create: Prisma.XOR<Prisma.grading_score_logsCreateWithoutSession_subject_questionsInput, Prisma.grading_score_logsUncheckedCreateWithoutSession_subject_questionsInput>
+}
+
+export type grading_score_logsUpdateWithWhereUniqueWithoutSession_subject_questionsInput = {
+  where: Prisma.grading_score_logsWhereUniqueInput
+  data: Prisma.XOR<Prisma.grading_score_logsUpdateWithoutSession_subject_questionsInput, Prisma.grading_score_logsUncheckedUpdateWithoutSession_subject_questionsInput>
+}
+
+export type grading_score_logsUpdateManyWithWhereWithoutSession_subject_questionsInput = {
+  where: Prisma.grading_score_logsScalarWhereInput
+  data: Prisma.XOR<Prisma.grading_score_logsUpdateManyMutationInput, Prisma.grading_score_logsUncheckedUpdateManyWithoutSession_subject_questionsInput>
 }
 
 export type grading_score_logsCreateManyAccountsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
@@ -1278,26 +1818,40 @@ export type grading_score_logsCreateManyAccountsInput = {
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutAccountsInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
 }
 
 export type grading_score_logsUncheckedUpdateWithoutAccountsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1305,13 +1859,21 @@ export type grading_score_logsUncheckedUpdateWithoutAccountsInput = {
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutAccountsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1319,12 +1881,20 @@ export type grading_score_logsUncheckedUpdateManyWithoutAccountsInput = {
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManyBookletsInput = {
   id?: number
-  subject_id: number
+  campaign_id: number
+  session_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
@@ -1332,26 +1902,40 @@ export type grading_score_logsCreateManyBookletsInput = {
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutBookletsInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
 }
 
 export type grading_score_logsUncheckedUpdateWithoutBookletsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1359,13 +1943,21 @@ export type grading_score_logsUncheckedUpdateWithoutBookletsInput = {
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutBookletsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1373,233 +1965,359 @@ export type grading_score_logsUncheckedUpdateManyWithoutBookletsInput = {
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManyGraders_grading_score_logs_grader1_idTogradersInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsCreateManyGraders_grading_score_logs_grader2_idTogradersInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
   grader1_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
 }
 
 export type grading_score_logsUncheckedUpdateWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutGraders_grading_score_logs_grader1_idTogradersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUpdateWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
 }
 
 export type grading_score_logsUncheckedUpdateWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutGraders_grading_score_logs_grader2_idTogradersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsCreateManyGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id2?: number | null
   grader1_id?: number | null
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsCreateManyGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
   id?: number
+  campaign_id: number
+  session_id: number
   booklet_id: number
-  subject_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   grader1_id?: number | null
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
 export type grading_score_logsUpdateWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
 }
 
 export type grading_score_logsUncheckedUpdateWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id1Tograding_slotsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUpdateWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
-  subjects?: Prisma.subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
 }
 
 export type grading_score_logsUncheckedUpdateWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type grading_score_logsUncheckedUpdateManyWithoutGrading_slots_grading_score_logs_slot_id2Tograding_slotsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
-  subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type grading_score_logsCreateManySubjectsInput = {
+export type grading_score_logsCreateManySession_subjectsInput = {
   id?: number
   booklet_id: number
+  campaign_subject_id: number
+  session_subject_question_id: number
   question_no: number
   slot_id1?: number | null
   slot_id2?: number | null
@@ -1607,26 +2325,38 @@ export type grading_score_logsCreateManySubjectsInput = {
   grader2_id?: number | null
   old_score1?: number | null
   old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
   changed_by: number
   changed_at?: Date | string
+  created_at?: Date | string
 }
 
-export type grading_score_logsUpdateWithoutSubjectsInput = {
+export type grading_score_logsUpdateWithoutSession_subjectsInput = {
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
   graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
   graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
 }
 
-export type grading_score_logsUncheckedUpdateWithoutSubjectsInput = {
+export type grading_score_logsUncheckedUpdateWithoutSession_subjectsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1634,13 +2364,19 @@ export type grading_score_logsUncheckedUpdateWithoutSubjectsInput = {
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type grading_score_logsUncheckedUpdateManyWithoutSubjectsInput = {
+export type grading_score_logsUncheckedUpdateManyWithoutSession_subjectsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
   slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -1648,16 +2384,185 @@ export type grading_score_logsUncheckedUpdateManyWithoutSubjectsInput = {
   grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   changed_by?: Prisma.IntFieldUpdateOperationsInput | number
   changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type grading_score_logsCreateManyCampaign_subjectsInput = {
+  id?: number
+  session_id: number
+  booklet_id: number
+  session_subject_id: number
+  session_subject_question_id: number
+  question_no: number
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
+  old_score1?: number | null
+  old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
+  changed_by: number
+  changed_at?: Date | string
+  created_at?: Date | string
+}
+
+export type grading_score_logsUpdateWithoutCampaign_subjectsInput = {
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
+  graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
+  grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
+  session_subject_questions?: Prisma.session_subject_questionsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+}
+
+export type grading_score_logsUncheckedUpdateWithoutCampaign_subjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
+  changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type grading_score_logsUncheckedUpdateManyWithoutCampaign_subjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
+  changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type grading_score_logsCreateManySession_subject_questionsInput = {
+  id?: number
+  booklet_id: number
+  campaign_subject_id: number
+  session_subject_id: number
+  question_no: number
+  slot_id1?: number | null
+  slot_id2?: number | null
+  grader1_id?: number | null
+  grader2_id?: number | null
+  old_score1?: number | null
+  old_score2?: number | null
+  new_score1?: number | null
+  new_score2?: number | null
+  reason?: string | null
+  changed_by: number
+  changed_at?: Date | string
+  created_at?: Date | string
+}
+
+export type grading_score_logsUpdateWithoutSession_subject_questionsInput = {
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booklets?: Prisma.bookletsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  campaign_subjects?: Prisma.campaign_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  accounts?: Prisma.accountsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  graders_grading_score_logs_grader1_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader1_idTogradersNestedInput
+  graders_grading_score_logs_grader2_idTograders?: Prisma.gradersUpdateOneWithoutGrading_score_logs_grading_score_logs_grader2_idTogradersNestedInput
+  session_subjects?: Prisma.session_subjectsUpdateOneRequiredWithoutGrading_score_logsNestedInput
+  grading_slots_grading_score_logs_slot_id1Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id1Tograding_slotsNestedInput
+  grading_slots_grading_score_logs_slot_id2Tograding_slots?: Prisma.grading_slotsUpdateOneWithoutGrading_score_logs_grading_score_logs_slot_id2Tograding_slotsNestedInput
+}
+
+export type grading_score_logsUncheckedUpdateWithoutSession_subject_questionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
+  changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type grading_score_logsUncheckedUpdateManyWithoutSession_subject_questionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  booklet_id?: Prisma.IntFieldUpdateOperationsInput | number
+  campaign_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
+  question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  slot_id1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  slot_id2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader1_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  grader2_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  old_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score1?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  new_score2?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  reason?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  changed_by?: Prisma.IntFieldUpdateOperationsInput | number
+  changed_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type grading_score_logsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  campaign_id?: boolean
+  session_id?: boolean
   booklet_id?: boolean
-  subject_id?: boolean
+  campaign_subject_id?: boolean
+  session_subject_id?: boolean
+  session_subject_question_id?: boolean
   question_no?: boolean
   slot_id1?: boolean
   slot_id2?: boolean
@@ -1665,23 +2570,33 @@ export type grading_score_logsSelect<ExtArgs extends runtime.Types.Extensions.In
   grader2_id?: boolean
   old_score1?: boolean
   old_score2?: boolean
+  new_score1?: boolean
+  new_score2?: boolean
+  reason?: boolean
   changed_by?: boolean
   changed_at?: boolean
+  created_at?: boolean
   booklets?: boolean | Prisma.bookletsDefaultArgs<ExtArgs>
+  campaign_subjects?: boolean | Prisma.campaign_subjectsDefaultArgs<ExtArgs>
   accounts?: boolean | Prisma.accountsDefaultArgs<ExtArgs>
   graders_grading_score_logs_grader1_idTograders?: boolean | Prisma.grading_score_logs$graders_grading_score_logs_grader1_idTogradersArgs<ExtArgs>
   graders_grading_score_logs_grader2_idTograders?: boolean | Prisma.grading_score_logs$graders_grading_score_logs_grader2_idTogradersArgs<ExtArgs>
+  session_subjects?: boolean | Prisma.session_subjectsDefaultArgs<ExtArgs>
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: boolean | Prisma.grading_score_logs$grading_slots_grading_score_logs_slot_id1Tograding_slotsArgs<ExtArgs>
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: boolean | Prisma.grading_score_logs$grading_slots_grading_score_logs_slot_id2Tograding_slotsArgs<ExtArgs>
-  subjects?: boolean | Prisma.subjectsDefaultArgs<ExtArgs>
+  session_subject_questions?: boolean | Prisma.session_subject_questionsDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["grading_score_logs"]>
 
 
 
 export type grading_score_logsSelectScalar = {
   id?: boolean
+  campaign_id?: boolean
+  session_id?: boolean
   booklet_id?: boolean
-  subject_id?: boolean
+  campaign_subject_id?: boolean
+  session_subject_id?: boolean
+  session_subject_question_id?: boolean
   question_no?: boolean
   slot_id1?: boolean
   slot_id2?: boolean
@@ -1689,36 +2604,48 @@ export type grading_score_logsSelectScalar = {
   grader2_id?: boolean
   old_score1?: boolean
   old_score2?: boolean
+  new_score1?: boolean
+  new_score2?: boolean
+  reason?: boolean
   changed_by?: boolean
   changed_at?: boolean
+  created_at?: boolean
 }
 
-export type grading_score_logsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "booklet_id" | "subject_id" | "question_no" | "slot_id1" | "slot_id2" | "grader1_id" | "grader2_id" | "old_score1" | "old_score2" | "changed_by" | "changed_at", ExtArgs["result"]["grading_score_logs"]>
+export type grading_score_logsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_id" | "booklet_id" | "campaign_subject_id" | "session_subject_id" | "session_subject_question_id" | "question_no" | "slot_id1" | "slot_id2" | "grader1_id" | "grader2_id" | "old_score1" | "old_score2" | "new_score1" | "new_score2" | "reason" | "changed_by" | "changed_at" | "created_at", ExtArgs["result"]["grading_score_logs"]>
 export type grading_score_logsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   booklets?: boolean | Prisma.bookletsDefaultArgs<ExtArgs>
+  campaign_subjects?: boolean | Prisma.campaign_subjectsDefaultArgs<ExtArgs>
   accounts?: boolean | Prisma.accountsDefaultArgs<ExtArgs>
   graders_grading_score_logs_grader1_idTograders?: boolean | Prisma.grading_score_logs$graders_grading_score_logs_grader1_idTogradersArgs<ExtArgs>
   graders_grading_score_logs_grader2_idTograders?: boolean | Prisma.grading_score_logs$graders_grading_score_logs_grader2_idTogradersArgs<ExtArgs>
+  session_subjects?: boolean | Prisma.session_subjectsDefaultArgs<ExtArgs>
   grading_slots_grading_score_logs_slot_id1Tograding_slots?: boolean | Prisma.grading_score_logs$grading_slots_grading_score_logs_slot_id1Tograding_slotsArgs<ExtArgs>
   grading_slots_grading_score_logs_slot_id2Tograding_slots?: boolean | Prisma.grading_score_logs$grading_slots_grading_score_logs_slot_id2Tograding_slotsArgs<ExtArgs>
-  subjects?: boolean | Prisma.subjectsDefaultArgs<ExtArgs>
+  session_subject_questions?: boolean | Prisma.session_subject_questionsDefaultArgs<ExtArgs>
 }
 
 export type $grading_score_logsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "grading_score_logs"
   objects: {
     booklets: Prisma.$bookletsPayload<ExtArgs>
+    campaign_subjects: Prisma.$campaign_subjectsPayload<ExtArgs>
     accounts: Prisma.$accountsPayload<ExtArgs>
     graders_grading_score_logs_grader1_idTograders: Prisma.$gradersPayload<ExtArgs> | null
     graders_grading_score_logs_grader2_idTograders: Prisma.$gradersPayload<ExtArgs> | null
+    session_subjects: Prisma.$session_subjectsPayload<ExtArgs>
     grading_slots_grading_score_logs_slot_id1Tograding_slots: Prisma.$grading_slotsPayload<ExtArgs> | null
     grading_slots_grading_score_logs_slot_id2Tograding_slots: Prisma.$grading_slotsPayload<ExtArgs> | null
-    subjects: Prisma.$subjectsPayload<ExtArgs>
+    session_subject_questions: Prisma.$session_subject_questionsPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    campaign_id: number
+    session_id: number
     booklet_id: number
-    subject_id: number
+    campaign_subject_id: number
+    session_subject_id: number
+    session_subject_question_id: number
     question_no: number
     slot_id1: number | null
     slot_id2: number | null
@@ -1726,8 +2653,12 @@ export type $grading_score_logsPayload<ExtArgs extends runtime.Types.Extensions.
     grader2_id: number | null
     old_score1: number | null
     old_score2: number | null
+    new_score1: number | null
+    new_score2: number | null
+    reason: string | null
     changed_by: number
     changed_at: Date
+    created_at: Date
   }, ExtArgs["result"]["grading_score_logs"]>
   composites: {}
 }
@@ -2069,12 +3000,14 @@ readonly fields: grading_score_logsFieldRefs;
 export interface Prisma__grading_score_logsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   booklets<T extends Prisma.bookletsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookletsDefaultArgs<ExtArgs>>): Prisma.Prisma__bookletsClient<runtime.Types.Result.GetResult<Prisma.$bookletsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  campaign_subjects<T extends Prisma.campaign_subjectsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.campaign_subjectsDefaultArgs<ExtArgs>>): Prisma.Prisma__campaign_subjectsClient<runtime.Types.Result.GetResult<Prisma.$campaign_subjectsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   accounts<T extends Prisma.accountsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.accountsDefaultArgs<ExtArgs>>): Prisma.Prisma__accountsClient<runtime.Types.Result.GetResult<Prisma.$accountsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   graders_grading_score_logs_grader1_idTograders<T extends Prisma.grading_score_logs$graders_grading_score_logs_grader1_idTogradersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.grading_score_logs$graders_grading_score_logs_grader1_idTogradersArgs<ExtArgs>>): Prisma.Prisma__gradersClient<runtime.Types.Result.GetResult<Prisma.$gradersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   graders_grading_score_logs_grader2_idTograders<T extends Prisma.grading_score_logs$graders_grading_score_logs_grader2_idTogradersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.grading_score_logs$graders_grading_score_logs_grader2_idTogradersArgs<ExtArgs>>): Prisma.Prisma__gradersClient<runtime.Types.Result.GetResult<Prisma.$gradersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  session_subjects<T extends Prisma.session_subjectsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.session_subjectsDefaultArgs<ExtArgs>>): Prisma.Prisma__session_subjectsClient<runtime.Types.Result.GetResult<Prisma.$session_subjectsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   grading_slots_grading_score_logs_slot_id1Tograding_slots<T extends Prisma.grading_score_logs$grading_slots_grading_score_logs_slot_id1Tograding_slotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.grading_score_logs$grading_slots_grading_score_logs_slot_id1Tograding_slotsArgs<ExtArgs>>): Prisma.Prisma__grading_slotsClient<runtime.Types.Result.GetResult<Prisma.$grading_slotsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   grading_slots_grading_score_logs_slot_id2Tograding_slots<T extends Prisma.grading_score_logs$grading_slots_grading_score_logs_slot_id2Tograding_slotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.grading_score_logs$grading_slots_grading_score_logs_slot_id2Tograding_slotsArgs<ExtArgs>>): Prisma.Prisma__grading_slotsClient<runtime.Types.Result.GetResult<Prisma.$grading_slotsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  subjects<T extends Prisma.subjectsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.subjectsDefaultArgs<ExtArgs>>): Prisma.Prisma__subjectsClient<runtime.Types.Result.GetResult<Prisma.$subjectsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  session_subject_questions<T extends Prisma.session_subject_questionsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.session_subject_questionsDefaultArgs<ExtArgs>>): Prisma.Prisma__session_subject_questionsClient<runtime.Types.Result.GetResult<Prisma.$session_subject_questionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2105,8 +3038,12 @@ export interface Prisma__grading_score_logsClient<T, Null = never, ExtArgs exten
  */
 export interface grading_score_logsFieldRefs {
   readonly id: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly campaign_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly session_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly booklet_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
-  readonly subject_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly campaign_subject_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly session_subject_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly session_subject_question_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly question_no: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly slot_id1: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly slot_id2: Prisma.FieldRef<"grading_score_logs", 'Int'>
@@ -2114,8 +3051,12 @@ export interface grading_score_logsFieldRefs {
   readonly grader2_id: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly old_score1: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly old_score2: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly new_score1: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly new_score2: Prisma.FieldRef<"grading_score_logs", 'Int'>
+  readonly reason: Prisma.FieldRef<"grading_score_logs", 'String'>
   readonly changed_by: Prisma.FieldRef<"grading_score_logs", 'Int'>
   readonly changed_at: Prisma.FieldRef<"grading_score_logs", 'DateTime'>
+  readonly created_at: Prisma.FieldRef<"grading_score_logs", 'DateTime'>
 }
     
 

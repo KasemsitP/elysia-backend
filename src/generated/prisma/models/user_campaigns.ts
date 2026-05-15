@@ -49,6 +49,9 @@ export type User_campaignsMinAggregateOutputType = {
   room_code: string | null
   row_no: number | null
   col_no: number | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type User_campaignsMaxAggregateOutputType = {
@@ -58,6 +61,9 @@ export type User_campaignsMaxAggregateOutputType = {
   room_code: string | null
   row_no: number | null
   col_no: number | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type User_campaignsCountAggregateOutputType = {
@@ -67,6 +73,9 @@ export type User_campaignsCountAggregateOutputType = {
   room_code: number
   row_no: number
   col_no: number
+  created_at: number
+  updated_at: number
+  deleted_at: number
   _all: number
 }
 
@@ -94,6 +103,9 @@ export type User_campaignsMinAggregateInputType = {
   room_code?: true
   row_no?: true
   col_no?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type User_campaignsMaxAggregateInputType = {
@@ -103,6 +115,9 @@ export type User_campaignsMaxAggregateInputType = {
   room_code?: true
   row_no?: true
   col_no?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type User_campaignsCountAggregateInputType = {
@@ -112,6 +127,9 @@ export type User_campaignsCountAggregateInputType = {
   room_code?: true
   row_no?: true
   col_no?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -208,6 +226,9 @@ export type User_campaignsGroupByOutputType = {
   room_code: string | null
   row_no: number | null
   col_no: number | null
+  created_at: Date
+  updated_at: Date
+  deleted_at: Date | null
   _count: User_campaignsCountAggregateOutputType | null
   _avg: User_campaignsAvgAggregateOutputType | null
   _sum: User_campaignsSumAggregateOutputType | null
@@ -240,11 +261,13 @@ export type user_campaignsWhereInput = {
   room_code?: Prisma.StringNullableFilter<"user_campaigns"> | string | null
   row_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
   col_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
+  created_at?: Prisma.DateTimeFilter<"user_campaigns"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"user_campaigns"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"user_campaigns"> | Date | string | null
+  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   exam_rooms?: Prisma.XOR<Prisma.Exam_roomsNullableScalarRelationFilter, Prisma.exam_roomsWhereInput> | null
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
-  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.User_sessionsListRelationFilter
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.User_sessionsListRelationFilter
 }
 
 export type user_campaignsOrderByWithRelationInput = {
@@ -254,11 +277,13 @@ export type user_campaignsOrderByWithRelationInput = {
   room_code?: Prisma.SortOrderInput | Prisma.SortOrder
   row_no?: Prisma.SortOrderInput | Prisma.SortOrder
   col_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  exam_campaigns?: Prisma.exam_campaignsOrderByWithRelationInput
   exam_rooms?: Prisma.exam_roomsOrderByWithRelationInput
   users?: Prisma.usersOrderByWithRelationInput
-  exam_campaigns?: Prisma.exam_campaignsOrderByWithRelationInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsOrderByRelationAggregateInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsOrderByRelationAggregateInput
   _relevance?: Prisma.user_campaignsOrderByRelevanceInput
 }
 
@@ -275,11 +300,13 @@ export type user_campaignsWhereUniqueInput = Prisma.AtLeast<{
   room_code?: Prisma.StringNullableFilter<"user_campaigns"> | string | null
   row_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
   col_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
+  created_at?: Prisma.DateTimeFilter<"user_campaigns"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"user_campaigns"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"user_campaigns"> | Date | string | null
+  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   exam_rooms?: Prisma.XOR<Prisma.Exam_roomsNullableScalarRelationFilter, Prisma.exam_roomsWhereInput> | null
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
-  exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.User_sessionsListRelationFilter
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.User_sessionsListRelationFilter
 }, "id" | "id_campaign_id" | "campaign_id_room_code_row_no_col_no" | "user_id_campaign_id">
 
 export type user_campaignsOrderByWithAggregationInput = {
@@ -289,6 +316,9 @@ export type user_campaignsOrderByWithAggregationInput = {
   room_code?: Prisma.SortOrderInput | Prisma.SortOrder
   row_no?: Prisma.SortOrderInput | Prisma.SortOrder
   col_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.user_campaignsCountOrderByAggregateInput
   _avg?: Prisma.user_campaignsAvgOrderByAggregateInput
   _max?: Prisma.user_campaignsMaxOrderByAggregateInput
@@ -306,16 +336,21 @@ export type user_campaignsScalarWhereWithAggregatesInput = {
   room_code?: Prisma.StringNullableWithAggregatesFilter<"user_campaigns"> | string | null
   row_no?: Prisma.IntNullableWithAggregatesFilter<"user_campaigns"> | number | null
   col_no?: Prisma.IntNullableWithAggregatesFilter<"user_campaigns"> | number | null
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"user_campaigns"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"user_campaigns"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"user_campaigns"> | Date | string | null
 }
 
 export type user_campaignsCreateInput = {
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutUser_campaignsInput
   exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
   users: Prisma.usersCreateNestedOneWithoutUser_campaignsInput
-  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutUser_campaignsInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsUncheckedCreateInput = {
@@ -325,18 +360,22 @@ export type user_campaignsUncheckedCreateInput = {
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsUpdateInput = {
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutUser_campaignsNestedInput
-  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsUncheckedUpdateInput = {
@@ -346,8 +385,10 @@ export type user_campaignsUncheckedUpdateInput = {
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsCreateManyInput = {
@@ -357,11 +398,17 @@ export type user_campaignsCreateManyInput = {
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type user_campaignsUpdateManyMutationInput = {
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type user_campaignsUncheckedUpdateManyInput = {
@@ -371,6 +418,9 @@ export type user_campaignsUncheckedUpdateManyInput = {
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type User_campaignsListRelationFilter = {
@@ -413,6 +463,9 @@ export type user_campaignsCountOrderByAggregateInput = {
   room_code?: Prisma.SortOrder
   row_no?: Prisma.SortOrder
   col_no?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type user_campaignsAvgOrderByAggregateInput = {
@@ -430,6 +483,9 @@ export type user_campaignsMaxOrderByAggregateInput = {
   room_code?: Prisma.SortOrder
   row_no?: Prisma.SortOrder
   col_no?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type user_campaignsMinOrderByAggregateInput = {
@@ -439,6 +495,9 @@ export type user_campaignsMinOrderByAggregateInput = {
   room_code?: Prisma.SortOrder
   row_no?: Prisma.SortOrder
   col_no?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type user_campaignsSumOrderByAggregateInput = {
@@ -544,26 +603,12 @@ export type user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user
   connect?: Prisma.user_campaignsWhereUniqueInput
 }
 
-export type user_campaignsCreateNestedOneWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  create?: Prisma.XOR<Prisma.user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput>
-  connectOrCreate?: Prisma.user_campaignsCreateOrConnectWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput
-  connect?: Prisma.user_campaignsWhereUniqueInput
-}
-
 export type user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput = {
   create?: Prisma.XOR<Prisma.user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput>
   connectOrCreate?: Prisma.user_campaignsCreateOrConnectWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
   upsert?: Prisma.user_campaignsUpsertWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
   connect?: Prisma.user_campaignsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.user_campaignsUpdateToOneWithWhereWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput, Prisma.user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput>, Prisma.user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput>
-}
-
-export type user_campaignsUpdateOneRequiredWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsNestedInput = {
-  create?: Prisma.XOR<Prisma.user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput>
-  connectOrCreate?: Prisma.user_campaignsCreateOrConnectWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput
-  upsert?: Prisma.user_campaignsUpsertWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput
-  connect?: Prisma.user_campaignsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.user_campaignsUpdateToOneWithWhereWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput, Prisma.user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput>, Prisma.user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput>
 }
 
 export type user_campaignsCreateNestedManyWithoutUsersInput = {
@@ -611,10 +656,12 @@ export type user_campaignsUncheckedUpdateManyWithoutUsersNestedInput = {
 export type user_campaignsCreateWithoutExam_campaignsInput = {
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
   users: Prisma.usersCreateNestedOneWithoutUser_campaignsInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsUncheckedCreateWithoutExam_campaignsInput = {
@@ -623,8 +670,10 @@ export type user_campaignsUncheckedCreateWithoutExam_campaignsInput = {
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsCreateOrConnectWithoutExam_campaignsInput = {
@@ -663,15 +712,20 @@ export type user_campaignsScalarWhereInput = {
   room_code?: Prisma.StringNullableFilter<"user_campaigns"> | string | null
   row_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
   col_no?: Prisma.IntNullableFilter<"user_campaigns"> | number | null
+  created_at?: Prisma.DateTimeFilter<"user_campaigns"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"user_campaigns"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"user_campaigns"> | Date | string | null
 }
 
 export type user_campaignsCreateWithoutExam_roomsInput = {
   row_no?: number | null
   col_no?: number | null
-  users: Prisma.usersCreateNestedOneWithoutUser_campaignsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutUser_campaignsInput
+  users: Prisma.usersCreateNestedOneWithoutUser_campaignsInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsUncheckedCreateWithoutExam_roomsInput = {
@@ -679,8 +733,10 @@ export type user_campaignsUncheckedCreateWithoutExam_roomsInput = {
   user_id: number
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsCreateOrConnectWithoutExam_roomsInput = {
@@ -712,10 +768,12 @@ export type user_campaignsUpdateManyWithWhereWithoutExam_roomsInput = {
 export type user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
+  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutUser_campaignsInput
   exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
   users: Prisma.usersCreateNestedOneWithoutUser_campaignsInput
-  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutUser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
@@ -725,36 +783,14 @@ export type user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type user_campaignsCreateOrConnectWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
   where: Prisma.user_campaignsWhereUniqueInput
   create: Prisma.XOR<Prisma.user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput>
-}
-
-export type user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  row_no?: number | null
-  col_no?: number | null
-  exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
-  users: Prisma.usersCreateNestedOneWithoutUser_campaignsInput
-  exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutUser_campaignsInput
-  user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-}
-
-export type user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: number
-  user_id: number
-  campaign_id: number
-  room_code?: string | null
-  row_no?: number | null
-  col_no?: number | null
-  user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-}
-
-export type user_campaignsCreateOrConnectWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  where: Prisma.user_campaignsWhereUniqueInput
-  create: Prisma.XOR<Prisma.user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput>
 }
 
 export type user_campaignsUpsertWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
@@ -771,10 +807,12 @@ export type user_campaignsUpdateToOneWithWhereWithoutUser_sessions_user_sessions
 export type user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput
   exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutUser_campaignsNestedInput
-  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput = {
@@ -784,46 +822,20 @@ export type user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
-}
-
-export type user_campaignsUpsertWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  update: Prisma.XOR<Prisma.user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput>
-  create: Prisma.XOR<Prisma.user_campaignsCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedCreateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput>
-  where?: Prisma.user_campaignsWhereInput
-}
-
-export type user_campaignsUpdateToOneWithWhereWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  where?: Prisma.user_campaignsWhereInput
-  data: Prisma.XOR<Prisma.user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput, Prisma.user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput>
-}
-
-export type user_campaignsUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
-  users?: Prisma.usersUpdateOneRequiredWithoutUser_campaignsNestedInput
-  exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-}
-
-export type user_campaignsUncheckedUpdateWithoutUser_sessions_user_sessions_user_campaign_idTouser_campaignsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  campaign_id?: Prisma.IntFieldUpdateOperationsInput | number
-  room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type user_campaignsCreateWithoutUsersInput = {
   row_no?: number | null
   col_no?: number | null
-  exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutUser_campaignsInput
+  exam_rooms?: Prisma.exam_roomsCreateNestedOneWithoutUser_campaignsInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsUncheckedCreateWithoutUsersInput = {
@@ -832,8 +844,10 @@ export type user_campaignsUncheckedCreateWithoutUsersInput = {
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedCreateNestedManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsInput
 }
 
 export type user_campaignsCreateOrConnectWithoutUsersInput = {
@@ -868,15 +882,20 @@ export type user_campaignsCreateManyExam_campaignsInput = {
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type user_campaignsUpdateWithoutExam_campaignsInput = {
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutUser_campaignsNestedInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsUncheckedUpdateWithoutExam_campaignsInput = {
@@ -885,8 +904,10 @@ export type user_campaignsUncheckedUpdateWithoutExam_campaignsInput = {
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsUncheckedUpdateManyWithoutExam_campaignsInput = {
@@ -895,6 +916,9 @@ export type user_campaignsUncheckedUpdateManyWithoutExam_campaignsInput = {
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type user_campaignsCreateManyExam_roomsInput = {
@@ -902,15 +926,20 @@ export type user_campaignsCreateManyExam_roomsInput = {
   user_id: number
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type user_campaignsUpdateWithoutExam_roomsInput = {
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  users?: Prisma.usersUpdateOneRequiredWithoutUser_campaignsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput
+  users?: Prisma.usersUpdateOneRequiredWithoutUser_campaignsNestedInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsUncheckedUpdateWithoutExam_roomsInput = {
@@ -918,8 +947,10 @@ export type user_campaignsUncheckedUpdateWithoutExam_roomsInput = {
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsUncheckedUpdateManyWithoutExam_roomsInput = {
@@ -927,6 +958,9 @@ export type user_campaignsUncheckedUpdateManyWithoutExam_roomsInput = {
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type user_campaignsCreateManyUsersInput = {
@@ -935,15 +969,20 @@ export type user_campaignsCreateManyUsersInput = {
   room_code?: string | null
   row_no?: number | null
   col_no?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type user_campaignsUpdateWithoutUsersInput = {
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutUser_campaignsNestedInput
+  exam_rooms?: Prisma.exam_roomsUpdateOneWithoutUser_campaignsNestedInput
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsUncheckedUpdateWithoutUsersInput = {
@@ -952,8 +991,10 @@ export type user_campaignsUncheckedUpdateWithoutUsersInput = {
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_id_campaign_idTouser_campaignsNestedInput
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: Prisma.user_sessionsUncheckedUpdateManyWithoutUser_campaigns_user_sessions_user_campaign_idTouser_campaignsNestedInput
 }
 
 export type user_campaignsUncheckedUpdateManyWithoutUsersInput = {
@@ -962,6 +1003,9 @@ export type user_campaignsUncheckedUpdateManyWithoutUsersInput = {
   room_code?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   row_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   col_no?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -971,12 +1015,10 @@ export type user_campaignsUncheckedUpdateManyWithoutUsersInput = {
 
 export type User_campaignsCountOutputType = {
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns: number
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns: number
 }
 
 export type User_campaignsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: boolean | User_campaignsCountOutputTypeCountUser_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsArgs
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: boolean | User_campaignsCountOutputTypeCountUser_sessions_user_sessions_user_campaign_idTouser_campaignsArgs
 }
 
 /**
@@ -996,13 +1038,6 @@ export type User_campaignsCountOutputTypeCountUser_sessions_user_sessions_user_c
   where?: Prisma.user_sessionsWhereInput
 }
 
-/**
- * User_campaignsCountOutputType without action
- */
-export type User_campaignsCountOutputTypeCountUser_sessions_user_sessions_user_campaign_idTouser_campaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.user_sessionsWhereInput
-}
-
 
 export type user_campaignsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1011,11 +1046,13 @@ export type user_campaignsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   room_code?: boolean
   row_no?: boolean
   col_no?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
+  exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
   exam_rooms?: boolean | Prisma.user_campaigns$exam_roomsArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
-  exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: boolean | Prisma.user_campaigns$user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsArgs<ExtArgs>
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: boolean | Prisma.user_campaigns$user_sessions_user_sessions_user_campaign_idTouser_campaignsArgs<ExtArgs>
   _count?: boolean | Prisma.User_campaignsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user_campaigns"]>
 
@@ -1028,26 +1065,27 @@ export type user_campaignsSelectScalar = {
   room_code?: boolean
   row_no?: boolean
   col_no?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type user_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "campaign_id" | "room_code" | "row_no" | "col_no", ExtArgs["result"]["user_campaigns"]>
+export type user_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "campaign_id" | "room_code" | "row_no" | "col_no" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["user_campaigns"]>
 export type user_campaignsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
   exam_rooms?: boolean | Prisma.user_campaigns$exam_roomsArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
-  exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns?: boolean | Prisma.user_campaigns$user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsArgs<ExtArgs>
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns?: boolean | Prisma.user_campaigns$user_sessions_user_sessions_user_campaign_idTouser_campaignsArgs<ExtArgs>
   _count?: boolean | Prisma.User_campaignsCountOutputTypeDefaultArgs<ExtArgs>
 }
 
 export type $user_campaignsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "user_campaigns"
   objects: {
+    exam_campaigns: Prisma.$exam_campaignsPayload<ExtArgs>
     exam_rooms: Prisma.$exam_roomsPayload<ExtArgs> | null
     users: Prisma.$usersPayload<ExtArgs>
-    exam_campaigns: Prisma.$exam_campaignsPayload<ExtArgs>
     user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns: Prisma.$user_sessionsPayload<ExtArgs>[]
-    user_sessions_user_sessions_user_campaign_idTouser_campaigns: Prisma.$user_sessionsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1056,6 +1094,9 @@ export type $user_campaignsPayload<ExtArgs extends runtime.Types.Extensions.Inte
     room_code: string | null
     row_no: number | null
     col_no: number | null
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["user_campaigns"]>
   composites: {}
 }
@@ -1396,11 +1437,10 @@ readonly fields: user_campaignsFieldRefs;
  */
 export interface Prisma__user_campaignsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  exam_campaigns<T extends Prisma.exam_campaignsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaignsDefaultArgs<ExtArgs>>): Prisma.Prisma__exam_campaignsClient<runtime.Types.Result.GetResult<Prisma.$exam_campaignsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   exam_rooms<T extends Prisma.user_campaigns$exam_roomsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_campaigns$exam_roomsArgs<ExtArgs>>): Prisma.Prisma__exam_roomsClient<runtime.Types.Result.GetResult<Prisma.$exam_roomsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   users<T extends Prisma.usersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usersDefaultArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  exam_campaigns<T extends Prisma.exam_campaignsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.exam_campaignsDefaultArgs<ExtArgs>>): Prisma.Prisma__exam_campaignsClient<runtime.Types.Result.GetResult<Prisma.$exam_campaignsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns<T extends Prisma.user_campaigns$user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_campaigns$user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  user_sessions_user_sessions_user_campaign_idTouser_campaigns<T extends Prisma.user_campaigns$user_sessions_user_sessions_user_campaign_idTouser_campaignsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.user_campaigns$user_sessions_user_sessions_user_campaign_idTouser_campaignsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$user_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1436,6 +1476,9 @@ export interface user_campaignsFieldRefs {
   readonly room_code: Prisma.FieldRef<"user_campaigns", 'String'>
   readonly row_no: Prisma.FieldRef<"user_campaigns", 'Int'>
   readonly col_no: Prisma.FieldRef<"user_campaigns", 'Int'>
+  readonly created_at: Prisma.FieldRef<"user_campaigns", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"user_campaigns", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"user_campaigns", 'DateTime'>
 }
     
 
@@ -1806,30 +1849,6 @@ export type user_campaigns$exam_roomsArgs<ExtArgs extends runtime.Types.Extensio
  * user_campaigns.user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns
  */
 export type user_campaigns$user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the user_sessions
-   */
-  select?: Prisma.user_sessionsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the user_sessions
-   */
-  omit?: Prisma.user_sessionsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.user_sessionsInclude<ExtArgs> | null
-  where?: Prisma.user_sessionsWhereInput
-  orderBy?: Prisma.user_sessionsOrderByWithRelationInput | Prisma.user_sessionsOrderByWithRelationInput[]
-  cursor?: Prisma.user_sessionsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.User_sessionsScalarFieldEnum | Prisma.User_sessionsScalarFieldEnum[]
-}
-
-/**
- * user_campaigns.user_sessions_user_sessions_user_campaign_idTouser_campaigns
- */
-export type user_campaigns$user_sessions_user_sessions_user_campaign_idTouser_campaignsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the user_sessions
    */

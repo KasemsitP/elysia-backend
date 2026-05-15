@@ -39,6 +39,9 @@ export type RolesMinAggregateOutputType = {
   code: string | null
   name: string | null
   active: boolean | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type RolesMaxAggregateOutputType = {
@@ -46,6 +49,9 @@ export type RolesMaxAggregateOutputType = {
   code: string | null
   name: string | null
   active: boolean | null
+  created_at: Date | null
+  updated_at: Date | null
+  deleted_at: Date | null
 }
 
 export type RolesCountAggregateOutputType = {
@@ -53,6 +59,9 @@ export type RolesCountAggregateOutputType = {
   code: number
   name: number
   active: number
+  created_at: number
+  updated_at: number
+  deleted_at: number
   _all: number
 }
 
@@ -70,6 +79,9 @@ export type RolesMinAggregateInputType = {
   code?: true
   name?: true
   active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type RolesMaxAggregateInputType = {
@@ -77,6 +89,9 @@ export type RolesMaxAggregateInputType = {
   code?: true
   name?: true
   active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
 }
 
 export type RolesCountAggregateInputType = {
@@ -84,6 +99,9 @@ export type RolesCountAggregateInputType = {
   code?: true
   name?: true
   active?: true
+  created_at?: true
+  updated_at?: true
+  deleted_at?: true
   _all?: true
 }
 
@@ -178,6 +196,9 @@ export type RolesGroupByOutputType = {
   code: string
   name: string
   active: boolean
+  created_at: Date
+  updated_at: Date
+  deleted_at: Date | null
   _count: RolesCountAggregateOutputType | null
   _avg: RolesAvgAggregateOutputType | null
   _sum: RolesSumAggregateOutputType | null
@@ -208,6 +229,9 @@ export type rolesWhereInput = {
   code?: Prisma.StringFilter<"roles"> | string
   name?: Prisma.StringFilter<"roles"> | string
   active?: Prisma.BoolFilter<"roles"> | boolean
+  created_at?: Prisma.DateTimeFilter<"roles"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"roles"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"roles"> | Date | string | null
   accounts?: Prisma.AccountsListRelationFilter
 }
 
@@ -216,6 +240,9 @@ export type rolesOrderByWithRelationInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   accounts?: Prisma.accountsOrderByRelationAggregateInput
   _relevance?: Prisma.rolesOrderByRelevanceInput
 }
@@ -228,6 +255,9 @@ export type rolesWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.rolesWhereInput | Prisma.rolesWhereInput[]
   name?: Prisma.StringFilter<"roles"> | string
   active?: Prisma.BoolFilter<"roles"> | boolean
+  created_at?: Prisma.DateTimeFilter<"roles"> | Date | string
+  updated_at?: Prisma.DateTimeFilter<"roles"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableFilter<"roles"> | Date | string | null
   accounts?: Prisma.AccountsListRelationFilter
 }, "id" | "code">
 
@@ -236,6 +266,9 @@ export type rolesOrderByWithAggregationInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.rolesCountOrderByAggregateInput
   _avg?: Prisma.rolesAvgOrderByAggregateInput
   _max?: Prisma.rolesMaxOrderByAggregateInput
@@ -251,12 +284,18 @@ export type rolesScalarWhereWithAggregatesInput = {
   code?: Prisma.StringWithAggregatesFilter<"roles"> | string
   name?: Prisma.StringWithAggregatesFilter<"roles"> | string
   active?: Prisma.BoolWithAggregatesFilter<"roles"> | boolean
+  created_at?: Prisma.DateTimeWithAggregatesFilter<"roles"> | Date | string
+  updated_at?: Prisma.DateTimeWithAggregatesFilter<"roles"> | Date | string
+  deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"roles"> | Date | string | null
 }
 
 export type rolesCreateInput = {
   code: string
   name: string
   active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   accounts?: Prisma.accountsCreateNestedManyWithoutRolesInput
 }
 
@@ -265,6 +304,9 @@ export type rolesUncheckedCreateInput = {
   code: string
   name: string
   active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutRolesInput
 }
 
@@ -272,6 +314,9 @@ export type rolesUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accounts?: Prisma.accountsUpdateManyWithoutRolesNestedInput
 }
 
@@ -280,6 +325,9 @@ export type rolesUncheckedUpdateInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutRolesNestedInput
 }
 
@@ -288,12 +336,18 @@ export type rolesCreateManyInput = {
   code: string
   name: string
   active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type rolesUpdateManyMutationInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type rolesUncheckedUpdateManyInput = {
@@ -301,6 +355,9 @@ export type rolesUncheckedUpdateManyInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type RolesScalarRelationFilter = {
@@ -319,6 +376,9 @@ export type rolesCountOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type rolesAvgOrderByAggregateInput = {
@@ -330,6 +390,9 @@ export type rolesMaxOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type rolesMinOrderByAggregateInput = {
@@ -337,6 +400,9 @@ export type rolesMinOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   active?: Prisma.SortOrder
+  created_at?: Prisma.SortOrder
+  updated_at?: Prisma.SortOrder
+  deleted_at?: Prisma.SortOrder
 }
 
 export type rolesSumOrderByAggregateInput = {
@@ -361,6 +427,9 @@ export type rolesCreateWithoutAccountsInput = {
   code: string
   name: string
   active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type rolesUncheckedCreateWithoutAccountsInput = {
@@ -368,6 +437,9 @@ export type rolesUncheckedCreateWithoutAccountsInput = {
   code: string
   name: string
   active?: boolean
+  created_at?: Date | string
+  updated_at?: Date | string
+  deleted_at?: Date | string | null
 }
 
 export type rolesCreateOrConnectWithoutAccountsInput = {
@@ -390,6 +462,9 @@ export type rolesUpdateWithoutAccountsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 export type rolesUncheckedUpdateWithoutAccountsInput = {
@@ -397,6 +472,9 @@ export type rolesUncheckedUpdateWithoutAccountsInput = {
   code?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
 
@@ -435,6 +513,9 @@ export type rolesSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   code?: boolean
   name?: boolean
   active?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
   accounts?: boolean | Prisma.roles$accountsArgs<ExtArgs>
   _count?: boolean | Prisma.RolesCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["roles"]>
@@ -446,9 +527,12 @@ export type rolesSelectScalar = {
   code?: boolean
   name?: boolean
   active?: boolean
+  created_at?: boolean
+  updated_at?: boolean
+  deleted_at?: boolean
 }
 
-export type rolesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "active", ExtArgs["result"]["roles"]>
+export type rolesOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "active" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["roles"]>
 export type rolesInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.roles$accountsArgs<ExtArgs>
   _count?: boolean | Prisma.RolesCountOutputTypeDefaultArgs<ExtArgs>
@@ -464,6 +548,9 @@ export type $rolesPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     code: string
     name: string
     active: boolean
+    created_at: Date
+    updated_at: Date
+    deleted_at: Date | null
   }, ExtArgs["result"]["roles"]>
   composites: {}
 }
@@ -838,6 +925,9 @@ export interface rolesFieldRefs {
   readonly code: Prisma.FieldRef<"roles", 'String'>
   readonly name: Prisma.FieldRef<"roles", 'String'>
   readonly active: Prisma.FieldRef<"roles", 'Boolean'>
+  readonly created_at: Prisma.FieldRef<"roles", 'DateTime'>
+  readonly updated_at: Prisma.FieldRef<"roles", 'DateTime'>
+  readonly deleted_at: Prisma.FieldRef<"roles", 'DateTime'>
 }
     
 

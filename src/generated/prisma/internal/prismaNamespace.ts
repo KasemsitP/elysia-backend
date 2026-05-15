@@ -407,7 +407,25 @@ export const ModelName = {
   twofactor_sessions: 'twofactor_sessions',
   user_campaigns: 'user_campaigns',
   user_sessions: 'user_sessions',
-  users: 'users'
+  users: 'users',
+  booklet_incident_reports: 'booklet_incident_reports',
+  booklet_question_choices: 'booklet_question_choices',
+  booklet_question_notes: 'booklet_question_notes',
+  campaign_settings: 'campaign_settings',
+  campaign_subjects: 'campaign_subjects',
+  incident_attachments: 'incident_attachments',
+  notification_delivery_logs: 'notification_delivery_logs',
+  notification_messages: 'notification_messages',
+  notification_preferences: 'notification_preferences',
+  notification_recipients: 'notification_recipients',
+  notification_templates: 'notification_templates',
+  qr_scan_logs: 'qr_scan_logs',
+  question_choice_group_items: 'question_choice_group_items',
+  question_choice_groups: 'question_choice_groups',
+  service_outbox_events: 'service_outbox_events',
+  session_counters: 'session_counters',
+  session_subject_questions: 'session_subject_questions',
+  setting_definitions: 'setting_definitions'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -423,7 +441,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "accounts" | "activity_logs" | "auth_sessions" | "bags" | "booklets" | "campaign_keys" | "exam_campaigns" | "exam_rooms" | "grader_assignments" | "grader_work_locks" | "graders" | "grading_score_drafts" | "grading_score_logs" | "grading_scores" | "grading_slots" | "roles" | "session_subjects" | "sessions" | "subject_questions" | "subjects" | "twofactor_sessions" | "user_campaigns" | "user_sessions" | "users"
+    modelProps: "accounts" | "activity_logs" | "auth_sessions" | "bags" | "booklets" | "campaign_keys" | "exam_campaigns" | "exam_rooms" | "grader_assignments" | "grader_work_locks" | "graders" | "grading_score_drafts" | "grading_score_logs" | "grading_scores" | "grading_slots" | "roles" | "session_subjects" | "sessions" | "subject_questions" | "subjects" | "twofactor_sessions" | "user_campaigns" | "user_sessions" | "users" | "booklet_incident_reports" | "booklet_question_choices" | "booklet_question_notes" | "campaign_settings" | "campaign_subjects" | "incident_attachments" | "notification_delivery_logs" | "notification_messages" | "notification_preferences" | "notification_recipients" | "notification_templates" | "qr_scan_logs" | "question_choice_group_items" | "question_choice_groups" | "service_outbox_events" | "session_counters" | "session_subject_questions" | "setting_definitions"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2011,6 +2029,1194 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    booklet_incident_reports: {
+      payload: Prisma.$booklet_incident_reportsPayload<ExtArgs>
+      fields: Prisma.booklet_incident_reportsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.booklet_incident_reportsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.booklet_incident_reportsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload>
+        }
+        findFirst: {
+          args: Prisma.booklet_incident_reportsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.booklet_incident_reportsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload>
+        }
+        findMany: {
+          args: Prisma.booklet_incident_reportsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload>[]
+        }
+        create: {
+          args: Prisma.booklet_incident_reportsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload>
+        }
+        createMany: {
+          args: Prisma.booklet_incident_reportsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.booklet_incident_reportsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload>
+        }
+        update: {
+          args: Prisma.booklet_incident_reportsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload>
+        }
+        deleteMany: {
+          args: Prisma.booklet_incident_reportsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.booklet_incident_reportsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.booklet_incident_reportsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_incident_reportsPayload>
+        }
+        aggregate: {
+          args: Prisma.Booklet_incident_reportsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBooklet_incident_reports>
+        }
+        groupBy: {
+          args: Prisma.booklet_incident_reportsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Booklet_incident_reportsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.booklet_incident_reportsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Booklet_incident_reportsCountAggregateOutputType> | number
+        }
+      }
+    }
+    booklet_question_choices: {
+      payload: Prisma.$booklet_question_choicesPayload<ExtArgs>
+      fields: Prisma.booklet_question_choicesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.booklet_question_choicesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.booklet_question_choicesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload>
+        }
+        findFirst: {
+          args: Prisma.booklet_question_choicesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.booklet_question_choicesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload>
+        }
+        findMany: {
+          args: Prisma.booklet_question_choicesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload>[]
+        }
+        create: {
+          args: Prisma.booklet_question_choicesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload>
+        }
+        createMany: {
+          args: Prisma.booklet_question_choicesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.booklet_question_choicesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload>
+        }
+        update: {
+          args: Prisma.booklet_question_choicesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload>
+        }
+        deleteMany: {
+          args: Prisma.booklet_question_choicesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.booklet_question_choicesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.booklet_question_choicesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_choicesPayload>
+        }
+        aggregate: {
+          args: Prisma.Booklet_question_choicesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBooklet_question_choices>
+        }
+        groupBy: {
+          args: Prisma.booklet_question_choicesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Booklet_question_choicesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.booklet_question_choicesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Booklet_question_choicesCountAggregateOutputType> | number
+        }
+      }
+    }
+    booklet_question_notes: {
+      payload: Prisma.$booklet_question_notesPayload<ExtArgs>
+      fields: Prisma.booklet_question_notesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.booklet_question_notesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.booklet_question_notesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload>
+        }
+        findFirst: {
+          args: Prisma.booklet_question_notesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.booklet_question_notesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload>
+        }
+        findMany: {
+          args: Prisma.booklet_question_notesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload>[]
+        }
+        create: {
+          args: Prisma.booklet_question_notesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload>
+        }
+        createMany: {
+          args: Prisma.booklet_question_notesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.booklet_question_notesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload>
+        }
+        update: {
+          args: Prisma.booklet_question_notesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload>
+        }
+        deleteMany: {
+          args: Prisma.booklet_question_notesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.booklet_question_notesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.booklet_question_notesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booklet_question_notesPayload>
+        }
+        aggregate: {
+          args: Prisma.Booklet_question_notesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBooklet_question_notes>
+        }
+        groupBy: {
+          args: Prisma.booklet_question_notesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Booklet_question_notesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.booklet_question_notesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Booklet_question_notesCountAggregateOutputType> | number
+        }
+      }
+    }
+    campaign_settings: {
+      payload: Prisma.$campaign_settingsPayload<ExtArgs>
+      fields: Prisma.campaign_settingsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.campaign_settingsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.campaign_settingsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload>
+        }
+        findFirst: {
+          args: Prisma.campaign_settingsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.campaign_settingsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload>
+        }
+        findMany: {
+          args: Prisma.campaign_settingsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload>[]
+        }
+        create: {
+          args: Prisma.campaign_settingsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload>
+        }
+        createMany: {
+          args: Prisma.campaign_settingsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.campaign_settingsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload>
+        }
+        update: {
+          args: Prisma.campaign_settingsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload>
+        }
+        deleteMany: {
+          args: Prisma.campaign_settingsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.campaign_settingsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.campaign_settingsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_settingsPayload>
+        }
+        aggregate: {
+          args: Prisma.Campaign_settingsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCampaign_settings>
+        }
+        groupBy: {
+          args: Prisma.campaign_settingsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Campaign_settingsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.campaign_settingsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Campaign_settingsCountAggregateOutputType> | number
+        }
+      }
+    }
+    campaign_subjects: {
+      payload: Prisma.$campaign_subjectsPayload<ExtArgs>
+      fields: Prisma.campaign_subjectsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.campaign_subjectsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.campaign_subjectsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload>
+        }
+        findFirst: {
+          args: Prisma.campaign_subjectsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.campaign_subjectsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload>
+        }
+        findMany: {
+          args: Prisma.campaign_subjectsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload>[]
+        }
+        create: {
+          args: Prisma.campaign_subjectsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload>
+        }
+        createMany: {
+          args: Prisma.campaign_subjectsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.campaign_subjectsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload>
+        }
+        update: {
+          args: Prisma.campaign_subjectsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload>
+        }
+        deleteMany: {
+          args: Prisma.campaign_subjectsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.campaign_subjectsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.campaign_subjectsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$campaign_subjectsPayload>
+        }
+        aggregate: {
+          args: Prisma.Campaign_subjectsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCampaign_subjects>
+        }
+        groupBy: {
+          args: Prisma.campaign_subjectsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Campaign_subjectsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.campaign_subjectsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Campaign_subjectsCountAggregateOutputType> | number
+        }
+      }
+    }
+    incident_attachments: {
+      payload: Prisma.$incident_attachmentsPayload<ExtArgs>
+      fields: Prisma.incident_attachmentsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.incident_attachmentsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.incident_attachmentsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload>
+        }
+        findFirst: {
+          args: Prisma.incident_attachmentsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.incident_attachmentsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload>
+        }
+        findMany: {
+          args: Prisma.incident_attachmentsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload>[]
+        }
+        create: {
+          args: Prisma.incident_attachmentsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload>
+        }
+        createMany: {
+          args: Prisma.incident_attachmentsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.incident_attachmentsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload>
+        }
+        update: {
+          args: Prisma.incident_attachmentsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload>
+        }
+        deleteMany: {
+          args: Prisma.incident_attachmentsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.incident_attachmentsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.incident_attachmentsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$incident_attachmentsPayload>
+        }
+        aggregate: {
+          args: Prisma.Incident_attachmentsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateIncident_attachments>
+        }
+        groupBy: {
+          args: Prisma.incident_attachmentsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Incident_attachmentsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.incident_attachmentsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Incident_attachmentsCountAggregateOutputType> | number
+        }
+      }
+    }
+    notification_delivery_logs: {
+      payload: Prisma.$notification_delivery_logsPayload<ExtArgs>
+      fields: Prisma.notification_delivery_logsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.notification_delivery_logsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.notification_delivery_logsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload>
+        }
+        findFirst: {
+          args: Prisma.notification_delivery_logsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.notification_delivery_logsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload>
+        }
+        findMany: {
+          args: Prisma.notification_delivery_logsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload>[]
+        }
+        create: {
+          args: Prisma.notification_delivery_logsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload>
+        }
+        createMany: {
+          args: Prisma.notification_delivery_logsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.notification_delivery_logsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload>
+        }
+        update: {
+          args: Prisma.notification_delivery_logsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload>
+        }
+        deleteMany: {
+          args: Prisma.notification_delivery_logsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.notification_delivery_logsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.notification_delivery_logsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_delivery_logsPayload>
+        }
+        aggregate: {
+          args: Prisma.Notification_delivery_logsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotification_delivery_logs>
+        }
+        groupBy: {
+          args: Prisma.notification_delivery_logsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_delivery_logsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.notification_delivery_logsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_delivery_logsCountAggregateOutputType> | number
+        }
+      }
+    }
+    notification_messages: {
+      payload: Prisma.$notification_messagesPayload<ExtArgs>
+      fields: Prisma.notification_messagesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.notification_messagesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.notification_messagesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload>
+        }
+        findFirst: {
+          args: Prisma.notification_messagesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.notification_messagesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload>
+        }
+        findMany: {
+          args: Prisma.notification_messagesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload>[]
+        }
+        create: {
+          args: Prisma.notification_messagesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload>
+        }
+        createMany: {
+          args: Prisma.notification_messagesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.notification_messagesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload>
+        }
+        update: {
+          args: Prisma.notification_messagesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload>
+        }
+        deleteMany: {
+          args: Prisma.notification_messagesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.notification_messagesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.notification_messagesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_messagesPayload>
+        }
+        aggregate: {
+          args: Prisma.Notification_messagesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotification_messages>
+        }
+        groupBy: {
+          args: Prisma.notification_messagesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_messagesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.notification_messagesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_messagesCountAggregateOutputType> | number
+        }
+      }
+    }
+    notification_preferences: {
+      payload: Prisma.$notification_preferencesPayload<ExtArgs>
+      fields: Prisma.notification_preferencesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.notification_preferencesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.notification_preferencesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload>
+        }
+        findFirst: {
+          args: Prisma.notification_preferencesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.notification_preferencesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload>
+        }
+        findMany: {
+          args: Prisma.notification_preferencesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload>[]
+        }
+        create: {
+          args: Prisma.notification_preferencesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload>
+        }
+        createMany: {
+          args: Prisma.notification_preferencesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.notification_preferencesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload>
+        }
+        update: {
+          args: Prisma.notification_preferencesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload>
+        }
+        deleteMany: {
+          args: Prisma.notification_preferencesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.notification_preferencesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.notification_preferencesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_preferencesPayload>
+        }
+        aggregate: {
+          args: Prisma.Notification_preferencesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotification_preferences>
+        }
+        groupBy: {
+          args: Prisma.notification_preferencesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_preferencesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.notification_preferencesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_preferencesCountAggregateOutputType> | number
+        }
+      }
+    }
+    notification_recipients: {
+      payload: Prisma.$notification_recipientsPayload<ExtArgs>
+      fields: Prisma.notification_recipientsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.notification_recipientsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.notification_recipientsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload>
+        }
+        findFirst: {
+          args: Prisma.notification_recipientsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.notification_recipientsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload>
+        }
+        findMany: {
+          args: Prisma.notification_recipientsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload>[]
+        }
+        create: {
+          args: Prisma.notification_recipientsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload>
+        }
+        createMany: {
+          args: Prisma.notification_recipientsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.notification_recipientsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload>
+        }
+        update: {
+          args: Prisma.notification_recipientsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload>
+        }
+        deleteMany: {
+          args: Prisma.notification_recipientsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.notification_recipientsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.notification_recipientsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_recipientsPayload>
+        }
+        aggregate: {
+          args: Prisma.Notification_recipientsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotification_recipients>
+        }
+        groupBy: {
+          args: Prisma.notification_recipientsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_recipientsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.notification_recipientsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_recipientsCountAggregateOutputType> | number
+        }
+      }
+    }
+    notification_templates: {
+      payload: Prisma.$notification_templatesPayload<ExtArgs>
+      fields: Prisma.notification_templatesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.notification_templatesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.notification_templatesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload>
+        }
+        findFirst: {
+          args: Prisma.notification_templatesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.notification_templatesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload>
+        }
+        findMany: {
+          args: Prisma.notification_templatesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload>[]
+        }
+        create: {
+          args: Prisma.notification_templatesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload>
+        }
+        createMany: {
+          args: Prisma.notification_templatesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.notification_templatesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload>
+        }
+        update: {
+          args: Prisma.notification_templatesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload>
+        }
+        deleteMany: {
+          args: Prisma.notification_templatesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.notification_templatesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.notification_templatesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$notification_templatesPayload>
+        }
+        aggregate: {
+          args: Prisma.Notification_templatesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateNotification_templates>
+        }
+        groupBy: {
+          args: Prisma.notification_templatesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_templatesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.notification_templatesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Notification_templatesCountAggregateOutputType> | number
+        }
+      }
+    }
+    qr_scan_logs: {
+      payload: Prisma.$qr_scan_logsPayload<ExtArgs>
+      fields: Prisma.qr_scan_logsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.qr_scan_logsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.qr_scan_logsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload>
+        }
+        findFirst: {
+          args: Prisma.qr_scan_logsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.qr_scan_logsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload>
+        }
+        findMany: {
+          args: Prisma.qr_scan_logsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload>[]
+        }
+        create: {
+          args: Prisma.qr_scan_logsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload>
+        }
+        createMany: {
+          args: Prisma.qr_scan_logsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.qr_scan_logsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload>
+        }
+        update: {
+          args: Prisma.qr_scan_logsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload>
+        }
+        deleteMany: {
+          args: Prisma.qr_scan_logsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.qr_scan_logsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.qr_scan_logsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$qr_scan_logsPayload>
+        }
+        aggregate: {
+          args: Prisma.Qr_scan_logsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQr_scan_logs>
+        }
+        groupBy: {
+          args: Prisma.qr_scan_logsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Qr_scan_logsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.qr_scan_logsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Qr_scan_logsCountAggregateOutputType> | number
+        }
+      }
+    }
+    question_choice_group_items: {
+      payload: Prisma.$question_choice_group_itemsPayload<ExtArgs>
+      fields: Prisma.question_choice_group_itemsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.question_choice_group_itemsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.question_choice_group_itemsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload>
+        }
+        findFirst: {
+          args: Prisma.question_choice_group_itemsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.question_choice_group_itemsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload>
+        }
+        findMany: {
+          args: Prisma.question_choice_group_itemsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload>[]
+        }
+        create: {
+          args: Prisma.question_choice_group_itemsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload>
+        }
+        createMany: {
+          args: Prisma.question_choice_group_itemsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.question_choice_group_itemsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload>
+        }
+        update: {
+          args: Prisma.question_choice_group_itemsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload>
+        }
+        deleteMany: {
+          args: Prisma.question_choice_group_itemsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.question_choice_group_itemsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.question_choice_group_itemsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_group_itemsPayload>
+        }
+        aggregate: {
+          args: Prisma.Question_choice_group_itemsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuestion_choice_group_items>
+        }
+        groupBy: {
+          args: Prisma.question_choice_group_itemsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Question_choice_group_itemsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.question_choice_group_itemsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Question_choice_group_itemsCountAggregateOutputType> | number
+        }
+      }
+    }
+    question_choice_groups: {
+      payload: Prisma.$question_choice_groupsPayload<ExtArgs>
+      fields: Prisma.question_choice_groupsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.question_choice_groupsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.question_choice_groupsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload>
+        }
+        findFirst: {
+          args: Prisma.question_choice_groupsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.question_choice_groupsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload>
+        }
+        findMany: {
+          args: Prisma.question_choice_groupsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload>[]
+        }
+        create: {
+          args: Prisma.question_choice_groupsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload>
+        }
+        createMany: {
+          args: Prisma.question_choice_groupsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.question_choice_groupsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload>
+        }
+        update: {
+          args: Prisma.question_choice_groupsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload>
+        }
+        deleteMany: {
+          args: Prisma.question_choice_groupsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.question_choice_groupsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.question_choice_groupsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$question_choice_groupsPayload>
+        }
+        aggregate: {
+          args: Prisma.Question_choice_groupsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateQuestion_choice_groups>
+        }
+        groupBy: {
+          args: Prisma.question_choice_groupsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Question_choice_groupsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.question_choice_groupsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Question_choice_groupsCountAggregateOutputType> | number
+        }
+      }
+    }
+    service_outbox_events: {
+      payload: Prisma.$service_outbox_eventsPayload<ExtArgs>
+      fields: Prisma.service_outbox_eventsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.service_outbox_eventsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.service_outbox_eventsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload>
+        }
+        findFirst: {
+          args: Prisma.service_outbox_eventsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.service_outbox_eventsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload>
+        }
+        findMany: {
+          args: Prisma.service_outbox_eventsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload>[]
+        }
+        create: {
+          args: Prisma.service_outbox_eventsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload>
+        }
+        createMany: {
+          args: Prisma.service_outbox_eventsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.service_outbox_eventsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload>
+        }
+        update: {
+          args: Prisma.service_outbox_eventsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload>
+        }
+        deleteMany: {
+          args: Prisma.service_outbox_eventsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.service_outbox_eventsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.service_outbox_eventsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$service_outbox_eventsPayload>
+        }
+        aggregate: {
+          args: Prisma.Service_outbox_eventsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateService_outbox_events>
+        }
+        groupBy: {
+          args: Prisma.service_outbox_eventsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Service_outbox_eventsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.service_outbox_eventsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Service_outbox_eventsCountAggregateOutputType> | number
+        }
+      }
+    }
+    session_counters: {
+      payload: Prisma.$session_countersPayload<ExtArgs>
+      fields: Prisma.session_countersFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.session_countersFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.session_countersFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload>
+        }
+        findFirst: {
+          args: Prisma.session_countersFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.session_countersFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload>
+        }
+        findMany: {
+          args: Prisma.session_countersFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload>[]
+        }
+        create: {
+          args: Prisma.session_countersCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload>
+        }
+        createMany: {
+          args: Prisma.session_countersCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.session_countersDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload>
+        }
+        update: {
+          args: Prisma.session_countersUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload>
+        }
+        deleteMany: {
+          args: Prisma.session_countersDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.session_countersUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.session_countersUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_countersPayload>
+        }
+        aggregate: {
+          args: Prisma.Session_countersAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSession_counters>
+        }
+        groupBy: {
+          args: Prisma.session_countersGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Session_countersGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.session_countersCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Session_countersCountAggregateOutputType> | number
+        }
+      }
+    }
+    session_subject_questions: {
+      payload: Prisma.$session_subject_questionsPayload<ExtArgs>
+      fields: Prisma.session_subject_questionsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.session_subject_questionsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.session_subject_questionsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload>
+        }
+        findFirst: {
+          args: Prisma.session_subject_questionsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.session_subject_questionsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload>
+        }
+        findMany: {
+          args: Prisma.session_subject_questionsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload>[]
+        }
+        create: {
+          args: Prisma.session_subject_questionsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload>
+        }
+        createMany: {
+          args: Prisma.session_subject_questionsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.session_subject_questionsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload>
+        }
+        update: {
+          args: Prisma.session_subject_questionsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload>
+        }
+        deleteMany: {
+          args: Prisma.session_subject_questionsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.session_subject_questionsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.session_subject_questionsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$session_subject_questionsPayload>
+        }
+        aggregate: {
+          args: Prisma.Session_subject_questionsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSession_subject_questions>
+        }
+        groupBy: {
+          args: Prisma.session_subject_questionsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Session_subject_questionsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.session_subject_questionsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Session_subject_questionsCountAggregateOutputType> | number
+        }
+      }
+    }
+    setting_definitions: {
+      payload: Prisma.$setting_definitionsPayload<ExtArgs>
+      fields: Prisma.setting_definitionsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.setting_definitionsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.setting_definitionsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload>
+        }
+        findFirst: {
+          args: Prisma.setting_definitionsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.setting_definitionsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload>
+        }
+        findMany: {
+          args: Prisma.setting_definitionsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload>[]
+        }
+        create: {
+          args: Prisma.setting_definitionsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload>
+        }
+        createMany: {
+          args: Prisma.setting_definitionsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.setting_definitionsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload>
+        }
+        update: {
+          args: Prisma.setting_definitionsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload>
+        }
+        deleteMany: {
+          args: Prisma.setting_definitionsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.setting_definitionsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.setting_definitionsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$setting_definitionsPayload>
+        }
+        aggregate: {
+          args: Prisma.Setting_definitionsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSetting_definitions>
+        }
+        groupBy: {
+          args: Prisma.setting_definitionsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Setting_definitionsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.setting_definitionsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Setting_definitionsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2054,15 +3260,20 @@ export const AccountsScalarFieldEnum = {
   id: 'id',
   username: 'username',
   password_hash: 'password_hash',
+  title: 'title',
   full_name: 'full_name',
   email: 'email',
+  profile_image_url: 'profile_image_url',
+  profile_image_key: 'profile_image_key',
   active: 'active',
   role_id: 'role_id',
+  campaign_id: 'campaign_id',
   session_version: 'session_version',
   manager_order: 'manager_order',
-  title: 'title',
-  delete_at: 'delete_at',
-  campaign_id: 'campaign_id'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  active_unique_key: 'active_unique_key'
 } as const
 
 export type AccountsScalarFieldEnum = (typeof AccountsScalarFieldEnum)[keyof typeof AccountsScalarFieldEnum]
@@ -2089,7 +3300,9 @@ export const Auth_sessionsScalarFieldEnum = {
   sid: 'sid',
   account_id: 'account_id',
   expires: 'expires',
-  data: 'data'
+  data: 'data',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type Auth_sessionsScalarFieldEnum = (typeof Auth_sessionsScalarFieldEnum)[keyof typeof Auth_sessionsScalarFieldEnum]
@@ -2097,11 +3310,15 @@ export type Auth_sessionsScalarFieldEnum = (typeof Auth_sessionsScalarFieldEnum)
 
 export const BagsScalarFieldEnum = {
   id: 'id',
+  campaign_id: 'campaign_id',
   session_id: 'session_id',
   bag_no: 'bag_no',
   count_items: 'count_items',
   status: 'status',
-  created_at: 'created_at'
+  created_by_account_id: 'created_by_account_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type BagsScalarFieldEnum = (typeof BagsScalarFieldEnum)[keyof typeof BagsScalarFieldEnum]
@@ -2109,15 +3326,17 @@ export type BagsScalarFieldEnum = (typeof BagsScalarFieldEnum)[keyof typeof Bags
 
 export const BookletsScalarFieldEnum = {
   id: 'id',
-  session_id: 'session_id',
   campaign_id: 'campaign_id',
+  session_id: 'session_id',
   user_code: 'user_code',
   qr_payload: 'qr_payload',
+  bag_id: 'bag_id',
   seq_in_bag: 'seq_in_bag',
+  random_num: 'random_num',
   status: 'status',
   created_at: 'created_at',
-  bag_id: 'bag_id',
-  random_num: 'random_num'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type BookletsScalarFieldEnum = (typeof BookletsScalarFieldEnum)[keyof typeof BookletsScalarFieldEnum]
@@ -2127,9 +3346,14 @@ export const Campaign_keysScalarFieldEnum = {
   id: 'id',
   campaign_id: 'campaign_id',
   account_id: 'account_id',
+  key_ciphertext: 'key_ciphertext',
+  algor: 'algor',
+  iv: 'iv',
+  order_num: 'order_num',
   active: 'active',
   created_at: 'created_at',
-  order_num: 'order_num'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Campaign_keysScalarFieldEnum = (typeof Campaign_keysScalarFieldEnum)[keyof typeof Campaign_keysScalarFieldEnum]
@@ -2138,12 +3362,15 @@ export type Campaign_keysScalarFieldEnum = (typeof Campaign_keysScalarFieldEnum)
 export const Exam_campaignsScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  is_active: 'is_active',
   year_be: 'year_be',
   site: 'site',
   campaign_size: 'campaign_size',
+  is_active: 'is_active',
   is_unlock: 'is_unlock',
-  qr_active: 'qr_active'
+  qr_active: 'qr_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Exam_campaignsScalarFieldEnum = (typeof Exam_campaignsScalarFieldEnum)[keyof typeof Exam_campaignsScalarFieldEnum]
@@ -2152,17 +3379,27 @@ export type Exam_campaignsScalarFieldEnum = (typeof Exam_campaignsScalarFieldEnu
 export const Exam_roomsScalarFieldEnum = {
   campaign_id: 'campaign_id',
   room_code: 'room_code',
-  capacity: 'capacity'
+  capacity: 'capacity',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Exam_roomsScalarFieldEnum = (typeof Exam_roomsScalarFieldEnum)[keyof typeof Exam_roomsScalarFieldEnum]
 
 
 export const Grader_assignmentsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
   grader_id: 'grader_id',
   session_id: 'session_id',
-  subject_id: 'subject_id',
-  subject_question_id: 'subject_question_id'
+  campaign_subject_id: 'campaign_subject_id',
+  session_subject_id: 'session_subject_id',
+  session_subject_question_id: 'session_subject_question_id',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Grader_assignmentsScalarFieldEnum = (typeof Grader_assignmentsScalarFieldEnum)[keyof typeof Grader_assignmentsScalarFieldEnum]
@@ -2172,12 +3409,16 @@ export const Grader_work_locksScalarFieldEnum = {
   id: 'id',
   grader_id: 'grader_id',
   campaign_id: 'campaign_id',
+  session_id: 'session_id',
   bag_id: 'bag_id',
+  session_subject_question_id: 'session_subject_question_id',
   question_no: 'question_no',
   status: 'status',
   locked_at: 'locked_at',
   released_at: 'released_at',
-  created_by: 'created_by'
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type Grader_work_locksScalarFieldEnum = (typeof Grader_work_locksScalarFieldEnum)[keyof typeof Grader_work_locksScalarFieldEnum]
@@ -2186,7 +3427,11 @@ export type Grader_work_locksScalarFieldEnum = (typeof Grader_work_locksScalarFi
 export const GradersScalarFieldEnum = {
   id: 'id',
   campaign_id: 'campaign_id',
-  account_id: 'account_id'
+  account_id: 'account_id',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type GradersScalarFieldEnum = (typeof GradersScalarFieldEnum)[keyof typeof GradersScalarFieldEnum]
@@ -2194,16 +3439,21 @@ export type GradersScalarFieldEnum = (typeof GradersScalarFieldEnum)[keyof typeo
 
 export const Grading_score_draftsScalarFieldEnum = {
   id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
   bag_id: 'bag_id',
   booklet_id: 'booklet_id',
-  subject_id: 'subject_id',
+  campaign_subject_id: 'campaign_subject_id',
+  session_subject_id: 'session_subject_id',
+  session_subject_question_id: 'session_subject_question_id',
   question_no: 'question_no',
   slot_id: 'slot_id',
   grader_id: 'grader_id',
   score: 'score',
   status: 'status',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Grading_score_draftsScalarFieldEnum = (typeof Grading_score_draftsScalarFieldEnum)[keyof typeof Grading_score_draftsScalarFieldEnum]
@@ -2211,8 +3461,12 @@ export type Grading_score_draftsScalarFieldEnum = (typeof Grading_score_draftsSc
 
 export const Grading_score_logsScalarFieldEnum = {
   id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
   booklet_id: 'booklet_id',
-  subject_id: 'subject_id',
+  campaign_subject_id: 'campaign_subject_id',
+  session_subject_id: 'session_subject_id',
+  session_subject_question_id: 'session_subject_question_id',
   question_no: 'question_no',
   slot_id1: 'slot_id1',
   slot_id2: 'slot_id2',
@@ -2220,8 +3474,12 @@ export const Grading_score_logsScalarFieldEnum = {
   grader2_id: 'grader2_id',
   old_score1: 'old_score1',
   old_score2: 'old_score2',
+  new_score1: 'new_score1',
+  new_score2: 'new_score2',
+  reason: 'reason',
   changed_by: 'changed_by',
-  changed_at: 'changed_at'
+  changed_at: 'changed_at',
+  created_at: 'created_at'
 } as const
 
 export type Grading_score_logsScalarFieldEnum = (typeof Grading_score_logsScalarFieldEnum)[keyof typeof Grading_score_logsScalarFieldEnum]
@@ -2232,7 +3490,9 @@ export const Grading_scoresScalarFieldEnum = {
   slot_id: 'slot_id',
   score: 'score',
   entered_by: 'entered_by',
-  entered_at: 'entered_at'
+  entered_at: 'entered_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
 } as const
 
 export type Grading_scoresScalarFieldEnum = (typeof Grading_scoresScalarFieldEnum)[keyof typeof Grading_scoresScalarFieldEnum]
@@ -2240,12 +3500,19 @@ export type Grading_scoresScalarFieldEnum = (typeof Grading_scoresScalarFieldEnu
 
 export const Grading_slotsScalarFieldEnum = {
   id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  booklet_id: 'booklet_id',
+  campaign_subject_id: 'campaign_subject_id',
+  session_subject_id: 'session_subject_id',
+  session_subject_question_id: 'session_subject_question_id',
   question_no: 'question_no',
   grader_order: 'grader_order',
-  status: 'status',
   grader_id: 'grader_id',
-  booklet_id: 'booklet_id',
-  subject_id: 'subject_id'
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Grading_slotsScalarFieldEnum = (typeof Grading_slotsScalarFieldEnum)[keyof typeof Grading_slotsScalarFieldEnum]
@@ -2255,19 +3522,27 @@ export const RolesScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
-  active: 'active'
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type RolesScalarFieldEnum = (typeof RolesScalarFieldEnum)[keyof typeof RolesScalarFieldEnum]
 
 
 export const Session_subjectsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
   session_id: 'session_id',
-  subject_id: 'subject_id',
+  campaign_subject_id: 'campaign_subject_id',
   start_at: 'start_at',
   end_at: 'end_at',
   question_count: 'question_count',
-  order_no: 'order_no'
+  order_no: 'order_no',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Session_subjectsScalarFieldEnum = (typeof Session_subjectsScalarFieldEnum)[keyof typeof Session_subjectsScalarFieldEnum]
@@ -2275,11 +3550,14 @@ export type Session_subjectsScalarFieldEnum = (typeof Session_subjectsScalarFiel
 
 export const SessionsScalarFieldEnum = {
   id: 'id',
-  session_code: 'session_code',
-  exam_date: 'exam_date',
   campaign_id: 'campaign_id',
+  session_code: 'session_code',
+  title: 'title',
+  exam_date: 'exam_date',
   day_no: 'day_no',
-  title: 'title'
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type SessionsScalarFieldEnum = (typeof SessionsScalarFieldEnum)[keyof typeof SessionsScalarFieldEnum]
@@ -2291,7 +3569,10 @@ export const Subject_questionsScalarFieldEnum = {
   question_no: 'question_no',
   label: 'label',
   max_score: 'max_score',
-  note: 'note'
+  note: 'note',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Subject_questionsScalarFieldEnum = (typeof Subject_questionsScalarFieldEnum)[keyof typeof Subject_questionsScalarFieldEnum]
@@ -2301,7 +3582,11 @@ export const SubjectsScalarFieldEnum = {
   id: 'id',
   code: 'code',
   name: 'name',
-  full_score: 'full_score'
+  full_score: 'full_score',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type SubjectsScalarFieldEnum = (typeof SubjectsScalarFieldEnum)[keyof typeof SubjectsScalarFieldEnum]
@@ -2312,12 +3597,18 @@ export const Twofactor_sessionsScalarFieldEnum = {
   account_id: 'account_id',
   campaign_id: 'campaign_id',
   purpose: 'purpose',
+  channel: 'channel',
+  target: 'target',
   otp_hash: 'otp_hash',
+  otp_token: 'otp_token',
+  attempts: 'attempts',
+  max_attempts: 'max_attempts',
+  status: 'status',
   created_at: 'created_at',
   expires_at: 'expires_at',
   used_at: 'used_at',
-  attempts: 'attempts',
-  otp_token: 'otp_token'
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type Twofactor_sessionsScalarFieldEnum = (typeof Twofactor_sessionsScalarFieldEnum)[keyof typeof Twofactor_sessionsScalarFieldEnum]
@@ -2329,7 +3620,10 @@ export const User_campaignsScalarFieldEnum = {
   campaign_id: 'campaign_id',
   room_code: 'room_code',
   row_no: 'row_no',
-  col_no: 'col_no'
+  col_no: 'col_no',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type User_campaignsScalarFieldEnum = (typeof User_campaignsScalarFieldEnum)[keyof typeof User_campaignsScalarFieldEnum]
@@ -2339,7 +3633,10 @@ export const User_sessionsScalarFieldEnum = {
   id: 'id',
   user_campaign_id: 'user_campaign_id',
   campaign_id: 'campaign_id',
-  session_id: 'session_id'
+  session_id: 'session_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
 } as const
 
 export type User_sessionsScalarFieldEnum = (typeof User_sessionsScalarFieldEnum)[keyof typeof User_sessionsScalarFieldEnum]
@@ -2348,15 +3645,364 @@ export type User_sessionsScalarFieldEnum = (typeof User_sessionsScalarFieldEnum)
 export const UsersScalarFieldEnum = {
   id: 'id',
   user_code: 'user_code',
+  title: 'title',
+  gender: 'gender',
   full_name: 'full_name',
   first_name: 'first_name',
   last_name: 'last_name',
-  title: 'title',
+  first_name_en: 'first_name_en',
+  last_name_en: 'last_name_en',
   national_id: 'national_id',
-  birth_date: 'birth_date'
+  birth_date: 'birth_date',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at',
+  ethnicity: 'ethnicity',
+  nationality_birth: 'nationality_birth',
+  nationality_current: 'nationality_current',
+  religion: 'religion',
+  phone: 'phone',
+  mobile: 'mobile',
+  email: 'email',
+  address: 'address',
+  study_degree: 'study_degree',
+  university: 'university'
 } as const
 
 export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
+
+
+export const Booklet_incident_reportsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  bag_id: 'bag_id',
+  booklet_id: 'booklet_id',
+  incident_type: 'incident_type',
+  severity: 'severity',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  reported_by_account_id: 'reported_by_account_id',
+  reported_by_grader_id: 'reported_by_grader_id',
+  assigned_to_account_id: 'assigned_to_account_id',
+  resolved_by_account_id: 'resolved_by_account_id',
+  resolved_at: 'resolved_at',
+  resolution_note: 'resolution_note',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Booklet_incident_reportsScalarFieldEnum = (typeof Booklet_incident_reportsScalarFieldEnum)[keyof typeof Booklet_incident_reportsScalarFieldEnum]
+
+
+export const Booklet_question_choicesScalarFieldEnum = {
+  id: 'id',
+  booklet_id: 'booklet_id',
+  choice_group_id: 'choice_group_id',
+  session_subject_question_id: 'session_subject_question_id',
+  selected_by: 'selected_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Booklet_question_choicesScalarFieldEnum = (typeof Booklet_question_choicesScalarFieldEnum)[keyof typeof Booklet_question_choicesScalarFieldEnum]
+
+
+export const Booklet_question_notesScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  bag_id: 'bag_id',
+  booklet_id: 'booklet_id',
+  session_subject_question_id: 'session_subject_question_id',
+  slot_id: 'slot_id',
+  note_type: 'note_type',
+  severity: 'severity',
+  note: 'note',
+  status: 'status',
+  created_by_account_id: 'created_by_account_id',
+  created_by_grader_id: 'created_by_grader_id',
+  reviewed_by_account_id: 'reviewed_by_account_id',
+  reviewed_at: 'reviewed_at',
+  resolution_note: 'resolution_note',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Booklet_question_notesScalarFieldEnum = (typeof Booklet_question_notesScalarFieldEnum)[keyof typeof Booklet_question_notesScalarFieldEnum]
+
+
+export const Campaign_settingsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  setting_key: 'setting_key',
+  setting_value: 'setting_value',
+  value_type: 'value_type',
+  description: 'description',
+  active: 'active',
+  created_by_account_id: 'created_by_account_id',
+  updated_by_account_id: 'updated_by_account_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Campaign_settingsScalarFieldEnum = (typeof Campaign_settingsScalarFieldEnum)[keyof typeof Campaign_settingsScalarFieldEnum]
+
+
+export const Campaign_subjectsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  subject_id: 'subject_id',
+  code: 'code',
+  name: 'name',
+  full_score: 'full_score',
+  order_no: 'order_no',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Campaign_subjectsScalarFieldEnum = (typeof Campaign_subjectsScalarFieldEnum)[keyof typeof Campaign_subjectsScalarFieldEnum]
+
+
+export const Incident_attachmentsScalarFieldEnum = {
+  id: 'id',
+  incident_id: 'incident_id',
+  booklet_question_note_id: 'booklet_question_note_id',
+  file_url: 'file_url',
+  file_key: 'file_key',
+  file_name: 'file_name',
+  mime_type: 'mime_type',
+  file_size_bytes: 'file_size_bytes',
+  uploaded_by_account_id: 'uploaded_by_account_id',
+  uploaded_by_grader_id: 'uploaded_by_grader_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Incident_attachmentsScalarFieldEnum = (typeof Incident_attachmentsScalarFieldEnum)[keyof typeof Incident_attachmentsScalarFieldEnum]
+
+
+export const Notification_delivery_logsScalarFieldEnum = {
+  id: 'id',
+  notification_id: 'notification_id',
+  recipient_id: 'recipient_id',
+  channel: 'channel',
+  provider: 'provider',
+  request_payload: 'request_payload',
+  response_payload: 'response_payload',
+  status: 'status',
+  error_message: 'error_message',
+  attempt_no: 'attempt_no',
+  created_at: 'created_at'
+} as const
+
+export type Notification_delivery_logsScalarFieldEnum = (typeof Notification_delivery_logsScalarFieldEnum)[keyof typeof Notification_delivery_logsScalarFieldEnum]
+
+
+export const Notification_messagesScalarFieldEnum = {
+  id: 'id',
+  template_id: 'template_id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  bag_id: 'bag_id',
+  type: 'type',
+  channel: 'channel',
+  title: 'title',
+  body: 'body',
+  payload: 'payload',
+  status: 'status',
+  scheduled_at: 'scheduled_at',
+  sent_at: 'sent_at',
+  created_by: 'created_by',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Notification_messagesScalarFieldEnum = (typeof Notification_messagesScalarFieldEnum)[keyof typeof Notification_messagesScalarFieldEnum]
+
+
+export const Notification_preferencesScalarFieldEnum = {
+  id: 'id',
+  account_id: 'account_id',
+  notification_type: 'notification_type',
+  channel: 'channel',
+  enabled: 'enabled',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Notification_preferencesScalarFieldEnum = (typeof Notification_preferencesScalarFieldEnum)[keyof typeof Notification_preferencesScalarFieldEnum]
+
+
+export const Notification_recipientsScalarFieldEnum = {
+  id: 'id',
+  notification_id: 'notification_id',
+  account_id: 'account_id',
+  grader_id: 'grader_id',
+  recipient_type: 'recipient_type',
+  recipient_target: 'recipient_target',
+  read_at: 'read_at',
+  dismissed_at: 'dismissed_at',
+  delivery_status: 'delivery_status',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Notification_recipientsScalarFieldEnum = (typeof Notification_recipientsScalarFieldEnum)[keyof typeof Notification_recipientsScalarFieldEnum]
+
+
+export const Notification_templatesScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  channel: 'channel',
+  subject_template: 'subject_template',
+  body_template: 'body_template',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Notification_templatesScalarFieldEnum = (typeof Notification_templatesScalarFieldEnum)[keyof typeof Notification_templatesScalarFieldEnum]
+
+
+export const Qr_scan_logsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  bag_id: 'bag_id',
+  booklet_id: 'booklet_id',
+  scanned_by_account_id: 'scanned_by_account_id',
+  scanned_by_grader_id: 'scanned_by_grader_id',
+  scan_context: 'scan_context',
+  scan_result: 'scan_result',
+  qr_payload_masked: 'qr_payload_masked',
+  qr_payload_hash: 'qr_payload_hash',
+  error_code: 'error_code',
+  error_message: 'error_message',
+  ip_address: 'ip_address',
+  user_agent: 'user_agent',
+  device_info: 'device_info',
+  scanned_at: 'scanned_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Qr_scan_logsScalarFieldEnum = (typeof Qr_scan_logsScalarFieldEnum)[keyof typeof Qr_scan_logsScalarFieldEnum]
+
+
+export const Question_choice_group_itemsScalarFieldEnum = {
+  id: 'id',
+  choice_group_id: 'choice_group_id',
+  session_subject_question_id: 'session_subject_question_id',
+  order_no: 'order_no',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Question_choice_group_itemsScalarFieldEnum = (typeof Question_choice_group_itemsScalarFieldEnum)[keyof typeof Question_choice_group_itemsScalarFieldEnum]
+
+
+export const Question_choice_groupsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  session_subject_id: 'session_subject_id',
+  group_code: 'group_code',
+  title: 'title',
+  required_count: 'required_count',
+  max_select_count: 'max_select_count',
+  scoring_policy: 'scoring_policy',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Question_choice_groupsScalarFieldEnum = (typeof Question_choice_groupsScalarFieldEnum)[keyof typeof Question_choice_groupsScalarFieldEnum]
+
+
+export const Service_outbox_eventsScalarFieldEnum = {
+  id: 'id',
+  event_type: 'event_type',
+  aggregate_type: 'aggregate_type',
+  aggregate_id: 'aggregate_id',
+  payload: 'payload',
+  status: 'status',
+  attempts: 'attempts',
+  max_attempts: 'max_attempts',
+  available_at: 'available_at',
+  locked_at: 'locked_at',
+  locked_by: 'locked_by',
+  processed_at: 'processed_at',
+  error_message: 'error_message',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Service_outbox_eventsScalarFieldEnum = (typeof Service_outbox_eventsScalarFieldEnum)[keyof typeof Service_outbox_eventsScalarFieldEnum]
+
+
+export const Session_countersScalarFieldEnum = {
+  session_id: 'session_id',
+  next_bag_no: 'next_bag_no',
+  next_random_seq: 'next_random_seq',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Session_countersScalarFieldEnum = (typeof Session_countersScalarFieldEnum)[keyof typeof Session_countersScalarFieldEnum]
+
+
+export const Session_subject_questionsScalarFieldEnum = {
+  id: 'id',
+  campaign_id: 'campaign_id',
+  session_id: 'session_id',
+  session_subject_id: 'session_subject_id',
+  question_no: 'question_no',
+  label: 'label',
+  max_score: 'max_score',
+  question_type: 'question_type',
+  note: 'note',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Session_subject_questionsScalarFieldEnum = (typeof Session_subject_questionsScalarFieldEnum)[keyof typeof Session_subject_questionsScalarFieldEnum]
+
+
+export const Setting_definitionsScalarFieldEnum = {
+  id: 'id',
+  setting_key: 'setting_key',
+  name: 'name',
+  description: 'description',
+  value_type: 'value_type',
+  scope: 'scope',
+  default_value: 'default_value',
+  required: 'required',
+  active: 'active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  deleted_at: 'deleted_at'
+} as const
+
+export type Setting_definitionsScalarFieldEnum = (typeof Setting_definitionsScalarFieldEnum)[keyof typeof Setting_definitionsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2375,6 +4021,13 @@ export const NullableJsonNullValueInput = {
 export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
 export const NullsOrder = {
   first: 'first',
   last: 'last'
@@ -2386,9 +4039,11 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 export const accountsOrderByRelevanceFieldEnum = {
   username: 'username',
   password_hash: 'password_hash',
+  title: 'title',
   full_name: 'full_name',
   email: 'email',
-  title: 'title'
+  profile_image_url: 'profile_image_url',
+  profile_image_key: 'profile_image_key'
 } as const
 
 export type accountsOrderByRelevanceFieldEnum = (typeof accountsOrderByRelevanceFieldEnum)[keyof typeof accountsOrderByRelevanceFieldEnum]
@@ -2440,11 +4095,20 @@ export type bagsOrderByRelevanceFieldEnum = (typeof bagsOrderByRelevanceFieldEnu
 export const bookletsOrderByRelevanceFieldEnum = {
   user_code: 'user_code',
   qr_payload: 'qr_payload',
-  status: 'status',
-  random_num: 'random_num'
+  random_num: 'random_num',
+  status: 'status'
 } as const
 
 export type bookletsOrderByRelevanceFieldEnum = (typeof bookletsOrderByRelevanceFieldEnum)[keyof typeof bookletsOrderByRelevanceFieldEnum]
+
+
+export const campaign_keysOrderByRelevanceFieldEnum = {
+  key_ciphertext: 'key_ciphertext',
+  algor: 'algor',
+  iv: 'iv'
+} as const
+
+export type campaign_keysOrderByRelevanceFieldEnum = (typeof campaign_keysOrderByRelevanceFieldEnum)[keyof typeof campaign_keysOrderByRelevanceFieldEnum]
 
 
 export const exam_campaignsOrderByRelevanceFieldEnum = {
@@ -2476,6 +4140,13 @@ export const grading_score_draftsOrderByRelevanceFieldEnum = {
 } as const
 
 export type grading_score_draftsOrderByRelevanceFieldEnum = (typeof grading_score_draftsOrderByRelevanceFieldEnum)[keyof typeof grading_score_draftsOrderByRelevanceFieldEnum]
+
+
+export const grading_score_logsOrderByRelevanceFieldEnum = {
+  reason: 'reason'
+} as const
+
+export type grading_score_logsOrderByRelevanceFieldEnum = (typeof grading_score_logsOrderByRelevanceFieldEnum)[keyof typeof grading_score_logsOrderByRelevanceFieldEnum]
 
 
 export const grading_slotsOrderByRelevanceFieldEnum = {
@@ -2519,8 +4190,11 @@ export type subjectsOrderByRelevanceFieldEnum = (typeof subjectsOrderByRelevance
 
 export const twofactor_sessionsOrderByRelevanceFieldEnum = {
   purpose: 'purpose',
+  channel: 'channel',
+  target: 'target',
   otp_hash: 'otp_hash',
-  otp_token: 'otp_token'
+  otp_token: 'otp_token',
+  status: 'status'
 } as const
 
 export type twofactor_sessionsOrderByRelevanceFieldEnum = (typeof twofactor_sessionsOrderByRelevanceFieldEnum)[keyof typeof twofactor_sessionsOrderByRelevanceFieldEnum]
@@ -2535,14 +4209,187 @@ export type user_campaignsOrderByRelevanceFieldEnum = (typeof user_campaignsOrde
 
 export const usersOrderByRelevanceFieldEnum = {
   user_code: 'user_code',
+  title: 'title',
+  gender: 'gender',
   full_name: 'full_name',
   first_name: 'first_name',
   last_name: 'last_name',
-  title: 'title',
-  national_id: 'national_id'
+  first_name_en: 'first_name_en',
+  last_name_en: 'last_name_en',
+  national_id: 'national_id',
+  ethnicity: 'ethnicity',
+  nationality_birth: 'nationality_birth',
+  nationality_current: 'nationality_current',
+  religion: 'religion',
+  phone: 'phone',
+  mobile: 'mobile',
+  email: 'email',
+  address: 'address',
+  study_degree: 'study_degree',
+  university: 'university'
 } as const
 
 export type usersOrderByRelevanceFieldEnum = (typeof usersOrderByRelevanceFieldEnum)[keyof typeof usersOrderByRelevanceFieldEnum]
+
+
+export const booklet_incident_reportsOrderByRelevanceFieldEnum = {
+  incident_type: 'incident_type',
+  severity: 'severity',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  resolution_note: 'resolution_note'
+} as const
+
+export type booklet_incident_reportsOrderByRelevanceFieldEnum = (typeof booklet_incident_reportsOrderByRelevanceFieldEnum)[keyof typeof booklet_incident_reportsOrderByRelevanceFieldEnum]
+
+
+export const booklet_question_choicesOrderByRelevanceFieldEnum = {
+  selected_by: 'selected_by'
+} as const
+
+export type booklet_question_choicesOrderByRelevanceFieldEnum = (typeof booklet_question_choicesOrderByRelevanceFieldEnum)[keyof typeof booklet_question_choicesOrderByRelevanceFieldEnum]
+
+
+export const booklet_question_notesOrderByRelevanceFieldEnum = {
+  note_type: 'note_type',
+  severity: 'severity',
+  note: 'note',
+  status: 'status',
+  resolution_note: 'resolution_note'
+} as const
+
+export type booklet_question_notesOrderByRelevanceFieldEnum = (typeof booklet_question_notesOrderByRelevanceFieldEnum)[keyof typeof booklet_question_notesOrderByRelevanceFieldEnum]
+
+
+export const campaign_settingsOrderByRelevanceFieldEnum = {
+  setting_key: 'setting_key',
+  value_type: 'value_type',
+  description: 'description'
+} as const
+
+export type campaign_settingsOrderByRelevanceFieldEnum = (typeof campaign_settingsOrderByRelevanceFieldEnum)[keyof typeof campaign_settingsOrderByRelevanceFieldEnum]
+
+
+export const campaign_subjectsOrderByRelevanceFieldEnum = {
+  code: 'code',
+  name: 'name'
+} as const
+
+export type campaign_subjectsOrderByRelevanceFieldEnum = (typeof campaign_subjectsOrderByRelevanceFieldEnum)[keyof typeof campaign_subjectsOrderByRelevanceFieldEnum]
+
+
+export const incident_attachmentsOrderByRelevanceFieldEnum = {
+  file_url: 'file_url',
+  file_key: 'file_key',
+  file_name: 'file_name',
+  mime_type: 'mime_type'
+} as const
+
+export type incident_attachmentsOrderByRelevanceFieldEnum = (typeof incident_attachmentsOrderByRelevanceFieldEnum)[keyof typeof incident_attachmentsOrderByRelevanceFieldEnum]
+
+
+export const notification_delivery_logsOrderByRelevanceFieldEnum = {
+  channel: 'channel',
+  provider: 'provider',
+  status: 'status',
+  error_message: 'error_message'
+} as const
+
+export type notification_delivery_logsOrderByRelevanceFieldEnum = (typeof notification_delivery_logsOrderByRelevanceFieldEnum)[keyof typeof notification_delivery_logsOrderByRelevanceFieldEnum]
+
+
+export const notification_messagesOrderByRelevanceFieldEnum = {
+  type: 'type',
+  channel: 'channel',
+  title: 'title',
+  body: 'body',
+  status: 'status'
+} as const
+
+export type notification_messagesOrderByRelevanceFieldEnum = (typeof notification_messagesOrderByRelevanceFieldEnum)[keyof typeof notification_messagesOrderByRelevanceFieldEnum]
+
+
+export const notification_preferencesOrderByRelevanceFieldEnum = {
+  notification_type: 'notification_type',
+  channel: 'channel'
+} as const
+
+export type notification_preferencesOrderByRelevanceFieldEnum = (typeof notification_preferencesOrderByRelevanceFieldEnum)[keyof typeof notification_preferencesOrderByRelevanceFieldEnum]
+
+
+export const notification_recipientsOrderByRelevanceFieldEnum = {
+  recipient_type: 'recipient_type',
+  recipient_target: 'recipient_target',
+  delivery_status: 'delivery_status'
+} as const
+
+export type notification_recipientsOrderByRelevanceFieldEnum = (typeof notification_recipientsOrderByRelevanceFieldEnum)[keyof typeof notification_recipientsOrderByRelevanceFieldEnum]
+
+
+export const notification_templatesOrderByRelevanceFieldEnum = {
+  code: 'code',
+  name: 'name',
+  channel: 'channel',
+  subject_template: 'subject_template',
+  body_template: 'body_template'
+} as const
+
+export type notification_templatesOrderByRelevanceFieldEnum = (typeof notification_templatesOrderByRelevanceFieldEnum)[keyof typeof notification_templatesOrderByRelevanceFieldEnum]
+
+
+export const qr_scan_logsOrderByRelevanceFieldEnum = {
+  scan_context: 'scan_context',
+  scan_result: 'scan_result',
+  qr_payload_masked: 'qr_payload_masked',
+  qr_payload_hash: 'qr_payload_hash',
+  error_code: 'error_code',
+  error_message: 'error_message',
+  ip_address: 'ip_address',
+  user_agent: 'user_agent'
+} as const
+
+export type qr_scan_logsOrderByRelevanceFieldEnum = (typeof qr_scan_logsOrderByRelevanceFieldEnum)[keyof typeof qr_scan_logsOrderByRelevanceFieldEnum]
+
+
+export const question_choice_groupsOrderByRelevanceFieldEnum = {
+  group_code: 'group_code',
+  title: 'title',
+  scoring_policy: 'scoring_policy'
+} as const
+
+export type question_choice_groupsOrderByRelevanceFieldEnum = (typeof question_choice_groupsOrderByRelevanceFieldEnum)[keyof typeof question_choice_groupsOrderByRelevanceFieldEnum]
+
+
+export const service_outbox_eventsOrderByRelevanceFieldEnum = {
+  event_type: 'event_type',
+  aggregate_type: 'aggregate_type',
+  status: 'status',
+  locked_by: 'locked_by',
+  error_message: 'error_message'
+} as const
+
+export type service_outbox_eventsOrderByRelevanceFieldEnum = (typeof service_outbox_eventsOrderByRelevanceFieldEnum)[keyof typeof service_outbox_eventsOrderByRelevanceFieldEnum]
+
+
+export const session_subject_questionsOrderByRelevanceFieldEnum = {
+  label: 'label',
+  question_type: 'question_type',
+  note: 'note'
+} as const
+
+export type session_subject_questionsOrderByRelevanceFieldEnum = (typeof session_subject_questionsOrderByRelevanceFieldEnum)[keyof typeof session_subject_questionsOrderByRelevanceFieldEnum]
+
+
+export const setting_definitionsOrderByRelevanceFieldEnum = {
+  setting_key: 'setting_key',
+  name: 'name',
+  description: 'description',
+  value_type: 'value_type',
+  scope: 'scope'
+} as const
+
+export type setting_definitionsOrderByRelevanceFieldEnum = (typeof setting_definitionsOrderByRelevanceFieldEnum)[keyof typeof setting_definitionsOrderByRelevanceFieldEnum]
 
 
 
@@ -2733,6 +4580,24 @@ export type GlobalOmitConfig = {
   user_campaigns?: Prisma.user_campaignsOmit
   user_sessions?: Prisma.user_sessionsOmit
   users?: Prisma.usersOmit
+  booklet_incident_reports?: Prisma.booklet_incident_reportsOmit
+  booklet_question_choices?: Prisma.booklet_question_choicesOmit
+  booklet_question_notes?: Prisma.booklet_question_notesOmit
+  campaign_settings?: Prisma.campaign_settingsOmit
+  campaign_subjects?: Prisma.campaign_subjectsOmit
+  incident_attachments?: Prisma.incident_attachmentsOmit
+  notification_delivery_logs?: Prisma.notification_delivery_logsOmit
+  notification_messages?: Prisma.notification_messagesOmit
+  notification_preferences?: Prisma.notification_preferencesOmit
+  notification_recipients?: Prisma.notification_recipientsOmit
+  notification_templates?: Prisma.notification_templatesOmit
+  qr_scan_logs?: Prisma.qr_scan_logsOmit
+  question_choice_group_items?: Prisma.question_choice_group_itemsOmit
+  question_choice_groups?: Prisma.question_choice_groupsOmit
+  service_outbox_events?: Prisma.service_outbox_eventsOmit
+  session_counters?: Prisma.session_countersOmit
+  session_subject_questions?: Prisma.session_subject_questionsOmit
+  setting_definitions?: Prisma.setting_definitionsOmit
 }
 
 /* Types for Logging */
