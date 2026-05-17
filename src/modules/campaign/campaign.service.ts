@@ -40,7 +40,7 @@ export const campaignService = {
         site: string,
         is_unlock: boolean,
         campaign_size: string,
-        qr_active: number,
+        qr_active: boolean,
     }) {
         const created = await campaignRepo.createCampaign(data);
         return { success: true, data: created };
@@ -49,13 +49,13 @@ export const campaignService = {
     async findQrActive(campaign_id: number) {
         const campaign = await campaignRepo.findCampaignById(campaign_id);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        return { success: true, data: campaign.qr_active === 1 ? true : false };
+        return { success: true, data: campaign.qr_active === true ? true : false };
     },
 
     async updateQrActive(campaign_id: number) {
         const campaign = await campaignRepo.findCampaignById(campaign_id);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        const updated = await campaignRepo.updateQrActive(campaign_id, campaign.qr_active === 1 ? 0 : 1);
+        const updated = await campaignRepo.updateQrActive(campaign_id, campaign.qr_active === true ? false : true);
         return { success: true, data: updated };
     },
 

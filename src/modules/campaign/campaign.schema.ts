@@ -22,6 +22,6 @@ export const createBodySchema = t.Object({
     site: t.String(),
     is_unlock: t.Boolean(),
     campaign_size: t.String(),
-    qr_active: t.Numeric(),
+    qr_active: t.Boolean(),
 })
 
