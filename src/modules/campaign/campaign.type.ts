@@ -1,10 +1,14 @@
 import type { Static } from "elysia";
-import type { campaignQuerySchema, updateBodySchema, createBodySchema } from "./campaign.schema";
-import type { campaignRepo } from "./campaign.repo";
+import type {
+    campaignIdParamSchema,
+    createCampaignBodySchema,
+    updateCampaignBodySchema,
+    setActiveBodySchema,
+    setQrActiveBodySchema,
+} from "./campaign.schema";
 
-export type CampaignQuerySchema = Static<typeof campaignQuerySchema>;
-export type UpdateBodySchema = Static<typeof updateBodySchema>;
-export type CreateBodySchema = Static<typeof createBodySchema>;
-
-export type CampaignWithDetails = NonNullable<Awaited<ReturnType<typeof campaignRepo.findCampaignWithSessionsAndSubjects>>>;
-export type CampaignList = Awaited<ReturnType<typeof campaignRepo.findAllCampaignWithSessionsAndSubjects>>;
+export type CampaignIdParam = Static<typeof campaignIdParamSchema>;
+export type CreateCampaignBody = Static<typeof createCampaignBodySchema>;
+export type UpdateCampaignBody = Static<typeof updateCampaignBodySchema>;
+export type SetActiveBody = Static<typeof setActiveBodySchema>;
+export type SetQrActiveBody = Static<typeof setQrActiveBodySchema>;

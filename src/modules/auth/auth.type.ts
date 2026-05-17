@@ -62,3 +62,13 @@ export type AuthMeResponse = {
     message: string,
     account: AuthAccountResponse,
 }
+
+export type SessionData = {
+    account_id: number;
+    role_id: number;
+    username: string;
+    full_name: string;
+    email: string | null;
+    grader_id: number | null;
+    campaign_id: number | null;
+};

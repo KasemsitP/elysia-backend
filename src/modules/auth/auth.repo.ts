@@ -72,4 +72,33 @@ export const authRepo = {
             data: { active: true },
         });
     },
+
+    async createSession(data: {
+        sid: string;
+        account_id: number;
+        expires: number;
+        data: string;
+    }, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.auth_sessions.create({
+            data: {
+                sid: data.sid,
+                account_id: data.account_id,
+                expires: data.expires,
+                data: data.data,
+            },
+        });
+    },
+
+    async findSession(sid: string) {
+        return prisma.auth_sessions.findUnique({ where: { sid } });
+    },
+
+    async deleteSession(sid: string) {
+        return prisma.auth_sessions.delete({ where: { sid } }).catch(() => null);
+    },
+
+    async deleteSessionsByAccountId(accountId: number) {
+        return prisma.auth_sessions.deleteMany({ where: { account_id: accountId } });
+    },
 }

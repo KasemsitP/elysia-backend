@@ -1,33 +1,32 @@
-
-import { Param } from "@prisma/client/runtime/client";
-import { sessionService } from "./session.service";
-import { sessionQuerySchema, sessionCreateBodySchema, campaignQuerySchema } from "./sessions.schema";
 import { Elysia } from "elysia";
+import { sessionService } from "./session.service";
+import { requireSession } from "../../cores/session";
+import {
+    sessionCampaignParamSchema,
+    sessionParamSchema,
+    createSessionBodySchema,
+    updateSessionBodySchema,
+} from "./sessions.schema";
 
-export const sessionRoutes = new Elysia({ prefix: "/session" })
-    .get("/", async ({ set }) => {
-        const result = await sessionService.findAllSession();
+export const sessionRoutes = new Elysia({ prefix: "/campaigns/:campaignId/sessions" })
+    .use(requireSession)
+    .get("/", async ({ params, set }) => {
         set.status = 200;
-        return result;
-    })
-    .get("/:session_id", async ({ params, set }) => {
-        const result = await sessionService.findSessionById(Number(params.session_id));
+        return sessionService.findByCampaign(params.campaignId);
+    }, { params: sessionCampaignParamSchema })
+    .get("/:sessionId", async ({ params, set }) => {
         set.status = 200;
-        return result
-    }, {
-        params: sessionQuerySchema
-    })
-    .get("/campaign/:campaign_id", async ({ params, set }) => {
-        const result = await sessionService.findSessionByCampaign(Number(params.campaign_id));
-        set.status = 200;
-        return result;
-    }, {
-        params: campaignQuerySchema
-    })
+        return sessionService.findById(params.campaignId, params.sessionId);
+    }, { params: sessionParamSchema })
     .post("/", async ({ params, body, set }) => {
-        const result = await sessionService.createSession(body);
         set.status = 201;
-        return result;
-    }, {
-        body: sessionCreateBodySchema
-    })
+        return sessionService.create(params.campaignId, body);
+    }, { params: sessionCampaignParamSchema, body: createSessionBodySchema })
+    .patch("/:sessionId", async ({ params, body, set }) => {
+        set.status = 200;
+        return sessionService.update(params.campaignId, params.sessionId, body);
+    }, { params: sessionParamSchema, body: updateSessionBodySchema })
+    .delete("/:sessionId", async ({ params, set }) => {
+        set.status = 200;
+        return sessionService.delete(params.campaignId, params.sessionId);
+    }, { params: sessionParamSchema });

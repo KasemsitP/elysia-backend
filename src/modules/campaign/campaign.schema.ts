@@ -1,27 +1,30 @@
-
 import { t } from "elysia";
 
+export const campaignIdParamSchema = t.Object({
+    campaignId: t.Numeric(),
+});
 
-
-
-export const campaignQuerySchema = t.Object({
-    campaign_id: t.Numeric()
-})
-
-export const updateBodySchema = t.Object({
+export const createCampaignBodySchema = t.Object({
+    name: t.Optional(t.Nullable(t.String())),
     year_be: t.String(),
-    site: t.String(),
+    site: t.Optional(t.Nullable(t.String())),
     campaign_size: t.String(),
-})
+    is_active: t.Optional(t.Boolean()),
+    is_unlock: t.Optional(t.Boolean()),
+    qr_active: t.Optional(t.Boolean()),
+});
 
-export const createBodySchema = t.Object({
-    name: t.String(),
-    code: t.String(),
+export const updateCampaignBodySchema = t.Object({
+    name: t.Optional(t.Nullable(t.String())),
+    year_be: t.Optional(t.String()),
+    site: t.Optional(t.Nullable(t.String())),
+    campaign_size: t.Optional(t.String()),
+});
+
+export const setActiveBodySchema = t.Object({
     is_active: t.Boolean(),
-    year_be: t.String(),
-    site: t.String(),
-    is_unlock: t.Boolean(),
-    campaign_size: t.String(),
-    qr_active: t.Boolean(),
-})
+});
 
+export const setQrActiveBodySchema = t.Object({
+    qr_active: t.Boolean(),
+});

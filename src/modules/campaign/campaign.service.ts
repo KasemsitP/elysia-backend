@@ -1,74 +1,61 @@
 import { campaignRepo } from "./campaign.repo";
 import { AppError } from "../../cores/errors";
+import type { CreateCampaignBody, UpdateCampaignBody, SetActiveBody, SetQrActiveBody } from "./campaign.type";
 
 export const campaignService = {
-
-    async findAllCampaignWithSessionsAndSubjects() {
-        const data = await campaignRepo.findAllCampaignWithSessionsAndSubjects();
-        return { success: true, data };
+    async findAll() {
+        const data = await campaignRepo.findAll();
+        return { success: true, message: "ดึงข้อมูลรอบสอบสำเร็จ", data };
     },
 
-    async findCampaignWithSessionsAndSubjects(campaign_id: number) {
-        const data = await campaignRepo.findCampaignWithSessionsAndSubjects(campaign_id);
+    async findById(campaignId: number) {
+        const data = await campaignRepo.findById(campaignId);
         if (!data) throw new AppError("ไม่พบรอบสอบ", 404);
-        return { success: true, data };
+        return { success: true, message: "ดึงข้อมูลรอบสอบสำเร็จ", data };
     },
 
-    async updateCampaign(campaign_id: number, data: {
-        year_be: string;
-        site: string;
-        campaign_size: string;
-    }) {
-        const campaign = await campaignRepo.findCampaignById(campaign_id);
+    async findByIdFull(campaignId: number) {
+        const data = await campaignRepo.findByIdWithDetails(campaignId);
+        if (!data) throw new AppError("ไม่พบรอบสอบ", 404);
+        return { success: true, message: "ดึงข้อมูลรอบสอบสำเร็จ", data };
+    },
+
+    async create(input: CreateCampaignBody) {
+        const dup = await campaignRepo.existsByYearAndSize(input.year_be, input.campaign_size);
+        if (dup) throw new AppError(`รอบสอบปี ${input.year_be} ขนาด ${input.campaign_size} มีอยู่แล้ว`, 409);
+        const data = await campaignRepo.create(input);
+        return { success: true, message: "สร้างรอบสอบสำเร็จ", data };
+    },
+
+    async update(campaignId: number, input: UpdateCampaignBody) {
+        const campaign = await campaignRepo.findById(campaignId);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        const updated = await campaignRepo.updateCampaign(campaign_id, data);
-        return { success: true, data: updated };
+        if (input.year_be && input.campaign_size) {
+            const dup = await campaignRepo.existsByYearAndSize(input.year_be, input.campaign_size, campaignId);
+            if (dup) throw new AppError(`รอบสอบปี ${input.year_be} ขนาด ${input.campaign_size} มีอยู่แล้ว`, 409);
+        }
+        const data = await campaignRepo.update(campaignId, input);
+        return { success: true, message: "อัปเดตรอบสอบสำเร็จ", data };
     },
 
-    async updateCampaignIsActive(campaign_id: number, is_active: boolean) {
-        const campaign = await campaignRepo.findCampaignById(campaign_id);
+    async setActive(campaignId: number, input: SetActiveBody) {
+        const campaign = await campaignRepo.findById(campaignId);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        const updated = await campaignRepo.updateCampaignIsActive(campaign_id, is_active);
-        return { success: true, data: updated };
+        const data = await campaignRepo.setActive(campaignId, input.is_active);
+        return { success: true, message: `${input.is_active ? "เปิด" : "ปิด"}การใช้งานรอบสอบสำเร็จ`, data };
     },
 
-    async createCampaign(data: {
-        name: string,
-        code: string,
-        is_active: boolean,
-        year_be: string,
-        site: string,
-        is_unlock: boolean,
-        campaign_size: string,
-        qr_active: boolean,
-    }) {
-        const created = await campaignRepo.createCampaign(data);
-        return { success: true, data: created };
-    },
-
-    async findQrActive(campaign_id: number) {
-        const campaign = await campaignRepo.findCampaignById(campaign_id);
+    async setQrActive(campaignId: number, input: SetQrActiveBody) {
+        const campaign = await campaignRepo.findById(campaignId);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        return { success: true, data: campaign.qr_active === true ? true : false };
+        const data = await campaignRepo.setQrActive(campaignId, input.qr_active);
+        return { success: true, message: `${input.qr_active ? "เปิด" : "ปิด"}QR สำเร็จ`, data };
     },
 
-    async updateQrActive(campaign_id: number) {
-        const campaign = await campaignRepo.findCampaignById(campaign_id);
+    async delete(campaignId: number) {
+        const campaign = await campaignRepo.findById(campaignId);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        const updated = await campaignRepo.updateQrActive(campaign_id, campaign.qr_active === true ? false : true);
-        return { success: true, data: updated };
+        await campaignRepo.softDelete(campaignId);
+        return { success: true, message: "ลบรอบสอบสำเร็จ" };
     },
-
-    async findIsUnlock(campaign_id: number) {
-        const campaign = await campaignRepo.findCampaignById(campaign_id);
-        if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        return { success: true, data: campaign.is_unlock };
-    },
-
-    async updateIsUnlock(campaign_id: number, is_unlock: boolean) {
-        const campaign = await campaignRepo.findCampaignById(campaign_id);
-        if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        const updated = await campaignRepo.updateIsUnlock(campaign_id, is_unlock);
-        return { success: true, data: updated };
-    },
-}
+};

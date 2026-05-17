@@ -1,66 +1,45 @@
-
-import { campaignService } from "./campaign.service";
-import { campaignQuerySchema, updateBodySchema, createBodySchema } from "./campaign.schema";
 import { Elysia } from "elysia";
+import { campaignService } from "./campaign.service";
+import { requireSession } from "../../cores/session";
+import {
+    campaignIdParamSchema,
+    createCampaignBodySchema,
+    updateCampaignBodySchema,
+    setActiveBodySchema,
+    setQrActiveBodySchema,
+} from "./campaign.schema";
 
-
-
-
-export const campaignRoutes = new Elysia({ prefix: "/campaign" })
+export const campaignRoutes = new Elysia({ prefix: "/campaigns" })
+    .use(requireSession)
     .get("/", async ({ set }) => {
-        const result = await campaignService.findAllCampaignWithSessionsAndSubjects();
         set.status = 200;
-        return result;
+        return campaignService.findAll();
     })
-    .get("/:campaign_id", async ({ params, set }) => {
-        const result = await campaignService.findCampaignWithSessionsAndSubjects(params.campaign_id);
+    .get("/:campaignId", async ({ params, set }) => {
         set.status = 200;
-        return result;
-    }, {
-        params: campaignQuerySchema
-    })
-    .put("/:campaign_id/active", async ({ params, set }) => {
-        //console.log(params.campaign_id);
-        const result = await campaignService.updateCampaignIsActive(params.campaign_id, true);
+        return campaignService.findById(params.campaignId);
+    }, { params: campaignIdParamSchema })
+    .get("/:campaignId/full", async ({ params, set }) => {
         set.status = 200;
-        return result;
-    }, {
-        params: campaignQuerySchema
-    })
-    .put("/:campaign_id/inactive", async ({ params, set }) => {
-        //console.log(params.campaign_id);
-        const result = await campaignService.updateCampaignIsActive(params.campaign_id, false);
-        set.status = 200;
-        return result;
-    }, {
-        params: campaignQuerySchema
-    })
-    .put("/:campaign_id", async ({ params, body, set }) => {
-        const result = await campaignService.updateCampaign(params.campaign_id, body);
-        set.status = 200;
-        return result;
-    }, {
-        params: campaignQuerySchema,
-        body: updateBodySchema
-    })
+        return campaignService.findByIdFull(params.campaignId);
+    }, { params: campaignIdParamSchema })
     .post("/", async ({ body, set }) => {
-        const result = await campaignService.createCampaign(body);
         set.status = 201;
-        return result;
-    }, {
-        body: createBodySchema
-    })
-    .get("/:campaign_id/qr-active", async ({ params, set }) => {
-        const result = await campaignService.findQrActive(params.campaign_id);
+        return campaignService.create(body);
+    }, { body: createCampaignBodySchema })
+    .patch("/:campaignId", async ({ params, body, set }) => {
         set.status = 200;
-        return result;
-    }, {
-        params: campaignQuerySchema
-    })
-    .put("/:campaign_id/qr-active", async ({ params, body, set }) => {
-        const result = await campaignService.updateQrActive(params.campaign_id);
+        return campaignService.update(params.campaignId, body);
+    }, { params: campaignIdParamSchema, body: updateCampaignBodySchema })
+    .patch("/:campaignId/active", async ({ params, body, set }) => {
         set.status = 200;
-        return result;
-    }, {
-        params: campaignQuerySchema,
-    })
+        return campaignService.setActive(params.campaignId, body);
+    }, { params: campaignIdParamSchema, body: setActiveBodySchema })
+    .patch("/:campaignId/qr-active", async ({ params, body, set }) => {
+        set.status = 200;
+        return campaignService.setQrActive(params.campaignId, body);
+    }, { params: campaignIdParamSchema, body: setQrActiveBodySchema })
+    .delete("/:campaignId", async ({ params, set }) => {
+        set.status = 200;
+        return campaignService.delete(params.campaignId);
+    }, { params: campaignIdParamSchema });

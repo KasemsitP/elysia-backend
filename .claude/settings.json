@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "PowerShell(ls \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\elysia\\\\node_modules\\\\\" | Where-Object { $_.Name -match \"dotenv|mariadb\" })"
+      "PowerShell(ls \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\elysia\\\\node_modules\\\\\" | Where-Object { $_.Name -match \"dotenv|mariadb\" })",
+      "Bash(Get-Content -Path \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\grader\\\\grader.type.ts\" -Raw)",
+      "Bash(Get-Content -Path \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\subject\\\\subject.schema.ts\" -Encoding UTF8)",
+      "PowerShell([System.IO.File]::GetAttributes\\(\"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\subject\\\\subject.schema.ts\"\\); Get-Item \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\subject\\\\subject.schema.ts\" | Select-Object Length)"
     ]
   }
 }
