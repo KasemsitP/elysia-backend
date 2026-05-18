@@ -1,6 +1,7 @@
 import { gradingRepo } from "./grading.repo";
 import { AppError } from "../../cores/errors";
 import { prisma } from "../../cores/prisma";
+import { getNumberSetting } from "../../cores/settings";
 import type {
     GradingStartBody,
     SaveDraftBody,
@@ -8,16 +9,6 @@ import type {
     ConfirmBagBody,
     CreateWorkLockBody,
 } from "./grading.type";
-
-// ดึง score_diff_threshold จาก campaign_settings (default 5)
-async function getScoreDiffThreshold(campaign_id: number): Promise<number> {
-    const setting = await prisma.campaign_settings.findFirst({
-        where: { campaign_id, setting_key: "score_diff_threshold", active: true, deleted_at: null },
-    });
-    if (!setting) return 5;
-    const val = Number(setting.setting_value);
-    return isNaN(val) ? 5 : val;
-}
 
 export const gradingService = {
     // ── Preview Start ────────────────────────────────────────────────────────
@@ -261,7 +252,7 @@ export const gradingService = {
         });
         if (!grader) throw new AppError("ไม่พบผู้ตรวจ", 404);
 
-        const threshold = await getScoreDiffThreshold(bag.campaign_id);
+        const threshold = await getNumberSetting(bag.campaign_id, "score_diff_threshold", 5);
 
         const confirmedCount = await prisma.$transaction(async (tx) => {
             // ดึง drafts ทั้งหมดของ grader นี้ สำหรับ bag+question นี้

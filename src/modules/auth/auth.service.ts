@@ -71,6 +71,9 @@ function toAuthAccountGraderResponse(account: {
 
 export const authService = {
     async login(input: LoginBodySchema) {
+        // Lazy cleanup: ลบ session หมดอายุทุกครั้งที่มี login ใหม่ (non-blocking)
+        authRepo.deleteExpiredSessions().catch(() => null);
+
         const account = await authRepo.findAccountByUsername(input.username);
         if (!account) {
             throw new AppError("ไม่พบผู้ใช้", 401);

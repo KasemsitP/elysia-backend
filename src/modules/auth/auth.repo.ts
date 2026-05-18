@@ -101,4 +101,11 @@ export const authRepo = {
     async deleteSessionsByAccountId(accountId: number) {
         return prisma.auth_sessions.deleteMany({ where: { account_id: accountId } });
     },
+
+    // Lazy cleanup — ลบ session หมดอายุทุกครั้งที่มี login ใหม่
+    async deleteExpiredSessions() {
+        return prisma.auth_sessions.deleteMany({
+            where: { expires: { lt: Math.floor(Date.now() / 1000) } },
+        });
+    },
 }

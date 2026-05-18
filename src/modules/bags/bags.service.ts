@@ -4,10 +4,11 @@ import { bookletRepo } from "../booklets/booklets.repo";
 import { campaignRepo } from "../campaign/campaign.repo";
 import { AppError } from "../../cores/errors";
 import { prisma } from "../../cores/prisma";
+import { decryptQrPayload, getKeyOrderNumFromPayload, getCampaignKey } from "../../cores/qr-crypto";
 import type { ScanPreviewBody, CreateBagBody, UpdateBagStatusBody } from "./bags.type";
 import type { SessionData } from "../auth/auth.type";
 
-// mask qr_payload ก่อน log — ห้าม log plaintext
+// mask qr_payload ก่อน log — ห้าม log plaintext ตาม claude.md
 function maskPayload(payload: string) {
     return payload.substring(0, 8) + "..." + payload.substring(payload.length - 4);
 }
@@ -16,25 +17,51 @@ function hashPayload(payload: string) {
     return createHash("sha256").update(payload).digest("hex");
 }
 
-// Validate qr_payloads และ return booklets — ใช้ซ้ำใน preview และ create
+/**
+ * Validate qr_payloads พร้อม decrypt ตรวจ integrity
+ *
+ * 3 ชั้นการตรวจ:
+ * 1. หา booklet จาก DB ด้วย qr_payload (exact match)
+ * 2. ตรวจ campaign/session ตรงกัน
+ * 3. Decrypt payload → ตรวจว่า cid/sid ตรงกัน + tag valid (ไม่ถูก tamper)
+ */
 async function resolveBooklets(
     campaign_id: number,
     session_id: number,
     qr_payloads: string[],
 ) {
     const results = await Promise.all(
-        qr_payloads.map(async (payload) => {
-            const booklet = await bookletRepo.findByQrPayload(payload);
-            if (!booklet) return { payload, error: "ไม่พบเล่มข้อสอบ" };
-            if (booklet.campaign_id !== campaign_id) return { payload, error: "เล่มนี้ไม่อยู่ในรอบสอบนี้" };
-            if (booklet.session_id !== session_id) return { payload, error: "เล่มนี้ไม่อยู่ในวันสอบนี้" };
-            if (booklet.bag_id !== null) return { payload, error: "เล่มนี้อยู่ในถุงแล้ว" };
-            return { payload, booklet };
+        qr_payloads.map(async (qrStr) => {
+            // ชั้น 1: หา booklet จาก DB
+            const booklet = await bookletRepo.findByQrPayload(qrStr);
+            if (!booklet) return { payload: qrStr, error: "ไม่พบเล่มข้อสอบ" };
+            if (booklet.campaign_id !== campaign_id) return { payload: qrStr, error: "เล่มนี้ไม่อยู่ในรอบสอบนี้" };
+            if (booklet.session_id !== session_id) return { payload: qrStr, error: "เล่มนี้ไม่อยู่ในวันสอบนี้" };
+            if (booklet.bag_id !== null) return { payload: qrStr, error: "เล่มนี้อยู่ในถุงแล้ว" };
+
+            // ชั้น 2+3: Decrypt payload → ตรวจ GCM tag + cid/sid
+            try {
+                const keyOrderNum = getKeyOrderNumFromPayload(qrStr);
+                const campaignKey = await getCampaignKey(campaign_id, keyOrderNum);
+                const decrypted = decryptQrPayload(qrStr, campaignKey.key_ciphertext!);
+
+                if (decrypted.cid !== campaign_id || decrypted.sid !== session_id) {
+                    return { payload: qrStr, error: "QR payload ไม่ตรงกับ campaign/session" };
+                }
+            } catch {
+                // GCM auth tag ผิด = ถูก tamper หรือ key ผิด
+                return { payload: qrStr, error: "QR payload ไม่ถูกต้องหรืออาจถูกแก้ไข" };
+            }
+
+            return { payload: qrStr, booklet };
         }),
     );
 
     const errors = results.filter((r) => "error" in r);
-    const valid = results.filter((r) => "booklet" in r) as Array<{ payload: string; booklet: NonNullable<Awaited<ReturnType<typeof bookletRepo.findByQrPayload>>> }>;
+    const valid = results.filter((r) => "booklet" in r) as Array<{
+        payload: string;
+        booklet: NonNullable<Awaited<ReturnType<typeof bookletRepo.findByQrPayload>>>;
+    }>;
 
     return { errors, valid };
 }
@@ -189,6 +216,14 @@ export const bagService = {
         const bag = await bagRepo.findById(bagId);
         if (!bag) throw new AppError("ไม่พบถุงข้อสอบ", 404);
         if (bag.status !== "CREATED") throw new AppError("ลบได้เฉพาะถุงที่ยังไม่เริ่มตรวจ (status: CREATED)", 400);
+
+        // ถ้ามี grading_slots แล้ว → ห้ามลบ เปลี่ยนเป็น VOID แทน
+        const hasGrading = await prisma.grading_slots.count({
+            where: { booklets: { bag_id: bagId }, deleted_at: null },
+        });
+        if (hasGrading > 0) {
+            throw new AppError("ถุงนี้มีการตรวจแล้ว ไม่สามารถลบได้ ใช้ PATCH /bags/:bagId/status เปลี่ยนเป็น VOID แทน", 400);
+        }
         await prisma.$transaction(async (tx) => {
             // คืนสถานะ booklets กลับเป็น PRINTED
             await tx.booklets.updateMany({

@@ -9,8 +9,21 @@ export const sessionPlugin = new Elysia({ name: "session" })
         if (!sid) return { session: null as SessionData | null };
 
         const now = Math.floor(Date.now() / 1000);
-        const row = await prisma.auth_sessions.findUnique({ where: { sid } });
+        const row = await prisma.auth_sessions.findUnique({
+            where: { sid },
+            include: {
+                // ตรวจสอบว่า account ยังใช้งานได้อยู่
+                accounts: { select: { active: true, deleted_at: true } },
+            },
+        });
+
         if (!row || row.expires < now) return { session: null as SessionData | null };
+
+        // Account ถูกปิดหรือลบหลังจาก login → invalidate session ทันที
+        if (!row.accounts || !row.accounts.active || row.accounts.deleted_at !== null) {
+            await prisma.auth_sessions.delete({ where: { sid } }).catch(() => null);
+            return { session: null as SessionData | null };
+        }
 
         return { session: JSON.parse(row.data) as SessionData };
     });

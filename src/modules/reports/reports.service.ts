@@ -1,13 +1,7 @@
 import { AppError } from "../../cores/errors";
 import { prisma } from "../../cores/prisma";
-
-// ── Helper: ดึง setting value จาก campaign_settings ──────────────────────────
-async function getSetting(campaign_id: number, key: string): Promise<string | null> {
-    const s = await prisma.campaign_settings.findFirst({
-        where: { campaign_id, setting_key: key, active: true, deleted_at: null },
-    });
-    return s ? String(s.setting_value) : null;
-}
+import { getNumberSetting, getStringSetting } from "../../cores/settings";
+import { runPdfWorker } from "../../cores/pdf-runner";
 
 export const reportService = {
     // ── Bag Scores ─────────────────────────────────────────────────────────────
@@ -169,8 +163,7 @@ export const reportService = {
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
 
         // payment_rate_per_booklet จาก campaign_settings (default 30 บาท)
-        const rateStr = await getSetting(campaignId, "payment_rate_per_booklet");
-        const ratePerBooklet = rateStr ? Number(rateStr) : 30;
+        const ratePerBooklet = await getNumberSetting(campaignId, "payment_rate_per_booklet", 30);
 
         const graders = await prisma.graders.findMany({
             where: { campaign_id: campaignId, deleted_at: null },
@@ -204,12 +197,9 @@ export const reportService = {
         });
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
 
-        const passingQuotaStr = await getSetting(campaignId, "passing_quota");
-        const minScoreStr = await getSetting(campaignId, "minimum_passing_score");
-        const passingPolicy = (await getSetting(campaignId, "passing_policy")) ?? "MINIMUM_SCORE";
-
-        const passingQuota = passingQuotaStr ? Number(passingQuotaStr) : null;
-        const minScore = minScoreStr ? Number(minScoreStr) : 0;
+        const passingQuota = await getNumberSetting(campaignId, "passing_quota", 0) || null;
+        const minScore = await getNumberSetting(campaignId, "minimum_passing_score", 0);
+        const passingPolicy = await getStringSetting(campaignId, "passing_policy", "MINIMUM_SCORE");
 
         // ดึง booklet + sum คะแนนที่ confirmed แล้ว (grader_order=1 เป็นหลัก ถ้ามีก็ใช้ average)
         const booklets = await prisma.booklets.findMany({
@@ -275,5 +265,30 @@ export const reportService = {
                 candidates: withPassStatus,
             },
         };
+    },
+
+    // ── PDF via worker_threads ────────────────────────────────────────────────
+    async bagScoresPdf(bagId: number) {
+        const report = await reportService.bagScores(bagId);
+        const pdfBuffer = await runPdfWorker("bag-scores", report.data);
+        return new Response(pdfBuffer, {
+            headers: {
+                "Content-Type": "application/pdf",
+                "Content-Disposition": `attachment; filename="bag-${bagId}-scores.pdf"`,
+                "Content-Length": String(pdfBuffer.length),
+            },
+        });
+    },
+
+    async manualScoreSheetPdf(bagId: number) {
+        const report = await reportService.bagScores(bagId);
+        const pdfBuffer = await runPdfWorker("bag-manual-score-sheet", report.data);
+        return new Response(pdfBuffer, {
+            headers: {
+                "Content-Type": "application/pdf",
+                "Content-Disposition": `attachment; filename="bag-${bagId}-score-sheet.pdf"`,
+                "Content-Length": String(pdfBuffer.length),
+            },
+        });
     },
 };

@@ -1,6 +1,8 @@
 import { Elysia } from "elysia";
 import { authService } from "./auth.service";
 import { requireSession } from "../../cores/session";
+import { requireAdmin } from "../../cores/auth-guard";
+import { loginRateLimit } from "../../cores/rate-limit";
 import {
     loginBodySchema,
     registerBodySchenma,
@@ -8,25 +10,18 @@ import {
     unRevokeQuerySchema,
 } from "./auth.schema";
 
-const SESSION_TTL_SECONDS = 60 * 60 * 24; // 24 hours
+const SESSION_TTL_SECONDS = 60 * 60 * 24;
 
 export const authRoutes = new Elysia({ prefix: "/auth" })
-    // Public
+    // ── Public (rate-limited) ─────────────────────────────────────────────────
+    .use(loginRateLimit)
     .post("/login", async ({ body, cookie, set }) => {
         const { sid, ...result } = await authService.login(body);
-        cookie.sid!.set({
-            value: sid,
-            httpOnly: true,
-            sameSite: "strict",
-            path: "/",
-            maxAge: SESSION_TTL_SECONDS,
-        });
+        cookie.sid!.set({ value: sid, httpOnly: true, sameSite: "strict", path: "/", maxAge: SESSION_TTL_SECONDS });
         set.status = 200;
         return result;
-    }, {
-        body: loginBodySchema,
-    })
-    // Protected
+    }, { body: loginBodySchema })
+    // ── Authenticated ─────────────────────────────────────────────────────────
     .use(requireSession)
     .post("/logout", async ({ cookie, set }) => {
         const sid = cookie.sid?.value as string | undefined;
@@ -35,29 +30,21 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
         set.status = 200;
         return { message: "ออกจากระบบสำเร็จ" };
     })
-    .get("/me", async ({ session, set }) => {
-        const result = await authService.me(session.account_id);
+    .get("/me", ({ session, set }) => {
         set.status = 200;
-        return result;
+        return authService.me(session.account_id);
     })
-    .post("/register", async ({ body, set }) => {
-        const result = await authService.register(body);
+    // ── ADMIN only ────────────────────────────────────────────────────────────
+    .use(requireAdmin())
+    .post("/register", ({ body, set }) => {
         set.status = 201;
-        return result;
-    }, {
-        body: registerBodySchenma,
-    })
-    .put("/revoke/:id", async ({ params, set }) => {
-        const result = await authService.revokeAccount(params);
+        return authService.register(body);
+    }, { body: registerBodySchenma })
+    .put("/revoke/:id", ({ params, set }) => {
         set.status = 200;
-        return result;
-    }, {
-        params: revokeQuerySchema,
-    })
-    .put("/un-revoke/:id", async ({ params, set }) => {
-        const result = await authService.unRevokeAccount(params);
+        return authService.revokeAccount(params);
+    }, { params: revokeQuerySchema })
+    .put("/un-revoke/:id", ({ params, set }) => {
         set.status = 200;
-        return result;
-    }, {
-        params: unRevokeQuerySchema,
-    });
+        return authService.unRevokeAccount(params);
+    }, { params: unRevokeQuerySchema });

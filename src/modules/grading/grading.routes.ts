@@ -1,6 +1,6 @@
 import { Elysia } from "elysia";
 import { gradingService } from "./grading.service";
-import { requireSession } from "../../cores/session";
+import { requireGradingAccess, requireGrader } from "../../cores/auth-guard";
 import {
     graderIdParamSchema,
     bagGraderParamSchema,
@@ -13,99 +13,33 @@ import {
     createWorkLockBodySchema,
 } from "./grading.schema";
 
-export const gradingRoutes = new Elysia()
-    .use(requireSession)
-    // Preview: ตรวจสอบก่อนเริ่มตรวจ (ไม่มี side effect)
-    .post(
-        "/grading/preview-start",
-        ({ body, set }) => {
-            set.status = 200;
-            return gradingService.previewStart(body);
-        },
-        { body: gradingStartBodySchema },
-    )
-    // Confirm: สร้าง slot + lock แล้วเริ่มตรวจได้
-    .post(
-        "/grading/confirm-start",
-        ({ body, set }) => {
-            set.status = 201;
-            return gradingService.confirmStart(body);
-        },
-        { body: gradingStartBodySchema },
-    )
-    // บันทึกคะแนน draft
-    .post(
-        "/grading/drafts",
-        ({ body, set }) => {
-            set.status = 201;
-            return gradingService.saveDraft(body);
-        },
-        { body: saveDraftBodySchema },
-    )
-    .patch(
-        "/grading/drafts/:draftId",
-        ({ params, body, set }) => {
-            set.status = 200;
-            return gradingService.updateDraft(params.draftId, body);
-        },
-        { params: draftIdParamSchema, body: updateDraftBodySchema },
-    )
-    // ดึง draft ที่ยังค้างของ grader
-    .get(
-        "/graders/:graderId/drafts/active",
-        ({ params, set }) => {
-            set.status = 200;
-            return gradingService.getActiveDrafts(params.graderId);
-        },
-        { params: graderIdParamSchema },
-    )
-    .get(
-        "/bags/:bagId/graders/:graderId/drafts",
-        ({ params, set }) => {
-            set.status = 200;
-            return gradingService.getDraftsByGraderAndBag(params.bagId, params.graderId);
-        },
-        { params: bagGraderParamSchema },
-    )
-    // ยืนยันคะแนนทั้งถุง
-    .post(
-        "/grading/confirm-bag",
-        ({ body, set }) => {
-            set.status = 200;
-            return gradingService.confirmBag(body);
-        },
-        { body: confirmBagBodySchema },
-    )
-    // Work locks
-    .get(
-        "/graders/:graderId/work-lock",
-        ({ params, set }) => {
-            set.status = 200;
-            return gradingService.getActiveLock(params.graderId);
-        },
-        { params: graderIdParamSchema },
-    )
-    .post(
-        "/grading/work-locks",
-        ({ body, set }) => {
-            set.status = 201;
-            return gradingService.createWorkLock(body);
-        },
-        { body: createWorkLockBodySchema },
-    )
-    .patch(
-        "/grading/work-locks/:lockId/release",
-        ({ params, set }) => {
-            set.status = 200;
-            return gradingService.releaseLock(params.lockId);
-        },
-        { params: lockIdParamSchema },
-    )
-    .patch(
-        "/grading/work-locks/:lockId/cancel",
-        ({ params, set }) => {
-            set.status = 200;
-            return gradingService.cancelLock(params.lockId);
-        },
-        { params: lockIdParamSchema },
-    );
+// GRADER-only operations (ตรวจสอบว่า grader_id ตรงกับ session ใน service)
+const graderOnlyRoutes = new Elysia()
+    .use(requireGrader())
+    .post("/grading/preview-start",  ({ body, set }) => { set.status = 200; return gradingService.previewStart(body); },  { body: gradingStartBodySchema })
+    .post("/grading/confirm-start",  ({ body, set }) => { set.status = 201; return gradingService.confirmStart(body); },  { body: gradingStartBodySchema })
+    .post("/grading/drafts",         ({ body, set }) => { set.status = 201; return gradingService.saveDraft(body); },     { body: saveDraftBodySchema })
+    .patch("/grading/drafts/:draftId",({ params, body, set }) => { set.status = 200; return gradingService.updateDraft(params.draftId, body); }, { params: draftIdParamSchema, body: updateDraftBodySchema })
+    .post("/grading/confirm-bag",    ({ body, set }) => { set.status = 200; return gradingService.confirmBag(body); },    { body: confirmBagBodySchema })
+    .post("/grading/work-locks",     ({ body, set }) => { set.status = 201; return gradingService.createWorkLock(body); },{ body: createWorkLockBodySchema });
+
+// ADMIN / MANAGER / STAFF / GRADER — read + lock management
+const sharedRoutes = new Elysia()
+    .use(requireGradingAccess())
+    .get("/graders/:graderId/drafts/active", ({ params, set }) => {
+        set.status = 200; return gradingService.getActiveDrafts(params.graderId);
+    }, { params: graderIdParamSchema })
+    .get("/bags/:bagId/graders/:graderId/drafts", ({ params, set }) => {
+        set.status = 200; return gradingService.getDraftsByGraderAndBag(params.bagId, params.graderId);
+    }, { params: bagGraderParamSchema })
+    .get("/graders/:graderId/work-lock", ({ params, set }) => {
+        set.status = 200; return gradingService.getActiveLock(params.graderId);
+    }, { params: graderIdParamSchema })
+    .patch("/grading/work-locks/:lockId/release", ({ params, set }) => {
+        set.status = 200; return gradingService.releaseLock(params.lockId);
+    }, { params: lockIdParamSchema })
+    .patch("/grading/work-locks/:lockId/cancel", ({ params, set }) => {
+        set.status = 200; return gradingService.cancelLock(params.lockId);
+    }, { params: lockIdParamSchema });
+
+export const gradingRoutes = new Elysia().use(graderOnlyRoutes).use(sharedRoutes);

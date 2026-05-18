@@ -134,7 +134,7 @@ export const otpService = {
 
         await prisma.twofactor_sessions.update({
             where: { id: session.id },
-            data: { status: "USED", used_at: new Date() },
+            data: { status: "VERIFIED", used_at: new Date() },
         });
 
         return {
@@ -155,7 +155,7 @@ export const otpService = {
             include: { accounts: { select: { id: true, email: true, active: true } } },
         });
         if (!session) throw new AppError("ไม่พบ OTP session", 404);
-        if (session.status === "USED") throw new AppError("OTP ถูกใช้งานไปแล้ว", 400);
+        if (session.status === "VERIFIED") throw new AppError("OTP ถูกใช้งานไปแล้ว", 400);
 
         // ยกเลิก session เดิม แล้วสร้างใหม่
         await prisma.twofactor_sessions.update({
@@ -241,20 +241,40 @@ export const otpService = {
         }
 
         // ตรวจว่า managers ที่ verify แล้วครบ 2 คนหรือยัง
-        const usedSessions = await prisma.twofactor_sessions.findMany({
-            where: { campaign_id: campaignId, purpose: "UNLOCK_CAMPAIGN", status: "USED" },
-            include: { accounts: { select: { manager_order: true } } },
+        const verifiedSessions = await prisma.twofactor_sessions.findMany({
+            where: { campaign_id: campaignId, purpose: "UNLOCK_CAMPAIGN", status: "VERIFIED" },
+            include: { accounts: { select: { id: true, manager_order: true, full_name: true } } },
         });
 
-        const verifiedOrders = usedSessions
+        const verifiedOrders = verifiedSessions
             .map((s) => s.accounts.manager_order)
             .filter((o): o is number => o !== null);
 
         const hasOrder1 = verifiedOrders.includes(1);
         const hasOrder2 = verifiedOrders.includes(2);
 
+        // Log ว่า manager นี้ verify แล้ว (ทำทุกครั้ง ไม่ใช่แค่ตอน unlock)
+        await prisma.activity_logs.create({
+            data: {
+                actor_type: "ACCOUNT",
+                account_id: verifyResult.data.account_id,
+                action: "CAMPAIGN_UNLOCK_VERIFY",
+                object_type: "exam_campaigns",
+                object_id: campaignId,
+                details: {
+                    managerOrder: verifiedSessions.find((s) => s.account_id === verifyResult.data.account_id)?.accounts.manager_order,
+                    accountId: verifyResult.data.account_id,
+                    otpSessionId: verifyResult.data.session_id,
+                    campaignId,
+                },
+            },
+        });
+
         if (hasOrder1 && hasOrder2) {
             // ครบทั้ง 2 managers → unlock campaign
+            const m1 = verifiedSessions.find((s) => s.accounts.manager_order === 1);
+            const m2 = verifiedSessions.find((s) => s.accounts.manager_order === 2);
+
             await prisma.$transaction(async (tx) => {
                 await tx.exam_campaigns.update({
                     where: { id: campaignId },
@@ -267,7 +287,12 @@ export const otpService = {
                         action: "CAMPAIGN_UNLOCK",
                         object_type: "exam_campaigns",
                         object_id: campaignId,
-                        details: { verified_managers: verifiedOrders },
+                        details: {
+                            manager1AccountId: m1?.account_id,
+                            manager2AccountId: m2?.account_id,
+                            unlockedAt: new Date().toISOString(),
+                            campaignId,
+                        },
                     },
                 });
             });
