@@ -1,7 +1,8 @@
 import { Elysia } from "elysia";
 import { AppError } from "./errors";
+import { logger } from "./logger";
 
-function thaiValidationMessage(e: { type: number; schema: any; path: string }): string {
+function thaiValidationMessage(e: { type: number; schema: { minLength?: number; maxLength?: number }; path: string }): string {
     const field = e.path.replace("/", "");
     switch (e.type) {
         case 52: return `${field} ต้องมีความยาวอย่างน้อย ${e.schema.minLength} ตัวอักษร`;
@@ -14,42 +15,47 @@ function thaiValidationMessage(e: { type: number; schema: any; path: string }): 
     }
 }
 
-export const errorHandler = new Elysia({ name: "error-handler" }).onError(
-    { as: "global" },
-    ({ code, error, set }) => {
+// Standard error response shape ทุก module เหมือนกัน
+function errorResponse(status: number, message: string, errors?: unknown) {
+    return {
+        success: false as const,
+        message,
+        ...(errors !== undefined && { errors }),
+    };
+}
+
+export const errorHandler = new Elysia({ name: "error-handler" })
+    .onError({ as: "global" }, ({ code, error, set, request }) => {
+        const method = request.method;
+        const path = new URL(request.url).pathname;
+
         if (code === "VALIDATION") {
             set.status = 422;
-            return {
-                success: false,
-                message: "กรุณากรอกข้อมูลให้ถูกต้อง",
-                errors: error.all.map((e) => ({
-                    field: e.path.replace("/", ""),
-                    message: thaiValidationMessage(e),
-                })),
-            };
+            logger.warn(`[422] VALIDATION ${method} ${path}`);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            return errorResponse(422, "กรุณากรอกข้อมูลให้ถูกต้อง", (error as any).all?.map((e: { path: string; type: number; schema: { minLength?: number; maxLength?: number } }) => ({
+                field: e.path.replace("/", ""),
+                message: thaiValidationMessage(e),
+            })));
         }
 
         if (code === "NOT_FOUND") {
             set.status = 404;
-            return {
-                success: false,
-                message: "ไม่พบข้อมูลที่ร้องขอ",
-            };
+            return errorResponse(404, "ไม่พบข้อมูลที่ร้องขอ");
         }
 
         if (error instanceof AppError) {
             set.status = error.statusCode;
-            return {
-                success: false,
-                message: error.message,
-            };
+            if (error.statusCode >= 500) {
+                logger.error(`[${error.statusCode}] AppError ${method} ${path}`, error);
+            } else {
+                logger.warn(`[${error.statusCode}] ${method} ${path}: ${error.message}`);
+            }
+            return errorResponse(error.statusCode, error.message);
         }
 
-        console.error("[500]", error);
+        // Unhandled — log full error
+        logger.error(`[500] Unhandled ${method} ${path}`, error);
         set.status = 500;
-        return {
-            success: false,
-            message: "เกิดข้อผิดพลาดภายในระบบ",
-        };
-    }
-);
+        return errorResponse(500, "เกิดข้อผิดพลาดภายในระบบ");
+    });

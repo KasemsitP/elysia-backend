@@ -4,7 +4,16 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "bun --watch src/index.ts"
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "seed": "bun src/seed.ts",
+    "worker:outbox": "bun src/workers/outbox.worker.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test tests/",
+    "test:api": "bun test tests/api.test.ts",
+    "test:seed": "bun test tests/seed.test.ts",
+    "test:worker": "bun test tests/worker.test.ts",
+    "test:watch": "bun test --watch tests/"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -23,5 +32,9 @@
     "@prisma/client": "^7.8.0",
     "elysia": "^1.4.28",
     "mariadb": "^3.5.2"
+  },
+  "optionalDependencies": {
+    "ioredis": "^5.10.1",
+    "pdfkit": "^0.15.2"
   }
 }

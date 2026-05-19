@@ -11,13 +11,21 @@ import {
 } from "./auth.schema";
 
 const SESSION_TTL_SECONDS = 60 * 60 * 24;
+const isProd = process.env.NODE_ENV === "production";
 
 export const authRoutes = new Elysia({ prefix: "/auth" })
     // ── Public (rate-limited) ─────────────────────────────────────────────────
     .use(loginRateLimit)
     .post("/login", async ({ body, cookie, set }) => {
         const { sid, ...result } = await authService.login(body);
-        cookie.sid!.set({ value: sid, httpOnly: true, sameSite: "strict", path: "/", maxAge: SESSION_TTL_SECONDS });
+        cookie.sid!.set({
+            value: sid,
+            httpOnly: true,
+            secure: isProd,
+            sameSite: isProd ? "none" : "lax",
+            path: "/",
+            maxAge: SESSION_TTL_SECONDS,
+        });
         set.status = 200;
         return result;
     }, { body: loginBodySchema })

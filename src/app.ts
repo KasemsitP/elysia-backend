@@ -60,7 +60,36 @@ export const app = new Elysia()
             return { status: "error", database: "disconnected" };
         }
     })
-    .use(openapi())
+    .use(openapi({
+        documentation: {
+            info: {
+                title: "Exam Management API",
+                version: "1.0.0",
+                description: [
+                    "API สำหรับระบบจัดการข้อสอบและตรวจคะแนน",
+                    "",
+                    "## Authentication",
+                    "ใช้ Cookie-based session — เรียก `POST /api/auth/login` ก่อน จากนั้น cookie `sid` จะถูกส่งอัตโนมัติ",
+                    "",
+                    "## CSRF",
+                    "ทุก mutation (POST/PATCH/DELETE) ต้องส่ง header `X-CSRF-Token` — ขอ token ได้จาก `GET /api/csrf-token`",
+                ].join("\n"),
+            },
+            tags: [
+                { name: "Auth",      description: "Login, logout, session management" },
+                { name: "Campaigns", description: "Campaign lifecycle management" },
+                { name: "Sessions",  description: "Exam session and subject setup" },
+                { name: "Booklets",  description: "Booklet generation and QR management" },
+                { name: "Bags",      description: "Bag packaging with QR scan" },
+                { name: "Grading",   description: "Grading flow: slots, drafts, confirm" },
+                { name: "Reports",   description: "Score reports and passing list" },
+                { name: "Users",     description: "Candidate and room management" },
+                { name: "System",    description: "OTP, notifications, settings" },
+            ],
+        },
+        // Scalar UI → http://localhost:PORT/reference
+        // OpenAPI JSON → http://localhost:PORT/openapi
+    }))
     .use(logger())
     .use(cors({
         origin: process.env.FRONTEND_URL ?? true,
