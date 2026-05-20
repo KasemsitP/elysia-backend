@@ -1,5 +1,6 @@
 import { Elysia } from "elysia";
 import { gradingService } from "./grading.service";
+import { requireSession } from "../../cores/session";
 import { requireGradingAccess, requireGrader } from "../../cores/auth-guard";
 import {
     graderIdParamSchema,
@@ -15,6 +16,7 @@ import {
 
 // GRADER-only operations (ตรวจสอบว่า grader_id ตรงกับ session ใน service)
 const graderOnlyRoutes = new Elysia()
+    .use(requireSession)
     .use(requireGrader())
     .post("/grading/preview-start",  ({ body, set }) => { set.status = 200; return gradingService.previewStart(body); },  { body: gradingStartBodySchema })
     .post("/grading/confirm-start",  ({ body, set }) => { set.status = 201; return gradingService.confirmStart(body); },  { body: gradingStartBodySchema })
@@ -25,6 +27,7 @@ const graderOnlyRoutes = new Elysia()
 
 // ADMIN / MANAGER / STAFF / GRADER — read + lock management
 const sharedRoutes = new Elysia()
+    .use(requireSession)
     .use(requireGradingAccess())
     .get("/graders/:graderId/drafts/active", ({ params, set }) => {
         set.status = 200; return gradingService.getActiveDrafts(params.graderId);

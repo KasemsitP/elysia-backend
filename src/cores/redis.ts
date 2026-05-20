@@ -47,25 +47,22 @@ export async function isRateLimited(
     windowSecs: number,
 ): Promise<{ limited: boolean; count: number; ttl: number }> {
     const redis = r();
-    if (!redis) return { limited: false, count: 0, ttl: 0 };
+    if (!redis) throw new Error("Redis not available");
 
-    try {
-        const now = Date.now();
-        const rk = `rl:${key}`;
-        await redis.zremrangebyscore(rk, "-inf", now - windowSecs * 1000);
-        const count: number = await redis.zcard(rk);
-        if (count >= limit) {
-            const ttl: number = await redis.ttl(rk);
-            return { limited: true, count, ttl };
-        }
-        await redis.multi()
-            .zadd(rk, now, `${now}-${Math.random()}`)
-            .expire(rk, windowSecs)
-            .exec();
-        return { limited: false, count: count + 1, ttl: windowSecs };
-    } catch {
-        return { limited: false, count: 0, ttl: 0 };
+    // ถ้า Redis command ล้มกลางทาง → throw ให้ rateLimitPlugin จัดการผ่าน failClosed policy
+    const now = Date.now();
+    const rk = `rl:${key}`;
+    await redis.zremrangebyscore(rk, "-inf", now - windowSecs * 1000);
+    const count: number = await redis.zcard(rk);
+    if (count >= limit) {
+        const ttl: number = await redis.ttl(rk);
+        return { limited: true, count, ttl };
     }
+    await redis.multi()
+        .zadd(rk, now, `${now}-${Math.random()}`)
+        .expire(rk, windowSecs)
+        .exec();
+    return { limited: false, count: count + 1, ttl: windowSecs };
 }
 
 // ── Cache helpers ─────────────────────────────────────────────────────────────

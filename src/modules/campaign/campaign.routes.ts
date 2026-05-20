@@ -23,6 +23,7 @@ const readRoutes = new Elysia({ prefix: "/campaigns" })
 
 // Write → ADMIN or MANAGER only
 const writeRoutes = new Elysia({ prefix: "/campaigns" })
+    .use(requireSession)
     .use(requireAdminOrManager())
     .post("/", ({ body, set }) => { set.status = 201; return campaignService.create(body); }, { body: createCampaignBodySchema })
     .patch("/:campaignId", ({ params, body, set }) => {

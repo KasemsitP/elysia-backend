@@ -67,54 +67,53 @@ export type RateLimitOptions = {
     failClosed?: boolean;
 };
 
-export function rateLimitPlugin(opts: RateLimitOptions) {
-    return new Elysia({ name: `rl:${opts.name}` })
-        .onBeforeHandle(async ({ request, set }) => {
-            const key = `rl:${opts.name}:${opts.keyFn(request)}`;
-
-            try {
-                const { limited, ttl } = await isRateLimited(key, opts.limit, opts.windowSecs);
+// handler function สำหรับใช้เป็น beforeHandle inline บน route
+export function rateLimitHandler(opts: RateLimitOptions) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return async ({ request, set }: { request: Request; set: any }) => {
+        const key = `${opts.name}:${opts.keyFn(request)}`;
+        try {
+            const { limited, ttl } = await isRateLimited(key, opts.limit, opts.windowSecs);
+            if (limited) {
+                set.headers["Retry-After"] = String(ttl);
+                set.status = 429;
+                return { success: false, message: opts.message ?? `ทำรายการบ่อยเกินไป กรุณารอ ${ttl} วินาที` };
+            }
+        } catch {
+            logger.warn(`[RateLimit] Redis unavailable for key "${key}"${opts.failClosed ? ", using in-memory fallback" : ", fail-open"}`);
+            if (opts.failClosed) {
+                const { limited, ttl } = memCheck(key, opts.limit, opts.windowSecs * 1000);
                 if (limited) {
                     set.headers["Retry-After"] = String(ttl);
                     set.status = 429;
                     return { success: false, message: opts.message ?? `ทำรายการบ่อยเกินไป กรุณารอ ${ttl} วินาที` };
                 }
-            } catch {
-                // Redis ล่ม
-                logger.warn(`[RateLimit] Redis unavailable for key "${key}"${opts.failClosed ? ", using in-memory fallback" : ", fail-open"}`);
-
-                if (opts.failClosed) {
-                    // fail-CLOSED: ใช้ in-memory แทน
-                    const { limited, ttl } = memCheck(key, opts.limit, opts.windowSecs * 1000);
-                    if (limited) {
-                        set.headers["Retry-After"] = String(ttl);
-                        set.status = 429;
-                        return { success: false, message: opts.message ?? `ทำรายการบ่อยเกินไป กรุณารอ ${ttl} วินาที` };
-                    }
-                }
-                // fail-OPEN: allow ผ่าน
             }
-        });
+        }
+    };
+}
+
+// ยังคง export plugin ไว้สำหรับใช้งาน standalone (นอก group)
+export function rateLimitPlugin(opts: RateLimitOptions) {
+    return new Elysia({ name: `rl:${opts.name}` })
+        .onBeforeHandle({ as: "scoped" }, rateLimitHandler(opts));
 }
 
 function getIP(req: Request): string {
     return req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
 }
 
-// ── Pre-built limiters ─────────────────────────────────────────────────────────
+// ── Pre-built inline handlers (ใช้เป็น beforeHandle บน route โดยตรง) ──────────
 
-/** Login — fail-CLOSED (brute force protection) */
-export const loginRateLimit = rateLimitPlugin({
-    name: "login",
-    limit: 5,
+export const loginRateLimitHandler = rateLimitHandler({
+    name: "login",    limit: 5,
     windowSecs: 60,
     keyFn: getIP,
     message: "พยายาม login บ่อยเกินไป กรุณารอ 1 นาที",
     failClosed: true,
 });
 
-/** OTP request — fail-CLOSED */
-export const otpRequestRateLimit = rateLimitPlugin({
+export const otpRequestRateLimitHandler = rateLimitHandler({
     name: "otp-req",
     limit: 3,
     windowSecs: 300,
@@ -123,8 +122,7 @@ export const otpRequestRateLimit = rateLimitPlugin({
     failClosed: true,
 });
 
-/** OTP verify — fail-CLOSED */
-export const otpVerifyRateLimit = rateLimitPlugin({
+export const otpVerifyRateLimitHandler = rateLimitHandler({
     name: "otp-verify",
     limit: 10,
     windowSecs: 60,
@@ -133,8 +131,7 @@ export const otpVerifyRateLimit = rateLimitPlugin({
     failClosed: true,
 });
 
-/** Scan QR — fail-open (operational, don't block staff) */
-export const scanRateLimit = rateLimitPlugin({
+export const scanRateLimitHandler = rateLimitHandler({
     name: "scan",
     limit: 120,
     windowSecs: 60,
@@ -142,3 +139,14 @@ export const scanRateLimit = rateLimitPlugin({
     message: "สแกน QR บ่อยเกินไป",
     failClosed: false,
 });
+
+// ── Legacy plugin exports (backward compat, ใช้งาน standalone ได้) ────────────
+
+/** @deprecated ใช้ loginRateLimitHandler แทน */
+export const loginRateLimit = rateLimitPlugin({ name: "login", limit: 5, windowSecs: 60, keyFn: getIP, message: "พยายาม login บ่อยเกินไป กรุณารอ 1 นาที", failClosed: true });
+/** @deprecated ใช้ otpRequestRateLimitHandler แทน */
+export const otpRequestRateLimit = rateLimitPlugin({ name: "otp-req", limit: 3, windowSecs: 300, keyFn: getIP, message: "ขอ OTP บ่อยเกินไป กรุณารอ 5 นาที", failClosed: true });
+/** @deprecated ใช้ otpVerifyRateLimitHandler แทน */
+export const otpVerifyRateLimit = rateLimitPlugin({ name: "otp-verify", limit: 10, windowSecs: 60, keyFn: getIP, message: "พยายาม verify OTP บ่อยเกินไป", failClosed: true });
+/** @deprecated ใช้ scanRateLimitHandler แทน */
+export const scanRateLimit = rateLimitPlugin({ name: "scan", limit: 120, windowSecs: 60, keyFn: getIP, message: "สแกน QR บ่อยเกินไป", failClosed: false });

@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { otpService } from "./otp.service";
 import { requireSession } from "../../cores/session";
 import { requireAdminOrManager } from "../../cores/auth-guard";
-import { otpRequestRateLimit, otpVerifyRateLimit } from "../../cores/rate-limit";
+import { otpRequestRateLimitHandler, otpVerifyRateLimitHandler } from "../../cores/rate-limit";
 import {
     otpRequestBodySchema,
     otpVerifyBodySchema,
@@ -16,10 +16,8 @@ import {
 export const otpRoutes = new Elysia()
     .use(requireSession)
     // ── OTP (rate-limited) ───────────────────────────────────────────────────
-    .use(otpRequestRateLimit)
-    .post("/otp/request", ({ body, set }) => { set.status = 201; return otpService.request(body); }, { body: otpRequestBodySchema })
-    .use(otpVerifyRateLimit)
-    .post("/otp/verify",  ({ body, set }) => { set.status = 200; return otpService.verify(body); },  { body: otpVerifyBodySchema })
+    .post("/otp/request", ({ body, set }) => { set.status = 201; return otpService.request(body); }, { body: otpRequestBodySchema, beforeHandle: otpRequestRateLimitHandler })
+    .post("/otp/verify",  ({ body, set }) => { set.status = 200; return otpService.verify(body); },  { body: otpVerifyBodySchema,  beforeHandle: otpVerifyRateLimitHandler  })
     .post("/otp/resend",  ({ body, set }) => { set.status = 200; return otpService.resend(body); },  { body: otpResendBodySchema })
     .post("/otp/cancel",  ({ body, set }) => { set.status = 200; return otpService.cancel(body); },  { body: otpCancelBodySchema })
     // ── Campaign Unlock (MANAGER only) ───────────────────────────────────────

@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { bagService } from "./bags.service";
 import { requireSession } from "../../cores/session";
 import { requireAdminOrStaff } from "../../cores/auth-guard";
-import { scanRateLimit } from "../../cores/rate-limit";
+import { scanRateLimitHandler } from "../../cores/rate-limit";
 import {
     bagCampaignParamSchema,
     bagCampaignSessionParamSchema,
@@ -23,10 +23,10 @@ const readRoutes = new Elysia()
 
 // Write → ADMIN or STAFF (+ rate limit on scan)
 const writeRoutes = new Elysia()
+    .use(requireSession)
     .use(requireAdminOrStaff())
-    .use(scanRateLimit)
-    .post("/bags/scan/preview", ({ body, set }) => { set.status = 200; return bagService.scanPreview(body); }, { body: scanPreviewBodySchema })
-    .post("/bags",              ({ body, session, set }) => { set.status = 201; return bagService.create(body, session); }, { body: createBagBodySchema })
+    .post("/bags/scan/preview", ({ body, set }) => { set.status = 200; return bagService.scanPreview(body); }, { body: scanPreviewBodySchema, beforeHandle: scanRateLimitHandler })
+    .post("/bags",              ({ body, session, set }) => { set.status = 201; return bagService.create(body, session); }, { body: createBagBodySchema, beforeHandle: scanRateLimitHandler })
     .patch("/bags/:bagId/status", ({ params, body, set }) => { set.status = 200; return bagService.updateStatus(params.bagId, body); }, { params: bagIdParamSchema, body: updateBagStatusBodySchema })
     .delete("/bags/:bagId",     ({ params, set }) => { set.status = 200; return bagService.delete(params.bagId); }, { params: bagIdParamSchema });
 

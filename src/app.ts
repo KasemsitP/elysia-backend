@@ -39,6 +39,9 @@ import { graderRoutes } from "./modules/grader/grader.routes";
 import { graderAssignmentRoutes } from "./modules/grader-assignments/grader-assignments.routes";
 import { gradingRoutes } from "./modules/grading/grading.routes";
 
+// Dashboard
+import { dashboardRoutes } from "./modules/dashboard/dashboard.routes";
+
 // Reports & Incidents
 import { reportRoutes } from "./modules/reports/reports.routes";
 import { incidentRoutes } from "./modules/incidents/incidents.routes";
@@ -129,6 +132,8 @@ export const app = new Elysia()
             .use(graderRoutes)
             .use(graderAssignmentRoutes)
             .use(gradingRoutes)
+            // Dashboard
+            .use(dashboardRoutes)
             // Reports & Incidents
             .use(reportRoutes)
             .use(incidentRoutes)

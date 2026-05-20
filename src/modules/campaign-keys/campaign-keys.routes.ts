@@ -1,4 +1,5 @@
 import { Elysia, t } from "elysia";
+import { requireSession } from "../../cores/session";
 import { requireAdminOrManager } from "../../cores/auth-guard";
 import { campaignKeyService } from "./campaign-keys.service";
 
@@ -18,6 +19,7 @@ const verifyKeysBody = t.Object({
 });
 
 export const campaignKeyRoutes = new Elysia({ prefix: "/campaigns/:campaignId/keys" })
+    .use(requireSession)
     .use(requireAdminOrManager())
     // ดูสถานะ keys (ไม่แสดง hash/plaintext)
     .get(

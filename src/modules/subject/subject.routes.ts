@@ -16,6 +16,7 @@ const readRoutes = new Elysia({ prefix: "/subjects" })
     }, { params: subjectIdParamSchema });
 
 const writeRoutes = new Elysia({ prefix: "/subjects" })
+    .use(requireSession)
     .use(requireAdmin())
     .post("/", ({ body, set }) => { set.status = 201; return subjectService.create(body); }, { body: createSubjectBodySchema })
     .patch("/:subjectId", ({ params, body, set }) => {

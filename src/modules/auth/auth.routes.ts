@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { authService } from "./auth.service";
 import { requireSession } from "../../cores/session";
 import { requireAdmin } from "../../cores/auth-guard";
-import { loginRateLimit } from "../../cores/rate-limit";
+import { loginRateLimitHandler } from "../../cores/rate-limit";
 import {
     loginBodySchema,
     registerBodySchenma,
@@ -15,7 +15,6 @@ const isProd = process.env.NODE_ENV === "production";
 
 export const authRoutes = new Elysia({ prefix: "/auth" })
     // ── Public (rate-limited) ─────────────────────────────────────────────────
-    .use(loginRateLimit)
     .post("/login", async ({ body, cookie, set }) => {
         const { sid, ...result } = await authService.login(body);
         cookie.sid!.set({
@@ -28,7 +27,7 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
         });
         set.status = 200;
         return result;
-    }, { body: loginBodySchema })
+    }, { body: loginBodySchema, beforeHandle: loginRateLimitHandler })
     // ── Authenticated ─────────────────────────────────────────────────────────
     .use(requireSession)
     .post("/logout", async ({ cookie, set }) => {
