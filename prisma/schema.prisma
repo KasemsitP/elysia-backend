@@ -344,7 +344,7 @@ model grading_score_drafts {
   campaign_subjects           campaign_subjects         @relation(fields: [campaign_subject_id, campaign_id], references: [id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_campaign_subject")
   graders                     graders                   @relation(fields: [grader_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_grader")
   session_subjects            session_subjects          @relation(fields: [session_subject_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_session_subject")
-  grading_slots               grading_slots             @relation(fields: [slot_id, grader_id], references: [id, grader_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_slot_grader")
+  grading_slots               grading_slots             @relation(fields: [slot_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_slot")
   session_subject_questions   session_subject_questions @relation(fields: [session_subject_question_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_gsd_ssq")
 
   @@index([booklet_id], map: "fk_gsd_booklet")
@@ -352,11 +352,11 @@ model grading_score_drafts {
   @@index([bag_id, campaign_id, session_id], map: "fk_gsd_bag")
   @@index([campaign_subject_id, campaign_id], map: "fk_gsd_campaign_subject")
   @@index([session_subject_id, session_id, campaign_id], map: "fk_gsd_session_subject")
-  @@unique([slot_id, grader_id], map: "uq_gsd_slot_grader")
   @@index([session_subject_question_id, session_id, campaign_id], map: "fk_gsd_ssq")
   @@index([grader_id, bag_id, session_subject_question_id, status], map: "idx_gsd_grader_bag_question_status")
   @@index([grader_id, status], map: "idx_gsd_grader_status")
   @@index([session_subject_question_id], map: "idx_gsd_question")
+  @@index([slot_id], map: "idx_gsd_slot")
 }
 
 model grading_score_logs {
@@ -1101,6 +1101,7 @@ model session_subject_questions {
   created_at                  DateTime                     @default(now()) @db.DateTime(0)
   updated_at                  DateTime                     @default(now()) @db.DateTime(0)
   deleted_at                  DateTime?                    @db.DateTime(0)
+  active_unique_key           Int?                         @db.TinyInt
   booklet_question_choices    booklet_question_choices[]
   booklet_question_notes      booklet_question_notes[]
   grader_assignments          grader_assignments[]
@@ -1113,8 +1114,8 @@ model session_subject_questions {
   session_subjects            session_subjects             @relation(fields: [session_subject_id, session_id, campaign_id], references: [id, session_id, campaign_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_ssq_session_subject")
 
   @@unique([id, session_id, campaign_id], map: "uq_ssq_id_session_campaign")
-  @@unique([session_id, question_no], map: "uq_ssq_session_question_no")
-  @@unique([session_subject_id, question_no], map: "uq_ssq_session_subject_question_no")
+  @@unique([session_id, question_no, active_unique_key], map: "uq_ssq_session_question_active")
+  @@unique([session_subject_id, question_no, active_unique_key], map: "uq_ssq_session_subject_question_active")
   @@index([session_id, campaign_id], map: "fk_ssq_session")
   @@index([session_subject_id, session_id, campaign_id], map: "fk_ssq_session_subject")
   @@index([campaign_id], map: "idx_ssq_campaign")

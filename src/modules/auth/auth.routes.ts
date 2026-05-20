@@ -1,4 +1,5 @@
 import { Elysia } from "elysia";
+import { prisma } from "../../cores/prisma";
 import { authService } from "./auth.service";
 import { requireSession } from "../../cores/session";
 import { requireAdmin } from "../../cores/auth-guard";
@@ -43,6 +44,27 @@ export const authRoutes = new Elysia({ prefix: "/auth" })
     })
     // ── ADMIN only ────────────────────────────────────────────────────────────
     .use(requireAdmin())
+    // รายชื่อ accounts ทั้งหมด (ไม่แสดง password/hash)
+    .get("/accounts", async ({ set }) => {
+        const accounts = await prisma.accounts.findMany({
+            where: { deleted_at: null },
+            select: {
+                id: true,
+                username: true,
+                full_name: true,
+                email: true,
+                role_id: true,
+                active: true,
+                manager_order: true,
+                campaign_id: true,
+                created_at: true,
+                title: true,
+            },
+            orderBy: [{ role_id: "asc" }, { id: "asc" }],
+        });
+        set.status = 200;
+        return { success: true, message: "ดึงรายชื่อบัญชีสำเร็จ", data: accounts };
+    })
     .post("/register", ({ body, set }) => {
         set.status = 201;
         return authService.register(body);

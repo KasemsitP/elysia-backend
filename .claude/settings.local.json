@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/ToonToon/Desktop/ExamManagement/frontendExam/src -type f \\\\\\( -name \"*.store.ts\" -o -name \"*store*\" -o -name \"*client*\" -o -name \"useActiveCampaign*\" \\\\\\) 2>/dev/null)",
+      "Read(//c/Users/ToonToon/Desktop/ExamManagement/frontendExam/src/**)"
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 import { Elysia } from "elysia";
+import { Prisma } from "../generated/prisma/client";
 import { AppError } from "./errors";
 import { logger } from "./logger";
 
@@ -28,6 +29,7 @@ export const errorHandler = new Elysia({ name: "error-handler" })
     .onError({ as: "global" }, ({ code, error, set, request }) => {
         const method = request.method;
         const path = new URL(request.url).pathname;
+        const err = error as unknown;
 
         if (code === "VALIDATION") {
             set.status = 422;
@@ -44,18 +46,33 @@ export const errorHandler = new Elysia({ name: "error-handler" })
             return errorResponse(404, "ไม่พบข้อมูลที่ร้องขอ");
         }
 
-        if (error instanceof AppError) {
-            set.status = error.statusCode;
-            if (error.statusCode >= 500) {
-                logger.error(`[${error.statusCode}] AppError ${method} ${path}`, error);
-            } else {
-                logger.warn(`[${error.statusCode}] ${method} ${path}: ${error.message}`);
+        if (err instanceof Prisma.PrismaClientKnownRequestError) {
+            if (err.code === "P2002") {
+                set.status = 409;
+                logger.warn(`[409] P2002 ${method} ${path}: ${err.message}`);
+                return errorResponse(409, "ข้อมูลซ้ำ กรุณาตรวจสอบและลองใหม่");
             }
-            return errorResponse(error.statusCode, error.message);
+            if (err.code === "P2025") {
+                set.status = 404;
+                return errorResponse(404, "ไม่พบข้อมูลที่ต้องการ");
+            }
+            logger.error(`[500] Prisma ${err.code} ${method} ${path}`, err);
+            set.status = 500;
+            return errorResponse(500, "เกิดข้อผิดพลาดภายในระบบ");
+        }
+
+        if (err instanceof AppError) {
+            set.status = err.statusCode;
+            if (err.statusCode >= 500) {
+                logger.error(`[${err.statusCode}] AppError ${method} ${path}`, err);
+            } else {
+                logger.warn(`[${err.statusCode}] ${method} ${path}: ${err.message}`);
+            }
+            return errorResponse(err.statusCode, err.message);
         }
 
         // Unhandled — log full error
-        logger.error(`[500] Unhandled ${method} ${path}`, error);
+        logger.error(`[500] Unhandled ${method} ${path}`, err);
         set.status = 500;
         return errorResponse(500, "เกิดข้อผิดพลาดภายในระบบ");
     });
