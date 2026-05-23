@@ -23,6 +23,7 @@ import { campaignKeyRoutes } from "./modules/campaign-keys/campaign-keys.routes"
 // Rooms & Candidates
 import { examRoomRoutes } from "./modules/exam-rooms/exam-rooms.routes";
 import { userCampaignRoutes } from "./modules/user-campaigns/user-campaigns.routes";
+import { seatRoutes } from "./modules/seats/seat.route";
 
 // Sessions & Questions
 import { sessionRoutes } from "./modules/session/session.routes";
@@ -120,6 +121,7 @@ export const app = new Elysia()
             // Rooms & Candidates
             .use(examRoomRoutes)
             .use(userCampaignRoutes)
+            .use(seatRoutes)
             // Sessions
             .use(sessionRoutes)
             .use(sessionSubjectRoutes)

@@ -3382,7 +3382,8 @@ export const Exam_roomsScalarFieldEnum = {
   capacity: 'capacity',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
+  deleted_at: 'deleted_at',
+  seat_per_row: 'seat_per_row'
 } as const
 
 export type Exam_roomsScalarFieldEnum = (typeof Exam_roomsScalarFieldEnum)[keyof typeof Exam_roomsScalarFieldEnum]
@@ -3981,7 +3982,8 @@ export const Session_subject_questionsScalarFieldEnum = {
   note: 'note',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
+  deleted_at: 'deleted_at',
+  active_unique_key: 'active_unique_key'
 } as const
 
 export type Session_subject_questionsScalarFieldEnum = (typeof Session_subject_questionsScalarFieldEnum)[keyof typeof Session_subject_questionsScalarFieldEnum]

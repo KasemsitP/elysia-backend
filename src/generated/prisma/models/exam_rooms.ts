@@ -29,11 +29,13 @@ export type AggregateExam_rooms = {
 export type Exam_roomsAvgAggregateOutputType = {
   campaign_id: number | null
   capacity: number | null
+  seat_per_row: number | null
 }
 
 export type Exam_roomsSumAggregateOutputType = {
   campaign_id: number | null
   capacity: number | null
+  seat_per_row: number | null
 }
 
 export type Exam_roomsMinAggregateOutputType = {
@@ -43,6 +45,7 @@ export type Exam_roomsMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
+  seat_per_row: number | null
 }
 
 export type Exam_roomsMaxAggregateOutputType = {
@@ -52,6 +55,7 @@ export type Exam_roomsMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
+  seat_per_row: number | null
 }
 
 export type Exam_roomsCountAggregateOutputType = {
@@ -61,6 +65,7 @@ export type Exam_roomsCountAggregateOutputType = {
   created_at: number
   updated_at: number
   deleted_at: number
+  seat_per_row: number
   _all: number
 }
 
@@ -68,11 +73,13 @@ export type Exam_roomsCountAggregateOutputType = {
 export type Exam_roomsAvgAggregateInputType = {
   campaign_id?: true
   capacity?: true
+  seat_per_row?: true
 }
 
 export type Exam_roomsSumAggregateInputType = {
   campaign_id?: true
   capacity?: true
+  seat_per_row?: true
 }
 
 export type Exam_roomsMinAggregateInputType = {
@@ -82,6 +89,7 @@ export type Exam_roomsMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  seat_per_row?: true
 }
 
 export type Exam_roomsMaxAggregateInputType = {
@@ -91,6 +99,7 @@ export type Exam_roomsMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  seat_per_row?: true
 }
 
 export type Exam_roomsCountAggregateInputType = {
@@ -100,6 +109,7 @@ export type Exam_roomsCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  seat_per_row?: true
   _all?: true
 }
 
@@ -196,6 +206,7 @@ export type Exam_roomsGroupByOutputType = {
   created_at: Date
   updated_at: Date
   deleted_at: Date | null
+  seat_per_row: number | null
   _count: Exam_roomsCountAggregateOutputType | null
   _avg: Exam_roomsAvgAggregateOutputType | null
   _sum: Exam_roomsSumAggregateOutputType | null
@@ -228,6 +239,7 @@ export type exam_roomsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"exam_rooms"> | Date | string | null
+  seat_per_row?: Prisma.IntNullableFilter<"exam_rooms"> | number | null
   exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   user_campaigns?: Prisma.User_campaignsListRelationFilter
 }
@@ -239,6 +251,7 @@ export type exam_roomsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  seat_per_row?: Prisma.SortOrderInput | Prisma.SortOrder
   exam_campaigns?: Prisma.exam_campaignsOrderByWithRelationInput
   user_campaigns?: Prisma.user_campaignsOrderByRelationAggregateInput
   _relevance?: Prisma.exam_roomsOrderByRelevanceInput
@@ -255,6 +268,7 @@ export type exam_roomsWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"exam_rooms"> | Date | string | null
+  seat_per_row?: Prisma.IntNullableFilter<"exam_rooms"> | number | null
   exam_campaigns?: Prisma.XOR<Prisma.Exam_campaignsScalarRelationFilter, Prisma.exam_campaignsWhereInput>
   user_campaigns?: Prisma.User_campaignsListRelationFilter
 }, "campaign_id_room_code">
@@ -266,6 +280,7 @@ export type exam_roomsOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  seat_per_row?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.exam_roomsCountOrderByAggregateInput
   _avg?: Prisma.exam_roomsAvgOrderByAggregateInput
   _max?: Prisma.exam_roomsMaxOrderByAggregateInput
@@ -283,6 +298,7 @@ export type exam_roomsScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"exam_rooms"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"exam_rooms"> | Date | string
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"exam_rooms"> | Date | string | null
+  seat_per_row?: Prisma.IntNullableWithAggregatesFilter<"exam_rooms"> | number | null
 }
 
 export type exam_roomsCreateInput = {
@@ -291,6 +307,7 @@ export type exam_roomsCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  seat_per_row?: number | null
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutExam_roomsInput
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_roomsInput
 }
@@ -302,6 +319,7 @@ export type exam_roomsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  seat_per_row?: number | null
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_roomsInput
 }
 
@@ -311,6 +329,7 @@ export type exam_roomsUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutExam_roomsNestedInput
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_roomsNestedInput
 }
@@ -322,6 +341,7 @@ export type exam_roomsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_roomsNestedInput
 }
 
@@ -332,6 +352,7 @@ export type exam_roomsCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  seat_per_row?: number | null
 }
 
 export type exam_roomsUpdateManyMutationInput = {
@@ -340,6 +361,7 @@ export type exam_roomsUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type exam_roomsUncheckedUpdateManyInput = {
@@ -349,6 +371,7 @@ export type exam_roomsUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type Exam_roomsListRelationFilter = {
@@ -379,11 +402,13 @@ export type exam_roomsCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  seat_per_row?: Prisma.SortOrder
 }
 
 export type exam_roomsAvgOrderByAggregateInput = {
   campaign_id?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
+  seat_per_row?: Prisma.SortOrder
 }
 
 export type exam_roomsMaxOrderByAggregateInput = {
@@ -393,6 +418,7 @@ export type exam_roomsMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  seat_per_row?: Prisma.SortOrder
 }
 
 export type exam_roomsMinOrderByAggregateInput = {
@@ -402,11 +428,13 @@ export type exam_roomsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  seat_per_row?: Prisma.SortOrder
 }
 
 export type exam_roomsSumOrderByAggregateInput = {
   campaign_id?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
+  seat_per_row?: Prisma.SortOrder
 }
 
 export type Exam_roomsNullableScalarRelationFilter = {
@@ -478,6 +506,7 @@ export type exam_roomsCreateWithoutExam_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  seat_per_row?: number | null
   user_campaigns?: Prisma.user_campaignsCreateNestedManyWithoutExam_roomsInput
 }
 
@@ -487,6 +516,7 @@ export type exam_roomsUncheckedCreateWithoutExam_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  seat_per_row?: number | null
   user_campaigns?: Prisma.user_campaignsUncheckedCreateNestedManyWithoutExam_roomsInput
 }
 
@@ -526,6 +556,7 @@ export type exam_roomsScalarWhereInput = {
   created_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"exam_rooms"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"exam_rooms"> | Date | string | null
+  seat_per_row?: Prisma.IntNullableFilter<"exam_rooms"> | number | null
 }
 
 export type exam_roomsCreateWithoutUser_campaignsInput = {
@@ -534,6 +565,7 @@ export type exam_roomsCreateWithoutUser_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  seat_per_row?: number | null
   exam_campaigns: Prisma.exam_campaignsCreateNestedOneWithoutExam_roomsInput
 }
 
@@ -544,6 +576,7 @@ export type exam_roomsUncheckedCreateWithoutUser_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  seat_per_row?: number | null
 }
 
 export type exam_roomsCreateOrConnectWithoutUser_campaignsInput = {
@@ -568,6 +601,7 @@ export type exam_roomsUpdateWithoutUser_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   exam_campaigns?: Prisma.exam_campaignsUpdateOneRequiredWithoutExam_roomsNestedInput
 }
 
@@ -578,6 +612,7 @@ export type exam_roomsUncheckedUpdateWithoutUser_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type exam_roomsCreateManyExam_campaignsInput = {
@@ -586,6 +621,7 @@ export type exam_roomsCreateManyExam_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  seat_per_row?: number | null
 }
 
 export type exam_roomsUpdateWithoutExam_campaignsInput = {
@@ -594,6 +630,7 @@ export type exam_roomsUpdateWithoutExam_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_campaigns?: Prisma.user_campaignsUpdateManyWithoutExam_roomsNestedInput
 }
 
@@ -603,6 +640,7 @@ export type exam_roomsUncheckedUpdateWithoutExam_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   user_campaigns?: Prisma.user_campaignsUncheckedUpdateManyWithoutExam_roomsNestedInput
 }
 
@@ -612,6 +650,7 @@ export type exam_roomsUncheckedUpdateManyWithoutExam_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seat_per_row?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -652,6 +691,7 @@ export type exam_roomsSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
+  seat_per_row?: boolean
   exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
   user_campaigns?: boolean | Prisma.exam_rooms$user_campaignsArgs<ExtArgs>
   _count?: boolean | Prisma.Exam_roomsCountOutputTypeDefaultArgs<ExtArgs>
@@ -666,9 +706,10 @@ export type exam_roomsSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
+  seat_per_row?: boolean
 }
 
-export type exam_roomsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"campaign_id" | "room_code" | "capacity" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["exam_rooms"]>
+export type exam_roomsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"campaign_id" | "room_code" | "capacity" | "created_at" | "updated_at" | "deleted_at" | "seat_per_row", ExtArgs["result"]["exam_rooms"]>
 export type exam_roomsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
   user_campaigns?: boolean | Prisma.exam_rooms$user_campaignsArgs<ExtArgs>
@@ -688,6 +729,7 @@ export type $exam_roomsPayload<ExtArgs extends runtime.Types.Extensions.Internal
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
+    seat_per_row: number | null
   }, ExtArgs["result"]["exam_rooms"]>
   composites: {}
 }
@@ -1065,6 +1107,7 @@ export interface exam_roomsFieldRefs {
   readonly created_at: Prisma.FieldRef<"exam_rooms", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"exam_rooms", 'DateTime'>
   readonly deleted_at: Prisma.FieldRef<"exam_rooms", 'DateTime'>
+  readonly seat_per_row: Prisma.FieldRef<"exam_rooms", 'Int'>
 }
     
 

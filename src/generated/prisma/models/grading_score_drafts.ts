@@ -387,7 +387,6 @@ export type grading_score_draftsOrderByWithRelationInput = {
 export type grading_score_draftsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   slot_id?: number
-  slot_id_grader_id?: Prisma.grading_score_draftsSlot_idGrader_idCompoundUniqueInput
   AND?: Prisma.grading_score_draftsWhereInput | Prisma.grading_score_draftsWhereInput[]
   OR?: Prisma.grading_score_draftsWhereInput[]
   NOT?: Prisma.grading_score_draftsWhereInput | Prisma.grading_score_draftsWhereInput[]
@@ -412,7 +411,7 @@ export type grading_score_draftsWhereUniqueInput = Prisma.AtLeast<{
   session_subjects?: Prisma.XOR<Prisma.Session_subjectsScalarRelationFilter, Prisma.session_subjectsWhereInput>
   grading_slots?: Prisma.XOR<Prisma.Grading_slotsScalarRelationFilter, Prisma.grading_slotsWhereInput>
   session_subject_questions?: Prisma.XOR<Prisma.Session_subject_questionsScalarRelationFilter, Prisma.session_subject_questionsWhereInput>
-}, "id" | "slot_id" | "slot_id_grader_id">
+}, "id" | "slot_id">
 
 export type grading_score_draftsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -591,11 +590,6 @@ export type grading_score_draftsOrderByRelevanceInput = {
   fields: Prisma.grading_score_draftsOrderByRelevanceFieldEnum | Prisma.grading_score_draftsOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
   search: string
-}
-
-export type grading_score_draftsSlot_idGrader_idCompoundUniqueInput = {
-  slot_id: number
-  grader_id: number
 }
 
 export type grading_score_draftsCountOrderByAggregateInput = {
@@ -1196,6 +1190,7 @@ export type grading_score_draftsUncheckedCreateWithoutGrading_slotsInput = {
   session_subject_id: number
   session_subject_question_id: number
   question_no: number
+  grader_id: number
   score: number
   status?: string
   created_at?: Date | string
@@ -1244,6 +1239,7 @@ export type grading_score_draftsUncheckedUpdateWithoutGrading_slotsInput = {
   session_subject_id?: Prisma.IntFieldUpdateOperationsInput | number
   session_subject_question_id?: Prisma.IntFieldUpdateOperationsInput | number
   question_no?: Prisma.IntFieldUpdateOperationsInput | number
+  grader_id?: Prisma.IntFieldUpdateOperationsInput | number
   score?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string

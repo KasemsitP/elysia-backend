@@ -33,6 +33,7 @@ export type Session_subject_questionsAvgAggregateOutputType = {
   session_subject_id: number | null
   question_no: number | null
   max_score: number | null
+  active_unique_key: number | null
 }
 
 export type Session_subject_questionsSumAggregateOutputType = {
@@ -42,6 +43,7 @@ export type Session_subject_questionsSumAggregateOutputType = {
   session_subject_id: number | null
   question_no: number | null
   max_score: number | null
+  active_unique_key: number | null
 }
 
 export type Session_subject_questionsMinAggregateOutputType = {
@@ -57,6 +59,7 @@ export type Session_subject_questionsMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
+  active_unique_key: number | null
 }
 
 export type Session_subject_questionsMaxAggregateOutputType = {
@@ -72,6 +75,7 @@ export type Session_subject_questionsMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
+  active_unique_key: number | null
 }
 
 export type Session_subject_questionsCountAggregateOutputType = {
@@ -87,6 +91,7 @@ export type Session_subject_questionsCountAggregateOutputType = {
   created_at: number
   updated_at: number
   deleted_at: number
+  active_unique_key: number
   _all: number
 }
 
@@ -98,6 +103,7 @@ export type Session_subject_questionsAvgAggregateInputType = {
   session_subject_id?: true
   question_no?: true
   max_score?: true
+  active_unique_key?: true
 }
 
 export type Session_subject_questionsSumAggregateInputType = {
@@ -107,6 +113,7 @@ export type Session_subject_questionsSumAggregateInputType = {
   session_subject_id?: true
   question_no?: true
   max_score?: true
+  active_unique_key?: true
 }
 
 export type Session_subject_questionsMinAggregateInputType = {
@@ -122,6 +129,7 @@ export type Session_subject_questionsMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  active_unique_key?: true
 }
 
 export type Session_subject_questionsMaxAggregateInputType = {
@@ -137,6 +145,7 @@ export type Session_subject_questionsMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  active_unique_key?: true
 }
 
 export type Session_subject_questionsCountAggregateInputType = {
@@ -152,6 +161,7 @@ export type Session_subject_questionsCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  active_unique_key?: true
   _all?: true
 }
 
@@ -254,6 +264,7 @@ export type Session_subject_questionsGroupByOutputType = {
   created_at: Date
   updated_at: Date
   deleted_at: Date | null
+  active_unique_key: number | null
   _count: Session_subject_questionsCountAggregateOutputType | null
   _avg: Session_subject_questionsAvgAggregateOutputType | null
   _sum: Session_subject_questionsSumAggregateOutputType | null
@@ -292,6 +303,7 @@ export type session_subject_questionsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"session_subject_questions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"session_subject_questions"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"session_subject_questions"> | Date | string | null
+  active_unique_key?: Prisma.IntNullableFilter<"session_subject_questions"> | number | null
   booklet_question_choices?: Prisma.Booklet_question_choicesListRelationFilter
   booklet_question_notes?: Prisma.Booklet_question_notesListRelationFilter
   grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
@@ -317,6 +329,7 @@ export type session_subject_questionsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrderInput | Prisma.SortOrder
   booklet_question_choices?: Prisma.booklet_question_choicesOrderByRelationAggregateInput
   booklet_question_notes?: Prisma.booklet_question_notesOrderByRelationAggregateInput
   grader_assignments?: Prisma.grader_assignmentsOrderByRelationAggregateInput
@@ -333,8 +346,8 @@ export type session_subject_questionsOrderByWithRelationInput = {
 export type session_subject_questionsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   id_session_id_campaign_id?: Prisma.session_subject_questionsIdSession_idCampaign_idCompoundUniqueInput
-  session_id_question_no?: Prisma.session_subject_questionsSession_idQuestion_noCompoundUniqueInput
-  session_subject_id_question_no?: Prisma.session_subject_questionsSession_subject_idQuestion_noCompoundUniqueInput
+  session_id_question_no_active_unique_key?: Prisma.session_subject_questionsSession_idQuestion_noActive_unique_keyCompoundUniqueInput
+  session_subject_id_question_no_active_unique_key?: Prisma.session_subject_questionsSession_subject_idQuestion_noActive_unique_keyCompoundUniqueInput
   AND?: Prisma.session_subject_questionsWhereInput | Prisma.session_subject_questionsWhereInput[]
   OR?: Prisma.session_subject_questionsWhereInput[]
   NOT?: Prisma.session_subject_questionsWhereInput | Prisma.session_subject_questionsWhereInput[]
@@ -349,6 +362,7 @@ export type session_subject_questionsWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"session_subject_questions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"session_subject_questions"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"session_subject_questions"> | Date | string | null
+  active_unique_key?: Prisma.IntNullableFilter<"session_subject_questions"> | number | null
   booklet_question_choices?: Prisma.Booklet_question_choicesListRelationFilter
   booklet_question_notes?: Prisma.Booklet_question_notesListRelationFilter
   grader_assignments?: Prisma.Grader_assignmentsListRelationFilter
@@ -359,7 +373,7 @@ export type session_subject_questionsWhereUniqueInput = Prisma.AtLeast<{
   question_choice_group_items?: Prisma.XOR<Prisma.Question_choice_group_itemsNullableScalarRelationFilter, Prisma.question_choice_group_itemsWhereInput> | null
   sessions?: Prisma.XOR<Prisma.SessionsScalarRelationFilter, Prisma.sessionsWhereInput>
   session_subjects?: Prisma.XOR<Prisma.Session_subjectsScalarRelationFilter, Prisma.session_subjectsWhereInput>
-}, "id" | "id_session_id_campaign_id" | "session_id_question_no" | "session_subject_id_question_no">
+}, "id" | "id_session_id_campaign_id" | "session_id_question_no_active_unique_key" | "session_subject_id_question_no_active_unique_key">
 
 export type session_subject_questionsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -374,6 +388,7 @@ export type session_subject_questionsOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.session_subject_questionsCountOrderByAggregateInput
   _avg?: Prisma.session_subject_questionsAvgOrderByAggregateInput
   _max?: Prisma.session_subject_questionsMaxOrderByAggregateInput
@@ -397,6 +412,7 @@ export type session_subject_questionsScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"session_subject_questions"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"session_subject_questions"> | Date | string
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"session_subject_questions"> | Date | string | null
+  active_unique_key?: Prisma.IntNullableWithAggregatesFilter<"session_subject_questions"> | number | null
 }
 
 export type session_subject_questionsCreateInput = {
@@ -408,6 +424,7 @@ export type session_subject_questionsCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
@@ -433,6 +450,7 @@ export type session_subject_questionsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -452,6 +470,7 @@ export type session_subject_questionsUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
@@ -477,6 +496,7 @@ export type session_subject_questionsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -500,6 +520,7 @@ export type session_subject_questionsCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
 }
 
 export type session_subject_questionsUpdateManyMutationInput = {
@@ -511,6 +532,7 @@ export type session_subject_questionsUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type session_subject_questionsUncheckedUpdateManyInput = {
@@ -526,6 +548,7 @@ export type session_subject_questionsUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type Session_subject_questionsScalarRelationFilter = {
@@ -555,14 +578,16 @@ export type session_subject_questionsIdSession_idCampaign_idCompoundUniqueInput 
   campaign_id: number
 }
 
-export type session_subject_questionsSession_idQuestion_noCompoundUniqueInput = {
+export type session_subject_questionsSession_idQuestion_noActive_unique_keyCompoundUniqueInput = {
   session_id: number
   question_no: number
+  active_unique_key: number
 }
 
-export type session_subject_questionsSession_subject_idQuestion_noCompoundUniqueInput = {
+export type session_subject_questionsSession_subject_idQuestion_noActive_unique_keyCompoundUniqueInput = {
   session_subject_id: number
   question_no: number
+  active_unique_key: number
 }
 
 export type session_subject_questionsCountOrderByAggregateInput = {
@@ -578,6 +603,7 @@ export type session_subject_questionsCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type session_subject_questionsAvgOrderByAggregateInput = {
@@ -587,6 +613,7 @@ export type session_subject_questionsAvgOrderByAggregateInput = {
   session_subject_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   max_score?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type session_subject_questionsMaxOrderByAggregateInput = {
@@ -602,6 +629,7 @@ export type session_subject_questionsMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type session_subject_questionsMinOrderByAggregateInput = {
@@ -617,6 +645,7 @@ export type session_subject_questionsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type session_subject_questionsSumOrderByAggregateInput = {
@@ -626,6 +655,7 @@ export type session_subject_questionsSumOrderByAggregateInput = {
   session_subject_id?: Prisma.SortOrder
   question_no?: Prisma.SortOrder
   max_score?: Prisma.SortOrder
+  active_unique_key?: Prisma.SortOrder
 }
 
 export type session_subject_questionsCreateNestedOneWithoutGrader_assignmentsInput = {
@@ -833,6 +863,7 @@ export type session_subject_questionsCreateWithoutGrader_assignmentsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutSession_subject_questionsInput
@@ -857,6 +888,7 @@ export type session_subject_questionsUncheckedCreateWithoutGrader_assignmentsInp
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -891,6 +923,7 @@ export type session_subject_questionsUpdateWithoutGrader_assignmentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutSession_subject_questionsNestedInput
@@ -915,6 +948,7 @@ export type session_subject_questionsUncheckedUpdateWithoutGrader_assignmentsInp
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -933,6 +967,7 @@ export type session_subject_questionsCreateWithoutGrader_work_locksInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
@@ -957,6 +992,7 @@ export type session_subject_questionsUncheckedCreateWithoutGrader_work_locksInpu
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -991,6 +1027,7 @@ export type session_subject_questionsUpdateWithoutGrader_work_locksInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1015,6 +1052,7 @@ export type session_subject_questionsUncheckedUpdateWithoutGrader_work_locksInpu
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1033,6 +1071,7 @@ export type session_subject_questionsCreateWithoutGrading_score_draftsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
@@ -1057,6 +1096,7 @@ export type session_subject_questionsUncheckedCreateWithoutGrading_score_draftsI
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -1091,6 +1131,7 @@ export type session_subject_questionsUpdateWithoutGrading_score_draftsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1115,6 +1156,7 @@ export type session_subject_questionsUncheckedUpdateWithoutGrading_score_draftsI
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1133,6 +1175,7 @@ export type session_subject_questionsCreateWithoutGrading_score_logsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
@@ -1157,6 +1200,7 @@ export type session_subject_questionsUncheckedCreateWithoutGrading_score_logsInp
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -1191,6 +1235,7 @@ export type session_subject_questionsUpdateWithoutGrading_score_logsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1215,6 +1260,7 @@ export type session_subject_questionsUncheckedUpdateWithoutGrading_score_logsInp
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1233,6 +1279,7 @@ export type session_subject_questionsCreateWithoutGrading_slotsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
@@ -1257,6 +1304,7 @@ export type session_subject_questionsUncheckedCreateWithoutGrading_slotsInput = 
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -1291,6 +1339,7 @@ export type session_subject_questionsUpdateWithoutGrading_slotsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1315,6 +1364,7 @@ export type session_subject_questionsUncheckedUpdateWithoutGrading_slotsInput = 
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1333,6 +1383,7 @@ export type session_subject_questionsCreateWithoutSession_subjectsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
@@ -1354,6 +1405,7 @@ export type session_subject_questionsUncheckedCreateWithoutSession_subjectsInput
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -1406,6 +1458,7 @@ export type session_subject_questionsScalarWhereInput = {
   created_at?: Prisma.DateTimeFilter<"session_subject_questions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"session_subject_questions"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"session_subject_questions"> | Date | string | null
+  active_unique_key?: Prisma.IntNullableFilter<"session_subject_questions"> | number | null
 }
 
 export type session_subject_questionsCreateWithoutSessionsInput = {
@@ -1417,6 +1470,7 @@ export type session_subject_questionsCreateWithoutSessionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
@@ -1439,6 +1493,7 @@ export type session_subject_questionsUncheckedCreateWithoutSessionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -1484,6 +1539,7 @@ export type session_subject_questionsCreateWithoutBooklet_question_choicesInput 
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutSession_subject_questionsInput
@@ -1508,6 +1564,7 @@ export type session_subject_questionsUncheckedCreateWithoutBooklet_question_choi
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -1542,6 +1599,7 @@ export type session_subject_questionsUpdateWithoutBooklet_question_choicesInput 
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1566,6 +1624,7 @@ export type session_subject_questionsUncheckedUpdateWithoutBooklet_question_choi
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1584,6 +1643,7 @@ export type session_subject_questionsCreateWithoutBooklet_question_notesInput = 
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
   grader_work_locks?: Prisma.grader_work_locksCreateNestedManyWithoutSession_subject_questionsInput
@@ -1608,6 +1668,7 @@ export type session_subject_questionsUncheckedCreateWithoutBooklet_question_note
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -1642,6 +1703,7 @@ export type session_subject_questionsUpdateWithoutBooklet_question_notesInput = 
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
   grader_work_locks?: Prisma.grader_work_locksUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1666,6 +1728,7 @@ export type session_subject_questionsUncheckedUpdateWithoutBooklet_question_note
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_work_locks?: Prisma.grader_work_locksUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1684,6 +1747,7 @@ export type session_subject_questionsCreateWithoutQuestion_choice_group_itemsInp
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsCreateNestedManyWithoutSession_subject_questionsInput
@@ -1708,6 +1772,7 @@ export type session_subject_questionsUncheckedCreateWithoutQuestion_choice_group
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSession_subject_questionsInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedCreateNestedManyWithoutSession_subject_questionsInput
@@ -1742,6 +1807,7 @@ export type session_subject_questionsUpdateWithoutQuestion_choice_group_itemsInp
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1766,6 +1832,7 @@ export type session_subject_questionsUncheckedUpdateWithoutQuestion_choice_group
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1785,6 +1852,7 @@ export type session_subject_questionsCreateManySession_subjectsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
 }
 
 export type session_subject_questionsUpdateWithoutSession_subjectsInput = {
@@ -1796,6 +1864,7 @@ export type session_subject_questionsUpdateWithoutSession_subjectsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1817,6 +1886,7 @@ export type session_subject_questionsUncheckedUpdateWithoutSession_subjectsInput
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1837,6 +1907,7 @@ export type session_subject_questionsUncheckedUpdateManyWithoutSession_subjectsI
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type session_subject_questionsCreateManySessionsInput = {
@@ -1850,6 +1921,7 @@ export type session_subject_questionsCreateManySessionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  active_unique_key?: number | null
 }
 
 export type session_subject_questionsUpdateWithoutSessionsInput = {
@@ -1861,6 +1933,7 @@ export type session_subject_questionsUpdateWithoutSessionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1883,6 +1956,7 @@ export type session_subject_questionsUncheckedUpdateWithoutSessionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   booklet_question_choices?: Prisma.booklet_question_choicesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
   grader_assignments?: Prisma.grader_assignmentsUncheckedUpdateManyWithoutSession_subject_questionsNestedInput
@@ -1904,6 +1978,7 @@ export type session_subject_questionsUncheckedUpdateManyWithoutSessionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  active_unique_key?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -2004,6 +2079,7 @@ export type session_subject_questionsSelect<ExtArgs extends runtime.Types.Extens
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
+  active_unique_key?: boolean
   booklet_question_choices?: boolean | Prisma.session_subject_questions$booklet_question_choicesArgs<ExtArgs>
   booklet_question_notes?: boolean | Prisma.session_subject_questions$booklet_question_notesArgs<ExtArgs>
   grader_assignments?: boolean | Prisma.session_subject_questions$grader_assignmentsArgs<ExtArgs>
@@ -2032,9 +2108,10 @@ export type session_subject_questionsSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
+  active_unique_key?: boolean
 }
 
-export type session_subject_questionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_id" | "session_subject_id" | "question_no" | "label" | "max_score" | "question_type" | "note" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["session_subject_questions"]>
+export type session_subject_questionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_id" | "session_subject_id" | "question_no" | "label" | "max_score" | "question_type" | "note" | "created_at" | "updated_at" | "deleted_at" | "active_unique_key", ExtArgs["result"]["session_subject_questions"]>
 export type session_subject_questionsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   booklet_question_choices?: boolean | Prisma.session_subject_questions$booklet_question_choicesArgs<ExtArgs>
   booklet_question_notes?: boolean | Prisma.session_subject_questions$booklet_question_notesArgs<ExtArgs>
@@ -2076,6 +2153,7 @@ export type $session_subject_questionsPayload<ExtArgs extends runtime.Types.Exte
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
+    active_unique_key: number | null
   }, ExtArgs["result"]["session_subject_questions"]>
   composites: {}
 }
@@ -2467,6 +2545,7 @@ export interface session_subject_questionsFieldRefs {
   readonly created_at: Prisma.FieldRef<"session_subject_questions", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"session_subject_questions", 'DateTime'>
   readonly deleted_at: Prisma.FieldRef<"session_subject_questions", 'DateTime'>
+  readonly active_unique_key: Prisma.FieldRef<"session_subject_questions", 'Int'>
 }
     
 

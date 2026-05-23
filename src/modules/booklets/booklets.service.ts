@@ -1,12 +1,12 @@
-import { randomBytes } from "crypto";
 import { bookletRepo } from "./booklets.repo";
 import { campaignRepo } from "../campaign/campaign.repo";
 import { sessionRepo } from "../session/session.repo";
 import { AppError } from "../../cores/errors";
 import { prisma } from "../../cores/prisma";
-import { encryptQrPayload } from "../../cores/qr-crypto";
 import { campaignKeyService } from "../campaign-keys/campaign-keys.service";
-import { DEK_RECORD_ORDER } from "../../cores/kek-crypto";
+import { runBookletEncryptWorker } from "../../cores/booklet-runner";
+
+const DB_BATCH_SIZE = 500;
 import type { GenerateBookletsBody, UpdateBookletBody, BookletQuery } from "./booklets.type";
 
 export const bookletService = {
@@ -44,44 +44,54 @@ export const bookletService = {
         const session = await sessionRepo.findById(sessionId, campaignId);
         if (!session) throw new AppError("ไม่พบวันสอบ", 404);
 
-        // ดึง DEK โดย verify manager keys และ unwrap ด้วย KEK
-        // ถ้า key ผิด → throw 401 ก่อนถึง generate
-        const dek = await campaignKeyService.getDecryptedDEK(
+        // verify manager keys และ derive combinedKey — ถ้า key ผิด → throw 401 ก่อนถึง generate
+        const combinedKey = await campaignKeyService.getCombinedKey(
             campaignId,
             input.manager1_key,
             input.manager2_key,
         );
 
-        // ดึง DEK record เพื่อรู้ order_num (kid ใน QR envelope)
-        const dekRecord = await prisma.campaign_keys.findFirst({
-            where: { campaign_id: campaignId, order_num: DEK_RECORD_ORDER, active: true },
+        // ตรวจ user_codes ซ้ำก่อน generate
+        const uniqueCodes = new Set(input.user_codes);
+        if (uniqueCodes.size !== input.user_codes.length) {
+            throw new AppError("พบ user_code ซ้ำกันใน request", 400);
+        }
+
+        // ตรวจว่า user_code ใดซ้ำกับที่มีอยู่แล้วใน session นี้
+        const existingCodes = await prisma.booklets.findMany({
+            where: { campaign_id: campaignId, session_id: sessionId, deleted_at: null, user_code: { in: input.user_codes } },
+            select: { user_code: true },
         });
+        if (existingCodes.length > 0) {
+            const dup = existingCodes.map((b) => b.user_code).join(", ");
+            throw new AppError(`user_code ซ้ำกับที่มีอยู่แล้ว: ${dup}`, 409);
+        }
 
         try {
-            // สร้าง encrypted QR payload ต่อเล่ม
-            const records = Array.from({ length: input.count }, () => {
-                const nonce = randomBytes(8).toString("hex"); // unique per booklet
-                const qr_payload = encryptQrPayload(
-                    { cid: campaignId, sid: sessionId, nonce },
-                    dek.toString("base64"),      // DEK เป็น base64 สำหรับ qr-crypto
-                    dekRecord?.order_num ?? DEK_RECORD_ORDER,
-                );
-                return { campaign_id: campaignId, session_id: sessionId, qr_payload };
-            });
+            // Encrypt ใน worker thread — ไม่บล็อก main event loop
+            const records = await runBookletEncryptWorker(
+                input.user_codes,
+                combinedKey.toString("base64"),
+                campaignId,
+                sessionId,
+            );
 
+            // Batch insert 500 เล่มต่อครั้ง — ป้องกัน MySQL packet size limit
             await prisma.$transaction(async (tx) => {
-                await bookletRepo.createMany(records, tx);
+                for (let i = 0; i < records.length; i += DB_BATCH_SIZE) {
+                    await bookletRepo.createMany(records.slice(i, i + DB_BATCH_SIZE), tx);
+                }
             });
         } finally {
-            // ล้าง DEK จากหน่วยความจำ เสมอ (แม้จะ error)
-            dek.fill(0);
+            // ล้าง combinedKey จากหน่วยความจำ เสมอ (แม้จะ error)
+            combinedKey.fill(0);
         }
 
         const count = await bookletRepo.countBySession(campaignId, sessionId);
         return {
             success: true,
-            message: `สร้างเล่มข้อสอบสำเร็จ ${input.count} เล่ม (รวมทั้งหมด ${count} เล่มใน session นี้)`,
-            data: { generated: input.count, total_in_session: count },
+            message: `สร้างเล่มข้อสอบสำเร็จ ${input.user_codes.length} เล่ม (รวมทั้งหมด ${count} เล่มใน session นี้)`,
+            data: { generated: input.user_codes.length, total_in_session: count },
         };
     },
 

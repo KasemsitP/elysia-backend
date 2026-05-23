@@ -4,7 +4,14 @@
       "PowerShell(ls \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\elysia\\\\node_modules\\\\\" | Where-Object { $_.Name -match \"dotenv|mariadb\" })",
       "Bash(Get-Content -Path \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\grader\\\\grader.type.ts\" -Raw)",
       "Bash(Get-Content -Path \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\subject\\\\subject.schema.ts\" -Encoding UTF8)",
-      "PowerShell([System.IO.File]::GetAttributes\\(\"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\subject\\\\subject.schema.ts\"\\); Get-Item \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\subject\\\\subject.schema.ts\" | Select-Object Length)"
+      "PowerShell([System.IO.File]::GetAttributes\\(\"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\subject\\\\subject.schema.ts\"\\); Get-Item \"c:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\\\\src\\\\modules\\\\subject\\\\subject.schema.ts\" | Select-Object Length)",
+      "mcp__codegraph__codegraph_search",
+      "mcp__codegraph__codegraph_context",
+      "mcp__codegraph__codegraph_callers",
+      "mcp__codegraph__codegraph_callees",
+      "mcp__codegraph__codegraph_impact",
+      "mcp__codegraph__codegraph_node",
+      "mcp__codegraph__codegraph_status"
     ]
   }
 }

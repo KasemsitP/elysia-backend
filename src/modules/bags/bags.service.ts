@@ -4,7 +4,6 @@ import { bookletRepo } from "../booklets/booklets.repo";
 import { campaignRepo } from "../campaign/campaign.repo";
 import { AppError } from "../../cores/errors";
 import { prisma } from "../../cores/prisma";
-import { decryptQrPayload, getKeyOrderNumFromPayload, getCampaignKey } from "../../cores/qr-crypto";
 import type { ScanPreviewBody, CreateBagBody, UpdateBagStatusBody } from "./bags.type";
 import type { SessionData } from "../auth/auth.type";
 
@@ -18,12 +17,11 @@ function hashPayload(payload: string) {
 }
 
 /**
- * Validate qr_payloads พร้อม decrypt ตรวจ integrity
+ * Validate qr_payloads ด้วย DB lookup อย่างเดียว — ไม่ decrypt
  *
- * 3 ชั้นการตรวจ:
+ * 2 ชั้นการตรวจ:
  * 1. หา booklet จาก DB ด้วย qr_payload (exact match)
- * 2. ตรวจ campaign/session ตรงกัน
- * 3. Decrypt payload → ตรวจว่า cid/sid ตรงกัน + tag valid (ไม่ถูก tamper)
+ * 2. ตรวจ campaign/session/bag ตรงกัน
  */
 async function resolveBooklets(
     campaign_id: number,
@@ -32,27 +30,11 @@ async function resolveBooklets(
 ) {
     const results = await Promise.all(
         qr_payloads.map(async (qrStr) => {
-            // ชั้น 1: หา booklet จาก DB
             const booklet = await bookletRepo.findByQrPayload(qrStr);
             if (!booklet) return { payload: qrStr, error: "ไม่พบเล่มข้อสอบ" };
             if (booklet.campaign_id !== campaign_id) return { payload: qrStr, error: "เล่มนี้ไม่อยู่ในรอบสอบนี้" };
             if (booklet.session_id !== session_id) return { payload: qrStr, error: "เล่มนี้ไม่อยู่ในวันสอบนี้" };
             if (booklet.bag_id !== null) return { payload: qrStr, error: "เล่มนี้อยู่ในถุงแล้ว" };
-
-            // ชั้น 2+3: Decrypt payload → ตรวจ GCM tag + cid/sid
-            try {
-                const keyOrderNum = getKeyOrderNumFromPayload(qrStr);
-                const campaignKey = await getCampaignKey(campaign_id, keyOrderNum);
-                const decrypted = decryptQrPayload(qrStr, campaignKey.key_ciphertext!);
-
-                if (decrypted.cid !== campaign_id || decrypted.sid !== session_id) {
-                    return { payload: qrStr, error: "QR payload ไม่ตรงกับ campaign/session" };
-                }
-            } catch {
-                // GCM auth tag ผิด = ถูก tamper หรือ key ผิด
-                return { payload: qrStr, error: "QR payload ไม่ถูกต้องหรืออาจถูกแก้ไข" };
-            }
-
             return { payload: qrStr, booklet };
         }),
     );

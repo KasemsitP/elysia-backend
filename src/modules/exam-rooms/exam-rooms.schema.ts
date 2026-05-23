@@ -10,10 +10,12 @@ export const roomParamSchema = t.Object({
 });
 
 export const createRoomBodySchema = t.Object({
-    room_code: t.String(),
+    room_code: t.String({ minLength: 1 }),
     capacity: t.Number({ minimum: 1 }),
+    seat_per_row: t.Optional(t.Number({ minimum: 1, maximum: 100 })),
 });
 
 export const updateRoomBodySchema = t.Object({
-    capacity: t.Number({ minimum: 1 }),
+    capacity: t.Optional(t.Number({ minimum: 1 })),
+    seat_per_row: t.Optional(t.Number({ minimum: 1, maximum: 100 })),
 });
