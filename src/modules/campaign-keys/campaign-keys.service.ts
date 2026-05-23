@@ -1,8 +1,9 @@
 import { prisma } from "../../cores/prisma";
 import { AppError } from "../../cores/errors";
 import {
-    hashManagerKey,
-    verifyManagerKey,
+    wrapManagerKey,
+    unwrapManagerKey,
+    timingSafeStringEqual,
     deriveCombinedKey,
     MANAGER_KEY_ORDER_1,
     MANAGER_KEY_ORDER_2,
@@ -24,8 +25,8 @@ export const campaignKeyService = {
      * Setup keys ครั้งแรก (หรือ rotate ทั้งชุด)
      *
      * สิ่งที่เกิดขึ้น:
-     * 1. hash(MK1) + salt → DB (order_num=1)
-     * 2. hash(MK2) + salt → DB (order_num=2)
+     * 1. AES-256-GCM(MASTER_KEY, MK1) → key_ciphertext (order_num=1)
+     * 2. AES-256-GCM(MASTER_KEY, MK2) → key_ciphertext (order_num=2)
      *
      * combinedKey derive ได้จาก MK1+MK2 ทุกครั้งที่ต้องการ — ไม่เก็บใน DB
      */
@@ -59,8 +60,9 @@ export const campaignKeyService = {
             throw new AppError("Campaign นี้มี key อยู่แล้ว ใช้ rotate-keys endpoint แทน", 409);
         }
 
-        const mk1Hash = hashManagerKey(mk1Plaintext);
-        const mk2Hash = hashManagerKey(mk2Plaintext);
+        // Encrypt each MK with MASTER_KEY — plaintext never stored
+        const mk1Wrapped = wrapManagerKey(mk1Plaintext);
+        const mk2Wrapped = wrapManagerKey(mk2Plaintext);
 
         await prisma.$transaction(async (tx) => {
             await tx.campaign_keys.updateMany({
@@ -70,25 +72,25 @@ export const campaignKeyService = {
 
             await tx.campaign_keys.create({
                 data: {
-                    campaign_id: campaignId,
-                    account_id: m1AccountId,
-                    order_num: MANAGER_KEY_ORDER_1,
-                    key_ciphertext: mk1Hash.hash,
-                    iv: mk1Hash.salt,
-                    algor: "PBKDF2-SHA256",
-                    active: true,
+                    campaign_id:    campaignId,
+                    account_id:     m1AccountId,
+                    order_num:      MANAGER_KEY_ORDER_1,
+                    key_ciphertext: mk1Wrapped,
+                    iv:             null,
+                    algor:          "AES-256-GCM",
+                    active:         true,
                 },
             });
 
             await tx.campaign_keys.create({
                 data: {
-                    campaign_id: campaignId,
-                    account_id: m2AccountId,
-                    order_num: MANAGER_KEY_ORDER_2,
-                    key_ciphertext: mk2Hash.hash,
-                    iv: mk2Hash.salt,
-                    algor: "PBKDF2-SHA256",
-                    active: true,
+                    campaign_id:    campaignId,
+                    account_id:     m2AccountId,
+                    order_num:      MANAGER_KEY_ORDER_2,
+                    key_ciphertext: mk2Wrapped,
+                    iv:             null,
+                    algor:          "AES-256-GCM",
+                    active:         true,
                 },
             });
         });
@@ -105,45 +107,39 @@ export const campaignKeyService = {
     },
 
     /**
-     * ตรวจสอบ manager keys ทั้ง 2 ชุด และ return combinedKey (ในหน่วยความจำ)
-     * combinedKey ไม่เคยถูกเก็บ — derive ใหม่ทุกครั้งที่ต้องการ
+     * อ่าน MK1/MK2 จาก DB → ถอดรหัสด้วย MASTER_KEY → derive combinedKey
+     * ไม่ต้องการ manager input — ใช้ได้โดยระบบโดยตรง
      */
-    async getCombinedKey(
-        campaignId: number,
-        mk1Plaintext: string,
-        mk2Plaintext: string,
-    ): Promise<Buffer> {
+    async getCombinedKey(campaignId: number): Promise<Buffer> {
         const [mk1Record, mk2Record] = await Promise.all([
             getManagerKeyRecord(campaignId, MANAGER_KEY_ORDER_1),
             getManagerKeyRecord(campaignId, MANAGER_KEY_ORDER_2),
         ]);
 
-        if (!mk1Record?.key_ciphertext || !mk1Record.iv) {
+        if (!mk1Record?.key_ciphertext) {
             throw new AppError("ไม่พบ Manager Key 1 — กรุณา setup keys ก่อน", 404);
         }
-        if (!mk2Record?.key_ciphertext || !mk2Record.iv) {
+        if (!mk2Record?.key_ciphertext) {
             throw new AppError("ไม่พบ Manager Key 2 — กรุณา setup keys ก่อน", 404);
         }
 
-        if (!verifyManagerKey(mk1Plaintext, mk1Record.key_ciphertext, mk1Record.iv)) {
-            throw new AppError("Manager Key 1 ไม่ถูกต้อง", 401);
-        }
-        if (!verifyManagerKey(mk2Plaintext, mk2Record.key_ciphertext, mk2Record.iv)) {
-            throw new AppError("Manager Key 2 ไม่ถูกต้อง", 401);
-        }
+        const mk1Plaintext = unwrapManagerKey(mk1Record.key_ciphertext);
+        const mk2Plaintext = unwrapManagerKey(mk2Record.key_ciphertext);
 
-        return deriveCombinedKey(mk1Plaintext, mk2Plaintext, campaignId);
+        const combined = deriveCombinedKey(mk1Plaintext, mk2Plaintext, campaignId);
+
+        // Zero plaintext from memory
+        Buffer.from(mk1Plaintext, "utf8").fill(0);
+        Buffer.from(mk2Plaintext, "utf8").fill(0);
+
+        return combined;
     },
 
     /**
      * เหมือน getCombinedKey แต่ตรวจ is_unlock ก่อน — ใช้สำหรับ decrypt เท่านั้น
      * ถ้าสอบยังไม่เสร็จ (is_unlock = false) → throw 403
      */
-    async getCombinedKeyForDecrypt(
-        campaignId: number,
-        mk1Plaintext: string,
-        mk2Plaintext: string,
-    ): Promise<Buffer> {
+    async getCombinedKeyForDecrypt(campaignId: number): Promise<Buffer> {
         const campaign = await prisma.exam_campaigns.findFirst({
             where: { id: campaignId, deleted_at: null },
             select: { is_unlock: true },
@@ -152,7 +148,7 @@ export const campaignKeyService = {
         if (!campaign.is_unlock) {
             throw new AppError("ไม่สามารถถอดรหัสได้ — รอบสอบยังไม่ unlock", 403);
         }
-        return campaignKeyService.getCombinedKey(campaignId, mk1Plaintext, mk2Plaintext);
+        return campaignKeyService.getCombinedKey(campaignId);
     },
 
     async getKeyStatus(campaignId: number) {
@@ -201,14 +197,29 @@ export const campaignKeyService = {
         return campaignKeyService.setupKeys(campaignId, m1AccountId, mk1NewPlaintext, m2AccountId, mk2NewPlaintext);
     },
 
+    /**
+     * ตรวจว่า MK ที่ผู้จัดการให้มาตรงกับที่เก็บใน DB (constant-time compare)
+     * ใช้สำหรับยืนยันตัวตนผู้จัดการ โดยไม่เปลี่ยนแปลงข้อมูลใด
+     */
     async verifyKeys(campaignId: number, mk1: string, mk2: string) {
-        try {
-            const key = await campaignKeyService.getCombinedKey(campaignId, mk1, mk2);
-            key.fill(0);
-            return { success: true, message: "Manager keys ถูกต้องทั้งคู่" };
-        } catch (e) {
-            if (e instanceof AppError) throw e;
-            throw new AppError("ตรวจสอบ keys ไม่สำเร็จ", 400);
+        const [mk1Record, mk2Record] = await Promise.all([
+            getManagerKeyRecord(campaignId, MANAGER_KEY_ORDER_1),
+            getManagerKeyRecord(campaignId, MANAGER_KEY_ORDER_2),
+        ]);
+
+        if (!mk1Record?.key_ciphertext) {
+            throw new AppError("ไม่พบ Manager Key 1 — กรุณา setup keys ก่อน", 404);
         }
+        if (!mk2Record?.key_ciphertext) {
+            throw new AppError("ไม่พบ Manager Key 2 — กรุณา setup keys ก่อน", 404);
+        }
+
+        const storedMk1 = unwrapManagerKey(mk1Record.key_ciphertext);
+        const storedMk2 = unwrapManagerKey(mk2Record.key_ciphertext);
+
+        if (!timingSafeStringEqual(mk1, storedMk1)) throw new AppError("Manager Key 1 ไม่ถูกต้อง", 401);
+        if (!timingSafeStringEqual(mk2, storedMk2)) throw new AppError("Manager Key 2 ไม่ถูกต้อง", 401);
+
+        return { success: true, message: "Manager keys ถูกต้องทั้งคู่" };
     },
 };

@@ -16,6 +16,7 @@ export type AuthAccountResponse = {
     role: "ADMIN" | "MANAGER" | "GRADER" | "STAFF",
     full_name: string;
     email?: string,
+    manager_order?: number | null,
 }
 
 type GraderResponse = {
@@ -32,6 +33,7 @@ export type AuthAccountGraderResponse = {
     email?: string,
     campaign_id: number | null,
     grader: GraderResponse,
+    manager_order?: number | null,
 }
 
 export type AuthLoginResponse = {

@@ -32,6 +32,7 @@ function toAuthAccountResponse(account: {
     role_id: number;
     full_name: string;
     username: string;
+    manager_order?: number | null;
 }): AuthAccountResponse {
     return {
         id: account.id,
@@ -39,6 +40,7 @@ function toAuthAccountResponse(account: {
         role: decodeRole(account.role_id),
         full_name: account.full_name,
         username: account.username,
+        manager_order: account.manager_order ?? null,
     };
 }
 
@@ -49,6 +51,7 @@ function toAuthAccountGraderResponse(account: {
     full_name: string;
     username: string;
     campaign_id?: number | null;
+    manager_order?: number | null;
 }, grader: {
     id: number;
     account_id: number | null;
@@ -65,7 +68,8 @@ function toAuthAccountGraderResponse(account: {
             id: grader.id,
             account_id: grader.account_id,
             campaign_id: grader.campaign_id,
-        }
+        },
+        manager_order: account.manager_order ?? null,
     };
 }
 
@@ -119,7 +123,7 @@ export const authService = {
         });
 
         const accountResponse = isGrader
-            ? toAuthAccountGraderResponse(account, { id: grader_id!, account_id: account.id, campaign_id: account.campaign_id ?? null })
+            ? toAuthAccountGraderResponse(account, { id: grader_id!, account_id: account.id, campaign_id: account.campaign_id ?? null  })
             : toAuthAccountResponse(account);
 
         return { sid, message: "ล็อคอินสำเร็จ", account: accountResponse };

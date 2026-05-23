@@ -25,18 +25,6 @@ export const bookletService = {
         return { success: true, message: "ดึงข้อมูลเล่มข้อสอบสำเร็จ", data: safeData };
     },
 
-    /**
-     * Generate booklets ด้วย QR payload ที่ encrypted ด้วย DEK
-     *
-     * ต้องให้ Manager Key 1 + Key 2 เพื่อ:
-     * 1. Verify ทั้งคู่ (PBKDF2)
-     * 2. Derive KEK = HKDF(MK1 ‖ MK2, campaignId)
-     * 3. Unwrap DEK = AES-256-GCM-decrypt(KEK, encrypted_DEK)
-     * 4. Encrypt QR payloads ด้วย DEK (AES-128-GCM)
-     * 5. ล้าง DEK จากหน่วยความจำ
-     *
-     * DEK ไม่เคยออกนอก server request นี้
-     */
     async generate(campaignId: number, sessionId: number, input: GenerateBookletsBody) {
         const campaign = await campaignRepo.findById(campaignId);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
@@ -44,12 +32,8 @@ export const bookletService = {
         const session = await sessionRepo.findById(sessionId, campaignId);
         if (!session) throw new AppError("ไม่พบวันสอบ", 404);
 
-        // verify manager keys และ derive combinedKey — ถ้า key ผิด → throw 401 ก่อนถึง generate
-        const combinedKey = await campaignKeyService.getCombinedKey(
-            campaignId,
-            input.manager1_key,
-            input.manager2_key,
-        );
+        // อ่าน MK จาก DB → ถอดรหัสด้วย MASTER_KEY → derive combinedKey
+        const combinedKey = await campaignKeyService.getCombinedKey(campaignId);
 
         // ตรวจ user_codes ซ้ำก่อน generate
         const uniqueCodes = new Set(input.user_codes);

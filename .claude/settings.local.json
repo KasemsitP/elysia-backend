@@ -4,7 +4,9 @@
       "Bash(find /c/Users/ToonToon/Desktop/ExamManagement/frontendExam/src -type f \\\\\\( -name \"*.store.ts\" -o -name \"*store*\" -o -name \"*client*\" -o -name \"useActiveCampaign*\" \\\\\\) 2>/dev/null)",
       "Read(//c/Users/ToonToon/Desktop/ExamManagement/frontendExam/src/**)",
       "Bash(bun tsc *)",
-      "mcp__codegraph__codegraph_explore"
+      "mcp__codegraph__codegraph_explore",
+      "mcp__codegraph__codegraph_files",
+      "Bash(bunx tsc *)"
     ]
   },
   "enableAllProjectMcpServers": true,

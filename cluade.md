@@ -1,5 +1,14 @@
 # CLAUDE.md
 
+## Skills
+Always apply debug-mantra when debugging.
+Always write post-mortem after a bug is fixed.
+Always scrutinize before making any code changes.
+Always use management-talk when writing updates for leadership or non-engineers.
+
+---
+
+
 ## Project Overview
 
 โปรเจกต์นี้คือระบบจัดการข้อสอบและตรวจคะแนนแบบปลอดภัย ใช้สำหรับบริหารงานสอบตั้งแต่การสร้างแคมเปญสอบ การกำหนดวันสอบ วิชา หัวข้อข้อสอบ ผู้เข้าสอบ ห้องสอบ การสร้างเล่มข้อสอบและ QR payload การจัดเล่มข้อสอบลงถุง การมอบหมายผู้ตรวจ การตรวจคะแนนแบบ draft การยืนยันคะแนนทั้งถุง การจัดการเหตุผิดปกติ ไปจนถึงการออกรายงาน PDF และการปลดล็อกข้อมูลผู้เข้าสอบหลังจบกระบวนการที่กำหนด
