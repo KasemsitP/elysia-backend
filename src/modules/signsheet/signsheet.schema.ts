@@ -10,3 +10,7 @@ export const signsheetQuerySchema = t.Object({
     limit:  t.Optional(t.Numeric()),
     search: t.Optional(t.String()),
 });
+
+export const signsheetPdfQuerySchema = t.Object({
+    search: t.Optional(t.String()),
+});
