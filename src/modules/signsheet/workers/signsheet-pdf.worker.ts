@@ -154,8 +154,10 @@ function drawSignsheet(doc: InstanceType<typeof PDFDocument>, data: SignsheetPdf
                     const qrY     = currentY + (ROW_H - qrSize) / 2;
                     const qrX3    = x3 + (COL_WIDTHS[2] - qrSize) / 2;
                     const qrX4    = x4 + (COL_WIDTHS[3] - qrSize) / 2;
-                    drawQrCode(doc, row.qrPayload, qrX3, qrY, qrSize);
-                    drawQrCode(doc, row.qrPayload, qrX4, qrY, qrSize);
+                    // สร้าง QR ครั้งเดียว วาดสองครั้ง
+                    const qr = QRCode.create(row.qrPayload, { errorCorrectionLevel: "M" });
+                    drawQrCode(doc, qr, qrX3, qrY, qrSize);
+                    drawQrCode(doc, qr, qrX4, qrY, qrSize);
                 } else {
                     const phY = currentY + ROW_H / 2 - 6;
                     doc.font("SarabunBold").fontSize(11).fillColor("#aaaaaa");
@@ -172,12 +174,11 @@ function drawSignsheet(doc: InstanceType<typeof PDFDocument>, data: SignsheetPdf
 
 function drawQrCode(
     doc: InstanceType<typeof PDFDocument>,
-    payload: string,
+    qr: ReturnType<typeof QRCode.create>,
     x: number,
     y: number,
     size: number,
 ) {
-    const qr          = QRCode.create(payload, { errorCorrectionLevel: "M" });
     const moduleCount = qr.modules.size;
     const moduleSize  = size / moduleCount;
 
@@ -185,10 +186,11 @@ function drawQrCode(
     for (let r = 0; r < moduleCount; r++) {
         for (let c = 0; c < moduleCount; c++) {
             if (qr.modules.data[r * moduleCount + c]) {
-                doc.rect(x + c * moduleSize, y + r * moduleSize, moduleSize, moduleSize).fill();
+                doc.rect(x + c * moduleSize, y + r * moduleSize, moduleSize, moduleSize);
             }
         }
     }
+    doc.fill();
     doc.restore();
 }
 
