@@ -4,11 +4,11 @@ import type {
     userQuerySchema,
     createUserBodySchema,
     updateUserBodySchema,
-    importUsersBodySchema,
+    importUsersSeqBodySchema,
 } from "./users.schema";
 
 export type UserIdParam = Static<typeof userIdParamSchema>;
 export type UserQuery = Static<typeof userQuerySchema>;
 export type CreateUserBody = Static<typeof createUserBodySchema>;
 export type UpdateUserBody = Static<typeof updateUserBodySchema>;
-export type ImportUsersBody = Static<typeof importUsersBodySchema>;
+export type ImportUsersSeqBody = Static<typeof importUsersSeqBodySchema>;

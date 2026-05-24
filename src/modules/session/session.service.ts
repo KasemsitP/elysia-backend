@@ -8,7 +8,13 @@ export const sessionService = {
     async findByCampaign(campaignId: number) {
         const campaign = await campaignRepo.findById(campaignId);
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-        const data = await sessionRepo.findByCampaign(campaignId);
+        const sessions = await sessionRepo.findByCampaign(campaignId);
+        const data = sessions.map(({ session_subjects, ...s }) => ({
+            ...s,
+            examSubjects: session_subjects
+                .map((ss) => ss.campaign_subjects.name)
+                .join("และ"),
+        }));
         return { success: true, message: "ดึงข้อมูลวันสอบสำเร็จ", data };
     },
 

@@ -5,7 +5,14 @@ export const sessionRepo = {
     async findByCampaign(campaign_id: number, tx?: Tx) {
         const client = tx ?? prisma;
         return client.sessions.findMany({
-            where: { campaign_id, deleted_at: null },
+            where:   { campaign_id, deleted_at: null },
+            include: {
+                session_subjects: {
+                    where:   { deleted_at: null },
+                    orderBy: { order_no: "asc" },
+                    include: { campaign_subjects: { select: { name: true } } },
+                },
+            },
             orderBy: { day_no: "asc" },
         });
     },

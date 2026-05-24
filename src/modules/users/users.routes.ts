@@ -6,7 +6,7 @@ import {
     userQuerySchema,
     createUserBodySchema,
     updateUserBodySchema,
-    importUsersBodySchema,
+    importUsersSeqBodySchema,
 } from "./users.schema";
 
 export const userRoutes = new Elysia({ prefix: "/users" })
@@ -39,9 +39,9 @@ export const userRoutes = new Elysia({ prefix: "/users" })
         "/import",
         ({ body, set }) => {
             set.status = 201;
-            return userService.import(body);
+            return userService.importSequential(body);
         },
-        { body: importUsersBodySchema },
+        { body: importUsersSeqBodySchema },
     )
     .patch(
         "/:userId",

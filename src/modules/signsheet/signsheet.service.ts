@@ -1,6 +1,8 @@
 import { AppError } from "../../cores/errors";
 import { prisma } from "../../cores/prisma";
 import { runSignsheetPdfWorker } from "./signsheet-pdf.runner";
+import { campaignKeyService } from "../campaign-keys/campaign-keys.service";
+import { decryptQrPayload } from "../../cores/qr-crypto";
 import type { signsheetQuerySchema } from "./signsheet.schema";
 import type { Static } from "elysia";
 import type { SignsheetRow, SignsheetPdfResult } from "./signsheet.type";
@@ -21,9 +23,20 @@ function formatThaiDate(date: Date): string {
     return `${day} ${month} พ.ศ. ${year}`;
 }
 
-function buildSessionText(session: { session_code: string; title: string | null; exam_date: Date; day_no: number }): string {
-    const label = session.title ?? session.session_code;
-    return `${label} วันที่ ${formatThaiDate(session.exam_date)}`;
+function formatThaiTime(date: Date): string {
+    const h = date.getHours().toString().padStart(2, "0");
+    const m = date.getMinutes().toString().padStart(2, "0");
+    return `${h}.${m}`;
+}
+
+function buildSessionText(
+    session: { exam_date: Date },
+    startAt: Date | null,
+    endAt:   Date | null,
+): string {
+    const datePart = `วันที่ ${formatThaiDate(session.exam_date)}`;
+    if (!startAt || !endAt) return datePart;
+    return `${datePart} เวลา ${formatThaiTime(startAt)} - ${formatThaiTime(endAt)} น.`;
 }
 
 export const signsheetService = {
@@ -209,29 +222,61 @@ export const signsheetService = {
                 },
             },
             orderBy: [
-                { room_code: "asc" },
                 { row_no:    "asc" },
                 { col_no:    "asc" },
+                { room_code: "asc" },
                 { users:     { user_code: "asc" } },
             ],
         });
 
-        const rows: SignsheetRow[] = uc.map((row, idx) => ({
-            index:      idx + 1,
-            userId:     row.users?.id          ?? null,
-            userCode:   row.users?.user_code   ?? null,
-            title:      row.users?.title       ?? null,
-            fullName:   row.users?.full_name   ?? null,
-            firstName:  row.users?.first_name  ?? null,
-            lastName:   row.users?.last_name   ?? null,
-            nationalId: row.users?.national_id ?? null,
-            roomCode:   row.room_code,
-            rowNo:      row.row_no,
-            colNo:      row.col_no,
-            seatNo:     row.row_no != null && row.col_no != null
-                ? `${row.row_no}/${row.col_no}`
-                : null,
-        }));
+        // Decrypt booklets → map userCode → original qrPayload
+        const qrMap = new Map<string, string>();
+        let combinedKey: Buffer | null = null;
+        try {
+            const [keyResult, booklets] = await Promise.all([
+                campaignKeyService.getCombinedKey(campaignId),
+                prisma.booklets.findMany({
+                    where:  { campaign_id: campaignId, session_id: sessionId, deleted_at: null },
+                    select: { user_code: true, qr_payload: true },
+                }),
+            ]);
+            combinedKey = keyResult;
+            const keyBase64 = combinedKey.toString("base64");
+            for (const b of booklets) {
+                if (!b.qr_payload || !b.user_code || qrMap.has(b.user_code)) continue;
+                try {
+                    const decoded = decryptQrPayload(b.qr_payload, keyBase64);
+                    qrMap.set(decoded.uc, b.qr_payload);
+                } catch (err) {
+                    console.error(`[signsheet] decrypt qr_payload ล้มเหลว (user_code=${b.user_code ?? "?"}):`, err);
+                }
+            }
+        } catch (err) {
+            console.error(`[signsheet] ไม่สามารถโหลด campaign keys (campaignId=${campaignId}):`, err);
+        } finally {
+            combinedKey?.fill(0);
+        }
+
+        const rows: SignsheetRow[] = uc.map((row, idx) => {
+            const userCode = row.users?.user_code ?? null;
+            return {
+                index:      idx + 1,
+                userId:     row.users?.id          ?? null,
+                userCode,
+                title:      row.users?.title       ?? null,
+                fullName:   row.users?.full_name   ?? null,
+                firstName:  row.users?.first_name  ?? null,
+                lastName:   row.users?.last_name   ?? null,
+                nationalId: row.users?.national_id ?? null,
+                roomCode:   row.room_code,
+                rowNo:      row.row_no,
+                colNo:      row.col_no,
+                seatNo:     row.row_no != null && row.col_no != null
+                    ? `${row.row_no}/${row.col_no}`
+                    : null,
+                qrPayload:  userCode ? (qrMap.get(userCode) ?? null) : null,
+            };
+        });
 
         // วิชาในวันที่สอบ — ดึงจาก session_subjects → campaign_subjects.name
         const sessionSubjectsData = await prisma.session_subjects.findMany({
@@ -239,13 +284,21 @@ export const signsheetService = {
             include: { campaign_subjects: { select: { name: true } } },
             orderBy: { order_no: "asc" },
         });
-        const examSubjects  = sessionSubjectsData.map((ss) => ss.campaign_subjects.name).join("และ");
+        const examSubjects = sessionSubjectsData.map((ss) => ss.campaign_subjects.name).join("และ");
+
+        // เวลาสอบ — ใช้ start_at เร็วสุดและ end_at ช้าสุดของวิชาในวันนั้น
+        const startAt = sessionSubjectsData.length > 0
+            ? sessionSubjectsData.reduce((min, ss) => ss.start_at < min ? ss.start_at : min, sessionSubjectsData[0]!.start_at)
+            : null;
+        const endAt   = sessionSubjectsData.length > 0
+            ? sessionSubjectsData.reduce((max, ss) => ss.end_at > max ? ss.end_at : max, sessionSubjectsData[0]!.end_at)
+            : null;
 
         // campaign_size + year_be เช่น "สนามใหญ่ 2571"
         const campaignLabel = `${campaign.campaign_size} ${campaign.year_be}`;
 
-        // sessionText สร้างจาก session title + วันที่แบบไทย
-        const sessionText   = buildSessionText(session);
+        // sessionText สร้างจากวันที่ + เวลาสอบ
+        const sessionText   = buildSessionText(session, startAt, endAt);
 
         return runSignsheetPdfWorker({
             campaign: {

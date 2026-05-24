@@ -57,6 +57,17 @@ export const campaignRepo = {
         });
     },
 
+    async existsActiveCampaign(tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.exam_campaigns.findFirst({
+            where: {
+                is_active: true,
+                deleted_at: null,
+            },
+        });
+
+    },
+
     async create(data: CreateCampaignBody, tx?: Tx) {
         const client = tx ?? prisma;
         return client.exam_campaigns.create({
@@ -98,6 +109,11 @@ export const campaignRepo = {
     async setIsUnlock(id: number, is_unlock: boolean, tx?: Tx) {
         const client = tx ?? prisma;
         return client.exam_campaigns.update({ where: { id }, data: { is_unlock } });
+    },
+
+    async setIsEncrypted(id: number, is_encrypted: boolean, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.exam_campaigns.update({ where: { id }, data: { is_encrypted } });
     },
 
     async softDelete(id: number, tx?: Tx) {

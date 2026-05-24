@@ -22,7 +22,9 @@ export const campaignService = {
 
     async create(input: CreateCampaignBody) {
         const dup = await campaignRepo.existsByYearAndSize(input.year_be, input.campaign_size);
+        const isActiveDup = await campaignRepo.existsActiveCampaign();
         if (dup) throw new AppError(`รอบสอบปี ${input.year_be} ขนาด ${input.campaign_size} มีอยู่แล้ว`, 409);
+        if (isActiveDup && input.is_active) throw new AppError(`รอบสอบปี ${input.year_be} กำลังใช้งานอยู่แล้ว กรุณาปิดรอบสอบก่อนเปิดรอบใหม่`, 409);
         const data = await campaignRepo.create(input);
         return { success: true, message: "สร้างรอบสอบสำเร็จ", data };
     },
@@ -50,6 +52,16 @@ export const campaignService = {
         if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
         const data = await campaignRepo.setQrActive(campaignId, input.qr_active);
         return { success: true, message: `${input.qr_active ? "เปิด" : "ปิด"}QR สำเร็จ`, data };
+    },
+
+    async getEncryptionStatus(campaignId: number) {
+        const campaign = await campaignRepo.findById(campaignId);
+        if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
+        return {
+            success: true,
+            message: "ดึงสถานะการเข้ารหัสสำเร็จ",
+            data: { campaign_id: campaignId, is_encrypted: campaign.is_encrypted },
+        };
     },
 
     async delete(campaignId: number) {

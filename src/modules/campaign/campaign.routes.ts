@@ -19,6 +19,9 @@ const readRoutes = new Elysia({ prefix: "/campaigns" })
     }, { params: campaignIdParamSchema })
     .get("/:campaignId/full", ({ params, set }) => {
         set.status = 200; return campaignService.findByIdFull(params.campaignId);
+    }, { params: campaignIdParamSchema })
+    .get("/:campaignId/encryption-status", ({ params, set }) => {
+        set.status = 200; return campaignService.getEncryptionStatus(params.campaignId);
     }, { params: campaignIdParamSchema });
 
 // Write → ADMIN or MANAGER only

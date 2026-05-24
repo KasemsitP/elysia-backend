@@ -26,7 +26,7 @@ try {
     const records: BookletRecord[] = user_codes.map((user_code) => {
         const nonce = randomBytes(8).toString("hex");
         const qr_payload = encryptQrPayload(
-            { cid: campaignId, sid: sessionId, user_code, nonce },
+            { cid: campaignId, sid: sessionId, uc: user_code, nonce },
             combinedKeyBase64,
         );
         return { campaign_id: campaignId, session_id: sessionId, qr_payload, user_code };

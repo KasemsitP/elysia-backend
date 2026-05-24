@@ -46,6 +46,7 @@ export type Exam_campaignsMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
+  is_encrypted: boolean | null
 }
 
 export type Exam_campaignsMaxAggregateOutputType = {
@@ -60,6 +61,7 @@ export type Exam_campaignsMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
+  is_encrypted: boolean | null
 }
 
 export type Exam_campaignsCountAggregateOutputType = {
@@ -74,6 +76,7 @@ export type Exam_campaignsCountAggregateOutputType = {
   created_at: number
   updated_at: number
   deleted_at: number
+  is_encrypted: number
   _all: number
 }
 
@@ -98,6 +101,7 @@ export type Exam_campaignsMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  is_encrypted?: true
 }
 
 export type Exam_campaignsMaxAggregateInputType = {
@@ -112,6 +116,7 @@ export type Exam_campaignsMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  is_encrypted?: true
 }
 
 export type Exam_campaignsCountAggregateInputType = {
@@ -126,6 +131,7 @@ export type Exam_campaignsCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  is_encrypted?: true
   _all?: true
 }
 
@@ -227,6 +233,7 @@ export type Exam_campaignsGroupByOutputType = {
   created_at: Date
   updated_at: Date
   deleted_at: Date | null
+  is_encrypted: boolean | null
   _count: Exam_campaignsCountAggregateOutputType | null
   _avg: Exam_campaignsAvgAggregateOutputType | null
   _sum: Exam_campaignsSumAggregateOutputType | null
@@ -264,6 +271,7 @@ export type exam_campaignsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"exam_campaigns"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"exam_campaigns"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"exam_campaigns"> | Date | string | null
+  is_encrypted?: Prisma.BoolNullableFilter<"exam_campaigns"> | boolean | null
   accounts?: Prisma.AccountsListRelationFilter
   bags?: Prisma.BagsListRelationFilter
   booklet_incident_reports?: Prisma.Booklet_incident_reportsListRelationFilter
@@ -294,6 +302,7 @@ export type exam_campaignsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_encrypted?: Prisma.SortOrderInput | Prisma.SortOrder
   accounts?: Prisma.accountsOrderByRelationAggregateInput
   bags?: Prisma.bagsOrderByRelationAggregateInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsOrderByRelationAggregateInput
@@ -329,6 +338,7 @@ export type exam_campaignsWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"exam_campaigns"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"exam_campaigns"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"exam_campaigns"> | Date | string | null
+  is_encrypted?: Prisma.BoolNullableFilter<"exam_campaigns"> | boolean | null
   accounts?: Prisma.AccountsListRelationFilter
   bags?: Prisma.BagsListRelationFilter
   booklet_incident_reports?: Prisma.Booklet_incident_reportsListRelationFilter
@@ -359,6 +369,7 @@ export type exam_campaignsOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  is_encrypted?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.exam_campaignsCountOrderByAggregateInput
   _avg?: Prisma.exam_campaignsAvgOrderByAggregateInput
   _max?: Prisma.exam_campaignsMaxOrderByAggregateInput
@@ -381,6 +392,7 @@ export type exam_campaignsScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"exam_campaigns"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"exam_campaigns"> | Date | string
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"exam_campaigns"> | Date | string | null
+  is_encrypted?: Prisma.BoolNullableWithAggregatesFilter<"exam_campaigns"> | boolean | null
 }
 
 export type exam_campaignsCreateInput = {
@@ -394,6 +406,7 @@ export type exam_campaignsCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -424,6 +437,7 @@ export type exam_campaignsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -453,6 +467,7 @@ export type exam_campaignsUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -483,6 +498,7 @@ export type exam_campaignsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -513,6 +529,7 @@ export type exam_campaignsCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
 }
 
 export type exam_campaignsUpdateManyMutationInput = {
@@ -526,6 +543,7 @@ export type exam_campaignsUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
 }
 
 export type exam_campaignsUncheckedUpdateManyInput = {
@@ -540,6 +558,7 @@ export type exam_campaignsUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
 }
 
 export type Exam_campaignsNullableScalarRelationFilter = {
@@ -575,6 +594,7 @@ export type exam_campaignsCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  is_encrypted?: Prisma.SortOrder
 }
 
 export type exam_campaignsAvgOrderByAggregateInput = {
@@ -593,6 +613,7 @@ export type exam_campaignsMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  is_encrypted?: Prisma.SortOrder
 }
 
 export type exam_campaignsMinOrderByAggregateInput = {
@@ -607,6 +628,7 @@ export type exam_campaignsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  is_encrypted?: Prisma.SortOrder
 }
 
 export type exam_campaignsSumOrderByAggregateInput = {
@@ -669,6 +691,10 @@ export type exam_campaignsUpdateOneRequiredWithoutCampaign_keysNestedInput = {
   upsert?: Prisma.exam_campaignsUpsertWithoutCampaign_keysInput
   connect?: Prisma.exam_campaignsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.exam_campaignsUpdateToOneWithWhereWithoutCampaign_keysInput, Prisma.exam_campaignsUpdateWithoutCampaign_keysInput>, Prisma.exam_campaignsUncheckedUpdateWithoutCampaign_keysInput>
+}
+
+export type NullableBoolFieldUpdateOperationsInput = {
+  set?: boolean | null
 }
 
 export type exam_campaignsCreateNestedOneWithoutExam_roomsInput = {
@@ -856,6 +882,7 @@ export type exam_campaignsCreateWithoutAccountsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
@@ -885,6 +912,7 @@ export type exam_campaignsUncheckedCreateWithoutAccountsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -929,6 +957,7 @@ export type exam_campaignsUpdateWithoutAccountsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
@@ -958,6 +987,7 @@ export type exam_campaignsUncheckedUpdateWithoutAccountsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -986,6 +1016,7 @@ export type exam_campaignsCreateWithoutBagsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
@@ -1015,6 +1046,7 @@ export type exam_campaignsUncheckedCreateWithoutBagsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -1059,6 +1091,7 @@ export type exam_campaignsUpdateWithoutBagsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
@@ -1088,6 +1121,7 @@ export type exam_campaignsUncheckedUpdateWithoutBagsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -1116,6 +1150,7 @@ export type exam_campaignsCreateWithoutBookletsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -1145,6 +1180,7 @@ export type exam_campaignsUncheckedCreateWithoutBookletsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -1189,6 +1225,7 @@ export type exam_campaignsUpdateWithoutBookletsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -1218,6 +1255,7 @@ export type exam_campaignsUncheckedUpdateWithoutBookletsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -1246,6 +1284,7 @@ export type exam_campaignsCreateWithoutCampaign_keysInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -1275,6 +1314,7 @@ export type exam_campaignsUncheckedCreateWithoutCampaign_keysInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -1319,6 +1359,7 @@ export type exam_campaignsUpdateWithoutCampaign_keysInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -1348,6 +1389,7 @@ export type exam_campaignsUncheckedUpdateWithoutCampaign_keysInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -1376,6 +1418,7 @@ export type exam_campaignsCreateWithoutExam_roomsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -1405,6 +1448,7 @@ export type exam_campaignsUncheckedCreateWithoutExam_roomsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -1449,6 +1493,7 @@ export type exam_campaignsUpdateWithoutExam_roomsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -1478,6 +1523,7 @@ export type exam_campaignsUncheckedUpdateWithoutExam_roomsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -1506,6 +1552,7 @@ export type exam_campaignsCreateWithoutGradersInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -1535,6 +1582,7 @@ export type exam_campaignsUncheckedCreateWithoutGradersInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -1579,6 +1627,7 @@ export type exam_campaignsUpdateWithoutGradersInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -1608,6 +1657,7 @@ export type exam_campaignsUncheckedUpdateWithoutGradersInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -1636,6 +1686,7 @@ export type exam_campaignsCreateWithoutSessionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -1665,6 +1716,7 @@ export type exam_campaignsUncheckedCreateWithoutSessionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -1709,6 +1761,7 @@ export type exam_campaignsUpdateWithoutSessionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -1738,6 +1791,7 @@ export type exam_campaignsUncheckedUpdateWithoutSessionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -1766,6 +1820,7 @@ export type exam_campaignsCreateWithoutTwofactor_sessionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -1795,6 +1850,7 @@ export type exam_campaignsUncheckedCreateWithoutTwofactor_sessionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -1839,6 +1895,7 @@ export type exam_campaignsUpdateWithoutTwofactor_sessionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -1868,6 +1925,7 @@ export type exam_campaignsUncheckedUpdateWithoutTwofactor_sessionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -1896,6 +1954,7 @@ export type exam_campaignsCreateWithoutUser_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -1925,6 +1984,7 @@ export type exam_campaignsUncheckedCreateWithoutUser_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -1969,6 +2029,7 @@ export type exam_campaignsUpdateWithoutUser_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -1998,6 +2059,7 @@ export type exam_campaignsUncheckedUpdateWithoutUser_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -2026,6 +2088,7 @@ export type exam_campaignsCreateWithoutBooklet_incident_reportsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutExam_campaignsInput
@@ -2055,6 +2118,7 @@ export type exam_campaignsUncheckedCreateWithoutBooklet_incident_reportsInput = 
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -2099,6 +2163,7 @@ export type exam_campaignsUpdateWithoutBooklet_incident_reportsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutExam_campaignsNestedInput
@@ -2128,6 +2193,7 @@ export type exam_campaignsUncheckedUpdateWithoutBooklet_incident_reportsInput = 
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -2156,6 +2222,7 @@ export type exam_campaignsCreateWithoutBooklet_question_notesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -2185,6 +2252,7 @@ export type exam_campaignsUncheckedCreateWithoutBooklet_question_notesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -2229,6 +2297,7 @@ export type exam_campaignsUpdateWithoutBooklet_question_notesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -2258,6 +2327,7 @@ export type exam_campaignsUncheckedUpdateWithoutBooklet_question_notesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -2286,6 +2356,7 @@ export type exam_campaignsCreateWithoutCampaign_settingsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -2315,6 +2386,7 @@ export type exam_campaignsUncheckedCreateWithoutCampaign_settingsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -2359,6 +2431,7 @@ export type exam_campaignsUpdateWithoutCampaign_settingsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -2388,6 +2461,7 @@ export type exam_campaignsUncheckedUpdateWithoutCampaign_settingsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -2416,6 +2490,7 @@ export type exam_campaignsCreateWithoutCampaign_subjectsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -2445,6 +2520,7 @@ export type exam_campaignsUncheckedCreateWithoutCampaign_subjectsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -2489,6 +2565,7 @@ export type exam_campaignsUpdateWithoutCampaign_subjectsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -2518,6 +2595,7 @@ export type exam_campaignsUncheckedUpdateWithoutCampaign_subjectsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -2546,6 +2624,7 @@ export type exam_campaignsCreateWithoutNotification_messagesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -2575,6 +2654,7 @@ export type exam_campaignsUncheckedCreateWithoutNotification_messagesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -2619,6 +2699,7 @@ export type exam_campaignsUpdateWithoutNotification_messagesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -2648,6 +2729,7 @@ export type exam_campaignsUncheckedUpdateWithoutNotification_messagesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -2676,6 +2758,7 @@ export type exam_campaignsCreateWithoutQr_scan_logsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -2705,6 +2788,7 @@ export type exam_campaignsUncheckedCreateWithoutQr_scan_logsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -2749,6 +2833,7 @@ export type exam_campaignsUpdateWithoutQr_scan_logsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -2778,6 +2863,7 @@ export type exam_campaignsUncheckedUpdateWithoutQr_scan_logsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -2806,6 +2892,7 @@ export type exam_campaignsCreateWithoutQuestion_choice_groupsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutExam_campaignsInput
@@ -2835,6 +2922,7 @@ export type exam_campaignsUncheckedCreateWithoutQuestion_choice_groupsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  is_encrypted?: boolean | null
   accounts?: Prisma.accountsUncheckedCreateNestedManyWithoutExam_campaignsInput
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutExam_campaignsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutExam_campaignsInput
@@ -2879,6 +2967,7 @@ export type exam_campaignsUpdateWithoutQuestion_choice_groupsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutExam_campaignsNestedInput
@@ -2908,6 +2997,7 @@ export type exam_campaignsUncheckedUpdateWithoutQuestion_choice_groupsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  is_encrypted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   accounts?: Prisma.accountsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   bags?: Prisma.bagsUncheckedUpdateManyWithoutExam_campaignsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutExam_campaignsNestedInput
@@ -3103,6 +3193,7 @@ export type exam_campaignsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
+  is_encrypted?: boolean
   accounts?: boolean | Prisma.exam_campaigns$accountsArgs<ExtArgs>
   bags?: boolean | Prisma.exam_campaigns$bagsArgs<ExtArgs>
   booklet_incident_reports?: boolean | Prisma.exam_campaigns$booklet_incident_reportsArgs<ExtArgs>
@@ -3136,9 +3227,10 @@ export type exam_campaignsSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
+  is_encrypted?: boolean
 }
 
-export type exam_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year_be" | "site" | "campaign_size" | "is_active" | "is_unlock" | "qr_active" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["exam_campaigns"]>
+export type exam_campaignsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "year_be" | "site" | "campaign_size" | "is_active" | "is_unlock" | "qr_active" | "created_at" | "updated_at" | "deleted_at" | "is_encrypted", ExtArgs["result"]["exam_campaigns"]>
 export type exam_campaignsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.exam_campaigns$accountsArgs<ExtArgs>
   bags?: boolean | Prisma.exam_campaigns$bagsArgs<ExtArgs>
@@ -3191,6 +3283,7 @@ export type $exam_campaignsPayload<ExtArgs extends runtime.Types.Extensions.Inte
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
+    is_encrypted: boolean | null
   }, ExtArgs["result"]["exam_campaigns"]>
   composites: {}
 }
@@ -3587,6 +3680,7 @@ export interface exam_campaignsFieldRefs {
   readonly created_at: Prisma.FieldRef<"exam_campaigns", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"exam_campaigns", 'DateTime'>
   readonly deleted_at: Prisma.FieldRef<"exam_campaigns", 'DateTime'>
+  readonly is_encrypted: Prisma.FieldRef<"exam_campaigns", 'Boolean'>
 }
     
 

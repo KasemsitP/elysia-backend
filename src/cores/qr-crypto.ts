@@ -24,7 +24,7 @@ const TAG_BYTES = 16; // GCM auth tag
 export type QrPayloadData = {
     cid: number;
     sid: number;
-    user_code: string;
+    uc: string;
     nonce: string;
 };
 

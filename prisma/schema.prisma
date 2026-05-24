@@ -193,6 +193,7 @@ model exam_campaigns {
   created_at               DateTime                   @default(now()) @db.DateTime(0)
   updated_at               DateTime                   @default(now()) @db.DateTime(0)
   deleted_at               DateTime?                  @db.DateTime(0)
+  is_encrypted             Boolean?                   @default(false)
   accounts                 accounts[]
   bags                     bags[]
   booklet_incident_reports booklet_incident_reports[]
@@ -639,7 +640,7 @@ model user_sessions {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model users {
   id                  Int              @id @default(autoincrement())
-  user_code           String           @unique(map: "uq_users_user_code") @db.VarChar(32)
+  user_code           String           @db.VarChar(32)
   title               String?          @db.VarChar(32)
   gender              String?          @db.VarChar(20)
   full_name           String           @db.Text
@@ -664,7 +665,7 @@ model users {
   university          String?          @db.VarChar(128)
   user_campaigns      user_campaigns[]
 
-  @@index([first_name, last_name], map: "idx_users_name")
+  @@index([user_code], map: "user_code")
 }
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments

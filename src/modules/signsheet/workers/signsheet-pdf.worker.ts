@@ -1,5 +1,6 @@
 import { parentPort, workerData, isMainThread } from "worker_threads";
 import PDFDocument from "pdfkit";
+import QRCode from "qrcode";
 import path from "path";
 import fs from "fs";
 import os from "os";
@@ -75,27 +76,30 @@ function drawSignsheet(doc: InstanceType<typeof PDFDocument>, data: SignsheetPdf
 
         doc.addPage();
 
+        // ── Page number (top-right) ───────────────────────────────────────
+        doc.font("Sarabun").fontSize(13).fillColor("#444444").text(
+            `หน้า ${pageNo} / ${totalPages}`,
+            x1,
+            28,
+            { width: TABLE_WIDTH, align: "right" },
+        );
+
         // ── Page header ──────────────────────────────────────────────────
         const titleLine = data.examSubjects
-            ? `ใบเซ็นชื่อสอบวิชา ${data.examSubjects}`
-            : "ใบเซ็นชื่อผู้เข้าสอบ";
+            ? `ใบเซ็นชื่อสอบวิชา ${data.examSubjects} ${data.campaignLabel}`
+            : `ใบเซ็นชื่อผู้เข้าสอบ ${data.campaignLabel}`;
 
         doc.font("SarabunBold").fontSize(16).fillColor("black").text(titleLine, { align: "center" });
         doc.moveDown(0.2);
 
         doc.font("Sarabun").fontSize(16).text(data.sessionText, { align: "center" });
-        doc.moveDown(0.1);
+        doc.moveDown(0.2);
 
         doc.font("Sarabun").fontSize(16).text(`ณ ${data.campaign.site ?? "-"}`, { align: "center" });
-        doc.moveDown(0.1);
-        doc.font("Sarabun").fontSize(16).text(data.campaignLabel, { align: "center" });
-        doc.moveDown(0.1);
-
-        doc.fillColor("#666666").text(
-            `จำนวน ${rows.length} คน | หน้า ${pageNo}/${totalPages}`,
-            { align: "center" },
-        );
         doc.moveDown(0.5);
+
+        // doc.font("Sarabun").fontSize(16).text(`ผู้เข้าสอบจำนวน ${rows.length} คน`, { align: "center" });
+        // doc.moveDown(0.5);
 
         // ── Table frame ───────────────────────────────────────────────────
         const startY      = doc.y;
@@ -144,17 +148,48 @@ function drawSignsheet(doc: InstanceType<typeof PDFDocument>, data: SignsheetPdf
                 doc.text(`แถวที่ ${row.rowNo ?? "-"} ลำดับที่ ${row.colNo ?? "-"}`,  infoX, infoY); infoY += 20;
                 doc.text("ลายเซ็น..................................................",  infoX, infoY);
 
-                // QR columns: ว่างเปล่า (ไม่มี QR ในหน้านี้)
-                const phY = currentY + ROW_H / 2 - 6;
-                doc.font("SarabunBold").fontSize(11).fillColor("#aaaaaa");
-                doc.text("-", x3, phY, { width: COL_WIDTHS[2], align: "center" });
-                doc.text("-", x4, phY, { width: COL_WIDTHS[3], align: "center" });
-                doc.fillColor("black");
+                // QR columns
+                if (row.qrPayload) {
+                    const qrSize  = 90;
+                    const qrY     = currentY + (ROW_H - qrSize) / 2;
+                    const qrX3    = x3 + (COL_WIDTHS[2] - qrSize) / 2;
+                    const qrX4    = x4 + (COL_WIDTHS[3] - qrSize) / 2;
+                    drawQrCode(doc, row.qrPayload, qrX3, qrY, qrSize);
+                    drawQrCode(doc, row.qrPayload, qrX4, qrY, qrSize);
+                } else {
+                    const phY = currentY + ROW_H / 2 - 6;
+                    doc.font("SarabunBold").fontSize(11).fillColor("#aaaaaa");
+                    doc.text("-", x3, phY, { width: COL_WIDTHS[2], align: "center" });
+                    doc.text("-", x4, phY, { width: COL_WIDTHS[3], align: "center" });
+                }
             }
 
             currentY += ROW_H;
         }
+
     }
+}
+
+function drawQrCode(
+    doc: InstanceType<typeof PDFDocument>,
+    payload: string,
+    x: number,
+    y: number,
+    size: number,
+) {
+    const qr          = QRCode.create(payload, { errorCorrectionLevel: "M" });
+    const moduleCount = qr.modules.size;
+    const moduleSize  = size / moduleCount;
+
+    doc.save().fillColor("black");
+    for (let r = 0; r < moduleCount; r++) {
+        for (let c = 0; c < moduleCount; c++) {
+            if (qr.modules.data[r * moduleCount + c]) {
+                doc.rect(x + c * moduleSize, y + r * moduleSize, moduleSize, moduleSize).fill();
+            }
+        }
+    }
+    doc.restore();
 }
 
 run();

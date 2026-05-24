@@ -29,6 +29,14 @@ export const bookletRoutes = new Elysia()
         { params: bookletIdParamSchema },
     )
     .post(
+        "/campaigns/:campaignId/booklets/generate-all",
+        ({ params, set }) => {
+            set.status = 201;
+            return bookletService.generateAll(params.campaignId);
+        },
+        { params: bookletCampaignParamSchema },
+    )
+    .post(
         "/campaigns/:campaignId/sessions/:sessionId/booklets/generate",
         ({ params, body, set }) => {
             set.status = 201;

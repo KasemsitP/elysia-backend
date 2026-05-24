@@ -151,9 +151,68 @@ export const campaignKeyService = {
         return campaignKeyService.getCombinedKey(campaignId);
     },
 
+    /**
+     * Manager กรอก key ของตัวเองทีละคน — ดึง manager_order จาก account ใน DB
+     * ไม่ต้องส่ง account_id มาใน body (ดึงจาก session แทน)
+     */
+    async setMyKey(campaignId: number, accountId: number, keyPlaintext: string) {
+        const campaign = await prisma.exam_campaigns.findFirst({
+            where: { id: campaignId, deleted_at: null },
+        });
+        if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
+
+        const account = await prisma.accounts.findFirst({
+            where: { id: accountId, role_id: 3, active: true, deleted_at: null },
+        });
+        if (!account) throw new AppError("ไม่พบบัญชี Manager หรือไม่มีสิทธิ์", 403);
+        if (account.manager_order !== 1 && account.manager_order !== 2) {
+            throw new AppError("บัญชีนี้ไม่มี manager_order — กรุณาตั้งค่าก่อน", 400);
+        }
+
+        const orderNum = account.manager_order as 1 | 2;
+        const wrapped = wrapManagerKey(keyPlaintext);
+
+        await prisma.$transaction(async (tx) => {
+            await tx.campaign_keys.updateMany({
+                where: { campaign_id: campaignId, order_num: orderNum },
+                data: { active: false },
+            });
+            await tx.campaign_keys.create({
+                data: {
+                    campaign_id:    campaignId,
+                    account_id:     accountId,
+                    order_num:      orderNum,
+                    key_ciphertext: wrapped,
+                    iv:             null,
+                    algor:          "AES-256-GCM",
+                    active:         true,
+                },
+            });
+        });
+
+        return {
+            success: true,
+            message: `บันทึก Manager Key ${orderNum} สำเร็จ`,
+            data: { campaign_id: campaignId, manager_order: orderNum, full_name: account.full_name },
+        };
+    },
+
+    async getAvailableManagers() {
+        const managers = await prisma.accounts.findMany({
+            where: { role_id: 3, active: true, deleted_at: null },
+            select: { id: true, full_name: true, manager_order: true },
+            orderBy: { manager_order: "asc" },
+        });
+        return {
+            success: true,
+            message: "ดึงรายชื่อ Manager สำเร็จ",
+            data: managers,
+        };
+    },
+
     async getKeyStatus(campaignId: number) {
         const records = await prisma.campaign_keys.findMany({
-            where: { campaign_id: campaignId, deleted_at: null },
+            where: { campaign_id: campaignId, active: true, deleted_at: null },
             select: {
                 order_num: true,
                 algor: true,
@@ -195,6 +254,19 @@ export const campaignKeyService = {
             data: { active: false },
         });
         return campaignKeyService.setupKeys(campaignId, m1AccountId, mk1NewPlaintext, m2AccountId, mk2NewPlaintext);
+    },
+
+    /**
+     * ADMIN: ทดสอบว่าสามารถ derive combinedKey ได้จริง — ใช้เป็น "readiness check"
+     * ก่อนสร้าง booklets/QR payloads
+     */
+    async validateEncryptionReady(campaignId: number) {
+        const combined = await campaignKeyService.getCombinedKey(campaignId);
+        combined.fill(0); // zero ทันทีหลัง verify
+        return {
+            success: true,
+            message: "คีย์พร้อมใช้งาน — สามารถสร้าง QR payload ได้",
+        };
     },
 
     /**

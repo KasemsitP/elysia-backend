@@ -45,7 +45,7 @@ export const userRepo = {
                 first_name_en: data.first_name_en ?? null,
                 last_name_en: data.last_name_en ?? null,
                 national_id: data.national_id ?? null,
-                birth_date: data.birth_date ? new Date(data.birth_date) : null,
+                birth_date: (() => { const d = data.birth_date ? new Date(data.birth_date) : null; return d && !isNaN(d.getTime()) ? d : null; })(),
                 email: data.email ?? null,
                 phone: data.phone ?? null,
                 mobile: data.mobile ?? null,

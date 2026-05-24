@@ -11,6 +11,7 @@ export interface SignsheetRow {
     rowNo:      number | null;
     colNo:      number | null;
     seatNo:     string | null;
+    qrPayload:  string | null;
 }
 
 export interface SignsheetCampaign {

@@ -90,6 +90,79 @@ export const bookletService = {
         return { success: true, message: "อัปเดตเล่มข้อสอบสำเร็จ", data: safeData };
     },
 
+    async generateAll(campaignId: number) {
+        const campaign = await campaignRepo.findById(campaignId);
+        if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
+
+        const sessions = await prisma.sessions.findMany({
+            where:   { campaign_id: campaignId, deleted_at: null },
+            select:  { id: true },
+            orderBy: { day_no: "asc" },
+        });
+        if (sessions.length === 0) throw new AppError("ไม่มีวันสอบในรอบสอบนี้", 400);
+
+        const combinedKey = await campaignKeyService.getCombinedKey(campaignId);
+        const combinedKeyBase64 = combinedKey.toString("base64");
+
+        const summary: { session_id: number; generated: number; skipped: number }[] = [];
+        let totalGenerated = 0;
+
+        try {
+            for (const session of sessions) {
+                const rows = await prisma.$queryRaw<{ user_code: string }[]>`
+                    SELECT u.user_code
+                    FROM user_sessions us
+                    INNER JOIN user_campaigns uc ON uc.id = us.user_campaign_id AND uc.deleted_at IS NULL
+                    INNER JOIN users u ON u.id = uc.user_id AND u.deleted_at IS NULL
+                    WHERE us.session_id = ${session.id}
+                      AND us.campaign_id = ${campaignId}
+                      AND us.deleted_at IS NULL
+                `;
+                const allCodes = rows.map((r) => r.user_code).filter(Boolean);
+
+                if (allCodes.length === 0) {
+                    summary.push({ session_id: session.id, generated: 0, skipped: 0 });
+                    continue;
+                }
+
+                const existing = await prisma.booklets.findMany({
+                    where:  { campaign_id: campaignId, session_id: session.id, deleted_at: null },
+                    select: { user_code: true },
+                });
+                const existingSet = new Set(
+                    existing.map((b) => b.user_code).filter((c): c is string => !!c),
+                );
+                const newCodes = allCodes.filter((c) => !existingSet.has(c));
+
+                if (newCodes.length === 0) {
+                    summary.push({ session_id: session.id, generated: 0, skipped: allCodes.length });
+                    continue;
+                }
+
+                const records = await runBookletEncryptWorker(newCodes, combinedKeyBase64, campaignId, session.id);
+
+                await prisma.$transaction(async (tx) => {
+                    for (let i = 0; i < records.length; i += DB_BATCH_SIZE) {
+                        await bookletRepo.createMany(records.slice(i, i + DB_BATCH_SIZE), tx);
+                    }
+                });
+
+                summary.push({ session_id: session.id, generated: newCodes.length, skipped: existingSet.size });
+                totalGenerated += newCodes.length;
+            }
+        } finally {
+            combinedKey.fill(0);
+        }
+
+        await campaignRepo.setIsEncrypted(campaignId, true);
+
+        return {
+            success: true,
+            message: `สร้างเล่มข้อสอบทั้งรอบสอบสำเร็จ สร้างทั้งหมด ${totalGenerated} เล่ม`,
+            data: { total_generated: totalGenerated, sessions: summary },
+        };
+    },
+
     async delete(bookletId: number) {
         const booklet = await bookletRepo.findById(bookletId);
         if (!booklet) throw new AppError("ไม่พบเล่มข้อสอบ", 404);

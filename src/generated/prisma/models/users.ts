@@ -402,10 +402,10 @@ export type usersOrderByWithRelationInput = {
 
 export type usersWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  user_code?: string
   AND?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
   OR?: Prisma.usersWhereInput[]
   NOT?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
+  user_code?: Prisma.StringFilter<"users"> | string
   title?: Prisma.StringNullableFilter<"users"> | string | null
   gender?: Prisma.StringNullableFilter<"users"> | string | null
   full_name?: Prisma.StringFilter<"users"> | string
@@ -429,7 +429,7 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   study_degree?: Prisma.StringNullableFilter<"users"> | string | null
   university?: Prisma.StringNullableFilter<"users"> | string | null
   user_campaigns?: Prisma.User_campaignsListRelationFilter
-}, "id" | "user_code">
+}, "id">
 
 export type usersOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

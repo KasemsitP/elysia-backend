@@ -51,6 +51,30 @@ export const updateUserBodySchema = t.Object({
     university: t.Optional(t.Nullable(t.String())),
 });
 
-export const importUsersBodySchema = t.Object({
-    users: t.Array(createUserBodySchema, { minItems: 1 }),
+// Import แบบ auto-generate user_code ตามลำดับ (ไม่ต้องส่ง user_code มา)
+export const importUsersSeqRowSchema = t.Object({
+    full_name:           t.String(),
+    title:               t.Optional(t.Nullable(t.String())),
+    gender:              t.Optional(t.Nullable(t.String())),
+    first_name:          t.Optional(t.Nullable(t.String())),
+    last_name:           t.Optional(t.Nullable(t.String())),
+    first_name_en:       t.Optional(t.Nullable(t.String())),
+    last_name_en:        t.Optional(t.Nullable(t.String())),
+    national_id:         t.Optional(t.Nullable(t.String())),
+    birth_date:          t.Optional(t.Nullable(t.String())),
+    email:               t.Optional(t.Nullable(t.String())),
+    phone:               t.Optional(t.Nullable(t.String())),
+    mobile:              t.Optional(t.Nullable(t.String())),
+    address:             t.Optional(t.Nullable(t.String())),
+    study_degree:        t.Optional(t.Nullable(t.String())),
+    university:          t.Optional(t.Nullable(t.String())),
+    ethnicity:           t.Optional(t.Nullable(t.String())),
+    nationality_birth:   t.Optional(t.Nullable(t.String())),
+    nationality_current: t.Optional(t.Nullable(t.String())),
+    religion:            t.Optional(t.Nullable(t.String())),
+});
+
+export const importUsersSeqBodySchema = t.Object({
+    campaign_id: t.Numeric(),
+    users:       t.Array(importUsersSeqRowSchema, { minItems: 1 }),
 });

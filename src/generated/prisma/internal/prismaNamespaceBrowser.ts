@@ -225,7 +225,8 @@ export const Exam_campaignsScalarFieldEnum = {
   qr_active: 'qr_active',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
+  deleted_at: 'deleted_at',
+  is_encrypted: 'is_encrypted'
 } as const
 
 export type Exam_campaignsScalarFieldEnum = (typeof Exam_campaignsScalarFieldEnum)[keyof typeof Exam_campaignsScalarFieldEnum]
