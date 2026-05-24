@@ -18,14 +18,10 @@ function hashPayload(payload: string) {
 
 /**
  * Validate qr_payloads ด้วย DB lookup อย่างเดียว — ไม่ decrypt
- *
- * 2 ชั้นการตรวจ:
- * 1. หา booklet จาก DB ด้วย qr_payload (exact match)
- * 2. ตรวจ campaign/session/bag ตรงกัน
+ * session_id อ่านจาก booklet เอง ไม่ต้องส่งมาจาก client
  */
 async function resolveBooklets(
     campaign_id: number,
-    session_id: number,
     qr_payloads: string[],
 ) {
     const results = await Promise.all(
@@ -33,7 +29,6 @@ async function resolveBooklets(
             const booklet = await bookletRepo.findByQrPayload(qrStr);
             if (!booklet) return { payload: qrStr, error: "ไม่พบเล่มข้อสอบ" };
             if (booklet.campaign_id !== campaign_id) return { payload: qrStr, error: "เล่มนี้ไม่อยู่ในรอบสอบนี้" };
-            if (booklet.session_id !== session_id) return { payload: qrStr, error: "เล่มนี้ไม่อยู่ในวันสอบนี้" };
             if (booklet.bag_id !== null) return { payload: qrStr, error: "เล่มนี้อยู่ในถุงแล้ว" };
             return { payload: qrStr, booklet };
         }),
@@ -45,7 +40,18 @@ async function resolveBooklets(
         booklet: NonNullable<Awaited<ReturnType<typeof bookletRepo.findByQrPayload>>>;
     }>;
 
-    return { errors, valid };
+    // ตรวจว่าทุกเล่มอยู่ session เดียวกัน
+    const sessionIds = new Set(valid.map((v) => v.booklet.session_id));
+    if (sessionIds.size > 1) {
+        return {
+            errors: [{ payload: "", error: "เล่มข้อสอบในถุงต้องอยู่วันสอบเดียวกันทั้งหมด" }],
+            valid: [] as typeof valid,
+            session_id: null,
+        };
+    }
+
+    const session_id = valid.length > 0 ? valid[0]!.booklet.session_id : null;
+    return { errors, valid, session_id };
 }
 
 export const bagService = {
@@ -95,9 +101,8 @@ export const bagService = {
 
     // ตรวจสอบว่า qr_payloads ทั้งหมด valid ก่อนสร้างถุง — ไม่ทำ side effect ใดๆ
     async scanPreview(input: ScanPreviewBody) {
-        const { errors, valid } = await resolveBooklets(
+        const { errors, valid, session_id } = await resolveBooklets(
             input.campaign_id,
-            input.session_id,
             input.qr_payloads,
         );
         return {
@@ -106,6 +111,7 @@ export const bagService = {
             data: {
                 valid_count: valid.length,
                 error_count: errors.length,
+                session_id,
                 errors: errors.map((e) => ({ masked_payload: maskPayload(e.payload), reason: e.error })),
             },
         };
@@ -113,9 +119,8 @@ export const bagService = {
 
     // สร้างถุงจาก qr_payloads พร้อม SELECT FOR UPDATE เพื่อกัน concurrent
     async create(input: CreateBagBody, session: SessionData) {
-        const { errors, valid } = await resolveBooklets(
+        const { errors, valid, session_id } = await resolveBooklets(
             input.campaign_id,
-            input.session_id,
             input.qr_payloads,
         );
 
@@ -127,20 +132,21 @@ export const bagService = {
         }
 
         if (valid.length === 0) throw new AppError("ไม่มีเล่มที่สามารถลงถุงได้", 400);
+        if (!session_id) throw new AppError("ไม่สามารถระบุวันสอบจากเล่มข้อสอบได้", 500);
 
         const result = await prisma.$transaction(async (tx) => {
             // 1. Ensure session_counters row exists ก่อน FOR UPDATE
-            await bagRepo.upsertCounter(input.session_id, tx);
+            await bagRepo.upsertCounter(session_id, tx);
 
             // 2. Lock row ด้วย SELECT FOR UPDATE — ป้องกัน race condition
-            const counter = await bagRepo.lockAndGetCounter(input.session_id, tx);
+            const counter = await bagRepo.lockAndGetCounter(session_id, tx);
             if (!counter) throw new AppError("ไม่พบ session counter", 500);
 
             // 3. สร้าง bag
             const bag = await bagRepo.create(
                 {
                     campaign_id: input.campaign_id,
-                    session_id: input.session_id,
+                    session_id: session_id,
                     bag_no: counter.next_bag_no,
                     count_items: valid.length,
                     created_by_account_id: session.account_id,
@@ -167,7 +173,7 @@ export const bagService = {
             await tx.qr_scan_logs.createMany({
                 data: valid.map((v) => ({
                     campaign_id: input.campaign_id,
-                    session_id: input.session_id,
+                    session_id: session_id,
                     bag_id: bag.id,
                     booklet_id: v.booklet.id,
                     scanned_by_account_id: session.account_id,
@@ -179,7 +185,7 @@ export const bagService = {
             });
 
             // 6. Increment counters
-            await bagRepo.incrementCounter(input.session_id, 1, valid.length, tx);
+            await bagRepo.incrementCounter(session_id, 1, valid.length, tx);
 
             return bag;
         });

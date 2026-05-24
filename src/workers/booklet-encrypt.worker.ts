@@ -17,7 +17,6 @@ interface BookletRecord {
     campaign_id: number;
     session_id: number;
     qr_payload: string;
-    user_code: string;
 }
 
 const { user_codes, combinedKeyBase64, campaignId, sessionId } = workerData as EncryptJob;
@@ -29,7 +28,7 @@ try {
             { cid: campaignId, sid: sessionId, uc: user_code, nonce },
             combinedKeyBase64,
         );
-        return { campaign_id: campaignId, session_id: sessionId, qr_payload, user_code };
+        return { campaign_id: campaignId, session_id: sessionId, qr_payload };
     });
 
     parentPort!.postMessage({ success: true, records });

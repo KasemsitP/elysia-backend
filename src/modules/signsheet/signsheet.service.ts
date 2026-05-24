@@ -237,18 +237,20 @@ export const signsheetService = {
                 campaignKeyService.getCombinedKey(campaignId),
                 prisma.booklets.findMany({
                     where:  { campaign_id: campaignId, session_id: sessionId, deleted_at: null },
-                    select: { user_code: true, qr_payload: true },
+                    select: { qr_payload: true },
                 }),
             ]);
             combinedKey = keyResult;
             const keyBase64 = combinedKey.toString("base64");
             for (const b of booklets) {
-                if (!b.qr_payload || !b.user_code || qrMap.has(b.user_code)) continue;
+                if (!b.qr_payload) continue;
                 try {
                     const decoded = decryptQrPayload(b.qr_payload, keyBase64);
-                    qrMap.set(decoded.uc, b.qr_payload);
+                    if (!qrMap.has(decoded.uc)) {
+                        qrMap.set(decoded.uc, b.qr_payload);
+                    }
                 } catch (err) {
-                    console.error(`[signsheet] decrypt qr_payload ล้มเหลว (user_code=${b.user_code ?? "?"}):`, err);
+                    console.error("[signsheet] decrypt qr_payload ล้มเหลว:", err);
                 }
             }
         } catch (err) {

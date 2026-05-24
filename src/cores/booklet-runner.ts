@@ -8,7 +8,6 @@ export interface BookletRecord {
     campaign_id: number;
     session_id: number;
     qr_payload: string;
-    user_code: string;
 }
 
 export async function runBookletEncryptWorker(

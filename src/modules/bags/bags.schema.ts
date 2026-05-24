@@ -16,14 +16,12 @@ export const bagIdParamSchema = t.Object({
 // Preview: ส่ง qr_payloads มาให้ตรวจว่า booklet ทั้งหมด valid ก่อนสร้างถุง
 export const scanPreviewBodySchema = t.Object({
     campaign_id: t.Number(),
-    session_id: t.Number(),
     qr_payloads: t.Array(t.String(), { minItems: 1 }),
 });
 
 // Create bag: สร้างถุงจาก qr_payloads ที่ผ่าน preview แล้ว
 export const createBagBodySchema = t.Object({
     campaign_id: t.Number(),
-    session_id: t.Number(),
     qr_payloads: t.Array(t.String(), { minItems: 1 }),
 });
 

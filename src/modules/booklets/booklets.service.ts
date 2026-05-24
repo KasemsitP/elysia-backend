@@ -35,20 +35,16 @@ export const bookletService = {
         // อ่าน MK จาก DB → ถอดรหัสด้วย MASTER_KEY → derive combinedKey
         const combinedKey = await campaignKeyService.getCombinedKey(campaignId);
 
-        // ตรวจ user_codes ซ้ำก่อน generate
+        // ตรวจ user_codes ซ้ำใน request
         const uniqueCodes = new Set(input.user_codes);
         if (uniqueCodes.size !== input.user_codes.length) {
             throw new AppError("พบ user_code ซ้ำกันใน request", 400);
         }
 
-        // ตรวจว่า user_code ใดซ้ำกับที่มีอยู่แล้วใน session นี้
-        const existingCodes = await prisma.booklets.findMany({
-            where: { campaign_id: campaignId, session_id: sessionId, deleted_at: null, user_code: { in: input.user_codes } },
-            select: { user_code: true },
-        });
-        if (existingCodes.length > 0) {
-            const dup = existingCodes.map((b) => b.user_code).join(", ");
-            throw new AppError(`user_code ซ้ำกับที่มีอยู่แล้ว: ${dup}`, 409);
+        // ตรวจว่า session นี้มี booklet อยู่แล้วหรือยัง
+        const existingCount = await bookletRepo.countBySession(campaignId, sessionId);
+        if (existingCount > 0) {
+            throw new AppError(`session นี้มี booklet อยู่แล้ว ${existingCount} เล่ม`, 409);
         }
 
         try {
@@ -125,21 +121,16 @@ export const bookletService = {
                     continue;
                 }
 
-                const existing = await prisma.booklets.findMany({
-                    where:  { campaign_id: campaignId, session_id: session.id, deleted_at: null },
-                    select: { user_code: true },
-                });
-                const existingSet = new Set(
-                    existing.map((b) => b.user_code).filter((c): c is string => !!c),
-                );
-                const newCodes = allCodes.filter((c) => !existingSet.has(c));
-
-                if (newCodes.length === 0) {
+                // เช็คด้วย count — ถ้า booklet ครบแล้ว ข้ามไปเลย
+                const existingCount = await bookletRepo.countBySession(campaignId, session.id);
+                if (existingCount >= allCodes.length) {
                     summary.push({ session_id: session.id, generated: 0, skipped: allCodes.length });
                     continue;
                 }
 
-                const records = await runBookletEncryptWorker(newCodes, combinedKeyBase64, campaignId, session.id);
+                // generate เฉพาะจำนวนที่ยังขาดอยู่ โดยนับจากท้าย allCodes
+                const remaining = allCodes.slice(existingCount);
+                const records = await runBookletEncryptWorker(remaining, combinedKeyBase64, campaignId, session.id);
 
                 await prisma.$transaction(async (tx) => {
                     for (let i = 0; i < records.length; i += DB_BATCH_SIZE) {
@@ -147,8 +138,8 @@ export const bookletService = {
                     }
                 });
 
-                summary.push({ session_id: session.id, generated: newCodes.length, skipped: existingSet.size });
-                totalGenerated += newCodes.length;
+                summary.push({ session_id: session.id, generated: remaining.length, skipped: existingCount });
+                totalGenerated += remaining.length;
             }
         } finally {
             combinedKey.fill(0);
