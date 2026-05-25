@@ -167,4 +167,170 @@ export const gradingRepo = {
             data: { status: "RELEASED", released_at: new Date() },
         });
     },
+
+    async completeLock(id: number, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.grader_work_locks.update({
+            where: { id },
+            data: { status: "COMPLETED", released_at: new Date() },
+        });
+    },
+
+    async cancelLockById(id: number, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.grader_work_locks.update({
+            where: { id },
+            data: { status: "CANCELLED", released_at: new Date() },
+        });
+    },
+
+    // ── Campaign-scoped helpers ─────────────────────────────────────────────
+    async findActiveLockByGraderAndCampaign(grader_id: number, campaign_id: number, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.grader_work_locks.findFirst({
+            where: { grader_id, campaign_id, status: "ACTIVE" },
+            include: {
+                bags: { select: { bag_no: true } },
+                session_subject_questions: {
+                    select: {
+                        question_no: true,
+                        label: true,
+                        max_score: true,
+                        session_subjects: {
+                            select: {
+                                campaign_subjects: { select: { name: true } },
+                            },
+                        },
+                    },
+                },
+            },
+        });
+    },
+
+    async findActiveLockForBagAndQuestion(bag_id: number, session_subject_question_id: number, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.grader_work_locks.findFirst({
+            where: { bag_id, session_subject_question_id, status: "ACTIVE" },
+            include: {
+                graders: {
+                    include: { accounts: { select: { full_name: true } } },
+                },
+            },
+        });
+    },
+
+    async findBookletsInBagWithQr(bag_id: number, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.booklets.findMany({
+            where: { bag_id, deleted_at: null },
+            orderBy: { seq_in_bag: "asc" },
+            select: {
+                id: true,
+                campaign_id: true,
+                session_id: true,
+                bag_id: true,
+                seq_in_bag: true,
+                random_num: true,
+                qr_payload: true,
+            },
+        });
+    },
+
+    async upsertDraftForSlot(
+        data: {
+            slot_id: number;
+            grader_id: number;
+            campaign_id: number;
+            session_id: number;
+            bag_id: number;
+            booklet_id: number;
+            campaign_subject_id: number;
+            session_subject_id: number;
+            session_subject_question_id: number;
+            question_no: number;
+        },
+        tx?: Tx,
+    ) {
+        const client = tx ?? prisma;
+        const existing = await client.grading_score_drafts.findFirst({
+            where: { slot_id: data.slot_id },
+        });
+        if (existing) {
+            // Never reset a CONFIRMED draft — return as-is
+            if (existing.status === "CONFIRMED") return existing;
+            return client.grading_score_drafts.update({
+                where: { id: existing.id },
+                data: { score: -1, status: "DRAFT", deleted_at: null },
+            });
+        }
+        return client.grading_score_drafts.create({
+            data: { ...data, score: -1, status: "DRAFT" },
+        });
+    },
+
+    async findDraftsForWork(
+        grader_id: number,
+        campaign_id: number,
+        bag_id: number,
+        session_subject_question_id: number,
+        tx?: Tx,
+    ) {
+        const client = tx ?? prisma;
+        return client.grading_score_drafts.findMany({
+            where: {
+                grader_id,
+                campaign_id,
+                bag_id,
+                session_subject_question_id,
+                status: "DRAFT",
+                deleted_at: null,
+            },
+            include: {
+                booklets: { select: { seq_in_bag: true, random_num: true, qr_payload: true } },
+            },
+            orderBy: [{ booklets: { seq_in_bag: "asc" } }],
+        });
+    },
+
+    async cancelDraftsForWork(
+        grader_id: number,
+        campaign_id: number,
+        bag_id: number,
+        session_subject_question_id: number,
+        tx?: Tx,
+    ) {
+        const client = tx ?? prisma;
+        return client.grading_score_drafts.updateMany({
+            where: {
+                grader_id,
+                campaign_id,
+                bag_id,
+                session_subject_question_id,
+                status: "DRAFT",
+            },
+            data: { status: "CANCELLED" },
+        });
+    },
+
+    async updateDraftScoreById(id: number, grader_id: number, score: number, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.grading_score_drafts.update({
+            where: { id },
+            data: { score },
+        });
+    },
+
+    async findDraftWithSlotAndQuestion(id: number, grader_id: number, tx?: Tx) {
+        const client = tx ?? prisma;
+        return client.grading_score_drafts.findFirst({
+            where: { id, grader_id, status: "DRAFT", deleted_at: null },
+            include: {
+                grading_slots: {
+                    include: {
+                        session_subject_questions: { select: { max_score: true } },
+                    },
+                },
+            },
+        });
+    },
 };

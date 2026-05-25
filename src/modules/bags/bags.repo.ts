@@ -76,6 +76,20 @@ export const bagRepo = {
         });
     },
 
+    // หาเลขถุงถัดไป — ดึง gap แรกที่หายไป เช่น มี 1,3 → คืน 2
+    async getNextBagNo(session_id: number, tx?: Tx): Promise<number> {
+        const client = tx ?? prisma;
+        const bags = await client.bags.findMany({
+            where:   { session_id, deleted_at: null },
+            select:  { bag_no: true },
+            orderBy: { bag_no: "asc" },
+        });
+        const used = new Set(bags.map((b) => b.bag_no));
+        let next = 1;
+        while (used.has(next)) next++;
+        return next;
+    },
+
     // SELECT ... FOR UPDATE — ต้องอยู่ใน transaction เสมอ
     async lockAndGetCounter(session_id: number, tx: Tx) {
         const rows = await tx.$queryRaw<
@@ -92,13 +106,10 @@ export const bagRepo = {
         });
     },
 
-    async incrementCounter(session_id: number, bag_count: number, booklet_count: number, tx: Tx) {
+    async incrementCounter(session_id: number, booklet_count: number, tx: Tx) {
         return tx.session_counters.update({
             where: { session_id },
-            data: {
-                next_bag_no: { increment: bag_count },
-                next_random_seq: { increment: booklet_count },
-            },
+            data: { next_random_seq: { increment: booklet_count } },
         });
     },
 };

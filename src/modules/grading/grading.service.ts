@@ -8,7 +8,14 @@ import type {
     UpdateDraftBody,
     ConfirmBagBody,
     CreateWorkLockBody,
+    VerifyFirstScanBody,
+    StartWorkBody,
+    SaveDraftScoreBody,
+    ConfirmWorkBody,
+    CancelWorkBody,
 } from "./grading.type";
+
+const SCORE_NOT_SET = -1; // sentinel: draft exists but no score entered yet
 
 export const gradingService = {
     // ── Preview Start ────────────────────────────────────────────────────────
@@ -205,9 +212,9 @@ export const gradingService = {
         return { success: true, message: "บันทึกคะแนน draft สำเร็จ", data: draft };
     },
 
-    async updateDraft(draftId: number, input: UpdateDraftBody) {
+    async updateDraft(draftId: number, graderId: number, input: UpdateDraftBody) {
         const draft = await prisma.grading_score_drafts.findFirst({
-            where: { id: draftId, status: "DRAFT", deleted_at: null },
+            where: { id: draftId, grader_id: graderId, status: "DRAFT", deleted_at: null },
             include: {
                 grading_slots: {
                     include: {
@@ -370,5 +377,478 @@ export const gradingService = {
         if (lock.status !== "ACTIVE") throw new AppError("lock นี้ไม่ได้ active อยู่", 400);
         const data = await gradingRepo.updateLockStatus(lockId, "CANCELLED");
         return { success: true, message: "ยกเลิก lock สำเร็จ", data };
+    },
+
+    // ════════════════════════════════════════════════════════════════════════
+    // Campaign-scoped grading flow (session-inferred grader)
+    // ════════════════════════════════════════════════════════════════════════
+
+    async getMyQuestions(campaignId: number, graderId: number) {
+        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+
+        const assignments = await prisma.grader_assignments.findMany({
+            where: {
+                grader_id: graderId,
+                campaign_id: campaignId,
+                active: true,
+                deleted_at: null,
+            },
+            include: {
+                session_subject_questions: { select: { id: true, question_no: true, label: true, max_score: true } },
+                campaign_subjects: { select: { id: true, name: true } },
+                sessions: { select: { id: true, session_code: true } },
+            },
+            orderBy: { id: "asc" },
+        });
+
+        const data = assignments.map((a) => {
+            const q = a.session_subject_questions;
+            return {
+                assignmentId: a.id,
+                graderId: a.grader_id,
+                campaignId: a.campaign_id,
+                sessionId: a.session_id,
+                sessionCode: a.sessions.session_code,
+                campaignSubjectId: a.campaign_subject_id,
+                sessionSubjectId: a.session_subject_id,
+                sessionSubjectQuestionId: q.id,
+                questionNo: q.question_no,
+                questionLabel: `ข้อ ${q.question_no} ${q.label}`,
+                subjectName: a.campaign_subjects.name,
+                maxScore: q.max_score,
+            };
+        });
+
+        return { success: true, data };
+    },
+
+    async getActiveWork(campaignId: number, graderId: number) {
+        if (!graderId) {
+            return { success: true, data: { hasActiveWork: false, lock: null, drafts: [] } };
+        }
+
+        const activeLock = await gradingRepo.findActiveLockByGraderAndCampaign(graderId, campaignId);
+
+        if (!activeLock) {
+            return { success: true, data: { hasActiveWork: false, lock: null, drafts: [] } };
+        }
+
+        const q = activeLock.session_subject_questions;
+        const lockData = {
+            id: activeLock.id,
+            campaignId: activeLock.campaign_id,
+            sessionId: activeLock.session_id,
+            bagId: activeLock.bag_id,
+            bagNo: activeLock.bags.bag_no,
+            sessionSubjectQuestionId: activeLock.session_subject_question_id,
+            questionNo: q.question_no,
+            questionLabel: `ข้อ ${q.question_no} ${q.label}`,
+            subjectName: q.session_subjects.campaign_subjects?.name ?? "",
+            maxScore: q.max_score,
+            status: activeLock.status,
+        };
+
+        const draftRows = await gradingRepo.findDraftsForWork(
+            graderId, campaignId, activeLock.bag_id, activeLock.session_subject_question_id,
+        );
+
+        const drafts = draftRows.map((d) => ({
+            draftId: d.id,
+            bookletId: d.booklet_id,
+            seqInBag: d.booklets.seq_in_bag ?? 0,
+            randomNum: d.booklets.random_num ?? "",
+            qrPayload: d.booklets.qr_payload,
+            score: d.score === SCORE_NOT_SET ? null : d.score,
+            status: d.status,
+        }));
+
+        return { success: true, data: { hasActiveWork: true, lock: lockData, drafts } };
+    },
+
+    async verifyFirstScan(campaignId: number, graderId: number, body: VerifyFirstScanBody) {
+        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+
+        const booklet = await prisma.booklets.findUnique({
+            where: { qr_payload: body.qrPayload },
+        });
+        if (!booklet) throw new AppError("ไม่พบเล่มข้อสอบจาก QR นี้", 404);
+        if (booklet.campaign_id !== campaignId) throw new AppError("QR นี้ไม่ใช่ของรอบสอบนี้", 400);
+        if (!booklet.bag_id) throw new AppError("เล่มข้อสอบนี้ยังไม่ได้จัดเข้าถุง", 400);
+
+        const question = await prisma.session_subject_questions.findFirst({
+            where: { id: body.sessionSubjectQuestionId, campaign_id: campaignId, deleted_at: null },
+            include: {
+                session_subjects: {
+                    select: {
+                        campaign_subject_id: true,
+                        campaign_subjects: { select: { name: true } },
+                    },
+                },
+            },
+        });
+        if (!question) throw new AppError("ไม่พบข้อสอบ", 404);
+
+        if (question.session_id !== booklet.session_id) {
+            throw new AppError("ข้อสอบที่เลือกไม่ตรงกับวันสอบของเล่มข้อสอบ", 400);
+        }
+
+        const assignment = await prisma.grader_assignments.findFirst({
+            where: {
+                grader_id: graderId,
+                session_subject_question_id: body.sessionSubjectQuestionId,
+                campaign_id: campaignId,
+                active: true,
+                deleted_at: null,
+            },
+        });
+        if (!assignment) throw new AppError("คุณไม่มีสิทธิ์ตรวจข้อสอบข้อนี้", 403);
+
+        const activeLock = await gradingRepo.findActiveLockForBagAndQuestion(
+            booklet.bag_id, body.sessionSubjectQuestionId,
+        );
+        if (activeLock && activeLock.grader_id !== graderId) {
+            const holderName = activeLock.graders?.accounts?.full_name ?? "ผู้ตรวจคนอื่น";
+            throw new AppError(`ถุงนี้กำลังถูกตรวจโดย ${holderName}`, 409);
+        }
+
+        const bag = await prisma.bags.findFirst({
+            where: { id: booklet.bag_id, campaign_id: campaignId, deleted_at: null },
+        });
+        if (!bag) throw new AppError("ไม่พบถุงข้อสอบ", 404);
+
+        const bookletCount = await prisma.booklets.count({
+            where: { bag_id: bag.id, deleted_at: null },
+        });
+
+        const booklets = await prisma.booklets.findMany({
+            where: { bag_id: bag.id, deleted_at: null },
+            orderBy: { seq_in_bag: "asc" },
+            select: { random_num: true },
+        });
+        const nums = booklets.map((b) => b.random_num ?? "").filter(Boolean);
+        const randomNumRange = nums.length >= 2
+            ? `${nums[0]} - ${nums[nums.length - 1]}`
+            : nums[0] ?? "";
+
+        return {
+            success: true,
+            data: {
+                canStart: true,
+                preview: {
+                    campaignId,
+                    sessionId: bag.session_id,
+                    bagId: bag.id,
+                    bagNo: bag.bag_no,
+                    sessionSubjectQuestionId: question.id,
+                    questionNo: question.question_no,
+                    questionLabel: `ข้อ ${question.question_no} ${question.label}`,
+                    subjectName: question.session_subjects?.campaign_subjects?.name ?? "",
+                    maxScore: question.max_score,
+                    bookletCount,
+                    randomNumRange,
+                },
+            },
+        };
+    },
+
+    async startWork(campaignId: number, graderId: number, body: StartWorkBody) {
+        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+
+        const { bagId, sessionSubjectQuestionId } = body;
+
+        const question = await prisma.session_subject_questions.findFirst({
+            where: { id: sessionSubjectQuestionId, campaign_id: campaignId, deleted_at: null },
+            include: {
+                session_subjects: {
+                    select: {
+                        campaign_subject_id: true,
+                        campaign_subjects: { select: { name: true } },
+                    },
+                },
+            },
+        });
+        if (!question) throw new AppError("ไม่พบข้อสอบ", 404);
+
+        const assignment = await prisma.grader_assignments.findFirst({
+            where: {
+                grader_id: graderId,
+                session_subject_question_id: sessionSubjectQuestionId,
+                campaign_id: campaignId,
+                active: true,
+                deleted_at: null,
+            },
+        });
+        if (!assignment) throw new AppError("คุณไม่มีสิทธิ์ตรวจข้อสอบข้อนี้", 403);
+
+        const bag = await prisma.bags.findFirst({
+            where: { id: bagId, campaign_id: campaignId, deleted_at: null },
+        });
+        if (!bag) throw new AppError("ไม่พบถุงข้อสอบ", 404);
+
+        const { lock, drafts, isResume } = await prisma.$transaction(async (tx) => {
+            // Concurrency check: any active lock on this bag+question
+            const existingLock = await tx.grader_work_locks.findFirst({
+                where: { bag_id: bagId, session_subject_question_id: sessionSubjectQuestionId, status: "ACTIVE" },
+            });
+
+            if (existingLock) {
+                if (existingLock.grader_id === graderId) {
+                    // Resume own work
+                    const draftRows = await gradingRepo.findDraftsForWork(
+                        graderId, campaignId, bagId, sessionSubjectQuestionId, tx,
+                    );
+                    return { lock: existingLock, drafts: draftRows, isResume: true };
+                }
+                throw new AppError("ถุงนี้กำลังถูกตรวจโดยผู้ตรวจคนอื่น", 409);
+            }
+
+            // Check grader has no other active lock in this campaign
+            const graderOtherLock = await tx.grader_work_locks.findFirst({
+                where: { grader_id: graderId, campaign_id: campaignId, status: "ACTIVE" },
+            });
+            if (graderOtherLock) {
+                throw new AppError("คุณมีงานตรวจค้างอยู่ กรุณายืนยันหรือยกเลิกก่อน", 400);
+            }
+
+            // Create lock
+            const newLock = await tx.grader_work_locks.create({
+                data: {
+                    grader_id: graderId,
+                    campaign_id: campaignId,
+                    session_id: bag.session_id,
+                    bag_id: bagId,
+                    session_subject_question_id: sessionSubjectQuestionId,
+                    question_no: question.question_no,
+                    status: "ACTIVE",
+                },
+            });
+
+            // Load booklets and create slots + drafts
+            const booklets = await gradingRepo.findBookletsInBagWithQr(bagId, tx);
+            const draftRows = [];
+
+            for (const booklet of booklets) {
+                // Find or create slot
+                let slot = await tx.grading_slots.findFirst({
+                    where: {
+                        grader_id: graderId,
+                        booklet_id: booklet.id,
+                        session_subject_question_id: sessionSubjectQuestionId,
+                        deleted_at: null,
+                    },
+                });
+
+                if (!slot) {
+                    const existingSlots = await tx.grading_slots.findMany({
+                        where: {
+                            booklet_id: booklet.id,
+                            session_subject_question_id: sessionSubjectQuestionId,
+                            deleted_at: null,
+                        },
+                    });
+                    slot = await tx.grading_slots.create({
+                        data: {
+                            campaign_id: campaignId,
+                            session_id: bag.session_id,
+                            booklet_id: booklet.id,
+                            campaign_subject_id: question.session_subjects.campaign_subject_id,
+                            session_subject_id: question.session_subject_id,
+                            session_subject_question_id: sessionSubjectQuestionId,
+                            question_no: question.question_no,
+                            grader_order: existingSlots.length + 1,
+                            grader_id: graderId,
+                        },
+                    });
+                }
+
+                // Find or create draft
+                const draft = await gradingRepo.upsertDraftForSlot({
+                    slot_id: slot.id,
+                    grader_id: graderId,
+                    campaign_id: campaignId,
+                    session_id: bag.session_id,
+                    bag_id: bagId,
+                    booklet_id: booklet.id,
+                    campaign_subject_id: question.session_subjects.campaign_subject_id,
+                    session_subject_id: question.session_subject_id,
+                    session_subject_question_id: sessionSubjectQuestionId,
+                    question_no: question.question_no,
+                }, tx);
+
+                draftRows.push({
+                    draftId: draft.id,
+                    bookletId: booklet.id,
+                    seqInBag: booklet.seq_in_bag ?? 0,
+                    randomNum: booklet.random_num ?? "",
+                    qrPayload: booklet.qr_payload,
+                    score: draft.score === SCORE_NOT_SET ? null : draft.score,
+                    status: draft.status,
+                });
+            }
+
+            return { lock: newLock, drafts: draftRows, isResume: false };
+        });
+
+        const lockData = {
+            id: lock.id,
+            campaignId: lock.campaign_id,
+            sessionId: lock.session_id,
+            bagId: lock.bag_id,
+            bagNo: bag.bag_no,
+            sessionSubjectQuestionId: lock.session_subject_question_id,
+            questionNo: question.question_no,
+            questionLabel: `ข้อ ${question.question_no} ${question.label}`,
+            subjectName: question.session_subjects?.campaign_subjects?.name ?? "",
+            maxScore: question.max_score,
+            status: lock.status,
+        };
+
+        // Map drafts if resuming (draftRows from resume path are full Prisma records)
+        const mappedDrafts = isResume
+            ? (drafts as any[]).map((d) => ({
+                draftId: d.id,
+                bookletId: d.booklet_id,
+                seqInBag: d.booklets?.seq_in_bag ?? 0,
+                randomNum: d.booklets?.random_num ?? "",
+                qrPayload: d.booklets?.qr_payload ?? "",
+                score: d.score === SCORE_NOT_SET ? null : d.score,
+                status: d.status,
+            }))
+            : drafts;
+
+        return {
+            success: true,
+            message: isResume ? "กำลังตรวจถุงนี้อยู่แล้ว" : "เริ่มตรวจถุงข้อสอบสำเร็จ",
+            data: { lock: lockData, drafts: mappedDrafts },
+        };
+    },
+
+    async saveDraftScore(campaignId: number, graderId: number, body: SaveDraftScoreBody) {
+        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+
+        const draft = await gradingRepo.findDraftWithSlotAndQuestion(body.draftId, graderId);
+        if (!draft) throw new AppError("ไม่พบ draft หรือไม่มีสิทธิ์แก้ไข", 404);
+
+        const maxScore = draft.grading_slots.session_subject_questions.max_score;
+        if (body.score < 0 || body.score > maxScore) {
+            throw new AppError(`คะแนนต้องอยู่ระหว่าง 0 ถึง ${maxScore}`, 400);
+        }
+
+        await gradingRepo.updateDraftScoreById(body.draftId, graderId, body.score);
+
+        return {
+            success: true,
+            message: "บันทึกคะแนนฉบับร่างสำเร็จ",
+            data: { draftId: body.draftId, score: body.score, status: "DRAFT" },
+        };
+    },
+
+    async confirmWork(campaignId: number, graderId: number, body: ConfirmWorkBody) {
+        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+
+        const lock = await gradingRepo.findLockById(body.lockId);
+        if (!lock) throw new AppError("ไม่พบ work lock", 404);
+        if (lock.grader_id !== graderId) throw new AppError("ไม่มีสิทธิ์ยืนยันงานนี้", 403);
+        if (lock.status !== "ACTIVE") throw new AppError("lock นี้ไม่ได้ active อยู่", 400);
+
+        const threshold = await getNumberSetting(lock.campaign_id, "score_diff_threshold", 5);
+
+        const confirmedCount = await prisma.$transaction(async (tx) => {
+            // Fetch inside transaction to avoid TOCTOU between validation and write
+            const drafts = await tx.grading_score_drafts.findMany({
+                where: {
+                    grader_id: graderId,
+                    campaign_id: lock.campaign_id,
+                    bag_id: lock.bag_id,
+                    session_subject_question_id: lock.session_subject_question_id,
+                    status: "DRAFT",
+                    deleted_at: null,
+                },
+                include: { grading_slots: true },
+            });
+
+            if (drafts.length === 0) throw new AppError("ไม่มีคะแนน draft ที่รอยืนยัน", 400);
+
+            const unscored = drafts.filter((d) => d.score === SCORE_NOT_SET || d.score < 0);
+            if (unscored.length > 0) {
+                throw new AppError("กรุณากรอกคะแนนให้ครบทุกเล่มก่อนยืนยัน", 400);
+            }
+
+            for (const draft of drafts) {
+                await gradingRepo.upsertScore(draft.slot_id, draft.score, graderId, tx);
+                await gradingRepo.updateSlotStatus(draft.slot_id, "COMPLETED", tx);
+            }
+
+            await tx.grading_score_drafts.updateMany({
+                where: {
+                    grader_id: graderId,
+                    campaign_id: lock.campaign_id,
+                    bag_id: lock.bag_id,
+                    session_subject_question_id: lock.session_subject_question_id,
+                    status: "DRAFT",
+                },
+                data: { status: "CONFIRMED" },
+            });
+
+            await gradingRepo.completeLock(body.lockId, tx);
+
+            // Disputed check
+            for (const draft of drafts) {
+                const allSlots = await tx.grading_slots.findMany({
+                    where: {
+                        booklet_id: draft.booklet_id,
+                        session_subject_question_id: lock.session_subject_question_id,
+                        status: "COMPLETED",
+                        deleted_at: null,
+                    },
+                    include: { grading_scores: true },
+                });
+                if (allSlots.length === 2) {
+                    // Match score to slot owner to avoid comparing a grader's score against themselves
+                    const s0 = allSlots[0]?.grading_scores.find(
+                        (s) => s.entered_by === allSlots[0]!.grader_id,
+                    )?.score;
+                    const s1 = allSlots[1]?.grading_scores.find(
+                        (s) => s.entered_by === allSlots[1]!.grader_id,
+                    )?.score;
+                    if (s0 != null && s1 != null && Math.abs(s0 - s1) > threshold) {
+                        await tx.grading_slots.updateMany({
+                            where: {
+                                booklet_id: draft.booklet_id,
+                                session_subject_question_id: lock.session_subject_question_id,
+                                status: "COMPLETED",
+                            },
+                            data: { status: "DISPUTED" },
+                        });
+                    }
+                }
+            }
+
+            return drafts.length;
+        });
+
+        return {
+            success: true,
+            message: "ยืนยันคะแนนสำเร็จ",
+            data: { confirmedCount, bagId: lock.bag_id, lockId: body.lockId },
+        };
+    },
+
+    async cancelWork(campaignId: number, graderId: number, body: CancelWorkBody) {
+        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+
+        const lock = await gradingRepo.findLockById(body.lockId);
+        if (!lock) throw new AppError("ไม่พบ work lock", 404);
+        if (lock.grader_id !== graderId) throw new AppError("ไม่มีสิทธิ์ยกเลิกงานนี้", 403);
+        if (lock.status !== "ACTIVE") throw new AppError("lock นี้ไม่ได้ active อยู่", 400);
+
+        await prisma.$transaction(async (tx) => {
+            await gradingRepo.cancelDraftsForWork(
+                graderId, lock.campaign_id, lock.bag_id, lock.session_subject_question_id, tx,
+            );
+            await gradingRepo.cancelLockById(body.lockId, tx);
+        });
+
+        return { success: true, message: "ยกเลิกการตรวจถุงข้อสอบสำเร็จ" };
     },
 };

@@ -1,5 +1,36 @@
 import { t } from "elysia";
 
+// ── Campaign-scoped param ────────────────────────────────────────────────────
+export const campaignIdParamSchema = t.Object({
+    campaignId: t.Numeric(),
+});
+
+// ── New campaign-scoped bodies ───────────────────────────────────────────────
+export const verifyFirstScanBodySchema = t.Object({
+    qrPayload: t.String({ minLength: 1 }),
+    sessionSubjectQuestionId: t.Number(),
+});
+
+export const startWorkBodySchema = t.Object({
+    bagId: t.Number(),
+    sessionSubjectQuestionId: t.Number(),
+});
+
+export const saveDraftScoreBodySchema = t.Object({
+    draftId: t.Number(),
+    score: t.Integer({ minimum: 0 }),
+});
+
+export const confirmWorkBodySchema = t.Object({
+    lockId: t.Number(),
+});
+
+export const cancelWorkBodySchema = t.Object({
+    lockId: t.Number(),
+    reason: t.Optional(t.String()),
+});
+
+// ── Legacy schemas (kept for existing routes) ────────────────────────────────
 export const graderIdParamSchema = t.Object({
     graderId: t.Numeric(),
 });

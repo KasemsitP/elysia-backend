@@ -7,7 +7,12 @@
       "mcp__codegraph__codegraph_explore",
       "mcp__codegraph__codegraph_files",
       "Bash(bunx tsc *)",
-      "Bash(bun add *)"
+      "Bash(bun add *)",
+      "Read(//mnt/c/Users/ToonToon/Desktop/**)",
+      "Bash(dir \"C:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\")",
+      "Bash(npx tsc *)",
+      "PowerShell(cd \"C:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\"; .\\\\node_modules\\\\.bin\\\\tsc --noEmit 2>&1 | Where-Object { $_ -match \"grading\" } | Select-Object -First 40)",
+      "PowerShell(cd C:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia; .\\\\node_modules\\\\.bin\\\\tsc --noEmit 2>&1 | Where-Object { $_ -match \"grading\" })"
     ]
   },
   "enableAllProjectMcpServers": true,

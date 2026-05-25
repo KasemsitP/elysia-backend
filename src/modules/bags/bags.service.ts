@@ -105,13 +105,47 @@ export const bagService = {
             input.campaign_id,
             input.qr_payloads,
         );
+
+        // ดึงข้อมูล session + วิชา + เลขถุงถัดไป เฉพาะเมื่อ valid ทั้งหมด
+        let confirm: {
+            session_code: string;
+            exam_date: string;
+            exam_subjects: string;
+            next_bag_no: number;
+            booklet_count: number;
+        } | null = null;
+
+        if (errors.length === 0 && session_id) {
+            const [session, sessionSubjects, next_bag_no] = await Promise.all([
+                prisma.sessions.findFirst({
+                    where:  { id: session_id, deleted_at: null },
+                    select: { session_code: true, exam_date: true },
+                }),
+                prisma.session_subjects.findMany({
+                    where:   { session_id, deleted_at: null },
+                    include: { campaign_subjects: { select: { name: true } } },
+                    orderBy: { order_no: "asc" },
+                }),
+                bagRepo.getNextBagNo(session_id),
+            ]);
+
+            confirm = {
+                session_code:  session?.session_code ?? "-",
+                exam_date:     session?.exam_date.toISOString().slice(0, 10) ?? "-",
+                exam_subjects: sessionSubjects.map((ss) => ss.campaign_subjects.name).join("และ") || "-",
+                next_bag_no,
+                booklet_count: valid.length,
+            };
+        }
+
         return {
             success: true,
-            message: errors.length === 0 ? "ตรวจสอบสำเร็จ พร้อมสร้างถุง" : "พบข้อผิดพลาดบางรายการ",
+            message: errors.length === 0 ? "ตรวจสอบสำเร็จ พร้อมยืนยันสร้างถุง" : "พบข้อผิดพลาดบางรายการ",
             data: {
-                valid_count: valid.length,
-                error_count: errors.length,
+                valid_count:  valid.length,
+                error_count:  errors.length,
                 session_id,
+                confirm,
                 errors: errors.map((e) => ({ masked_payload: maskPayload(e.payload), reason: e.error })),
             },
         };
@@ -142,12 +176,15 @@ export const bagService = {
             const counter = await bagRepo.lockAndGetCounter(session_id, tx);
             if (!counter) throw new AppError("ไม่พบ session counter", 500);
 
-            // 3. สร้าง bag
+            // 3. หาเลขถุงถัดไป — เติม gap ถ้ามี (เช่น ลบถุง 2 ไป → ได้ 2 คืน)
+            const bag_no = await bagRepo.getNextBagNo(session_id, tx);
+
+            // 4. สร้าง bag
             const bag = await bagRepo.create(
                 {
                     campaign_id: input.campaign_id,
                     session_id: session_id,
-                    bag_no: counter.next_bag_no,
+                    bag_no,
                     count_items: valid.length,
                     created_by_account_id: session.account_id,
                 },
@@ -184,8 +221,8 @@ export const bagService = {
                 })),
             });
 
-            // 6. Increment counters
-            await bagRepo.incrementCounter(session_id, 1, valid.length, tx);
+            // 6. Increment random_num counter
+            await bagRepo.incrementCounter(session_id, valid.length, tx);
 
             return bag;
         });

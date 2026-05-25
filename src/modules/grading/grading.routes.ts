@@ -3,6 +3,12 @@ import { gradingService } from "./grading.service";
 import { requireSession } from "../../cores/session";
 import { requireGradingAccess, requireGrader } from "../../cores/auth-guard";
 import {
+    campaignIdParamSchema,
+    verifyFirstScanBodySchema,
+    startWorkBodySchema,
+    saveDraftScoreBodySchema,
+    confirmWorkBodySchema,
+    cancelWorkBodySchema,
     graderIdParamSchema,
     bagGraderParamSchema,
     draftIdParamSchema,
@@ -21,7 +27,7 @@ const graderOnlyRoutes = new Elysia()
     .post("/grading/preview-start",  ({ body, set }) => { set.status = 200; return gradingService.previewStart(body); },  { body: gradingStartBodySchema })
     .post("/grading/confirm-start",  ({ body, set }) => { set.status = 201; return gradingService.confirmStart(body); },  { body: gradingStartBodySchema })
     .post("/grading/drafts",         ({ body, set }) => { set.status = 201; return gradingService.saveDraft(body); },     { body: saveDraftBodySchema })
-    .patch("/grading/drafts/:draftId",({ params, body, set }) => { set.status = 200; return gradingService.updateDraft(params.draftId, body); }, { params: draftIdParamSchema, body: updateDraftBodySchema })
+    .patch("/grading/drafts/:draftId",({ params, body, session, set }) => { set.status = 200; return gradingService.updateDraft(params.draftId, session.grader_id!, body); }, { params: draftIdParamSchema, body: updateDraftBodySchema })
     .post("/grading/confirm-bag",    ({ body, set }) => { set.status = 200; return gradingService.confirmBag(body); },    { body: confirmBagBodySchema })
     .post("/grading/work-locks",     ({ body, set }) => { set.status = 201; return gradingService.createWorkLock(body); },{ body: createWorkLockBodySchema });
 
@@ -45,4 +51,68 @@ const sharedRoutes = new Elysia()
         set.status = 200; return gradingService.cancelLock(params.lockId);
     }, { params: lockIdParamSchema });
 
-export const gradingRoutes = new Elysia().use(graderOnlyRoutes).use(sharedRoutes);
+// ── Campaign-scoped GRADER-only routes (session-inferred grader) ─────────────
+const graderCampaignRoutes = new Elysia()
+    .use(requireSession)
+    .use(requireGrader())
+    .get(
+        "/grading/campaigns/:campaignId/my-questions",
+        ({ params, session, set }) => {
+            set.status = 200;
+            return gradingService.getMyQuestions(params.campaignId, session.grader_id!);
+        },
+        { params: campaignIdParamSchema },
+    )
+    .get(
+        "/grading/campaigns/:campaignId/active-work",
+        ({ params, session, set }) => {
+            set.status = 200;
+            return gradingService.getActiveWork(params.campaignId, session.grader_id!);
+        },
+        { params: campaignIdParamSchema },
+    )
+    .post(
+        "/grading/campaigns/:campaignId/verify-first-scan",
+        ({ params, body, session, set }) => {
+            set.status = 200;
+            return gradingService.verifyFirstScan(params.campaignId, session.grader_id!, body);
+        },
+        { params: campaignIdParamSchema, body: verifyFirstScanBodySchema },
+    )
+    .post(
+        "/grading/campaigns/:campaignId/start-work",
+        ({ params, body, session, set }) => {
+            set.status = 201;
+            return gradingService.startWork(params.campaignId, session.grader_id!, body);
+        },
+        { params: campaignIdParamSchema, body: startWorkBodySchema },
+    )
+    .post(
+        "/grading/campaigns/:campaignId/drafts",
+        ({ params, body, session, set }) => {
+            set.status = 200;
+            return gradingService.saveDraftScore(params.campaignId, session.grader_id!, body);
+        },
+        { params: campaignIdParamSchema, body: saveDraftScoreBodySchema },
+    )
+    .post(
+        "/grading/campaigns/:campaignId/confirm-work",
+        ({ params, body, session, set }) => {
+            set.status = 200;
+            return gradingService.confirmWork(params.campaignId, session.grader_id!, body);
+        },
+        { params: campaignIdParamSchema, body: confirmWorkBodySchema },
+    )
+    .post(
+        "/grading/campaigns/:campaignId/cancel-work",
+        ({ params, body, session, set }) => {
+            set.status = 200;
+            return gradingService.cancelWork(params.campaignId, session.grader_id!, body);
+        },
+        { params: campaignIdParamSchema, body: cancelWorkBodySchema },
+    );
+
+export const gradingRoutes = new Elysia()
+    .use(graderCampaignRoutes)
+    .use(graderOnlyRoutes)
+    .use(sharedRoutes);
