@@ -25,6 +25,12 @@ export const createBagBodySchema = t.Object({
     qr_payloads: t.Array(t.String(), { minItems: 1 }),
 });
 
+export const bagBookletsQuerySchema = t.Object({
+    page: t.Optional(t.String()),
+    limit: t.Optional(t.String()),
+    search: t.Optional(t.String()),
+});
+
 export const updateBagStatusBodySchema = t.Object({
     status: t.Union([
         t.Literal("CREATED"),

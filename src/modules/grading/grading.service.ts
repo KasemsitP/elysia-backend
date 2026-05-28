@@ -383,8 +383,13 @@ export const gradingService = {
     // Campaign-scoped grading flow (session-inferred grader)
     // ════════════════════════════════════════════════════════════════════════
 
-    async getMyQuestions(campaignId: number, graderId: number) {
-        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+    async getMyQuestions(campaignId: number, accountId: number) {
+        const graderRow = await prisma.graders.findFirst({
+            where: { account_id: accountId, campaign_id: campaignId, deleted_at: null },
+            select: { id: true },
+        });
+        if (!graderRow) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+        const graderId = graderRow.id;
 
         const assignments = await prisma.grader_assignments.findMany({
             where: {
@@ -422,10 +427,15 @@ export const gradingService = {
         return { success: true, data };
     },
 
-    async getActiveWork(campaignId: number, graderId: number) {
-        if (!graderId) {
+    async getActiveWork(campaignId: number, accountId: number) {
+        const graderRow = await prisma.graders.findFirst({
+            where: { account_id: accountId, campaign_id: campaignId, deleted_at: null },
+            select: { id: true },
+        });
+        if (!graderRow) {
             return { success: true, data: { hasActiveWork: false, lock: null, drafts: [] } };
         }
+        const graderId = graderRow.id;
 
         const activeLock = await gradingRepo.findActiveLockByGraderAndCampaign(graderId, campaignId);
 
@@ -465,8 +475,13 @@ export const gradingService = {
         return { success: true, data: { hasActiveWork: true, lock: lockData, drafts } };
     },
 
-    async verifyFirstScan(campaignId: number, graderId: number, body: VerifyFirstScanBody) {
-        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+    async verifyFirstScan(campaignId: number, accountId: number, body: VerifyFirstScanBody) {
+        const graderRow = await prisma.graders.findFirst({
+            where: { account_id: accountId, campaign_id: campaignId, deleted_at: null },
+            select: { id: true },
+        });
+        if (!graderRow) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+        const graderId = graderRow.id;
 
         const booklet = await prisma.booklets.findUnique({
             where: { qr_payload: body.qrPayload },
@@ -551,8 +566,13 @@ export const gradingService = {
         };
     },
 
-    async startWork(campaignId: number, graderId: number, body: StartWorkBody) {
-        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+    async startWork(campaignId: number, accountId: number, body: StartWorkBody) {
+        const graderRow = await prisma.graders.findFirst({
+            where: { account_id: accountId, campaign_id: campaignId, deleted_at: null },
+            select: { id: true },
+        });
+        if (!graderRow) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+        const graderId = graderRow.id;
 
         const { bagId, sessionSubjectQuestionId } = body;
 
@@ -723,8 +743,13 @@ export const gradingService = {
         };
     },
 
-    async saveDraftScore(campaignId: number, graderId: number, body: SaveDraftScoreBody) {
-        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+    async saveDraftScore(campaignId: number, accountId: number, body: SaveDraftScoreBody) {
+        const graderRow = await prisma.graders.findFirst({
+            where: { account_id: accountId, campaign_id: campaignId, deleted_at: null },
+            select: { id: true },
+        });
+        if (!graderRow) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+        const graderId = graderRow.id;
 
         const draft = await gradingRepo.findDraftWithSlotAndQuestion(body.draftId, graderId);
         if (!draft) throw new AppError("ไม่พบ draft หรือไม่มีสิทธิ์แก้ไข", 404);
@@ -743,8 +768,13 @@ export const gradingService = {
         };
     },
 
-    async confirmWork(campaignId: number, graderId: number, body: ConfirmWorkBody) {
-        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+    async confirmWork(campaignId: number, accountId: number, body: ConfirmWorkBody) {
+        const graderRow = await prisma.graders.findFirst({
+            where: { account_id: accountId, campaign_id: campaignId, deleted_at: null },
+            select: { id: true },
+        });
+        if (!graderRow) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+        const graderId = graderRow.id;
 
         const lock = await gradingRepo.findLockById(body.lockId);
         if (!lock) throw new AppError("ไม่พบ work lock", 404);
@@ -834,8 +864,13 @@ export const gradingService = {
         };
     },
 
-    async cancelWork(campaignId: number, graderId: number, body: CancelWorkBody) {
-        if (!graderId) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+    async cancelWork(campaignId: number, accountId: number, body: CancelWorkBody) {
+        const graderRow = await prisma.graders.findFirst({
+            where: { account_id: accountId, campaign_id: campaignId, deleted_at: null },
+            select: { id: true },
+        });
+        if (!graderRow) throw new AppError("บัญชีนี้ไม่มีสิทธิ์ตรวจข้อสอบในรอบสอบนี้", 403);
+        const graderId = graderRow.id;
 
         const lock = await gradingRepo.findLockById(body.lockId);
         if (!lock) throw new AppError("ไม่พบ work lock", 404);

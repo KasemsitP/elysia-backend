@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
 import { bagService } from "./bags.service";
 import { requireSession } from "../../cores/session";
-import { requireAdminOrStaff } from "../../cores/auth-guard";
+import { requireAdminOrStaff, requireNonGrader } from "../../cores/auth-guard";
 import { scanRateLimitHandler } from "../../cores/rate-limit";
 import {
     bagCampaignParamSchema,
@@ -10,6 +10,7 @@ import {
     scanPreviewBodySchema,
     createBagBodySchema,
     updateBagStatusBodySchema,
+    bagBookletsQuerySchema,
 } from "./bags.schema";
 
 // Read → any authenticated
@@ -30,4 +31,25 @@ const writeRoutes = new Elysia()
     .patch("/bags/:bagId/status", ({ params, body, set }) => { set.status = 200; return bagService.updateStatus(params.bagId, body); }, { params: bagIdParamSchema, body: updateBagStatusBodySchema })
     .delete("/bags/:bagId",     ({ params, set }) => { set.status = 200; return bagService.delete(params.bagId); }, { params: bagIdParamSchema });
 
-export const bagRoutes = new Elysia().use(readRoutes).use(writeRoutes);
+// Payload viewer: ADMIN + MANAGER + STAFF — ไม่รวม GRADER
+const payloadRoutes = new Elysia()
+    .use(requireSession)
+    .use(requireNonGrader())
+    .get(
+        "/bags/:bagId/booklets/payloads",
+        ({ params, query, set }) => {
+            set.status = 200;
+            return bagService.getBagBooklets({
+                bagId: params.bagId,
+                page: query.page ? Number(query.page) : 1,
+                limit: query.limit ? Number(query.limit) : 30,
+                search: query.search ?? "",
+            });
+        },
+        {
+            params: bagIdParamSchema,
+            query: bagBookletsQuerySchema,
+        }
+    );
+
+export const bagRoutes = new Elysia().use(readRoutes).use(writeRoutes).use(payloadRoutes);

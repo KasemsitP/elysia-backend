@@ -230,6 +230,55 @@ export const bagService = {
         return { success: true, message: `สร้างถุง #${result.bag_no} สำเร็จ (${valid.length} เล่ม)`, data: result };
     },
 
+    async getBagBooklets(input: {
+        bagId: number;
+        page: number;
+        limit: number;
+        search?: string;
+    }) {
+        const page = Math.max(1, input.page || 1);
+        const limit = Math.min(200, Math.max(1, input.limit || 30));
+        const search = input.search?.trim() || undefined;
+
+        const bag = await bagRepo.findById(input.bagId);
+        if (!bag) throw new AppError("ไม่พบถุงข้อสอบ", 404);
+
+        const [total, rows] = await Promise.all([
+            bagRepo.countBookletsByBag(input.bagId, search),
+            bagRepo.findBookletsByBagPaginated({
+                bagId: input.bagId,
+                page,
+                limit,
+                search,
+            }),
+        ]);
+
+        return {
+            success: true,
+            data: {
+                bag: {
+                    id: bag.id,
+                    campaignId: bag.campaign_id,
+                    sessionId: bag.session_id,
+                    bagNo: bag.bag_no,
+                    status: bag.status,
+                    countItems: bag.count_items,
+                },
+                pagination: {
+                    page,
+                    limit,
+                    total,
+                    totalPages: Math.ceil(total / limit),
+                },
+                rows: rows.map((row) => ({
+                    randomNum: row.random_num,
+                    qrPayload: row.qr_payload,
+                    createdAt: row.created_at,
+                })),
+            },
+        };
+    },
+
     async updateStatus(bagId: number, input: UpdateBagStatusBody) {
         const bag = await bagRepo.findById(bagId);
         if (!bag) throw new AppError("ไม่พบถุงข้อสอบ", 404);

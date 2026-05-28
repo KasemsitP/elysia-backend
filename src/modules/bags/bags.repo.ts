@@ -90,6 +90,54 @@ export const bagRepo = {
         return next;
     },
 
+    async countBookletsByBag(bagId: number, search?: string): Promise<number> {
+        const where = {
+            bag_id: bagId,
+            deleted_at: null,
+            ...(search ? {
+                OR: [
+                    { random_num: { contains: search } },
+                    { qr_payload: { contains: search } },
+                ],
+            } : {}),
+        };
+        return prisma.booklets.count({ where });
+    },
+
+    async findBookletsByBagPaginated(input: {
+        bagId: number;
+        page: number;
+        limit: number;
+        search?: string;
+    }) {
+        const skip = (input.page - 1) * input.limit;
+        const where = {
+            bag_id: input.bagId,
+            deleted_at: null,
+            ...(input.search ? {
+                OR: [
+                    { random_num: { contains: input.search } },
+                    { qr_payload: { contains: input.search } },
+                ],
+            } : {}),
+        };
+        return prisma.booklets.findMany({
+            where,
+            skip,
+            take: input.limit,
+            orderBy: [
+                { seq_in_bag: "asc" },
+                { random_num: "asc" },
+                { id: "asc" },
+            ],
+            select: {
+                random_num: true,
+                qr_payload: true,
+                created_at: true,
+            },
+        });
+    },
+
     // SELECT ... FOR UPDATE — ต้องอยู่ใน transaction เสมอ
     async lockAndGetCounter(session_id: number, tx: Tx) {
         const rows = await tx.$queryRaw<

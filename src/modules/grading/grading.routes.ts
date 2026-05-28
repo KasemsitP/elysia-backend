@@ -59,7 +59,7 @@ const graderCampaignRoutes = new Elysia()
         "/grading/campaigns/:campaignId/my-questions",
         ({ params, session, set }) => {
             set.status = 200;
-            return gradingService.getMyQuestions(params.campaignId, session.grader_id!);
+            return gradingService.getMyQuestions(params.campaignId, session.account_id);
         },
         { params: campaignIdParamSchema },
     )
@@ -67,7 +67,7 @@ const graderCampaignRoutes = new Elysia()
         "/grading/campaigns/:campaignId/active-work",
         ({ params, session, set }) => {
             set.status = 200;
-            return gradingService.getActiveWork(params.campaignId, session.grader_id!);
+            return gradingService.getActiveWork(params.campaignId, session.account_id);
         },
         { params: campaignIdParamSchema },
     )
@@ -75,7 +75,7 @@ const graderCampaignRoutes = new Elysia()
         "/grading/campaigns/:campaignId/verify-first-scan",
         ({ params, body, session, set }) => {
             set.status = 200;
-            return gradingService.verifyFirstScan(params.campaignId, session.grader_id!, body);
+            return gradingService.verifyFirstScan(params.campaignId, session.account_id, body);
         },
         { params: campaignIdParamSchema, body: verifyFirstScanBodySchema },
     )
@@ -83,7 +83,7 @@ const graderCampaignRoutes = new Elysia()
         "/grading/campaigns/:campaignId/start-work",
         ({ params, body, session, set }) => {
             set.status = 201;
-            return gradingService.startWork(params.campaignId, session.grader_id!, body);
+            return gradingService.startWork(params.campaignId, session.account_id, body);
         },
         { params: campaignIdParamSchema, body: startWorkBodySchema },
     )
@@ -91,7 +91,7 @@ const graderCampaignRoutes = new Elysia()
         "/grading/campaigns/:campaignId/drafts",
         ({ params, body, session, set }) => {
             set.status = 200;
-            return gradingService.saveDraftScore(params.campaignId, session.grader_id!, body);
+            return gradingService.saveDraftScore(params.campaignId, session.account_id, body);
         },
         { params: campaignIdParamSchema, body: saveDraftScoreBodySchema },
     )
@@ -99,7 +99,7 @@ const graderCampaignRoutes = new Elysia()
         "/grading/campaigns/:campaignId/confirm-work",
         ({ params, body, session, set }) => {
             set.status = 200;
-            return gradingService.confirmWork(params.campaignId, session.grader_id!, body);
+            return gradingService.confirmWork(params.campaignId, session.account_id, body);
         },
         { params: campaignIdParamSchema, body: confirmWorkBodySchema },
     )
@@ -107,7 +107,7 @@ const graderCampaignRoutes = new Elysia()
         "/grading/campaigns/:campaignId/cancel-work",
         ({ params, body, session, set }) => {
             set.status = 200;
-            return gradingService.cancelWork(params.campaignId, session.grader_id!, body);
+            return gradingService.cancelWork(params.campaignId, session.account_id, body);
         },
         { params: campaignIdParamSchema, body: cancelWorkBodySchema },
     );
