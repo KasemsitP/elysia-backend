@@ -1,15 +1,13 @@
 import { AppError } from "../../cores/errors";
 import { prisma } from "../../cores/prisma";
 import { runSignsheetPdfWorker } from "./signsheet-pdf.runner";
-import { campaignKeyService } from "../campaign-keys/campaign-keys.service";
-import { decryptQrPayload } from "../../cores/qr-crypto";
 import type { signsheetQuerySchema } from "./signsheet.schema";
 import type { Static } from "elysia";
 import type { SignsheetRow, SignsheetPdfResult } from "./signsheet.type";
 
 type SignsheetQuery = Static<typeof signsheetQuerySchema>;
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// ── Date/time helpers ─────────────────────────────────────────────────────────
 
 const THAI_MONTHS = [
     "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน",
@@ -39,6 +37,8 @@ function buildSessionText(
     return `${datePart} เวลา ${formatThaiTime(startAt)} - ${formatThaiTime(endAt)} น.`;
 }
 
+// ── Public service ────────────────────────────────────────────────────────────
+
 export const signsheetService = {
     async getSignsheet(campaignId: number, sessionId: number, query: SignsheetQuery) {
         const page   = Math.max(1, Number(query.page  ?? 1));
@@ -53,7 +53,7 @@ export const signsheetService = {
 
         const session = await prisma.sessions.findFirst({
             where:  { id: sessionId, campaign_id: campaignId, deleted_at: null },
-            select: { id: true, session_code: true, title: true, exam_date: true, day_no: true },
+            select: { id: true, session_code: true, title: true, exam_date: true, day_no: true, signsheet_status: true },
         });
         if (!session) throw new AppError("ไม่พบวันสอบในรอบสอบนี้", 404);
 
@@ -125,11 +125,12 @@ export const signsheetService = {
                     is_unlock:     campaign.is_unlock,
                 },
                 session: {
-                    id:           session.id,
-                    session_code: session.session_code,
-                    title:        session.title,
-                    exam_date:    session.exam_date.toISOString().slice(0, 10),
-                    day_no:       session.day_no,
+                    id:               session.id,
+                    session_code:     session.session_code,
+                    title:            session.title,
+                    exam_date:        session.exam_date.toISOString().slice(0, 10),
+                    day_no:           session.day_no,
+                    signsheet_status: session.signsheet_status,
                 },
                 pagination: {
                     page,
@@ -157,108 +158,123 @@ export const signsheetService = {
         };
     },
 
-    async generateSignsheetPdf(params: {
-        campaignId: number;
-        sessionId:  number;
-        search:     string;
-    }): Promise<SignsheetPdfResult> {
-        const { campaignId, sessionId, search } = params;
-
-        const campaign = await prisma.exam_campaigns.findFirst({
-            where:  { id: campaignId, deleted_at: null },
-            select: { id: true, name: true, year_be: true, campaign_size: true, site: true, is_unlock: true },
-        });
-        if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
-
+    /** สถานะ PDF ของ session (NOT_GENERATED / READY / STALE) */
+    async getSignsheetPdfStatus(campaignId: number, sessionId: number) {
         const session = await prisma.sessions.findFirst({
             where:  { id: sessionId, campaign_id: campaignId, deleted_at: null },
-            select: { id: true, session_code: true, title: true, exam_date: true, day_no: true },
+            select: { signsheet_status: true, signsheet_file: true },
         });
-        if (!session) throw new AppError("ไม่พบวันสอบในรอบสอบนี้", 404);
+        if (!session) throw new AppError("ไม่พบวันสอบ", 404);
 
-        const searchFilter = search
-            ? {
-                OR: [
-                    { room_code: { contains: search } },
-                    { users: {
-                        OR: [
-                            { user_code:   { contains: search } },
-                            { full_name:   { contains: search } },
-                            { first_name:  { contains: search } },
-                            { last_name:   { contains: search } },
-                            { national_id: { contains: search } },
-                        ],
-                    }},
-                ],
-              }
-            : {};
+        const staleBooklets = await prisma.booklets.count({
+            where: { campaign_id: campaignId, session_id: sessionId, qr_status: "STALE", deleted_at: null },
+        });
 
-        const where = {
-            campaign_id: campaignId,
-            deleted_at:  null,
-            user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns: {
-                some: { session_id: sessionId, campaign_id: campaignId, deleted_at: null },
+        return {
+            success: true,
+            data: {
+                signsheet_status: session.signsheet_status,
+                has_file:         !!session.signsheet_file,
+                stale_booklets:   staleBooklets,
+                can_generate:     staleBooklets === 0,
             },
-            ...searchFilter,
         };
+    },
 
-        const uc = await prisma.user_campaigns.findMany({
-            where,
-            select: {
-                id:        true,
-                room_code: true,
-                row_no:    true,
-                col_no:    true,
-                users: {
-                    select: {
-                        id:          true,
-                        user_code:   true,
-                        title:       true,
-                        full_name:   true,
-                        first_name:  true,
-                        last_name:   true,
-                        national_id: true,
-                    },
-                },
-            },
-            orderBy: [
-                { row_no:    "asc" },
-                { col_no:    "asc" },
-                { room_code: "asc" },
-                { users:     { user_code: "asc" } },
-            ],
+    /**
+     * ดาวน์โหลด PDF ที่บันทึกไว้ — ไม่มีการ decrypt เลย
+     *
+     * - NOT_GENERATED → ยังไม่มีไฟล์ (booklet ยังไม่ถูก generate)
+     * - STALE         → key เปลี่ยน ห้าม serve ไฟล์เก่า
+     * - READY         → คืน path ไฟล์ที่เก็บไว้
+     */
+    async getStoredSignsheetPdfPath(campaignId: number, sessionId: number): Promise<string> {
+        const session = await prisma.sessions.findFirst({
+            where:  { id: sessionId, campaign_id: campaignId, deleted_at: null },
+            select: { signsheet_status: true, signsheet_file: true },
         });
+        if (!session) throw new AppError("ไม่พบวันสอบ", 404);
 
-        // Decrypt booklets → map userCode → original qrPayload
-        const qrMap = new Map<string, string>();
-        let combinedKey: Buffer | null = null;
-        try {
-            const [keyResult, booklets] = await Promise.all([
-                campaignKeyService.getCombinedKey(campaignId),
-                prisma.booklets.findMany({
-                    where:  { campaign_id: campaignId, session_id: sessionId, deleted_at: null },
-                    select: { qr_payload: true },
-                }),
-            ]);
-            combinedKey = keyResult;
-            const keyBase64 = combinedKey.toString("base64");
-            for (const b of booklets) {
-                if (!b.qr_payload) continue;
-                try {
-                    const decoded = decryptQrPayload(b.qr_payload, keyBase64);
-                    if (!qrMap.has(decoded.uc)) {
-                        qrMap.set(decoded.uc, b.qr_payload);
-                    }
-                } catch (err) {
-                    console.error("[signsheet] decrypt qr_payload ล้มเหลว:", err);
-                }
-            }
-        } catch (err) {
-            console.error(`[signsheet] ไม่สามารถโหลด campaign keys (campaignId=${campaignId}):`, err);
-        } finally {
-            combinedKey?.fill(0);
+        if (session.signsheet_status === "NOT_GENERATED" || !session.signsheet_file) {
+            throw new AppError(
+                "ยังไม่มีไฟล์ PDF — กรุณาสร้าง QR Payload ก่อน",
+                404,
+            );
+        }
+        if (session.signsheet_status === "STALE") {
+            throw new AppError(
+                "PDF ล้าสมัย — มีการเปลี่ยน Manager Key กรุณาสร้าง QR ใหม่แล้วระบบจะสร้าง PDF ให้อัตโนมัติ",
+                422,
+            );
         }
 
+        return session.signsheet_file;
+    },
+
+    /**
+     * สร้าง signsheet PDF และบันทึก path ลง sessions
+     *
+     * รับ qrMap ที่ build มาแล้วจากขั้นตอน generate booklets
+     * ไม่มีการ decrypt, ไม่ต้องการ manager key
+     *
+     * qrMap: user_code → qr_payload (ciphertext ที่จะพิมพ์เป็น QR code ใน PDF)
+     */
+    async generateAndStoreSignsheetPdf(
+        campaignId: number,
+        sessionId:  number,
+        qrMap:      Map<string, string>,
+    ): Promise<SignsheetPdfResult> {
+        const [campaign, session, uc, sessionSubjectsData] = await Promise.all([
+            prisma.exam_campaigns.findFirst({
+                where:  { id: campaignId, deleted_at: null },
+                select: { id: true, name: true, year_be: true, campaign_size: true, site: true, is_unlock: true },
+            }),
+            prisma.sessions.findFirst({
+                where:  { id: sessionId, campaign_id: campaignId, deleted_at: null },
+                select: { id: true, session_code: true, title: true, exam_date: true, day_no: true },
+            }),
+            prisma.user_campaigns.findMany({
+                where: {
+                    campaign_id: campaignId,
+                    deleted_at:  null,
+                    user_sessions_user_sessions_user_campaign_id_campaign_idTouser_campaigns: {
+                        some: { session_id: sessionId, campaign_id: campaignId, deleted_at: null },
+                    },
+                },
+                select: {
+                    room_code: true,
+                    row_no:    true,
+                    col_no:    true,
+                    users: {
+                        select: {
+                            id:          true,
+                            user_code:   true,
+                            title:       true,
+                            full_name:   true,
+                            first_name:  true,
+                            last_name:   true,
+                            national_id: true,
+                        },
+                    },
+                },
+                orderBy: [
+                    { row_no:    "asc" },
+                    { col_no:    "asc" },
+                    { room_code: "asc" },
+                    { users:     { user_code: "asc" } },
+                ],
+            }),
+            prisma.session_subjects.findMany({
+                where:   { session_id: sessionId, campaign_id: campaignId, deleted_at: null },
+                include: { campaign_subjects: { select: { name: true } } },
+                orderBy: { order_no: "asc" },
+            }),
+        ]);
+
+        if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
+        if (!session)  throw new AppError("ไม่พบวันสอบ", 404);
+
+        // Build rows — qrPayload มาจาก qrMap ที่ build ระหว่าง encrypt ไม่ต้อง decrypt
         const rows: SignsheetRow[] = uc.map((row, idx) => {
             const userCode = row.users?.user_code ?? null;
             return {
@@ -280,15 +296,8 @@ export const signsheetService = {
             };
         });
 
-        // วิชาในวันที่สอบ — ดึงจาก session_subjects → campaign_subjects.name
-        const sessionSubjectsData = await prisma.session_subjects.findMany({
-            where:   { session_id: sessionId, campaign_id: campaignId, deleted_at: null },
-            include: { campaign_subjects: { select: { name: true } } },
-            orderBy: { order_no: "asc" },
-        });
         const examSubjects = sessionSubjectsData.map((ss) => ss.campaign_subjects.name).join("และ");
 
-        // เวลาสอบ — ใช้ start_at เร็วสุดและ end_at ช้าสุดของวิชาในวันนั้น
         const startAt = sessionSubjectsData.length > 0
             ? sessionSubjectsData.reduce((min, ss) => ss.start_at < min ? ss.start_at : min, sessionSubjectsData[0]!.start_at)
             : null;
@@ -296,13 +305,10 @@ export const signsheetService = {
             ? sessionSubjectsData.reduce((max, ss) => ss.end_at > max ? ss.end_at : max, sessionSubjectsData[0]!.end_at)
             : null;
 
-        // campaign_size + year_be เช่น "สนามใหญ่ 2571"
         const campaignLabel = `${campaign.campaign_size} ${campaign.year_be}`;
-
-        // sessionText สร้างจากวันที่ + เวลาสอบ
         const sessionText   = buildSessionText(session, startAt, endAt);
 
-        return runSignsheetPdfWorker({
+        const result = await runSignsheetPdfWorker({
             campaign: {
                 id:            campaign.id,
                 name:          campaign.name,
@@ -324,5 +330,16 @@ export const signsheetService = {
             campaignLabel,
             sessionText,
         });
+
+        // บันทึก path และ mark READY
+        await prisma.sessions.updateMany({
+            where: { id: sessionId, campaign_id: campaignId },
+            data: {
+                signsheet_file:   result.filePath,
+                signsheet_status: "READY",
+            },
+        });
+
+        return result;
     },
 };

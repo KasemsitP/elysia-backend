@@ -52,6 +52,7 @@ export type BookletsMinAggregateOutputType = {
   seq_in_bag: number | null
   random_num: string | null
   status: string | null
+  qr_status: string | null
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
@@ -67,6 +68,7 @@ export type BookletsMaxAggregateOutputType = {
   seq_in_bag: number | null
   random_num: string | null
   status: string | null
+  qr_status: string | null
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
@@ -82,6 +84,7 @@ export type BookletsCountAggregateOutputType = {
   seq_in_bag: number
   random_num: number
   status: number
+  qr_status: number
   created_at: number
   updated_at: number
   deleted_at: number
@@ -115,6 +118,7 @@ export type BookletsMinAggregateInputType = {
   seq_in_bag?: true
   random_num?: true
   status?: true
+  qr_status?: true
   created_at?: true
   updated_at?: true
   deleted_at?: true
@@ -130,6 +134,7 @@ export type BookletsMaxAggregateInputType = {
   seq_in_bag?: true
   random_num?: true
   status?: true
+  qr_status?: true
   created_at?: true
   updated_at?: true
   deleted_at?: true
@@ -145,6 +150,7 @@ export type BookletsCountAggregateInputType = {
   seq_in_bag?: true
   random_num?: true
   status?: true
+  qr_status?: true
   created_at?: true
   updated_at?: true
   deleted_at?: true
@@ -247,6 +253,7 @@ export type BookletsGroupByOutputType = {
   seq_in_bag: number | null
   random_num: string | null
   status: string
+  qr_status: string
   created_at: Date
   updated_at: Date
   deleted_at: Date | null
@@ -285,6 +292,7 @@ export type bookletsWhereInput = {
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
   random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
   status?: Prisma.StringFilter<"booklets"> | string
+  qr_status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"booklets"> | Date | string | null
@@ -310,6 +318,7 @@ export type bookletsOrderByWithRelationInput = {
   seq_in_bag?: Prisma.SortOrderInput | Prisma.SortOrder
   random_num?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  qr_status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -341,6 +350,7 @@ export type bookletsWhereUniqueInput = Prisma.AtLeast<{
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
   random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
   status?: Prisma.StringFilter<"booklets"> | string
+  qr_status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"booklets"> | Date | string | null
@@ -366,6 +376,7 @@ export type bookletsOrderByWithAggregationInput = {
   seq_in_bag?: Prisma.SortOrderInput | Prisma.SortOrder
   random_num?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
+  qr_status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -389,6 +400,7 @@ export type bookletsScalarWhereWithAggregatesInput = {
   seq_in_bag?: Prisma.IntNullableWithAggregatesFilter<"booklets"> | number | null
   random_num?: Prisma.StringNullableWithAggregatesFilter<"booklets"> | string | null
   status?: Prisma.StringWithAggregatesFilter<"booklets"> | string
+  qr_status?: Prisma.StringWithAggregatesFilter<"booklets"> | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"booklets"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"booklets"> | Date | string
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"booklets"> | Date | string | null
@@ -400,6 +412,7 @@ export type bookletsCreateInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -425,6 +438,7 @@ export type bookletsUncheckedCreateInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -443,6 +457,7 @@ export type bookletsUpdateInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -468,6 +483,7 @@ export type bookletsUncheckedUpdateInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -490,6 +506,7 @@ export type bookletsCreateManyInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -501,6 +518,7 @@ export type bookletsUpdateManyMutationInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -516,6 +534,7 @@ export type bookletsUncheckedUpdateManyInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -557,6 +576,7 @@ export type bookletsCountOrderByAggregateInput = {
   seq_in_bag?: Prisma.SortOrder
   random_num?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  qr_status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
@@ -580,6 +600,7 @@ export type bookletsMaxOrderByAggregateInput = {
   seq_in_bag?: Prisma.SortOrder
   random_num?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  qr_status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
@@ -595,6 +616,7 @@ export type bookletsMinOrderByAggregateInput = {
   seq_in_bag?: Prisma.SortOrder
   random_num?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  qr_status?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
@@ -852,6 +874,7 @@ export type bookletsCreateWithoutBagsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -873,6 +896,7 @@ export type bookletsUncheckedCreateWithoutBagsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -924,6 +948,7 @@ export type bookletsScalarWhereInput = {
   seq_in_bag?: Prisma.IntNullableFilter<"booklets"> | number | null
   random_num?: Prisma.StringNullableFilter<"booklets"> | string | null
   status?: Prisma.StringFilter<"booklets"> | string
+  qr_status?: Prisma.StringFilter<"booklets"> | string
   created_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"booklets"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"booklets"> | Date | string | null
@@ -935,6 +960,7 @@ export type bookletsCreateWithoutExam_campaignsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -958,6 +984,7 @@ export type bookletsUncheckedCreateWithoutExam_campaignsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1002,6 +1029,7 @@ export type bookletsCreateWithoutGrading_score_draftsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1026,6 +1054,7 @@ export type bookletsUncheckedCreateWithoutGrading_score_draftsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1059,6 +1088,7 @@ export type bookletsUpdateWithoutGrading_score_draftsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1083,6 +1113,7 @@ export type bookletsUncheckedUpdateWithoutGrading_score_draftsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1100,6 +1131,7 @@ export type bookletsCreateWithoutGrading_score_logsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1124,6 +1156,7 @@ export type bookletsUncheckedCreateWithoutGrading_score_logsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1157,6 +1190,7 @@ export type bookletsUpdateWithoutGrading_score_logsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1181,6 +1215,7 @@ export type bookletsUncheckedUpdateWithoutGrading_score_logsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1198,6 +1233,7 @@ export type bookletsCreateWithoutGrading_slotsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1222,6 +1258,7 @@ export type bookletsUncheckedCreateWithoutGrading_slotsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1255,6 +1292,7 @@ export type bookletsUpdateWithoutGrading_slotsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1279,6 +1317,7 @@ export type bookletsUncheckedUpdateWithoutGrading_slotsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1296,6 +1335,7 @@ export type bookletsCreateWithoutSessionsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1318,6 +1358,7 @@ export type bookletsUncheckedCreateWithoutSessionsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1362,6 +1403,7 @@ export type bookletsCreateWithoutBooklet_incident_reportsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1386,6 +1428,7 @@ export type bookletsUncheckedCreateWithoutBooklet_incident_reportsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1419,6 +1462,7 @@ export type bookletsUpdateWithoutBooklet_incident_reportsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1443,6 +1487,7 @@ export type bookletsUncheckedUpdateWithoutBooklet_incident_reportsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1460,6 +1505,7 @@ export type bookletsCreateWithoutBooklet_question_choicesInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1484,6 +1530,7 @@ export type bookletsUncheckedCreateWithoutBooklet_question_choicesInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1517,6 +1564,7 @@ export type bookletsUpdateWithoutBooklet_question_choicesInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1541,6 +1589,7 @@ export type bookletsUncheckedUpdateWithoutBooklet_question_choicesInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1558,6 +1607,7 @@ export type bookletsCreateWithoutBooklet_question_notesInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1582,6 +1632,7 @@ export type bookletsUncheckedCreateWithoutBooklet_question_notesInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1615,6 +1666,7 @@ export type bookletsUpdateWithoutBooklet_question_notesInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1639,6 +1691,7 @@ export type bookletsUncheckedUpdateWithoutBooklet_question_notesInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1656,6 +1709,7 @@ export type bookletsCreateWithoutQr_scan_logsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1680,6 +1734,7 @@ export type bookletsUncheckedCreateWithoutQr_scan_logsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1713,6 +1768,7 @@ export type bookletsUpdateWithoutQr_scan_logsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1737,6 +1793,7 @@ export type bookletsUncheckedUpdateWithoutQr_scan_logsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1755,6 +1812,7 @@ export type bookletsCreateManyBagsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1766,6 +1824,7 @@ export type bookletsUpdateWithoutBagsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1787,6 +1846,7 @@ export type bookletsUncheckedUpdateWithoutBagsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1806,6 +1866,7 @@ export type bookletsUncheckedUpdateManyWithoutBagsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1820,6 +1881,7 @@ export type bookletsCreateManyExam_campaignsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1831,6 +1893,7 @@ export type bookletsUpdateWithoutExam_campaignsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1854,6 +1917,7 @@ export type bookletsUncheckedUpdateWithoutExam_campaignsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1875,6 +1939,7 @@ export type bookletsUncheckedUpdateManyWithoutExam_campaignsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1888,6 +1953,7 @@ export type bookletsCreateManySessionsInput = {
   seq_in_bag?: number | null
   random_num?: string | null
   status?: string
+  qr_status?: string
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
@@ -1899,6 +1965,7 @@ export type bookletsUpdateWithoutSessionsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1921,6 +1988,7 @@ export type bookletsUncheckedUpdateWithoutSessionsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1941,6 +2009,7 @@ export type bookletsUncheckedUpdateManyWithoutSessionsInput = {
   seq_in_bag?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   random_num?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
+  qr_status?: Prisma.StringFieldUpdateOperationsInput | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2041,6 +2110,7 @@ export type bookletsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   seq_in_bag?: boolean
   random_num?: boolean
   status?: boolean
+  qr_status?: boolean
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
@@ -2069,12 +2139,13 @@ export type bookletsSelectScalar = {
   seq_in_bag?: boolean
   random_num?: boolean
   status?: boolean
+  qr_status?: boolean
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
 }
 
-export type bookletsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_id" | "user_code" | "qr_payload" | "bag_id" | "seq_in_bag" | "random_num" | "status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["booklets"]>
+export type bookletsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_id" | "user_code" | "qr_payload" | "bag_id" | "seq_in_bag" | "random_num" | "status" | "qr_status" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["booklets"]>
 export type bookletsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   booklet_incident_reports?: boolean | Prisma.booklets$booklet_incident_reportsArgs<ExtArgs>
   booklet_question_choices?: boolean | Prisma.booklets$booklet_question_choicesArgs<ExtArgs>
@@ -2113,6 +2184,7 @@ export type $bookletsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     seq_in_bag: number | null
     random_num: string | null
     status: string
+    qr_status: string
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
@@ -2504,6 +2576,7 @@ export interface bookletsFieldRefs {
   readonly seq_in_bag: Prisma.FieldRef<"booklets", 'Int'>
   readonly random_num: Prisma.FieldRef<"booklets", 'String'>
   readonly status: Prisma.FieldRef<"booklets", 'String'>
+  readonly qr_status: Prisma.FieldRef<"booklets", 'String'>
   readonly created_at: Prisma.FieldRef<"booklets", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"booklets", 'DateTime'>
   readonly deleted_at: Prisma.FieldRef<"booklets", 'DateTime'>

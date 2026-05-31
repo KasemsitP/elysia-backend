@@ -132,6 +132,7 @@ model booklets {
   seq_in_bag               Int?                       @db.SmallInt
   random_num               String?                    @db.VarChar(6)
   status                   String                     @default("PRINTED") @db.VarChar(16)
+  qr_status                String                     @default("READY") @db.VarChar(16)
   created_at               DateTime                   @default(now()) @db.DateTime(0)
   updated_at               DateTime                   @default(now()) @db.DateTime(0)
   deleted_at               DateTime?                  @db.DateTime(0)
@@ -169,6 +170,7 @@ model campaign_keys {
   algor          String         @default("AES-128-GCM") @db.VarChar(64)
   iv             String?        @db.VarChar(128)
   order_num      Int            @default(1)
+  key_version    Int            @default(1)
   active         Boolean        @default(true)
   created_at     DateTime       @default(now()) @db.DateTime(0)
   updated_at     DateTime       @default(now()) @db.DateTime(0)
@@ -518,6 +520,8 @@ model sessions {
   created_at                                                   DateTime                    @default(now()) @db.DateTime(0)
   updated_at                                                   DateTime                    @default(now()) @db.DateTime(0)
   deleted_at                                                   DateTime?                   @db.DateTime(0)
+  signsheet_status                                             String                      @default("NOT_GENERATED") @db.VarChar(20)
+  signsheet_file                                               String?                     @db.VarChar(512)
   bags                                                         bags[]
   booklet_incident_reports                                     booklet_incident_reports[]
   booklet_question_notes                                       booklet_question_notes[]

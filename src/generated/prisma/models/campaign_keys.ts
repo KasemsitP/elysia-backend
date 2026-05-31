@@ -31,6 +31,7 @@ export type Campaign_keysAvgAggregateOutputType = {
   campaign_id: number | null
   account_id: number | null
   order_num: number | null
+  key_version: number | null
 }
 
 export type Campaign_keysSumAggregateOutputType = {
@@ -38,6 +39,7 @@ export type Campaign_keysSumAggregateOutputType = {
   campaign_id: number | null
   account_id: number | null
   order_num: number | null
+  key_version: number | null
 }
 
 export type Campaign_keysMinAggregateOutputType = {
@@ -48,6 +50,7 @@ export type Campaign_keysMinAggregateOutputType = {
   algor: string | null
   iv: string | null
   order_num: number | null
+  key_version: number | null
   active: boolean | null
   created_at: Date | null
   updated_at: Date | null
@@ -62,6 +65,7 @@ export type Campaign_keysMaxAggregateOutputType = {
   algor: string | null
   iv: string | null
   order_num: number | null
+  key_version: number | null
   active: boolean | null
   created_at: Date | null
   updated_at: Date | null
@@ -76,6 +80,7 @@ export type Campaign_keysCountAggregateOutputType = {
   algor: number
   iv: number
   order_num: number
+  key_version: number
   active: number
   created_at: number
   updated_at: number
@@ -89,6 +94,7 @@ export type Campaign_keysAvgAggregateInputType = {
   campaign_id?: true
   account_id?: true
   order_num?: true
+  key_version?: true
 }
 
 export type Campaign_keysSumAggregateInputType = {
@@ -96,6 +102,7 @@ export type Campaign_keysSumAggregateInputType = {
   campaign_id?: true
   account_id?: true
   order_num?: true
+  key_version?: true
 }
 
 export type Campaign_keysMinAggregateInputType = {
@@ -106,6 +113,7 @@ export type Campaign_keysMinAggregateInputType = {
   algor?: true
   iv?: true
   order_num?: true
+  key_version?: true
   active?: true
   created_at?: true
   updated_at?: true
@@ -120,6 +128,7 @@ export type Campaign_keysMaxAggregateInputType = {
   algor?: true
   iv?: true
   order_num?: true
+  key_version?: true
   active?: true
   created_at?: true
   updated_at?: true
@@ -134,6 +143,7 @@ export type Campaign_keysCountAggregateInputType = {
   algor?: true
   iv?: true
   order_num?: true
+  key_version?: true
   active?: true
   created_at?: true
   updated_at?: true
@@ -235,6 +245,7 @@ export type Campaign_keysGroupByOutputType = {
   algor: string
   iv: string | null
   order_num: number
+  key_version: number
   active: boolean
   created_at: Date
   updated_at: Date
@@ -272,6 +283,7 @@ export type campaign_keysWhereInput = {
   algor?: Prisma.StringFilter<"campaign_keys"> | string
   iv?: Prisma.StringNullableFilter<"campaign_keys"> | string | null
   order_num?: Prisma.IntFilter<"campaign_keys"> | number
+  key_version?: Prisma.IntFilter<"campaign_keys"> | number
   active?: Prisma.BoolFilter<"campaign_keys"> | boolean
   created_at?: Prisma.DateTimeFilter<"campaign_keys"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"campaign_keys"> | Date | string
@@ -288,6 +300,7 @@ export type campaign_keysOrderByWithRelationInput = {
   algor?: Prisma.SortOrder
   iv?: Prisma.SortOrderInput | Prisma.SortOrder
   order_num?: Prisma.SortOrder
+  key_version?: Prisma.SortOrder
   active?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -309,6 +322,7 @@ export type campaign_keysWhereUniqueInput = Prisma.AtLeast<{
   algor?: Prisma.StringFilter<"campaign_keys"> | string
   iv?: Prisma.StringNullableFilter<"campaign_keys"> | string | null
   order_num?: Prisma.IntFilter<"campaign_keys"> | number
+  key_version?: Prisma.IntFilter<"campaign_keys"> | number
   active?: Prisma.BoolFilter<"campaign_keys"> | boolean
   created_at?: Prisma.DateTimeFilter<"campaign_keys"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"campaign_keys"> | Date | string
@@ -325,6 +339,7 @@ export type campaign_keysOrderByWithAggregationInput = {
   algor?: Prisma.SortOrder
   iv?: Prisma.SortOrderInput | Prisma.SortOrder
   order_num?: Prisma.SortOrder
+  key_version?: Prisma.SortOrder
   active?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -347,6 +362,7 @@ export type campaign_keysScalarWhereWithAggregatesInput = {
   algor?: Prisma.StringWithAggregatesFilter<"campaign_keys"> | string
   iv?: Prisma.StringNullableWithAggregatesFilter<"campaign_keys"> | string | null
   order_num?: Prisma.IntWithAggregatesFilter<"campaign_keys"> | number
+  key_version?: Prisma.IntWithAggregatesFilter<"campaign_keys"> | number
   active?: Prisma.BoolWithAggregatesFilter<"campaign_keys"> | boolean
   created_at?: Prisma.DateTimeWithAggregatesFilter<"campaign_keys"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"campaign_keys"> | Date | string
@@ -358,6 +374,7 @@ export type campaign_keysCreateInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -374,6 +391,7 @@ export type campaign_keysUncheckedCreateInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -385,6 +403,7 @@ export type campaign_keysUpdateInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -401,6 +420,7 @@ export type campaign_keysUncheckedUpdateInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -415,6 +435,7 @@ export type campaign_keysCreateManyInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -426,6 +447,7 @@ export type campaign_keysUpdateManyMutationInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -440,6 +462,7 @@ export type campaign_keysUncheckedUpdateManyInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -475,6 +498,7 @@ export type campaign_keysCountOrderByAggregateInput = {
   algor?: Prisma.SortOrder
   iv?: Prisma.SortOrder
   order_num?: Prisma.SortOrder
+  key_version?: Prisma.SortOrder
   active?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -486,6 +510,7 @@ export type campaign_keysAvgOrderByAggregateInput = {
   campaign_id?: Prisma.SortOrder
   account_id?: Prisma.SortOrder
   order_num?: Prisma.SortOrder
+  key_version?: Prisma.SortOrder
 }
 
 export type campaign_keysMaxOrderByAggregateInput = {
@@ -496,6 +521,7 @@ export type campaign_keysMaxOrderByAggregateInput = {
   algor?: Prisma.SortOrder
   iv?: Prisma.SortOrder
   order_num?: Prisma.SortOrder
+  key_version?: Prisma.SortOrder
   active?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -510,6 +536,7 @@ export type campaign_keysMinOrderByAggregateInput = {
   algor?: Prisma.SortOrder
   iv?: Prisma.SortOrder
   order_num?: Prisma.SortOrder
+  key_version?: Prisma.SortOrder
   active?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -521,6 +548,7 @@ export type campaign_keysSumOrderByAggregateInput = {
   campaign_id?: Prisma.SortOrder
   account_id?: Prisma.SortOrder
   order_num?: Prisma.SortOrder
+  key_version?: Prisma.SortOrder
 }
 
 export type campaign_keysCreateNestedManyWithoutAccountsInput = {
@@ -612,6 +640,7 @@ export type campaign_keysCreateWithoutAccountsInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -626,6 +655,7 @@ export type campaign_keysUncheckedCreateWithoutAccountsInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -669,6 +699,7 @@ export type campaign_keysScalarWhereInput = {
   algor?: Prisma.StringFilter<"campaign_keys"> | string
   iv?: Prisma.StringNullableFilter<"campaign_keys"> | string | null
   order_num?: Prisma.IntFilter<"campaign_keys"> | number
+  key_version?: Prisma.IntFilter<"campaign_keys"> | number
   active?: Prisma.BoolFilter<"campaign_keys"> | boolean
   created_at?: Prisma.DateTimeFilter<"campaign_keys"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"campaign_keys"> | Date | string
@@ -680,6 +711,7 @@ export type campaign_keysCreateWithoutExam_campaignsInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -694,6 +726,7 @@ export type campaign_keysUncheckedCreateWithoutExam_campaignsInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -733,6 +766,7 @@ export type campaign_keysCreateManyAccountsInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -744,6 +778,7 @@ export type campaign_keysUpdateWithoutAccountsInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -758,6 +793,7 @@ export type campaign_keysUncheckedUpdateWithoutAccountsInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -771,6 +807,7 @@ export type campaign_keysUncheckedUpdateManyWithoutAccountsInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -784,6 +821,7 @@ export type campaign_keysCreateManyExam_campaignsInput = {
   algor?: string
   iv?: string | null
   order_num?: number
+  key_version?: number
   active?: boolean
   created_at?: Date | string
   updated_at?: Date | string
@@ -795,6 +833,7 @@ export type campaign_keysUpdateWithoutExam_campaignsInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -809,6 +848,7 @@ export type campaign_keysUncheckedUpdateWithoutExam_campaignsInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -822,6 +862,7 @@ export type campaign_keysUncheckedUpdateManyWithoutExam_campaignsInput = {
   algor?: Prisma.StringFieldUpdateOperationsInput | string
   iv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order_num?: Prisma.IntFieldUpdateOperationsInput | number
+  key_version?: Prisma.IntFieldUpdateOperationsInput | number
   active?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -838,6 +879,7 @@ export type campaign_keysSelect<ExtArgs extends runtime.Types.Extensions.Interna
   algor?: boolean
   iv?: boolean
   order_num?: boolean
+  key_version?: boolean
   active?: boolean
   created_at?: boolean
   updated_at?: boolean
@@ -856,13 +898,14 @@ export type campaign_keysSelectScalar = {
   algor?: boolean
   iv?: boolean
   order_num?: boolean
+  key_version?: boolean
   active?: boolean
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
 }
 
-export type campaign_keysOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "account_id" | "key_ciphertext" | "algor" | "iv" | "order_num" | "active" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["campaign_keys"]>
+export type campaign_keysOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "account_id" | "key_ciphertext" | "algor" | "iv" | "order_num" | "key_version" | "active" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["campaign_keys"]>
 export type campaign_keysInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.campaign_keys$accountsArgs<ExtArgs>
   exam_campaigns?: boolean | Prisma.exam_campaignsDefaultArgs<ExtArgs>
@@ -882,6 +925,7 @@ export type $campaign_keysPayload<ExtArgs extends runtime.Types.Extensions.Inter
     algor: string
     iv: string | null
     order_num: number
+    key_version: number
     active: boolean
     created_at: Date
     updated_at: Date
@@ -1264,6 +1308,7 @@ export interface campaign_keysFieldRefs {
   readonly algor: Prisma.FieldRef<"campaign_keys", 'String'>
   readonly iv: Prisma.FieldRef<"campaign_keys", 'String'>
   readonly order_num: Prisma.FieldRef<"campaign_keys", 'Int'>
+  readonly key_version: Prisma.FieldRef<"campaign_keys", 'Int'>
   readonly active: Prisma.FieldRef<"campaign_keys", 'Boolean'>
   readonly created_at: Prisma.FieldRef<"campaign_keys", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"campaign_keys", 'DateTime'>

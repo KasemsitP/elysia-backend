@@ -48,6 +48,8 @@ export type SessionsMinAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
+  signsheet_status: string | null
+  signsheet_file: string | null
 }
 
 export type SessionsMaxAggregateOutputType = {
@@ -60,6 +62,8 @@ export type SessionsMaxAggregateOutputType = {
   created_at: Date | null
   updated_at: Date | null
   deleted_at: Date | null
+  signsheet_status: string | null
+  signsheet_file: string | null
 }
 
 export type SessionsCountAggregateOutputType = {
@@ -72,6 +76,8 @@ export type SessionsCountAggregateOutputType = {
   created_at: number
   updated_at: number
   deleted_at: number
+  signsheet_status: number
+  signsheet_file: number
   _all: number
 }
 
@@ -98,6 +104,8 @@ export type SessionsMinAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  signsheet_status?: true
+  signsheet_file?: true
 }
 
 export type SessionsMaxAggregateInputType = {
@@ -110,6 +118,8 @@ export type SessionsMaxAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  signsheet_status?: true
+  signsheet_file?: true
 }
 
 export type SessionsCountAggregateInputType = {
@@ -122,6 +132,8 @@ export type SessionsCountAggregateInputType = {
   created_at?: true
   updated_at?: true
   deleted_at?: true
+  signsheet_status?: true
+  signsheet_file?: true
   _all?: true
 }
 
@@ -221,6 +233,8 @@ export type SessionsGroupByOutputType = {
   created_at: Date
   updated_at: Date
   deleted_at: Date | null
+  signsheet_status: string
+  signsheet_file: string | null
   _count: SessionsCountAggregateOutputType | null
   _avg: SessionsAvgAggregateOutputType | null
   _sum: SessionsSumAggregateOutputType | null
@@ -256,6 +270,8 @@ export type sessionsWhereInput = {
   created_at?: Prisma.DateTimeFilter<"sessions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"sessions"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"sessions"> | Date | string | null
+  signsheet_status?: Prisma.StringFilter<"sessions"> | string
+  signsheet_file?: Prisma.StringNullableFilter<"sessions"> | string | null
   bags?: Prisma.BagsListRelationFilter
   booklet_incident_reports?: Prisma.Booklet_incident_reportsListRelationFilter
   booklet_question_notes?: Prisma.Booklet_question_notesListRelationFilter
@@ -281,6 +297,8 @@ export type sessionsOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  signsheet_status?: Prisma.SortOrder
+  signsheet_file?: Prisma.SortOrderInput | Prisma.SortOrder
   bags?: Prisma.bagsOrderByRelationAggregateInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsOrderByRelationAggregateInput
   booklet_question_notes?: Prisma.booklet_question_notesOrderByRelationAggregateInput
@@ -313,6 +331,8 @@ export type sessionsWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"sessions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"sessions"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"sessions"> | Date | string | null
+  signsheet_status?: Prisma.StringFilter<"sessions"> | string
+  signsheet_file?: Prisma.StringNullableFilter<"sessions"> | string | null
   bags?: Prisma.BagsListRelationFilter
   booklet_incident_reports?: Prisma.Booklet_incident_reportsListRelationFilter
   booklet_question_notes?: Prisma.Booklet_question_notesListRelationFilter
@@ -338,6 +358,8 @@ export type sessionsOrderByWithAggregationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrderInput | Prisma.SortOrder
+  signsheet_status?: Prisma.SortOrder
+  signsheet_file?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.sessionsCountOrderByAggregateInput
   _avg?: Prisma.sessionsAvgOrderByAggregateInput
   _max?: Prisma.sessionsMaxOrderByAggregateInput
@@ -358,6 +380,8 @@ export type sessionsScalarWhereWithAggregatesInput = {
   created_at?: Prisma.DateTimeWithAggregatesFilter<"sessions"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"sessions"> | Date | string
   deleted_at?: Prisma.DateTimeNullableWithAggregatesFilter<"sessions"> | Date | string | null
+  signsheet_status?: Prisma.StringWithAggregatesFilter<"sessions"> | string
+  signsheet_file?: Prisma.StringNullableWithAggregatesFilter<"sessions"> | string | null
 }
 
 export type sessionsCreateInput = {
@@ -368,6 +392,8 @@ export type sessionsCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -393,6 +419,8 @@ export type sessionsUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -415,6 +443,8 @@ export type sessionsUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -440,6 +470,8 @@ export type sessionsUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -464,6 +496,8 @@ export type sessionsCreateManyInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
 }
 
 export type sessionsUpdateManyMutationInput = {
@@ -474,6 +508,8 @@ export type sessionsUpdateManyMutationInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type sessionsUncheckedUpdateManyInput = {
@@ -486,6 +522,8 @@ export type sessionsUncheckedUpdateManyInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type SessionsScalarRelationFilter = {
@@ -534,6 +572,8 @@ export type sessionsCountOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  signsheet_status?: Prisma.SortOrder
+  signsheet_file?: Prisma.SortOrder
 }
 
 export type sessionsAvgOrderByAggregateInput = {
@@ -552,6 +592,8 @@ export type sessionsMaxOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  signsheet_status?: Prisma.SortOrder
+  signsheet_file?: Prisma.SortOrder
 }
 
 export type sessionsMinOrderByAggregateInput = {
@@ -564,6 +606,8 @@ export type sessionsMinOrderByAggregateInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   deleted_at?: Prisma.SortOrder
+  signsheet_status?: Prisma.SortOrder
+  signsheet_file?: Prisma.SortOrder
 }
 
 export type sessionsSumOrderByAggregateInput = {
@@ -799,6 +843,8 @@ export type sessionsCreateWithoutBagsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
   booklets?: Prisma.bookletsCreateNestedManyWithoutSessionsInput
@@ -823,6 +869,8 @@ export type sessionsUncheckedCreateWithoutBagsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
   booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutSessionsInput
@@ -860,6 +908,8 @@ export type sessionsUpdateWithoutBagsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
   booklets?: Prisma.bookletsUpdateManyWithoutSessionsNestedInput
@@ -884,6 +934,8 @@ export type sessionsUncheckedUpdateWithoutBagsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
   booklets?: Prisma.bookletsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -905,6 +957,8 @@ export type sessionsCreateWithoutBookletsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -929,6 +983,8 @@ export type sessionsUncheckedCreateWithoutBookletsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -966,6 +1022,8 @@ export type sessionsUpdateWithoutBookletsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -990,6 +1048,8 @@ export type sessionsUncheckedUpdateWithoutBookletsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1011,6 +1071,8 @@ export type sessionsCreateWithoutExam_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -1034,6 +1096,8 @@ export type sessionsUncheckedCreateWithoutExam_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -1087,6 +1151,8 @@ export type sessionsScalarWhereInput = {
   created_at?: Prisma.DateTimeFilter<"sessions"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"sessions"> | Date | string
   deleted_at?: Prisma.DateTimeNullableFilter<"sessions"> | Date | string | null
+  signsheet_status?: Prisma.StringFilter<"sessions"> | string
+  signsheet_file?: Prisma.StringNullableFilter<"sessions"> | string | null
 }
 
 export type sessionsCreateWithoutGrader_assignmentsInput = {
@@ -1097,6 +1163,8 @@ export type sessionsCreateWithoutGrader_assignmentsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -1121,6 +1189,8 @@ export type sessionsUncheckedCreateWithoutGrader_assignmentsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -1158,6 +1228,8 @@ export type sessionsUpdateWithoutGrader_assignmentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -1182,6 +1254,8 @@ export type sessionsUncheckedUpdateWithoutGrader_assignmentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1203,6 +1277,8 @@ export type sessionsCreateWithoutSession_subjectsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -1227,6 +1303,8 @@ export type sessionsUncheckedCreateWithoutSession_subjectsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -1264,6 +1342,8 @@ export type sessionsUpdateWithoutSession_subjectsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -1288,6 +1368,8 @@ export type sessionsUncheckedUpdateWithoutSession_subjectsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1309,6 +1391,8 @@ export type sessionsCreateWithoutUser_sessions_user_sessions_session_id_campaign
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -1333,6 +1417,8 @@ export type sessionsUncheckedCreateWithoutUser_sessions_user_sessions_session_id
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -1370,6 +1456,8 @@ export type sessionsUpdateWithoutUser_sessions_user_sessions_session_id_campaign
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -1394,6 +1482,8 @@ export type sessionsUncheckedUpdateWithoutUser_sessions_user_sessions_session_id
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1415,6 +1505,8 @@ export type sessionsCreateWithoutBooklet_incident_reportsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
   booklets?: Prisma.bookletsCreateNestedManyWithoutSessionsInput
@@ -1439,6 +1531,8 @@ export type sessionsUncheckedCreateWithoutBooklet_incident_reportsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
   booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutSessionsInput
@@ -1476,6 +1570,8 @@ export type sessionsUpdateWithoutBooklet_incident_reportsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
   booklets?: Prisma.bookletsUpdateManyWithoutSessionsNestedInput
@@ -1500,6 +1596,8 @@ export type sessionsUncheckedUpdateWithoutBooklet_incident_reportsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
   booklets?: Prisma.bookletsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1521,6 +1619,8 @@ export type sessionsCreateWithoutBooklet_question_notesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklets?: Prisma.bookletsCreateNestedManyWithoutSessionsInput
@@ -1545,6 +1645,8 @@ export type sessionsUncheckedCreateWithoutBooklet_question_notesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklets?: Prisma.bookletsUncheckedCreateNestedManyWithoutSessionsInput
@@ -1582,6 +1684,8 @@ export type sessionsUpdateWithoutBooklet_question_notesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklets?: Prisma.bookletsUpdateManyWithoutSessionsNestedInput
@@ -1606,6 +1710,8 @@ export type sessionsUncheckedUpdateWithoutBooklet_question_notesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklets?: Prisma.bookletsUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1627,6 +1733,8 @@ export type sessionsCreateWithoutNotification_messagesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -1651,6 +1759,8 @@ export type sessionsUncheckedCreateWithoutNotification_messagesInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -1688,6 +1798,8 @@ export type sessionsUpdateWithoutNotification_messagesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -1712,6 +1824,8 @@ export type sessionsUncheckedUpdateWithoutNotification_messagesInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1733,6 +1847,8 @@ export type sessionsCreateWithoutQr_scan_logsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -1757,6 +1873,8 @@ export type sessionsUncheckedCreateWithoutQr_scan_logsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -1794,6 +1912,8 @@ export type sessionsUpdateWithoutQr_scan_logsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -1818,6 +1938,8 @@ export type sessionsUncheckedUpdateWithoutQr_scan_logsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1839,6 +1961,8 @@ export type sessionsCreateWithoutQuestion_choice_groupsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -1863,6 +1987,8 @@ export type sessionsUncheckedCreateWithoutQuestion_choice_groupsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -1900,6 +2026,8 @@ export type sessionsUpdateWithoutQuestion_choice_groupsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -1924,6 +2052,8 @@ export type sessionsUncheckedUpdateWithoutQuestion_choice_groupsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -1945,6 +2075,8 @@ export type sessionsCreateWithoutSession_countersInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -1969,6 +2101,8 @@ export type sessionsUncheckedCreateWithoutSession_countersInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -2006,6 +2140,8 @@ export type sessionsUpdateWithoutSession_countersInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -2030,6 +2166,8 @@ export type sessionsUncheckedUpdateWithoutSession_countersInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -2051,6 +2189,8 @@ export type sessionsCreateWithoutSession_subject_questionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesCreateNestedManyWithoutSessionsInput
@@ -2075,6 +2215,8 @@ export type sessionsUncheckedCreateWithoutSession_subject_questionsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
   bags?: Prisma.bagsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedCreateNestedManyWithoutSessionsInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedCreateNestedManyWithoutSessionsInput
@@ -2112,6 +2254,8 @@ export type sessionsUpdateWithoutSession_subject_questionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -2136,6 +2280,8 @@ export type sessionsUncheckedUpdateWithoutSession_subject_questionsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -2158,6 +2304,8 @@ export type sessionsCreateManyExam_campaignsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   deleted_at?: Date | string | null
+  signsheet_status?: string
+  signsheet_file?: string | null
 }
 
 export type sessionsUpdateWithoutExam_campaignsInput = {
@@ -2168,6 +2316,8 @@ export type sessionsUpdateWithoutExam_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUpdateManyWithoutSessionsNestedInput
@@ -2191,6 +2341,8 @@ export type sessionsUncheckedUpdateWithoutExam_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bags?: Prisma.bagsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_incident_reports?: Prisma.booklet_incident_reportsUncheckedUpdateManyWithoutSessionsNestedInput
   booklet_question_notes?: Prisma.booklet_question_notesUncheckedUpdateManyWithoutSessionsNestedInput
@@ -2214,6 +2366,8 @@ export type sessionsUncheckedUpdateManyWithoutExam_campaignsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  signsheet_status?: Prisma.StringFieldUpdateOperationsInput | string
+  signsheet_file?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -2347,6 +2501,8 @@ export type sessionsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
+  signsheet_status?: boolean
+  signsheet_file?: boolean
   bags?: boolean | Prisma.sessions$bagsArgs<ExtArgs>
   booklet_incident_reports?: boolean | Prisma.sessions$booklet_incident_reportsArgs<ExtArgs>
   booklet_question_notes?: boolean | Prisma.sessions$booklet_question_notesArgs<ExtArgs>
@@ -2375,9 +2531,11 @@ export type sessionsSelectScalar = {
   created_at?: boolean
   updated_at?: boolean
   deleted_at?: boolean
+  signsheet_status?: boolean
+  signsheet_file?: boolean
 }
 
-export type sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_code" | "title" | "exam_date" | "day_no" | "created_at" | "updated_at" | "deleted_at", ExtArgs["result"]["sessions"]>
+export type sessionsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "campaign_id" | "session_code" | "title" | "exam_date" | "day_no" | "created_at" | "updated_at" | "deleted_at" | "signsheet_status" | "signsheet_file", ExtArgs["result"]["sessions"]>
 export type sessionsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bags?: boolean | Prisma.sessions$bagsArgs<ExtArgs>
   booklet_incident_reports?: boolean | Prisma.sessions$booklet_incident_reportsArgs<ExtArgs>
@@ -2422,6 +2580,8 @@ export type $sessionsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     created_at: Date
     updated_at: Date
     deleted_at: Date | null
+    signsheet_status: string
+    signsheet_file: string | null
   }, ExtArgs["result"]["sessions"]>
   composites: {}
 }
@@ -2813,6 +2973,8 @@ export interface sessionsFieldRefs {
   readonly created_at: Prisma.FieldRef<"sessions", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"sessions", 'DateTime'>
   readonly deleted_at: Prisma.FieldRef<"sessions", 'DateTime'>
+  readonly signsheet_status: Prisma.FieldRef<"sessions", 'String'>
+  readonly signsheet_file: Prisma.FieldRef<"sessions", 'String'>
 }
     
 

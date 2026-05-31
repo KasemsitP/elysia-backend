@@ -189,6 +189,7 @@ export const BookletsScalarFieldEnum = {
   seq_in_bag: 'seq_in_bag',
   random_num: 'random_num',
   status: 'status',
+  qr_status: 'qr_status',
   created_at: 'created_at',
   updated_at: 'updated_at',
   deleted_at: 'deleted_at'
@@ -205,6 +206,7 @@ export const Campaign_keysScalarFieldEnum = {
   algor: 'algor',
   iv: 'iv',
   order_num: 'order_num',
+  key_version: 'key_version',
   active: 'active',
   created_at: 'created_at',
   updated_at: 'updated_at',
@@ -414,7 +416,9 @@ export const SessionsScalarFieldEnum = {
   day_no: 'day_no',
   created_at: 'created_at',
   updated_at: 'updated_at',
-  deleted_at: 'deleted_at'
+  deleted_at: 'deleted_at',
+  signsheet_status: 'signsheet_status',
+  signsheet_file: 'signsheet_file'
 } as const
 
 export type SessionsScalarFieldEnum = (typeof SessionsScalarFieldEnum)[keyof typeof SessionsScalarFieldEnum]
@@ -954,7 +958,8 @@ export const bookletsOrderByRelevanceFieldEnum = {
   user_code: 'user_code',
   qr_payload: 'qr_payload',
   random_num: 'random_num',
-  status: 'status'
+  status: 'status',
+  qr_status: 'qr_status'
 } as const
 
 export type bookletsOrderByRelevanceFieldEnum = (typeof bookletsOrderByRelevanceFieldEnum)[keyof typeof bookletsOrderByRelevanceFieldEnum]
@@ -1024,7 +1029,9 @@ export type rolesOrderByRelevanceFieldEnum = (typeof rolesOrderByRelevanceFieldE
 
 export const sessionsOrderByRelevanceFieldEnum = {
   session_code: 'session_code',
-  title: 'title'
+  title: 'title',
+  signsheet_status: 'signsheet_status',
+  signsheet_file: 'signsheet_file'
 } as const
 
 export type sessionsOrderByRelevanceFieldEnum = (typeof sessionsOrderByRelevanceFieldEnum)[keyof typeof sessionsOrderByRelevanceFieldEnum]

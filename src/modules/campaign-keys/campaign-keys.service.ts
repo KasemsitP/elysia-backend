@@ -1,4 +1,4 @@
-import { prisma } from "../../cores/prisma";
+import { prisma, type Tx } from "../../cores/prisma";
 import { AppError } from "../../cores/errors";
 import {
     wrapManagerKey,
@@ -18,17 +18,111 @@ async function getManagerKeyRecord(campaign_id: number, order_num: number) {
     });
 }
 
+/**
+ * Block key change if packaging has already started (bags exist for the campaign).
+ */
+async function assertKeyChangeable(campaignId: number): Promise<void> {
+    const bagsCount = await prisma.bags.count({
+        where: { campaign_id: campaignId, deleted_at: null },
+    });
+    if (bagsCount > 0) {
+        throw new AppError(
+            "ไม่สามารถเปลี่ยน Manager Key ได้ — มีการแพ็คถุงข้อสอบแล้ว กรุณาติดต่อผู้ดูแลระบบ",
+            409,
+        );
+    }
+}
+
+/**
+ * Mark all booklets and generated signsheet PDFs for a campaign as stale.
+ * Called inside a transaction whenever a manager key changes.
+ */
+async function markCampaignStale(tx: Tx, campaignId: number): Promise<void> {
+    await tx.booklets.updateMany({
+        where: { campaign_id: campaignId, deleted_at: null },
+        data: { qr_status: "STALE" },
+    });
+    await tx.sessions.updateMany({
+        where: {
+            campaign_id: campaignId,
+            deleted_at: null,
+            signsheet_status: { not: "NOT_GENERATED" },
+        },
+        data: { signsheet_status: "STALE" },
+    });
+}
+
+/**
+ * Upsert a single manager key record.
+ *
+ * - If a record already exists for (campaignId, orderNum): UPDATE it in place
+ *   (avoiding the unique-constraint violation that INSERT would cause).
+ * - If no record exists: CREATE one.
+ * - Returns whether the key material actually changed (used to decide staleness).
+ */
+async function upsertKeyRecord(
+    tx: Tx,
+    campaignId: number,
+    accountId: number,
+    orderNum: number,
+    newPlaintext: string,
+): Promise<boolean> {
+    const wrapped = wrapManagerKey(newPlaintext);
+
+    const existing = await tx.campaign_keys.findFirst({
+        where: { campaign_id: campaignId, order_num: orderNum, deleted_at: null },
+    });
+
+    if (!existing) {
+        await tx.campaign_keys.create({
+            data: {
+                campaign_id:    campaignId,
+                account_id:     accountId,
+                order_num:      orderNum,
+                key_ciphertext: wrapped,
+                iv:             null,
+                algor:          "AES-256-GCM",
+                active:         true,
+                key_version:    1,
+            },
+        });
+        return true; // first-time creation counts as a change
+    }
+
+    // Compare new plaintext against stored ciphertext
+    let changed = false;
+    if (existing.key_ciphertext) {
+        try {
+            const stored = unwrapManagerKey(existing.key_ciphertext);
+            changed = !timingSafeStringEqual(newPlaintext, stored);
+            Buffer.from(stored, "utf8").fill(0);
+        } catch {
+            changed = true; // can't decrypt → treat as changed
+        }
+    } else {
+        changed = true;
+    }
+
+    await tx.campaign_keys.update({
+        where: { id: existing.id },
+        data: {
+            account_id:     accountId,
+            key_ciphertext: wrapped,
+            algor:          "AES-256-GCM",
+            active:         true,
+            key_version:    changed ? existing.key_version + 1 : existing.key_version,
+        },
+    });
+
+    return changed;
+}
+
 // ── Public API ────────────────────────────────────────────────────────────────
 
 export const campaignKeyService = {
     /**
-     * Setup keys ครั้งแรก (หรือ rotate ทั้งชุด)
-     *
-     * สิ่งที่เกิดขึ้น:
-     * 1. AES-256-GCM(MASTER_KEY, MK1) → key_ciphertext (order_num=1)
-     * 2. AES-256-GCM(MASTER_KEY, MK2) → key_ciphertext (order_num=2)
-     *
-     * combinedKey derive ได้จาก MK1+MK2 ทุกครั้งที่ต้องการ — ไม่เก็บใน DB
+     * Setup keys ครั้งแรก — ทั้ง 2 key พร้อมกัน
+     * ถ้ามี active key อยู่แล้ว → throw 409 (ใช้ rotate-keys แทน)
      */
     async setupKeys(
         campaignId: number,
@@ -60,39 +154,9 @@ export const campaignKeyService = {
             throw new AppError("Campaign นี้มี key อยู่แล้ว ใช้ rotate-keys endpoint แทน", 409);
         }
 
-        // Encrypt each MK with MASTER_KEY — plaintext never stored
-        const mk1Wrapped = wrapManagerKey(mk1Plaintext);
-        const mk2Wrapped = wrapManagerKey(mk2Plaintext);
-
         await prisma.$transaction(async (tx) => {
-            await tx.campaign_keys.updateMany({
-                where: { campaign_id: campaignId, order_num: { in: [MANAGER_KEY_ORDER_1, MANAGER_KEY_ORDER_2] } },
-                data: { active: false },
-            });
-
-            await tx.campaign_keys.create({
-                data: {
-                    campaign_id:    campaignId,
-                    account_id:     m1AccountId,
-                    order_num:      MANAGER_KEY_ORDER_1,
-                    key_ciphertext: mk1Wrapped,
-                    iv:             null,
-                    algor:          "AES-256-GCM",
-                    active:         true,
-                },
-            });
-
-            await tx.campaign_keys.create({
-                data: {
-                    campaign_id:    campaignId,
-                    account_id:     m2AccountId,
-                    order_num:      MANAGER_KEY_ORDER_2,
-                    key_ciphertext: mk2Wrapped,
-                    iv:             null,
-                    algor:          "AES-256-GCM",
-                    active:         true,
-                },
-            });
+            await upsertKeyRecord(tx, campaignId, m1AccountId, MANAGER_KEY_ORDER_1, mk1Plaintext);
+            await upsertKeyRecord(tx, campaignId, m2AccountId, MANAGER_KEY_ORDER_2, mk2Plaintext);
         });
 
         return {
@@ -108,7 +172,6 @@ export const campaignKeyService = {
 
     /**
      * อ่าน MK1/MK2 จาก DB → ถอดรหัสด้วย MASTER_KEY → derive combinedKey
-     * ไม่ต้องการ manager input — ใช้ได้โดยระบบโดยตรง
      */
     async getCombinedKey(campaignId: number): Promise<Buffer> {
         const [mk1Record, mk2Record] = await Promise.all([
@@ -128,7 +191,6 @@ export const campaignKeyService = {
 
         const combined = deriveCombinedKey(mk1Plaintext, mk2Plaintext, campaignId);
 
-        // Zero plaintext from memory
         Buffer.from(mk1Plaintext, "utf8").fill(0);
         Buffer.from(mk2Plaintext, "utf8").fill(0);
 
@@ -137,7 +199,6 @@ export const campaignKeyService = {
 
     /**
      * เหมือน getCombinedKey แต่ตรวจ is_unlock ก่อน — ใช้สำหรับ decrypt เท่านั้น
-     * ถ้าสอบยังไม่เสร็จ (is_unlock = false) → throw 403
      */
     async getCombinedKeyForDecrypt(campaignId: number): Promise<Buffer> {
         const campaign = await prisma.exam_campaigns.findFirst({
@@ -152,8 +213,11 @@ export const campaignKeyService = {
     },
 
     /**
-     * Manager กรอก key ของตัวเองทีละคน — ดึง manager_order จาก account ใน DB
-     * ไม่ต้องส่ง account_id มาใน body (ดึงจาก session แทน)
+     * Manager กรอก key ของตัวเองทีละคน — account_id ดึงจาก session
+     *
+     * - ถ้า key เปลี่ยนจริง → mark booklets และ signsheet ว่า STALE
+     * - ถ้า key เหมือนเดิม → ไม่มีผลกระทบกับ booklets/PDF
+     * - ถ้ามีการแพ็คถุงแล้ว → throw 409 (ป้องกัน key rotate ระหว่างสอบ)
      */
     async setMyKey(campaignId: number, accountId: number, keyPlaintext: string) {
         const campaign = await prisma.exam_campaigns.findFirst({
@@ -170,30 +234,32 @@ export const campaignKeyService = {
         }
 
         const orderNum = account.manager_order as 1 | 2;
-        const wrapped = wrapManagerKey(keyPlaintext);
 
+        // Block key change if packaging has started
+        const existingKey = await prisma.campaign_keys.findFirst({
+            where: { campaign_id: campaignId, order_num: orderNum, deleted_at: null },
+        });
+        if (existingKey) {
+            await assertKeyChangeable(campaignId);
+        }
+
+        let changed = false;
         await prisma.$transaction(async (tx) => {
-            await tx.campaign_keys.updateMany({
-                where: { campaign_id: campaignId, order_num: orderNum },
-                data: { active: false },
-            });
-            await tx.campaign_keys.create({
-                data: {
-                    campaign_id:    campaignId,
-                    account_id:     accountId,
-                    order_num:      orderNum,
-                    key_ciphertext: wrapped,
-                    iv:             null,
-                    algor:          "AES-256-GCM",
-                    active:         true,
-                },
-            });
+            changed = await upsertKeyRecord(tx, campaignId, accountId, orderNum, keyPlaintext);
+            if (changed) {
+                await markCampaignStale(tx, campaignId);
+            }
         });
 
         return {
             success: true,
-            message: `บันทึก Manager Key ${orderNum} สำเร็จ`,
-            data: { campaign_id: campaignId, manager_order: orderNum, full_name: account.full_name },
+            message: `บันทึก Manager Key ${orderNum} สำเร็จ${changed ? " — booklets ถูกทำเครื่องหมาย STALE" : ""}`,
+            data: {
+                campaign_id:   campaignId,
+                manager_order: orderNum,
+                full_name:     account.full_name,
+                key_changed:   changed,
+            },
         };
     },
 
@@ -214,11 +280,13 @@ export const campaignKeyService = {
         const records = await prisma.campaign_keys.findMany({
             where: { campaign_id: campaignId, active: true, deleted_at: null },
             select: {
-                order_num: true,
-                algor: true,
-                active: true,
-                created_at: true,
-                accounts: { select: { id: true, full_name: true, manager_order: true } },
+                order_num:   true,
+                key_version: true,
+                algor:       true,
+                active:      true,
+                created_at:  true,
+                updated_at:  true,
+                accounts:    { select: { id: true, full_name: true, manager_order: true } },
             },
             orderBy: { order_num: "asc" },
         });
@@ -226,22 +294,42 @@ export const campaignKeyService = {
         const mk1 = records.find((r) => r.order_num === MANAGER_KEY_ORDER_1);
         const mk2 = records.find((r) => r.order_num === MANAGER_KEY_ORDER_2);
 
+        // Aggregate stale counts across all sessions in the campaign
+        const [staleBookletsCount, staleSessionsCount] = await Promise.all([
+            prisma.booklets.count({
+                where: { campaign_id: campaignId, qr_status: "STALE", deleted_at: null },
+            }),
+            prisma.sessions.count({
+                where: { campaign_id: campaignId, signsheet_status: "STALE", deleted_at: null },
+            }),
+        ]);
+
         return {
             success: true,
             message: "ดึงสถานะ keys สำเร็จ",
             data: {
                 campaign_id: campaignId,
-                is_setup: !!mk1 && !!mk2,
+                is_setup:    !!mk1 && !!mk2,
                 manager1_key: mk1
-                    ? { set: true, manager: mk1.accounts, algor: mk1.algor, created_at: mk1.created_at }
+                    ? { set: true, manager: mk1.accounts, algor: mk1.algor, key_version: mk1.key_version, created_at: mk1.created_at, updated_at: mk1.updated_at }
                     : { set: false },
                 manager2_key: mk2
-                    ? { set: true, manager: mk2.accounts, algor: mk2.algor, created_at: mk2.created_at }
+                    ? { set: true, manager: mk2.accounts, algor: mk2.algor, key_version: mk2.key_version, created_at: mk2.created_at, updated_at: mk2.updated_at }
                     : { set: false },
+                stale: {
+                    booklets_count: staleBookletsCount,
+                    sessions_count: staleSessionsCount,
+                    needs_regeneration: staleBookletsCount > 0 || staleSessionsCount > 0,
+                },
             },
         };
     },
 
+    /**
+     * เปลี่ยน key ทั้งชุดพร้อมกัน (admin กำหนด MK1+MK2 ใหม่)
+     * - ถ้ามีการแพ็คถุงแล้ว → throw 409
+     * - ถ้า key เปลี่ยน → mark booklets/PDF ว่า STALE
+     */
     async rotateKeys(
         campaignId: number,
         m1AccountId: number,
@@ -249,20 +337,56 @@ export const campaignKeyService = {
         m2AccountId: number,
         mk2NewPlaintext: string,
     ) {
-        await prisma.campaign_keys.updateMany({
-            where: { campaign_id: campaignId },
-            data: { active: false },
+        const campaign = await prisma.exam_campaigns.findFirst({
+            where: { id: campaignId, deleted_at: null },
         });
-        return campaignKeyService.setupKeys(campaignId, m1AccountId, mk1NewPlaintext, m2AccountId, mk2NewPlaintext);
+        if (!campaign) throw new AppError("ไม่พบรอบสอบ", 404);
+
+        const m1 = await prisma.accounts.findFirst({
+            where: { id: m1AccountId, role_id: 3, active: true, deleted_at: null },
+        });
+        if (!m1) throw new AppError("ไม่พบ Manager 1 หรือไม่มีสิทธิ์", 403);
+        if (m1.manager_order !== 1) throw new AppError("Manager 1 ต้องมี manager_order = 1", 400);
+
+        const m2 = await prisma.accounts.findFirst({
+            where: { id: m2AccountId, role_id: 3, active: true, deleted_at: null },
+        });
+        if (!m2) throw new AppError("ไม่พบ Manager 2 หรือไม่มีสิทธิ์", 403);
+        if (m2.manager_order !== 2) throw new AppError("Manager 2 ต้องมี manager_order = 2", 400);
+        if (m1AccountId === m2AccountId) throw new AppError("Manager 1 และ 2 ต้องเป็นคนละบัญชี", 400);
+
+        await assertKeyChangeable(campaignId);
+
+        let anyChanged = false;
+        await prisma.$transaction(async (tx) => {
+            const [c1, c2] = await Promise.all([
+                upsertKeyRecord(tx, campaignId, m1AccountId, MANAGER_KEY_ORDER_1, mk1NewPlaintext),
+                upsertKeyRecord(tx, campaignId, m2AccountId, MANAGER_KEY_ORDER_2, mk2NewPlaintext),
+            ]);
+            anyChanged = c1 || c2;
+            if (anyChanged) {
+                await markCampaignStale(tx, campaignId);
+            }
+        });
+
+        return {
+            success: true,
+            message: `เปลี่ยน campaign keys สำเร็จ${anyChanged ? " — booklets ถูกทำเครื่องหมาย STALE" : " (key เหมือนเดิม ไม่มีการเปลี่ยนแปลง)"}`,
+            data: {
+                campaign_id: campaignId,
+                key_changed: anyChanged,
+                manager1: { account_id: m1AccountId, full_name: m1.full_name },
+                manager2: { account_id: m2AccountId, full_name: m2.full_name },
+            },
+        };
     },
 
     /**
-     * ADMIN: ทดสอบว่าสามารถ derive combinedKey ได้จริง — ใช้เป็น "readiness check"
-     * ก่อนสร้าง booklets/QR payloads
+     * ADMIN: ทดสอบว่า combinedKey derive ได้จริง — readiness check ก่อนสร้าง booklets
      */
     async validateEncryptionReady(campaignId: number) {
         const combined = await campaignKeyService.getCombinedKey(campaignId);
-        combined.fill(0); // zero ทันทีหลัง verify
+        combined.fill(0);
         return {
             success: true,
             message: "คีย์พร้อมใช้งาน — สามารถสร้าง QR payload ได้",
@@ -271,7 +395,6 @@ export const campaignKeyService = {
 
     /**
      * ตรวจว่า MK ที่ผู้จัดการให้มาตรงกับที่เก็บใน DB (constant-time compare)
-     * ใช้สำหรับยืนยันตัวตนผู้จัดการ โดยไม่เปลี่ยนแปลงข้อมูลใด
      */
     async verifyKeys(campaignId: number, mk1: string, mk2: string) {
         const [mk1Record, mk2Record] = await Promise.all([

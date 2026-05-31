@@ -3,7 +3,6 @@ import PDFDocument from "pdfkit";
 import QRCode from "qrcode";
 import path from "path";
 import fs from "fs";
-import os from "os";
 import type { SignsheetPdfWorkerData, SignsheetRow } from "../signsheet.type";
 
 if (isMainThread) {
@@ -32,8 +31,11 @@ async function run() {
         doc.registerFont("Sarabun",     path.join(FONTS_DIR, "THSarabunNew.ttf"));
         doc.registerFont("SarabunBold", path.join(FONTS_DIR, "THSarabunNew-Bold.ttf"));
 
-        const fileName    = `signsheet_${data.campaign.id}_${data.session.id}_${Date.now()}.pdf`;
-        const filePath    = path.join(os.tmpdir(), fileName);
+        const storageDir  = path.resolve(process.env.STORAGE_DIR ?? "./storage", "signsheets");
+        fs.mkdirSync(storageDir, { recursive: true });
+
+        const fileName    = `signsheet_${data.campaign.id}_${data.session.id}.pdf`;
+        const filePath    = path.join(storageDir, fileName);
         const writeStream = fs.createWriteStream(filePath);
 
         doc.pipe(writeStream);

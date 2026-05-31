@@ -1,6 +1,7 @@
 import { Elysia } from "elysia";
 import { bookletService } from "./booklets.service";
 import { requireSession } from "../../cores/session";
+import { requireAdmin } from "../../cores/auth-guard";
 import {
     bookletCampaignParamSchema,
     bookletGenerateParamSchema,
@@ -43,6 +44,16 @@ export const bookletRoutes = new Elysia()
             return bookletService.generate(params.campaignId, params.sessionId, body);
         },
         { params: bookletGenerateParamSchema, body: generateBookletsBodySchema },
+    )
+    // ADMIN: สร้าง QR payload ใหม่เมื่อ key เปลี่ยน (qr_status = STALE)
+    .use(requireAdmin())
+    .post(
+        "/campaigns/:campaignId/sessions/:sessionId/booklets/regenerate",
+        ({ params, set }) => {
+            set.status = 200;
+            return bookletService.regenerateSessionBooklets(params.campaignId, params.sessionId);
+        },
+        { params: bookletGenerateParamSchema },
     )
     .patch(
         "/booklets/:bookletId",

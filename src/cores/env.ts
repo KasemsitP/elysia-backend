@@ -20,13 +20,14 @@ function optionalNumber(key: string, fallback: number): number {
 }
 
 export const env = {
-    DATABASE_URL:  required("DATABASE_URL"),
-    JWT_SECRET:    required("JWT_SECRET"),
-    CSRF_SECRET:   optional("CSRF_SECRET", required("JWT_SECRET")),
-    PORT:          optionalNumber("PORT", 3000),
-    REDIS_URL:     optional("REDIS_URL", "redis://localhost:6379"),
-    FRONTEND_URL:  optional("FRONTEND_URL", "*"),
-    NODE_ENV:      optional("NODE_ENV", "development"),
+    DATABASE_URL:       required("DATABASE_URL"),
+    JWT_SECRET:         required("JWT_SECRET"),
+    CSRF_SECRET:        optional("CSRF_SECRET", required("JWT_SECRET")),
+    PORT:               optionalNumber("PORT", 3000),
+    REDIS_URL:          optional("REDIS_URL", "redis://localhost:6379"),
+    FRONTEND_URL:       optional("FRONTEND_URL", "*"),
+    NODE_ENV:           optional("NODE_ENV", "development"),
+    STORAGE_DIR:        optional("STORAGE_DIR", "./storage"),
 } as const;
 
 export type Env = typeof env;

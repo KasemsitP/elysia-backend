@@ -12,7 +12,8 @@
       "Bash(dir \"C:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\")",
       "Bash(npx tsc *)",
       "PowerShell(cd \"C:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia\"; .\\\\node_modules\\\\.bin\\\\tsc --noEmit 2>&1 | Where-Object { $_ -match \"grading\" } | Select-Object -First 40)",
-      "PowerShell(cd C:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia; .\\\\node_modules\\\\.bin\\\\tsc --noEmit 2>&1 | Where-Object { $_ -match \"grading\" })"
+      "PowerShell(cd C:\\\\Users\\\\ToonToon\\\\Desktop\\\\ExamManagement\\\\elysia; .\\\\node_modules\\\\.bin\\\\tsc --noEmit 2>&1 | Where-Object { $_ -match \"grading\" })",
+      "Bash(curl *)"
     ]
   },
   "enableAllProjectMcpServers": true,

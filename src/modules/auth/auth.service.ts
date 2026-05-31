@@ -97,10 +97,7 @@ export const authService = {
 
         if (isGrader) {
             const grader = await graderRepo.getGraderByAccountId(account.id);
-            if (!grader) {
-                throw new AppError("ไม่พบข้อมูลผู้ตรวจ", 404);
-            }
-            grader_id = grader.id;
+            grader_id = grader?.id ?? null;
         }
 
         const sid = randomBytes(64).toString("hex");
@@ -147,10 +144,6 @@ export const authService = {
         const isGrader = input.role_id === 4;
 
 
-
-        if (isGrader && input.campaign_id == null) {
-            throw new AppError("กรุณาระบุ campaign_id สำหรับผู้ตรวจ", 400);
-        }
 
         const accountCreated = await prisma.$transaction(async (tx) => {
             const account = await authRepo.createAccount({
