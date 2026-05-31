@@ -31,8 +31,9 @@ export const bookletRepo = {
     async createMany(
         records: Array<{
             campaign_id: number;
-            session_id: number;
-            qr_payload: string;
+            session_id:  number;
+            qr_payload:  string;
+            random_num?: string;
         }>,
         tx?: Tx,
     ) {

@@ -6,19 +6,21 @@ const ENCRYPT_TIMEOUT_MS = 60_000; // 60 วินาที — 8000 เล่�
 
 export interface BookletRecord {
     campaign_id: number;
-    session_id: number;
-    qr_payload: string;
+    session_id:  number;
+    qr_payload:  string;
+    random_num:  string;
 }
 
 export async function runBookletEncryptWorker(
-    user_codes: string[],
-    combinedKeyBase64: string,
-    campaignId: number,
-    sessionId: number,
+    user_codes:         string[],
+    combinedKeyBase64:  string,
+    campaignId:         number,
+    sessionId:          number,
+    startIndex          = 0,
 ): Promise<BookletRecord[]> {
     return new Promise((resolve, reject) => {
         const worker = new Worker(WORKER_PATH, {
-            workerData: { user_codes, combinedKeyBase64, campaignId, sessionId },
+            workerData: { user_codes, combinedKeyBase64, campaignId, sessionId, startIndex },
         });
 
         const timer = setTimeout(() => {

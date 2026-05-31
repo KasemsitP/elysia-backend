@@ -53,6 +53,7 @@ export const bookletService = {
                 combinedKey.toString("base64"),
                 campaignId,
                 sessionId,
+                0, // generate ครั้งแรก เริ่ม 0001
             );
 
             // worker ส่งกลับมาในลำดับเดียวกับ input.user_codes
@@ -142,7 +143,10 @@ export const bookletService = {
                 }
 
                 const remaining = allCodes.slice(existingCount);
-                const records = await runBookletEncryptWorker(remaining, combinedKeyBase64, campaignId, session.id);
+                const records = await runBookletEncryptWorker(
+                    remaining, combinedKeyBase64, campaignId, session.id,
+                    existingCount, // random_num ต่อจากเล่มที่มีอยู่แล้ว
+                );
 
                 // สร้าง qrMap เฉพาะกรณี generate ครบ session (ไม่มี existing booklets)
                 // กรณี partial (existingCount > 0) ข้ามสร้าง PDF เพราะไม่มี mapping ของ existing
@@ -248,6 +252,7 @@ export const bookletService = {
                 combinedKey.toString("base64"),
                 campaignId,
                 sessionId,
+                0, // regenerate จากศูนย์ (soft-delete เก่าทั้งหมดแล้ว) เริ่ม 0001
             );
 
             // สร้าง qrMap ขณะที่ mapping ยังอยู่ใน memory

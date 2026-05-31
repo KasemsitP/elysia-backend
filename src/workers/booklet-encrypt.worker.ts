@@ -11,24 +11,27 @@ interface EncryptJob {
     combinedKeyBase64: string;
     campaignId: number;
     sessionId: number;
+    startIndex: number; // offset สำหรับ random_num — generate ชุดที่ N เริ่มจาก startIndex+1
 }
 
 interface BookletRecord {
     campaign_id: number;
     session_id: number;
     qr_payload: string;
+    random_num: string;
 }
 
-const { user_codes, combinedKeyBase64, campaignId, sessionId } = workerData as EncryptJob;
+const { user_codes, combinedKeyBase64, campaignId, sessionId, startIndex } = workerData as EncryptJob;
 
 try {
-    const records: BookletRecord[] = user_codes.map((user_code) => {
-        const nonce = randomBytes(8).toString("hex");
+    const records: BookletRecord[] = user_codes.map((user_code, index) => {
+        const nonce      = randomBytes(8).toString("hex");
         const qr_payload = encryptQrPayload(
             { cid: campaignId, sid: sessionId, uc: user_code, nonce },
             combinedKeyBase64,
         );
-        return { campaign_id: campaignId, session_id: sessionId, qr_payload };
+        const random_num = (startIndex + index + 1).toString().padStart(4, "0");
+        return { campaign_id: campaignId, session_id: sessionId, qr_payload, random_num };
     });
 
     parentPort!.postMessage({ success: true, records });
