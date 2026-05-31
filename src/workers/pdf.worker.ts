@@ -19,7 +19,9 @@ type PdfJobType =
     | "bag-manual-score-sheet"
     | "campaign-score-summary"
     | "passing-list"
-    | "grader-workload";
+    | "grader-workload"
+    | "bag-score-report"
+    | "bag-score-report-all";
 
 interface PdfJob {
     type: PdfJobType;
@@ -39,6 +41,10 @@ async function generatePdf(job: PdfJob): Promise<Buffer> {
             return generateManualScoreSheetPdf(job.data as BagScoresData);
         case "passing-list":
             return generatePassingListPdf(job.data as PassingListData);
+        case "bag-score-report":
+            return generateBagScoreReportPdf(job.data as BagScoreReportData);
+        case "bag-score-report-all":
+            return generateAllBagScoreReportPdf(job.data as AllBagScoreReportData);
         default:
             throw new Error(`Unknown PDF type: ${job.type}`);
     }
@@ -102,6 +108,65 @@ function generatePassingListPdf(data: PassingListData): Buffer {
         ...data.candidates.map((c) => `${c.rank}. ${c.identifier} — ${c.total_score} คะแนน ${c.passed ? "✓" : "✗"}`),
     ].join("\n");
     return Buffer.from(content, "utf8");
+}
+
+// ── Bag Score Report Data Types ────────────────────────────────────────────────
+
+interface BagScoreReportData {
+    campaign: { id: number; name: string | null; yearBe: string; campaignSize: string; isUnlock: boolean };
+    bag: { bagId: number; bagNo: number; sessionCode: string; sessionTitle: string | null; bookletCount: number; subjectNames: string[] };
+    summary: { questionCount: number; bookletCount: number; completedCount: number; maxScore: number };
+    questions: Array<{ questionNo: number; questionLabel: string; subjectName: string; maxScore: number }>;
+    rows: Array<{
+        displayCode: string;
+        scores: Array<{ questionNo: number; grader1Score: number | null; grader2Score: number | null; difference: number | null; finalScore: number | null; hasDifference: boolean; status: string }>;
+        totalScore: number | null;
+        status: string;
+    }>;
+}
+
+interface AllBagScoreReportData {
+    campaign: { id: number; name: string | null };
+    bags: BagScoreReportData[];
+}
+
+function generateBagScoreReportPdf(data: BagScoreReportData): Buffer {
+    const lines = [
+        `ใบสรุปคะแนนถุงที่ ${data.bag.bagNo}`,
+        `รอบสอบ: ${data.campaign.name ?? "-"}  (${data.campaign.yearBe})`,
+        `วันสอบ: ${data.bag.sessionTitle ?? data.bag.sessionCode}`,
+        `จำนวนเล่ม: ${data.bag.bookletCount}`,
+        `วิชา: ${data.bag.subjectNames.join(", ")}`,
+        "",
+        `คะแนนเต็มรวม: ${data.summary.maxScore} คะแนน`,
+        `ตรวจครบ: ${data.summary.completedCount}/${data.summary.bookletCount} เล่ม`,
+        "",
+        ...data.rows.map((row) => {
+            const scores = row.scores
+                .map((s) => `ข้อ${s.questionNo}=[${s.grader1Score ?? "-"}/${s.grader2Score ?? "-"}${s.hasDifference ? "*" : ""}]`)
+                .join(" ");
+            return `${row.displayCode}: ${scores}  รวม=${row.totalScore ?? "-"}`;
+        }),
+    ];
+    return Buffer.from(lines.join("\n"), "utf8");
+}
+
+function generateAllBagScoreReportPdf(data: AllBagScoreReportData): Buffer {
+    const sections = data.bags.flatMap((bag) => [
+        `\n=== ถุงที่ ${bag.bag.bagNo} (${bag.bag.sessionTitle ?? bag.bag.sessionCode}) ===`,
+        ...bag.rows.map((row) => {
+            const scores = row.scores
+                .map((s) => `ข้อ${s.questionNo}=${s.finalScore ?? "-"}`)
+                .join(" ");
+            return `  ${row.displayCode}: ${scores}  รวม=${row.totalScore ?? "-"}`;
+        }),
+    ]);
+    const lines = [
+        `ใบสรุปคะแนนทั้งหมด — รอบสอบ ${data.campaign.name ?? data.campaign.id}`,
+        `จำนวนถุง: ${data.bags.length}`,
+        ...sections,
+    ];
+    return Buffer.from(lines.join("\n"), "utf8");
 }
 
 // ── Main ───────────────────────────────────────────────────────────────────────

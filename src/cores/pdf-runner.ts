@@ -13,7 +13,9 @@ export type PdfJobType =
     | "bag-manual-score-sheet"
     | "campaign-score-summary"
     | "passing-list"
-    | "grader-workload";
+    | "grader-workload"
+    | "bag-score-report"
+    | "bag-score-report-all";
 
 export async function runPdfWorker(type: PdfJobType, data: unknown): Promise<Buffer> {
     return new Promise((resolve, reject) => {
