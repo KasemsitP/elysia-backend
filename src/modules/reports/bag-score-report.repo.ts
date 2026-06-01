@@ -63,7 +63,12 @@ export const bagScoreReportRepo = {
     async findQuestionsForSession(sessionId: number) {
         return prisma.session_subject_questions.findMany({
             where: { session_id: sessionId, deleted_at: null },
-            include: {
+            select: {
+                id: true,
+                question_no: true,
+                label: true,
+                max_score: true,
+                question_type: true,
                 session_subjects: {
                     include: { campaign_subjects: { select: { name: true } } },
                 },

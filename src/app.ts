@@ -39,6 +39,7 @@ import { scanLogRoutes } from "./modules/scan-logs/scan-logs.routes";
 import { graderRoutes } from "./modules/grader/grader.routes";
 import { graderAssignmentRoutes } from "./modules/grader-assignments/grader-assignments.routes";
 import { gradingRoutes } from "./modules/grading/grading.routes";
+import { scoreResetRoutes } from "./modules/score-reset/score-reset.route";
 
 // Dashboard
 import { dashboardRoutes } from "./modules/dashboard/dashboard.routes";
@@ -137,6 +138,7 @@ export const app = new Elysia()
             .use(graderRoutes)
             .use(graderAssignmentRoutes)
             .use(gradingRoutes)
+            .use(scoreResetRoutes)
             // Dashboard
             .use(dashboardRoutes)
             // Signsheet

@@ -94,6 +94,7 @@ export const bagScoreReportService = {
             questionLabel: `ข้อ ${q.question_no}`,
             subjectName: q.session_subjects.campaign_subjects.name,
             maxScore: q.max_score,
+            questionType: q.question_type as "REQUIRED" | "OPTIONAL",
             differenceThreshold,
         }));
 
@@ -112,28 +113,36 @@ export const bagScoreReportService = {
                 const g1 = typeof g1Raw === "number" ? g1Raw : null;
                 const g2 = typeof g2Raw === "number" ? g2Raw : null;
 
+                const isOptional = q.question_type === "OPTIONAL";
+                const hasBoth = g1 !== null && g2 !== null;
+                const hasAny = g1 !== null || g2 !== null || hasG1 || hasG2;
+
                 let difference: number | null = null;
                 let averageScore: number | null = null;
                 let finalScore: number | null = null;
                 let hasDifference = false;
-                let status: "COMPLETE" | "PARTIAL" | "MISSING" = "MISSING";
+                let status: "COMPLETE" | "PARTIAL" | "MISSING" | "SKIPPED";
 
-                if (g1 !== null && g2 !== null) {
-                    difference = Math.round(Math.abs(g1 - g2) * 100) / 100;
-                    averageScore = Math.round(((g1 + g2) / 2) * 100) / 100;
+                if (hasBoth) {
+                    difference = Math.round(Math.abs(g1! - g2!) * 100) / 100;
+                    averageScore = Math.round(((g1! + g2!) / 2) * 100) / 100;
                     finalScore = averageScore;
                     hasDifference = difference > differenceThreshold;
                     status = "COMPLETE";
-                } else if (g1 !== null || g2 !== null) {
+                } else if (hasAny) {
                     finalScore = g1 ?? g2;
                     status = "PARTIAL";
-                } else if (hasG1 || hasG2) {
-                    status = "PARTIAL";
+                } else if (isOptional) {
+                    // OPTIONAL + no score at all → ไม่ได้เลือกทำ ไม่นับเป็น missing
+                    status = "SKIPPED";
+                } else {
+                    status = "MISSING";
                 }
 
                 return {
                     sessionSubjectQuestionId: q.id,
                     questionNo: q.question_no,
+                    questionType: q.question_type as "REQUIRED" | "OPTIONAL",
                     grader1Score: g1,
                     grader2Score: g2,
                     difference,
@@ -144,16 +153,23 @@ export const bagScoreReportService = {
                 };
             });
 
-            const allComplete = scores.every((s) => s.status === "COMPLETE");
-            const allMissing = scores.every((s) => s.status === "MISSING");
-            if (allComplete) completedCount++;
+            // SKIPPED (optional, no score) is not an error — exclude from missing/partial checks
+            const hasMissingRequired = scores.some(
+                (s) => s.questionType === "REQUIRED" && (s.status === "MISSING" || s.status === "PARTIAL"),
+            );
+            const hasPartial = scores.some((s) => s.status === "PARTIAL");
+            const allEffectiveDone = scores.every((s) => s.status === "COMPLETE" || s.status === "SKIPPED");
+
+            if (allEffectiveDone) completedCount++;
             if (scores.some((s) => s.hasDifference)) differenceCount++;
 
+            // Sum only cells that have a finalScore (COMPLETE/PARTIAL); skip MISSING and SKIPPED
             const totalScore = scores.reduce((sum, s) => sum + (s.finalScore ?? 0), 0);
-            const rowStatus: "COMPLETE" | "PARTIAL" | "MISSING" = allComplete
-                ? "COMPLETE"
-                : allMissing
-                ? "MISSING"
+            const hasAnyScore = scores.some((s) => s.finalScore !== null);
+
+            const rowStatus: "COMPLETE" | "PARTIAL" | "MISSING" =
+                allEffectiveDone ? "COMPLETE"
+                : hasMissingRequired && !hasAnyScore ? "MISSING"
                 : "PARTIAL";
 
             return {
@@ -164,7 +180,7 @@ export const bagScoreReportService = {
                 userCode: isUnlock ? (b.user_code ?? null) : null,
                 fullName: null,
                 scores,
-                totalScore: allMissing ? null : Math.round(totalScore * 100) / 100,
+                totalScore: hasAnyScore ? Math.round(totalScore * 100) / 100 : null,
                 status: rowStatus,
             };
         });

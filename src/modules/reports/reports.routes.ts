@@ -1,6 +1,7 @@
 import { Elysia } from "elysia";
 import { reportService } from "./reports.service";
 import { bagScoreReportService } from "./bag-score-report.service";
+import { rankingReportService } from "./ranking-report.service";
 import { requireSession } from "../../cores/session";
 import { requireNonGrader } from "../../cores/auth-guard";
 import {
@@ -57,6 +58,14 @@ export const reportRoutes = new Elysia({ prefix: "/reports" })
             );
         },
         { params: reportCampaignBagParamSchema, query: reportBagScoreQuerySchema },
+    )
+    .get(
+        "/campaigns/:campaignId/ranking/pdf",
+        ({ params, set }) => {
+            set.status = 200;
+            return rankingReportService.getRankingPdf(params.campaignId);
+        },
+        { params: reportCampaignParamSchema },
     )
     .get(
         "/campaigns/:campaignId/bags/:bagId/scores/pdf",
