@@ -42,10 +42,11 @@ export const rankingReportRepo = {
 
     async getCompletedScores(bookletIds: number[]) {
         if (bookletIds.length === 0) return [];
+        // Include "RESET" so post-reset scores still count toward totals
         return prisma.grading_slots.findMany({
             where: {
                 booklet_id: { in: bookletIds },
-                status: "COMPLETED",
+                status: { in: ["COMPLETED", "RESET"] },
                 deleted_at: null,
             },
             select: {

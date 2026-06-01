@@ -259,7 +259,7 @@ export const gradingService = {
         });
         if (!grader) throw new AppError("ไม่พบผู้ตรวจ", 404);
 
-        const threshold = await getNumberSetting(bag.campaign_id, "score_diff_threshold", 5);
+        const threshold = await getNumberSetting(bag.campaign_id, "reset_threshold", 3);
 
         const confirmedCount = await prisma.$transaction(async (tx) => {
             // ดึง drafts ทั้งหมดของ grader นี้ สำหรับ bag+question นี้
@@ -781,7 +781,7 @@ export const gradingService = {
         if (lock.grader_id !== graderId) throw new AppError("ไม่มีสิทธิ์ยืนยันงานนี้", 403);
         if (lock.status !== "ACTIVE") throw new AppError("lock นี้ไม่ได้ active อยู่", 400);
 
-        const threshold = await getNumberSetting(lock.campaign_id, "score_diff_threshold", 5);
+        const threshold = await getNumberSetting(lock.campaign_id, "reset_threshold", 3);
 
         const confirmedCount = await prisma.$transaction(async (tx) => {
             // Fetch inside transaction to avoid TOCTOU between validation and write
