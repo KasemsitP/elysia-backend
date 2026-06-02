@@ -37,7 +37,8 @@ function computeCell(opts: {
 
     const isOptional = questionType === "OPTIONAL";
     const hasBoth = g1 !== null && g2 !== null;
-    const hasAny = g1 !== null || g2 !== null || g1SlotExists || g2SlotExists;
+    const hasActualScore = g1 !== null || g2 !== null;
+    const hasSlot = g1SlotExists || g2SlotExists;
 
     let difference: number | null = null;
     let averageScore: number | null = null;
@@ -51,11 +52,15 @@ function computeCell(opts: {
         finalScore = averageScore;
         hasDifference = difference > threshold;
         status = "COMPLETE";
-    } else if (hasAny) {
+    } else if (hasActualScore) {
         finalScore = g1 ?? g2;
         status = "PARTIAL";
     } else if (isOptional) {
+        // OPTIONAL + ไม่มีคะแนนจริง → SKIPPED เสมอ แม้จะมี slot อยู่ใน DB
         status = "SKIPPED";
+    } else if (hasSlot) {
+        // REQUIRED + มี slot แต่ยังไม่กรอกคะแนน → PARTIAL
+        status = "PARTIAL";
     } else {
         status = "MISSING";
     }
@@ -188,5 +193,42 @@ describe("OPTIONAL + ไม่มีคะแนนเลย = SKIPPED (ไม�
     it("SKIPPED ต้องไม่มี finalScore เพื่อไม่นับในคะแนนรวม", () => {
         const cell = computeCell({ questionType: "OPTIONAL", g1: null, g2: null, threshold: 3 });
         expect(cell.finalScore).toBeNull();
+    });
+
+    it("[bug fix] มี slot แต่ไม่มีคะแนน → SKIPPED ไม่ใช่ PARTIAL", () => {
+        // grader เปิด slot ทิ้งไว้แต่ไม่กรอกคะแนน
+        // ก่อนแก้: hasAny = true (เพราะ slot มีอยู่) → PARTIAL
+        // หลังแก้: ตรวจด้วย hasActualScore → ไม่มีคะแนนจริง + OPTIONAL → SKIPPED
+        const cell = computeCell({
+            questionType: "OPTIONAL",
+            g1: null, g2: null,
+            g1SlotExists: true, g2SlotExists: false,
+            threshold: 3,
+        });
+        expect(cell.status).toBe("SKIPPED");
+        expect(cell.finalScore).toBeNull();
+    });
+
+    it("[bug fix] มี slot ทั้ง 2 ฝั่งแต่ไม่มีคะแนน → SKIPPED ไม่ใช่ PARTIAL", () => {
+        const cell = computeCell({
+            questionType: "OPTIONAL",
+            g1: null, g2: null,
+            g1SlotExists: true, g2SlotExists: true,
+            threshold: 3,
+        });
+        expect(cell.status).toBe("SKIPPED");
+        expect(cell.finalScore).toBeNull();
+    });
+
+    it("[bug fix] effectiveMaxScore ต้องไม่นับข้อ OPTIONAL ที่มี slot แต่ไม่มีคะแนน", () => {
+        // จำลอง: 2 ข้อ REQUIRED (10 คะแนน) + 1 ข้อ OPTIONAL (10 คะแนน) ที่มี slot แต่ไม่มีคะแนน
+        // effectiveMaxScore ต้องเป็น 20 ไม่ใช่ 30
+        const maxScores = [10, 10, 10];
+        const statuses = ["COMPLETE", "COMPLETE", "SKIPPED"] as const;
+        const effectiveMaxScore = statuses.reduce(
+            (sum, s, i) => sum + (s !== "SKIPPED" ? (maxScores[i] ?? 0) : 0),
+            0,
+        );
+        expect(effectiveMaxScore).toBe(20);
     });
 });

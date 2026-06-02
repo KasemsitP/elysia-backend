@@ -98,7 +98,12 @@ export const bagScoreReportService = {
             differenceThreshold,
         }));
 
+        // คะแนนเต็มทางทฤษฎี = บวกทุกข้อ (ใช้ใน summary header)
         const maxScore = questions.reduce((sum, q) => sum + q.max_score, 0);
+        // คะแนนเต็มขั้นต่ำ = บวกเฉพาะข้อบังคับ (OPTIONAL อาจไม่ทำก็ได้)
+        const requiredMaxScore = questions
+            .filter((q) => q.question_type !== "OPTIONAL")
+            .reduce((sum, q) => sum + q.max_score, 0);
         let completedCount = 0;
         let differenceCount = 0;
 
@@ -115,7 +120,8 @@ export const bagScoreReportService = {
 
                 const isOptional = q.question_type === "OPTIONAL";
                 const hasBoth = g1 !== null && g2 !== null;
-                const hasAny = g1 !== null || g2 !== null || hasG1 || hasG2;
+                const hasActualScore = g1 !== null || g2 !== null;
+                const hasSlot = hasG1 || hasG2;
 
                 let difference: number | null = null;
                 let averageScore: number | null = null;
@@ -129,12 +135,15 @@ export const bagScoreReportService = {
                     finalScore = averageScore;
                     hasDifference = difference > differenceThreshold;
                     status = "COMPLETE";
-                } else if (hasAny) {
+                } else if (hasActualScore) {
                     finalScore = g1 ?? g2;
                     status = "PARTIAL";
                 } else if (isOptional) {
-                    // OPTIONAL + no score at all → ไม่ได้เลือกทำ ไม่นับเป็น missing
+                    // OPTIONAL + ไม่มีคะแนนจริง → SKIPPED เสมอ แม้จะมี slot อยู่ใน DB
                     status = "SKIPPED";
+                } else if (hasSlot) {
+                    // REQUIRED + มี slot แต่ยังไม่กรอกคะแนน → PARTIAL
+                    status = "PARTIAL";
                 } else {
                     status = "MISSING";
                 }
@@ -167,6 +176,12 @@ export const bagScoreReportService = {
             const totalScore = scores.reduce((sum, s) => sum + (s.finalScore ?? 0), 0);
             const hasAnyScore = scores.some((s) => s.finalScore !== null);
 
+            // คะแนนเต็มเฉพาะเล่มนี้ = ไม่นับข้อที่ SKIPPED (OPTIONAL ที่ไม่ได้ทำ)
+            const effectiveMaxScore = scores.reduce(
+                (sum, s, i) => sum + (s.status !== "SKIPPED" ? (questions[i]?.max_score ?? 0) : 0),
+                0,
+            );
+
             const rowStatus: "COMPLETE" | "PARTIAL" | "MISSING" =
                 allEffectiveDone ? "COMPLETE"
                 : hasMissingRequired && !hasAnyScore ? "MISSING"
@@ -181,6 +196,7 @@ export const bagScoreReportService = {
                 fullName: null,
                 scores,
                 totalScore: hasAnyScore ? Math.round(totalScore * 100) / 100 : null,
+                effectiveMaxScore,
                 status: rowStatus,
             };
         });
@@ -213,7 +229,8 @@ export const bagScoreReportService = {
                     completedCount,
                     incompleteCount: booklets.length - completedCount,
                     differenceCount,
-                    maxScore,
+                    maxScore,           // คะแนนเต็มทางทฤษฎี (รวม OPTIONAL ทุกข้อ)
+                    requiredMaxScore,   // คะแนนเต็มขั้นต่ำ (เฉพาะข้อบังคับ)
                 },
                 questions: questionMeta,
                 rows,
