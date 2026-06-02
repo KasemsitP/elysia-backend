@@ -10,6 +10,8 @@
  *  • 4 ผู้ตรวจ (2/วิชา) + grader assignments
  *  • คะแนนครบ 200 slots — ส่วนใหญ่ COMPLETED, 5 DISPUTED, 2 RESET
  *  • Campaign settings (threshold=3, passing_count=5, ranking_priority)
+ *
+ * IDs start at 10 for all key tables (exam_campaigns, sessions, users, etc.)
  */
 import "dotenv/config";
 import { PrismaClient } from "./generated/prisma/client";
@@ -49,17 +51,72 @@ function normalScore(bi: number, qi: number, order: 1 | 2): number {
     return order === 1 ? base : base + 1;
 }
 
-async function main() {
-    console.log("🌱 Mock seeding...\n");
+async function setAutoIncrement(table: string, value: number) {
+    await prisma.$executeRawUnsafe(`ALTER TABLE \`${table}\` AUTO_INCREMENT = ${value}`);
+}
 
-    // ── Guard: skip if campaign already seeded ──────────────────────────────
+async function cleanupCampaign(cId: number) {
+    console.log(`🗑️  Cleaning up campaign id=${cId}...`);
+    // Delete in FK-safe order (children before parents)
+    await prisma.grading_score_logs.deleteMany({ where: { campaign_id: cId } });
+    await prisma.grading_score_drafts.deleteMany({ where: { campaign_id: cId } });
+    await prisma.grading_scores.deleteMany({
+        where: { grading_slots: { campaign_id: cId } },
+    });
+    await prisma.grading_slots.deleteMany({ where: { campaign_id: cId } });
+    await prisma.grader_work_locks.deleteMany({ where: { campaign_id: cId } });
+    await prisma.grader_assignments.deleteMany({ where: { campaign_id: cId } });
+    await prisma.booklet_question_choices.deleteMany({
+        where: { booklets: { campaign_id: cId } },
+    });
+    await prisma.booklet_question_notes.deleteMany({ where: { campaign_id: cId } });
+    await prisma.booklet_incident_reports.deleteMany({ where: { campaign_id: cId } });
+    await prisma.question_choice_group_items.deleteMany({
+        where: { question_choice_groups: { campaign_id: cId } },
+    });
+    await prisma.question_choice_groups.deleteMany({ where: { campaign_id: cId } });
+    await prisma.session_subject_questions.deleteMany({ where: { campaign_id: cId } });
+    await prisma.session_counters.deleteMany({
+        where: { sessions: { campaign_id: cId } },
+    });
+    await prisma.session_subjects.deleteMany({ where: { campaign_id: cId } });
+    await prisma.graders.deleteMany({ where: { campaign_id: cId } });
+    await prisma.campaign_settings.deleteMany({ where: { campaign_id: cId } });
+    await prisma.user_sessions.deleteMany({ where: { campaign_id: cId } });
+    await prisma.user_campaigns.deleteMany({ where: { campaign_id: cId } });
+    await prisma.qr_scan_logs.deleteMany({ where: { campaign_id: cId } });
+    await prisma.notification_recipients.deleteMany({
+        where: { notification_messages: { campaign_id: cId } },
+    });
+    await prisma.notification_delivery_logs.deleteMany({
+        where: { notification_messages: { campaign_id: cId } },
+    });
+    await prisma.notification_messages.deleteMany({ where: { campaign_id: cId } });
+    await prisma.booklets.deleteMany({ where: { campaign_id: cId } });
+    await prisma.bags.deleteMany({ where: { campaign_id: cId } });
+    await prisma.sessions.deleteMany({ where: { campaign_id: cId } });
+    await prisma.campaign_subjects.deleteMany({ where: { campaign_id: cId } });
+    await prisma.campaign_keys.deleteMany({ where: { campaign_id: cId } });
+    await prisma.twofactor_sessions.deleteMany({ where: { campaign_id: cId } });
+    await prisma.exam_rooms.deleteMany({ where: { campaign_id: cId } });
+    // Detach any accounts scoped to this campaign (don't delete accounts)
+    await prisma.accounts.updateMany({
+        where: { campaign_id: cId },
+        data: { campaign_id: null },
+    });
+    await prisma.exam_campaigns.delete({ where: { id: cId } });
+    console.log(`✓ Campaign id=${cId} and all related data deleted\n`);
+}
+
+async function main() {
+    console.log("🌱 Mock seeding (IDs start at 10)...\n");
+
+    // ── Cleanup existing campaign if present ────────────────────────────────
     const existing = await prisma.exam_campaigns.findFirst({
         where: { year_be: "2568", campaign_size: "สนามใหญ่", deleted_at: null },
     });
     if (existing) {
-        console.log(`ℹ️  Campaign 2568 (id=${existing.id}) มีอยู่แล้ว — ข้าม`);
-        console.log("   ถ้าต้องการ seed ใหม่ ให้ลบ campaign นี้ออกก่อน");
-        return;
+        await cleanupCampaign(existing.id);
     }
 
     // ── 1. Roles ─────────────────────────────────────────────────────────────
@@ -140,7 +197,8 @@ async function main() {
     }
     console.log("✓ Setting definitions");
 
-    // ── 5. Campaign ──────────────────────────────────────────────────────────
+    // ── 5. Campaign (id = 10) ────────────────────────────────────────────────
+    await setAutoIncrement("exam_campaigns", 10);
     const campaign = await prisma.exam_campaigns.create({
         data: {
             name: "การสอบผู้ช่วยพนักงานอัยการ",
@@ -155,7 +213,8 @@ async function main() {
     const cId = campaign.id;
     console.log(`✓ Campaign id=${cId}`);
 
-    // ── 6. Campaign subjects ─────────────────────────────────────────────────
+    // ── 6. Campaign subjects (ids start at 10) ───────────────────────────────
+    await setAutoIncrement("campaign_subjects", 10);
     const cs1 = await prisma.campaign_subjects.create({
         data: { campaign_id: cId, subject_id: subj1.id, code: "LAW1", name: "กฎหมายอาญา", full_score: 50, order_no: 1 },
     });
@@ -164,7 +223,8 @@ async function main() {
     });
     console.log(`✓ Campaign subjects (cs1=${cs1.id}, cs2=${cs2.id})`);
 
-    // ── 7. Campaign settings ─────────────────────────────────────────────────
+    // ── 7. Campaign settings (ids start at 10) ───────────────────────────────
+    await setAutoIncrement("campaign_settings", 10);
     const settingsData = [
         { key: "reset_threshold",           value: 3,     vt: "NUMBER" },
         { key: "passing_candidate_count",   value: 5,     vt: "NUMBER" },
@@ -189,7 +249,8 @@ async function main() {
     }
     console.log("✓ Campaign settings");
 
-    // ── 8. Session ───────────────────────────────────────────────────────────
+    // ── 8. Session (id = 10) ─────────────────────────────────────────────────
+    await setAutoIncrement("sessions", 10);
     const session = await prisma.sessions.create({
         data: {
             campaign_id: cId,
@@ -203,7 +264,8 @@ async function main() {
     await prisma.session_counters.create({ data: { session_id: sId, next_bag_no: 3, next_random_seq: 10011 } });
     console.log(`✓ Session id=${sId}`);
 
-    // ── 9. Session subjects ──────────────────────────────────────────────────
+    // ── 9. Session subjects (ids start at 10) ────────────────────────────────
+    await setAutoIncrement("session_subjects", 10);
     const now = new Date("2025-06-15T08:00:00");
     const noon = new Date("2025-06-15T12:00:00");
     const end  = new Date("2025-06-15T16:00:00");
@@ -216,7 +278,8 @@ async function main() {
     });
     console.log(`✓ Session subjects (ss1=${ss1.id}, ss2=${ss2.id})`);
 
-    // ── 10. Questions (5 per subject = 10 total) ─────────────────────────────
+    // ── 10. Questions (ids start at 10, 5 per subject = 10 total) ────────────
+    await setAutoIncrement("session_subject_questions", 10);
     const questionLabels = [
         "สัญญาซื้อขาย", "ฆ่าผู้อื่น", "บุกรุก", "ลักทรัพย์", "ยักยอก",
         "ตั๋วเงิน", "หนี้", "สัญญากู้ยืม", "นายจ้างลูกจ้าง", "ค้ำประกัน",
@@ -241,9 +304,10 @@ async function main() {
         });
         questions.push(q);
     }
-    console.log(`✓ Questions (${questions.length} ข้อ)`);
+    console.log(`✓ Questions (${questions.length} ข้อ, ids ${questions[0]!.id}–${questions[9]!.id})`);
 
-    // ── 11. Candidates (users) ────────────────────────────────────────────────
+    // ── 11. Candidates (users, ids start at 10) ───────────────────────────────
+    await setAutoIncrement("users", 10);
     const candidateNames = [
         ["นาย", "สมชาย",     "ใจดี"],
         ["นางสาว", "สมหญิง", "มีสุข"],
@@ -257,6 +321,7 @@ async function main() {
         ["นางสาว", "ปิยะ",   "สุขสันต์"],
     ];
 
+    await setAutoIncrement("user_campaigns", 10);
     const users = [];
     for (let i = 0; i < 10; i++) {
         const code = `1000${i + 1}`;
@@ -273,9 +338,10 @@ async function main() {
         users.push(u);
         await prisma.user_campaigns.create({ data: { user_id: u.id, campaign_id: cId } });
     }
-    console.log(`✓ Users + UserCampaigns (${users.length} คน)`);
+    console.log(`✓ Users + UserCampaigns (${users.length} คน, user ids ${users[0]!.id}–${users[9]!.id})`);
 
-    // ── 12. Graders ───────────────────────────────────────────────────────────
+    // ── 12. Graders (ids start at 10) ────────────────────────────────────────
+    await setAutoIncrement("graders", 10);
     const graders = [];
     for (let i = 0; i < 4; i++) {
         const g = await prisma.graders.create({
@@ -284,9 +350,10 @@ async function main() {
         graders.push(g);
     }
     // grader[0,1] = Law1 (cs1), grader[2,3] = Law2 (cs2)
-    console.log(`✓ Graders (${graders.map(g => g.id).join(", ")})`);
+    console.log(`✓ Graders (ids ${graders.map(g => g.id).join(", ")})`);
 
-    // ── 13. Grader assignments ────────────────────────────────────────────────
+    // ── 13. Grader assignments (ids start at 10) ──────────────────────────────
+    await setAutoIncrement("grader_assignments", 10);
     for (let qi = 0; qi < 10; qi++) {
         const q = questions[qi]!;
         const isLaw2 = qi >= 5;
@@ -310,7 +377,8 @@ async function main() {
     }
     console.log("✓ Grader assignments");
 
-    // ── 14. Booklets ─────────────────────────────────────────────────────────
+    // ── 14. Booklets (ids start at 10) ───────────────────────────────────────
+    await setAutoIncrement("booklets", 10);
     const booklets = [];
     for (let i = 0; i < 10; i++) {
         const u = users[i]!;
@@ -325,9 +393,10 @@ async function main() {
         });
         booklets.push(b);
     }
-    console.log(`✓ Booklets (${booklets.length} เล่ม)`);
+    console.log(`✓ Booklets (${booklets.length} เล่ม, ids ${booklets[0]!.id}–${booklets[9]!.id})`);
 
-    // ── 15. Bags (2 bags × 5 booklets) ────────────────────────────────────────
+    // ── 15. Bags (ids start at 10, 2 bags × 5 booklets) ──────────────────────
+    await setAutoIncrement("bags", 10);
     for (let bagIdx = 0; bagIdx < 2; bagIdx++) {
         const bag = await prisma.bags.create({
             data: {
@@ -347,10 +416,14 @@ async function main() {
                 data: { bag_id: bag.id, seq_in_bag: bi + 1, random_num: String(randomNum), status: "PACKAGED" },
             });
         }
+        console.log(`✓ Bag id=${bag.id} (bag_no=${bagIdx + 1})`);
     }
-    console.log("✓ Bags (ถุง 1-2)");
 
-    // ── 16. Grading slots + scores ────────────────────────────────────────────
+    // ── 16. Grading slots + scores (ids start at 10) ─────────────────────────
+    await setAutoIncrement("grading_slots", 10);
+    await setAutoIncrement("grading_scores", 10);
+    await setAutoIncrement("grading_score_logs", 10);
+
     let slotCount = 0, scoreCount = 0, disputedCount = 0, resetCount = 0;
 
     for (let bi = 0; bi < 10; bi++) {
@@ -431,7 +504,7 @@ async function main() {
                         slot_id2: slot2.id,
                         grader1_id: g1.id,
                         grader2_id: g2.id,
-                        old_score1: reset.g1 + 2, // สมมติว่าเดิมต่างกันมาก
+                        old_score1: reset.g1 + 2,
                         old_score2: reset.g2 - 3,
                         new_score1: reset.g1,
                         new_score2: reset.g2,
